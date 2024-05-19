@@ -1,8 +1,21 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import model.MySQL;
 
 public class AdminSignin extends javax.swing.JFrame {
+
+    private static String employeeUsername;
+
+    public static String getEmployeeUsername() {
+        return employeeUsername;
+    }
+
+    private static void setEmployeeUsername(String employeeUsername) {
+        AdminSignin.employeeUsername = employeeUsername;
+    }
 
     public AdminSignin() {
         initComponents();
@@ -70,10 +83,29 @@ public class AdminSignin extends javax.swing.JFrame {
         jButton2.setContentAreaFilled(false);
 
         jTextField1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jTextField1.setText("Username");
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jPasswordField1.setFont(new java.awt.Font("Engravers MT", 0, 17)); // NOI18N
-        jPasswordField1.setText("Password");
+        jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusLost(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logo80px.png"))); // NOI18N
 
@@ -86,6 +118,11 @@ public class AdminSignin extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 13)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("  Sign In");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(52, 73, 94));
         jButton4.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 13)); // NOI18N
@@ -167,6 +204,77 @@ public class AdminSignin extends javax.swing.JFrame {
         dashboard.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
+        // TODO add your handling code here:
+        if (jPasswordField1.getPassword().equals("Please Enter Your Password")) {
+            jPasswordField1.setEchoChar('.');
+            jPasswordField1.setText("");
+        }
+    }//GEN-LAST:event_jPasswordField1FocusGained
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+
+        if (jTextField1.getText().equals("Please Enter Your Username")) {
+            jTextField1.setText("");
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        if (jTextField1.getText().equals("")) {
+            jTextField1.setText("Please Enter Your Username");
+        }
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
+        if (jPasswordField1.getPassword().equals("")) {
+            jPasswordField1.setEchoChar('\u0000');
+            jPasswordField1.setText("Please Enter Your Password");
+        }
+    }//GEN-LAST:event_jPasswordField1FocusLost
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String username = jTextField1.getText();
+        String password = String.valueOf(jPasswordField1.getPassword());
+
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter your User Name", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else if (password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Password", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+
+            try {
+                ResultSet resultset = MySQL.execute("SELECT * FROM `employee`"
+                        + "WHERE `username`='" + username + "' AND `password`='" + password + "'");
+                if (resultset.next()) {
+
+                    JOptionPane.showMessageDialog(this, "Login Successful", "SUCCESSFULLY LOGIN", JOptionPane.INFORMATION_MESSAGE);
+
+                    String mobile = resultset.getString("mobile");
+                    String fname = resultset.getString("first_name");
+                    String lname = resultset.getString("last_name");
+                    String reg = resultset.getString("registered_date");
+
+                    Admin_main_panel AMP = new Admin_main_panel(username, mobile, fname, lname,reg);
+                    AMP.setVisible(true);
+                    this.dispose();
+
+                    setEmployeeUsername(username);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid Details", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
