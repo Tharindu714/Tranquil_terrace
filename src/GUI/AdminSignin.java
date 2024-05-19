@@ -251,7 +251,7 @@ public class AdminSignin extends javax.swing.JFrame {
 
             try {
                 ResultSet resultset = MySQL.execute("SELECT * FROM `employee`"
-                        + "WHERE `username`='" + username + "' AND `password`='" + password + "'");
+                        + "WHERE `username`='" + username + "' AND `password`='" + password + "' AND `employee_type_id`='1'");
                 if (resultset.next()) {
 
                     JOptionPane.showMessageDialog(this, "Login Successful", "SUCCESSFULLY LOGIN", JOptionPane.INFORMATION_MESSAGE);
@@ -261,13 +261,13 @@ public class AdminSignin extends javax.swing.JFrame {
                     String lname = resultset.getString("last_name");
                     String reg = resultset.getString("registered_date");
 
-                    Admin_main_panel AMP = new Admin_main_panel(username, mobile, fname, lname,reg);
+                    Admin_main_panel AMP = new Admin_main_panel(username, mobile, fname, lname, reg);
                     AMP.setVisible(true);
                     this.dispose();
 
                     setEmployeeUsername(username);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Invalid Details", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "You are Not a Valid User", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
