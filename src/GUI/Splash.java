@@ -42,7 +42,7 @@ public class Splash extends javax.swing.JFrame {
         jProgressBar1.setForeground(new java.awt.Color(245, 71, 104));
         getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 410, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/WELCOME.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/WELCOME !.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 450));
 
         pack();
