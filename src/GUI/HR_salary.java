@@ -368,7 +368,7 @@ public class HR_salary extends javax.swing.JFrame {
         String advance = jFormattedTextField2.getText();
         String due = jFormattedTextField3.getText();
 
-        Date date = new Date().;
+        
         String start = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         String End = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
