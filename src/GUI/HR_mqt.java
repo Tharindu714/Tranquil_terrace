@@ -1,6 +1,7 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import com.mysql.cj.callback.UsernameCallback;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,6 +15,9 @@ import model.MySQL;
 public class HR_mqt extends javax.swing.JFrame {
 
     HashMap<String, String> typeMap = new HashMap<>();
+    private String username;
+    private String mobile;
+    private String id;
 
     public HR_mqt() {
         initComponents();
@@ -121,6 +125,7 @@ public class HR_mqt extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -220,7 +225,7 @@ public class HR_mqt extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jComboBox1.setForeground(java.awt.Color.white);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Active", "Deactive" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Active", "Inactive" }));
 
         jButton1.setBackground(new java.awt.Color(245, 71, 104));
         jButton1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
@@ -253,6 +258,16 @@ public class HR_mqt extends javax.swing.JFrame {
         jComboBox2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jComboBox2.setForeground(java.awt.Color.white);
 
+        jButton3.setBackground(new java.awt.Color(52, 73, 94));
+        jButton3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Update HR Address");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -277,7 +292,8 @@ public class HR_mqt extends javax.swing.JFrame {
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 13, Short.MAX_VALUE))
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -322,12 +338,14 @@ public class HR_mqt extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(12, 12, 12)
                 .addComponent(jButton2)
+                .addGap(12, 12, 12)
+                .addComponent(jButton3)
                 .addContainerGap())
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
 
-        jPanel3.setLayout(new java.awt.GridLayout());
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -374,7 +392,7 @@ public class HR_mqt extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 1) {
             int selectedRow = jTable1.getSelectedRow();
             if (selectedRow != -1) {
 
@@ -402,6 +420,12 @@ public class HR_mqt extends javax.swing.JFrame {
                 jComboBox2.setEnabled(false);
                 jButton1.setEnabled(false);
             }
+        } else if (evt.getClickCount() == 2) {
+            emp_address emp_add = new emp_address(username, mobile, id);
+            emp_add.setVisible(true);
+
+        } else {
+
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -476,27 +500,33 @@ public class HR_mqt extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Please Enter the updated Name", "Warning", JOptionPane.WARNING_MESSAGE);
                 } else if (password.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Please Update Password", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else if (status.equals(0)) {
-                    JOptionPane.showMessageDialog(this, "Please Update User Status", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else if (status.equals("Active")) {
+                    JOptionPane.showMessageDialog(this, "You Update this user as an active user", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                    MySQL.execute("UPDATE `employee` SET "
+                            + "`mobile` = '" + mobile + "', "
+                            + "`username` = '" + username + "',"
+                            + "`password` = '" + password + "',"
+                            + "`status` = '1' WHERE `id` = '" + id + "'");
+                    reset();
+                    JOptionPane.showMessageDialog(this, "HR Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                    loadHR("SELECT * FROM `employee` WHERE `employee_type_id`='4'");
+                    loadGender();
+
+                } else if (status.equals("Inactive")) {
+                    JOptionPane.showMessageDialog(this, "You Update this user as an Inactive user", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                    MySQL.execute("UPDATE `employee` SET "
+                            + "`mobile` = '" + mobile + "', "
+                            + "`username` = '" + username + "',"
+                            + "`password` = '" + password + "',"
+                            + "`status` = '0' WHERE `id` = '" + id + "'");
+                    reset();
+                    JOptionPane.showMessageDialog(this, "HR Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                    loadHR("SELECT * FROM `employee` WHERE `employee_type_id`='4'");
+                    loadGender();
                 } else {
-
-                    try {
-
-                        MySQL.execute("UPDATE `employee` SET "
-                                + "`mobile` = '" + mobile + "', "
-                                + "`username` = '" + username + "',"
-                                + "`password` = '" + password + "',"
-                                + "`status` = '" + status + "',"
-                                + " WHERE `id` = '" + id + "' ");
-
-                        reset();
-                        JOptionPane.showMessageDialog(this, "HR Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                        loadHR("SELECT * FROM `employee` WHERE `employee_type_id`='4'");
-                        loadGender();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    JOptionPane.showMessageDialog(this, "You Update User Status", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Please select Specific User", "Message", JOptionPane.WARNING_MESSAGE);
@@ -507,12 +537,19 @@ public class HR_mqt extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
-                "/themes/Atom_One_DarkContrast.theme.json"));
+        IntelliJTheme.setup(Dashboard.class
+                .getResourceAsStream(
+                        "/themes/Atom_One_DarkContrast.theme.json"));
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -524,6 +561,7 @@ public class HR_mqt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
