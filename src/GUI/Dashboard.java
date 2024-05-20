@@ -62,6 +62,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridLayout(2, 2, 10, 10));
 
         jButton1.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Admin128.png"))); // NOI18N
         jButton1.setText("Administration");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -74,6 +75,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.add(jButton1);
 
         jButton3.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/HR-128_1.png"))); // NOI18N
         jButton3.setText("Back Office");
         jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -81,6 +83,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.add(jButton3);
 
         jButton4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/front-office-128.png"))); // NOI18N
         jButton4.setText("Receptionist");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -88,6 +91,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.add(jButton4);
 
         jButton2.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Kitchen128.png"))); // NOI18N
         jButton2.setText(" Kitchen");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -116,10 +120,6 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         AdminSignin admin = new AdminSignin();
