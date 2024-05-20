@@ -1,6 +1,15 @@
 package GUI;
 
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import model.MySQL;
+
 public class HR_salary extends javax.swing.JFrame {
+
+    private double salary;
+    private double advance;
+    private double due;
 
     public HR_salary() {
         initComponents();
@@ -8,6 +17,35 @@ public class HR_salary extends javax.swing.JFrame {
                 + "INNER JOIN `salary` ON `salary_advance`.`salary_id` = `salary`.id "
                 + "INNER JOIN `employee` ON `salary`.`employee_id` = `employee`.id "
                 + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id ORDER BY `salary_advance`.`id` ASC");
+    }
+
+    private void loadSalary(String query) {
+        try {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            ResultSet resultSet = MySQL.execute(query);
+
+            while (resultSet.next()) {
+                Vector v = new Vector();
+                v.add(resultSet.getString("employee.username"));
+                v.add(resultSet.getString("salary.from_date"));
+                v.add(resultSet.getString("salary.to_date"));
+                v.add(resultSet.getString("salary.salary"));
+                v.add(resultSet.getString("advance"));
+                if (due == 0) {
+                    v.add(resultSet.getString("0.0"));
+                } else {
+                    due = salary - advance;
+                    String duesalary = String.valueOf(due);
+                    v.add(resultSet.getString(duesalary));
+                }
+                model.addRow(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -71,6 +109,9 @@ public class HR_salary extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setText("Salary Due");
+
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jFormattedTextField3.setText("0.0");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
