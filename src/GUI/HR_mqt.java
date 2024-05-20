@@ -1,7 +1,6 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
-import com.mysql.cj.callback.UsernameCallback;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +21,9 @@ public class HR_mqt extends javax.swing.JFrame {
     public HR_mqt() {
         initComponents();
         loadGender();
-        loadHR("SELECT * FROM `employee` WHERE `employee_type_id`='4'");
+        loadHR("SELECT * FROM `employee`"
+                + "INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.id "
+                + "WHERE `employee_type_id`='4'");
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -47,6 +48,7 @@ public class HR_mqt extends javax.swing.JFrame {
                 } else {
                     v.add("Inactive");
                 }
+                v.add(resultSet.getString("gender.gender"));
                 model.addRow(v);
             }
         } catch (Exception e) {
@@ -92,6 +94,7 @@ public class HR_mqt extends javax.swing.JFrame {
         jPasswordField1.setText("");
 
         jComboBox2.setSelectedIndex(0);
+        jComboBox2.setEnabled(true);
         jComboBox1.setSelectedIndex(0);
 
         jTable1.clearSelection();
@@ -125,7 +128,6 @@ public class HR_mqt extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -258,16 +260,6 @@ public class HR_mqt extends javax.swing.JFrame {
         jComboBox2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jComboBox2.setForeground(java.awt.Color.white);
 
-        jButton3.setBackground(new java.awt.Color(52, 73, 94));
-        jButton3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Update HR Address");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -292,8 +284,7 @@ public class HR_mqt extends javax.swing.JFrame {
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 13, Short.MAX_VALUE))
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -338,8 +329,6 @@ public class HR_mqt extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(12, 12, 12)
                 .addComponent(jButton2)
-                .addGap(12, 12, 12)
-                .addComponent(jButton3)
                 .addContainerGap())
         );
 
@@ -347,22 +336,25 @@ public class HR_mqt extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
+        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "#", "First Name", "Last Name", "Mobile", "Username", "Reg. Date", "Status"
+                "#", "First Name", "Last Name", "Mobile", "Username", "Reg. Date", "Status", "Gender"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -377,6 +369,7 @@ public class HR_mqt extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
             jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
         }
 
         jPanel3.add(jScrollPane1);
@@ -416,6 +409,10 @@ public class HR_mqt extends javax.swing.JFrame {
 
                 String status = jTable1.getValueAt(selectedRow, 6).toString();
                 jComboBox1.setSelectedItem(status);
+
+                String gender = jTable1.getValueAt(selectedRow, 7).toString();
+                jComboBox2.setSelectedItem(gender);
+                jComboBox2.setEnabled(false);
 
                 jComboBox2.setEnabled(false);
                 jButton1.setEnabled(false);
@@ -471,7 +468,9 @@ public class HR_mqt extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this, "User Registered Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
             reset();
-            loadHR("SELECT * FROM `employee` WHERE `employee_type_id`='4'");
+            loadHR("SELECT * FROM `employee`"
+                    + "INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.id "
+                    + "WHERE `employee_type_id`='4'");
             loadGender();
 
         }
@@ -523,7 +522,9 @@ public class HR_mqt extends javax.swing.JFrame {
                             + "`status` = '0' WHERE `id` = '" + id + "'");
                     reset();
                     JOptionPane.showMessageDialog(this, "HR Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                    loadHR("SELECT * FROM `employee` WHERE `employee_type_id`='4'");
+                    loadHR("SELECT * FROM `employee`"
+                            + "INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.id "
+                            + "WHERE `employee_type_id`='4'");
                     loadGender();
                 } else {
                     JOptionPane.showMessageDialog(this, "You Update User Status", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -536,11 +537,6 @@ public class HR_mqt extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      *
@@ -561,7 +557,6 @@ public class HR_mqt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;

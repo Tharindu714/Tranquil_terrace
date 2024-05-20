@@ -11,7 +11,7 @@ import model.MySQL;
 public class emp_address extends javax.swing.JFrame {
 
     private static HashMap<String, String> CityMap = new HashMap<>();
-    private String id;
+    String id;
 
     public emp_address(String username, String mobile, String id) {
         initComponents();
@@ -45,13 +45,15 @@ public class emp_address extends javax.swing.JFrame {
         try {
             ResultSet resultset = MySQL.execute("SELECT * FROM `staff_address`"
                     + "INNER JOIN `city` ON `staff_address`.`city_id`=`city`.`id`"
-                    + "WHERE `mobile`= '" + this.id + "'");
+                    + "INNER JOIN `employee_type` ON `staff_address`.`employee_id`=`employee_type`.`id`"
+                    + "WHERE `id`= '" + this.id + "'");
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
 
             while (resultset.next()) {
                 Vector<String> vector = new Vector<>();
+                vector.add(resultset.getString("id"));
                 vector.add(resultset.getString("line1"));
                 vector.add(resultset.getString("line2"));
                 vector.add(resultset.getString("city.name"));
@@ -330,8 +332,8 @@ public class emp_address extends javax.swing.JFrame {
             if (!isFound) {
                 try {
                     MySQL.execute("INSERT INTO "
-                            + "`staff_address`(`line1`,`line2`,`city_id`,`id`)"
-                            + "VALUES('" + line1 + "','" + line2 + "','" + CityMap.get(city) + "')");
+                            + "`staff_address`(`line1`,`line2`,`city_id`,`employee_id`)"
+                            + "VALUES('" + line1 + "','" + line2 + "','" + CityMap.get(city) + "','4')");
                     loadAddress();
                     JOptionPane.showMessageDialog(this, "HR Address Added Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                     reset();
@@ -345,7 +347,7 @@ public class emp_address extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         int row = jTable1.getSelectedRow();
-        
+
         String line1 = jTextField1.getText();
         String line2 = jTextField2.getText();
         String city = String.valueOf(jComboBox1.getSelectedItem());
