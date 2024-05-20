@@ -92,6 +92,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jButton2.setText("Check Employee Salary");
         jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jButton2.setPreferredSize(new java.awt.Dimension(200, 35));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(52, 73, 94));
         jButton3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
@@ -366,6 +371,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         emp_attendance emp_attendance = new emp_attendance();
         emp_attendance.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        emp_salary salary = new emp_salary();
+        salary.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
