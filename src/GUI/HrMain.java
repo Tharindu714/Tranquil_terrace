@@ -11,12 +11,12 @@ import javax.swing.JFrame;
  *
  * @author DS
  */
-public class HrDashboard extends javax.swing.JFrame {
+public class HrMain extends javax.swing.JFrame {
 
     /**
      * Creates new form HrDashboard
      */
-    public HrDashboard() {
+    public HrMain() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
     }
@@ -47,7 +47,7 @@ public class HrDashboard extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel2.setMinimumSize(new java.awt.Dimension(100, 50));
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel5.setBackground(new java.awt.Color(52, 73, 94));
 
@@ -137,7 +137,7 @@ public class HrDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HrDashboard().setVisible(true);
+                new HrMain().setVisible(true);
             }
         });
     }
