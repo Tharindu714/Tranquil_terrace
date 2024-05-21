@@ -5,11 +5,10 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
+
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 
@@ -33,7 +32,6 @@ public class HR_salary extends javax.swing.JFrame {
         genarateNextID();
         jTextField1.setEnabled(false);
         jFormattedTextField4.setEnabled(false);
-
     }
 
     private void calculate() {

@@ -177,7 +177,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
+                .addContainerGap(124, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jButton6)
@@ -308,7 +308,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(12, 12, 12)
                 .addComponent(jButton2)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
