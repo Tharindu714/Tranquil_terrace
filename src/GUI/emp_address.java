@@ -453,6 +453,7 @@ public class emp_address extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         HR_mqt hrMgt = new HR_mqt();
         hrMgt.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
