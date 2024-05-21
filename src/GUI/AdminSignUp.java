@@ -370,8 +370,8 @@ public class AdminSignUp extends javax.swing.JFrame {
 
                 } else {
                     MySQL.execute("INSERT INTO "
-                            + "`employee`(`first_name`,`last_name`,`mobile`,`username`,`password`,`status`,`registered_date`,`employee_type_id`,`gender_id`)"
-                            + "VALUES('" + fname + "','" + lname + "','" + mobile + "','" + username + "','" + password + "','1','" + datetime + "','1','" + typeMap.get(gender) + "')");
+                            + "`employee`(`first_name`,`last_name`,`mobile`,`username`,`password`,`status`,`registered_date`,`employee_type_id`,`gender_id`,`loggedtime`)"
+                            + "VALUES('" + fname + "','" + lname + "','" + mobile + "','" + username + "','" + password + "','1','" + datetime + "','1','" + typeMap.get(gender) + "','" + datetime + "')");
                 }
             } catch (Exception e) {
                 e.printStackTrace();

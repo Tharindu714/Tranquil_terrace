@@ -2,6 +2,8 @@ package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import model.MySQL;
 
@@ -259,7 +261,12 @@ public class AdminSignin extends javax.swing.JFrame {
                 ResultSet resultset = MySQL.execute("SELECT * FROM `employee`"
                         + "WHERE `username`='" + username + "' AND `password`='" + password + "' AND `employee_type_id`='1'");
                 if (resultset.next()) {
+                    String datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
+                    MySQL.execute("UPDATE `employee` "
+                            + "SET `loggedtime`='" + datetime + "'"
+                            + "WHERE `username`='" + username + "'");
+                    
                     JOptionPane.showMessageDialog(this, "Login Successful", "SUCCESSFULLY LOGIN", JOptionPane.INFORMATION_MESSAGE);
 
                     String mobile = resultset.getString("mobile");
