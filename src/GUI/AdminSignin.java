@@ -53,6 +53,7 @@ public class AdminSignin extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Experince Comfort, Embrace Tranquility");
 

@@ -157,6 +157,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jButton9.setText("Guest Check-ins & outs");
         jButton9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jButton9.setPreferredSize(new java.awt.Dimension(200, 35));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(52, 73, 94));
         jButton10.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
@@ -475,6 +480,10 @@ public class Admin_main_panel extends javax.swing.JFrame {
        Kitchen_stock KS = new Kitchen_stock();
        KS.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+       Customer_ChechIn_CheckOut CCC = new Customer_ChechIn_CheckOut();
+       CCC.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
