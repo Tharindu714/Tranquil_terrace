@@ -18,6 +18,7 @@ public class HR_attendence extends javax.swing.JFrame {
         initComponents();
         loggedtime();
         loadEmp();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     private void loadEmp() {
@@ -73,6 +74,7 @@ public class HR_attendence extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 50));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -226,6 +228,7 @@ public class HR_attendence extends javax.swing.JFrame {
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
