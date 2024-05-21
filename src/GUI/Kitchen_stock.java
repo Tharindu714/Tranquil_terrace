@@ -92,6 +92,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
+        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -103,6 +104,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jTable1);
 

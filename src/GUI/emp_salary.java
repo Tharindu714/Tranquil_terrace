@@ -98,6 +98,7 @@ public class emp_salary extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

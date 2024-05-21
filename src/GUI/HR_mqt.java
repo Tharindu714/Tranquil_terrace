@@ -416,6 +416,7 @@ public class HR_mqt extends javax.swing.JFrame {
         });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
+        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
