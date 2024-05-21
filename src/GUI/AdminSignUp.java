@@ -10,10 +10,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.MySQL;
 
-/**
- *
- * @author Tharindu
- */
 public class AdminSignUp extends javax.swing.JFrame {
 
     HashMap<String, String> typeMap = new HashMap<>();
@@ -414,7 +410,6 @@ public class AdminSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField4MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
         AdminSignin adlogin = new AdminSignin();
         adlogin.setVisible(true);
         this.dispose();
@@ -454,17 +449,10 @@ public class AdminSignUp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField3FocusGained
 
-    /**
-         * @param args the command line arguments
-         */
     public static void main(String args[]) {
-        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
-                "/themes/Atom_One_DarkContrast.theme.json"));
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminSignUp().setVisible(true);
             }
         });
     }

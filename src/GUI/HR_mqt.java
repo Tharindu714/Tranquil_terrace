@@ -1,6 +1,4 @@
 package GUI;
-
-import com.formdev.flatlaf.IntelliJTheme;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,9 +12,6 @@ import model.MySQL;
 public class HR_mqt extends javax.swing.JFrame {
 
     HashMap<String, String> typeMap = new HashMap<>();
-    private String username;
-    private String mobile;
-    private String id;
 
     public HR_mqt() {
         initComponents();
@@ -100,6 +95,59 @@ public class HR_mqt extends javax.swing.JFrame {
         jTable1.clearSelection();
         jButton1.setEnabled(true);
         jTextField1.grabFocus();
+    }
+
+    private void oneClick() {
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow != -1) {
+
+            String firstName = jTable1.getValueAt(selectedRow, 1).toString();
+            jTextField1.setText(firstName);
+            jTextField1.setEnabled(false);
+
+            String lastName = jTable1.getValueAt(selectedRow, 2).toString();
+            jTextField2.setText(lastName);
+            jTextField2.setEnabled(false);
+
+            String mobile = jTable1.getValueAt(selectedRow, 3).toString();
+            jTextField3.setText(mobile);
+
+            String username = jTable1.getValueAt(selectedRow, 4).toString();
+            jTextField4.setText(username);
+
+            String regdate = jTable1.getValueAt(selectedRow, 5).toString();
+            jTextField5.setText(regdate);
+            jTextField5.setEnabled(false);
+
+            String status = jTable1.getValueAt(selectedRow, 6).toString();
+            jComboBox1.setSelectedItem(status);
+
+            String gender = jTable1.getValueAt(selectedRow, 7).toString();
+            jComboBox2.setSelectedItem(gender);
+            jComboBox2.setEnabled(false);
+
+            jComboBox2.setEnabled(false);
+            jButton1.setEnabled(false);
+
+            try {
+                ResultSet resultset = MySQL.execute("SELECT `password` FROM `employee`"
+                        + "WHERE `mobile`='" + mobile + "' AND `employee_type_id`='4'");
+                if (resultset.next()) {
+                    String password = resultset.getString("password");
+                    jPasswordField1.setText(password);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void commons() {
+        reset();
+        loadHR("SELECT * FROM `employee`"
+                + "INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.id "
+                + "WHERE `employee_type_id`='4'");
+        loadGender();
     }
 
     @SuppressWarnings("unchecked")
@@ -352,6 +400,7 @@ public class HR_mqt extends javax.swing.JFrame {
             }
         });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -383,43 +432,7 @@ public class HR_mqt extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 1) {
-            int selectedRow = jTable1.getSelectedRow();
-            if (selectedRow != -1) {
-
-                String firstName = jTable1.getValueAt(selectedRow, 1).toString();
-                jTextField1.setText(firstName);
-                jTextField1.setEnabled(false);
-
-                String lastName = jTable1.getValueAt(selectedRow, 2).toString();
-                jTextField2.setText(lastName);
-                jTextField2.setEnabled(false);
-
-                String mobile = jTable1.getValueAt(selectedRow, 3).toString();
-                jTextField3.setText(mobile);
-
-                String username = jTable1.getValueAt(selectedRow, 4).toString();
-                jTextField4.setText(username);
-
-                String regdate = jTable1.getValueAt(selectedRow, 5).toString();
-                jTextField5.setText(regdate);
-                jTextField5.setEnabled(false);
-
-                String status = jTable1.getValueAt(selectedRow, 6).toString();
-                jComboBox1.setSelectedItem(status);
-
-                String gender = jTable1.getValueAt(selectedRow, 7).toString();
-                jComboBox2.setSelectedItem(gender);
-                jComboBox2.setEnabled(false);
-
-                jComboBox2.setEnabled(false);
-                jButton1.setEnabled(false);
-            }
-        } else if (evt.getClickCount() == 2) {
-            emp_address emp_add = new emp_address(username, mobile, id);
-            emp_add.setVisible(true);
-
-        } else {
-
+            oneClick();
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -464,12 +477,7 @@ public class HR_mqt extends javax.swing.JFrame {
             }
 
             JOptionPane.showMessageDialog(this, "User Registered Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-            reset();
-            loadHR("SELECT * FROM `employee`"
-                    + "INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.id "
-                    + "WHERE `employee_type_id`='4'");
-            loadGender();
-
+            commons();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -483,46 +491,41 @@ public class HR_mqt extends javax.swing.JFrame {
             int selectedRow = jTable1.getSelectedRow();
             if (selectedRow != -1) {
                 String id = jTable1.getValueAt(selectedRow, 0).toString();
-                String mobile = jTextField1.getText();
-                String username = jTextField2.getText();
+                String mobile = jTextField3.getText();
+                String username = jTextField4.getText();
                 String password = String.valueOf(jPasswordField1.getPassword());
                 String status = jComboBox1.getSelectedItem().toString();
 
                 if (mobile.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Please Update Mobile Number", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else if (mobile.matches("07[01245678]{1}[0-9]{7}$")) {
+                } else if (!mobile.matches("07[01245678]{1}[0-9]{7}$")) {
                     JOptionPane.showMessageDialog(this, "Invalid type of Mobile Number", "Warning", JOptionPane.ERROR_MESSAGE);
                 } else if (username.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Please Enter the updated Name", "Warning", JOptionPane.WARNING_MESSAGE);
                 } else if (password.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Please Update Password", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Please Enter the password", "Warning", JOptionPane.WARNING_MESSAGE);
                 } else if (status.equals("Active")) {
-                    JOptionPane.showMessageDialog(this, "You Update this user as an active user", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "You Update this user as an active user", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
 
                     MySQL.execute("UPDATE `employee` SET "
                             + "`mobile` = '" + mobile + "', "
-                            + "`username` = '" + username + "',"
                             + "`password` = '" + password + "',"
+                            + "`username` = '" + username + "',"
                             + "`status` = '1' WHERE `id` = '" + id + "'");
-                    reset();
                     JOptionPane.showMessageDialog(this, "HR Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                    loadHR("SELECT * FROM `employee` WHERE `employee_type_id`='4'");
-                    loadGender();
+                    commons();
 
                 } else if (status.equals("Inactive")) {
                     JOptionPane.showMessageDialog(this, "You Update this user as an Inactive user", "Warning", JOptionPane.WARNING_MESSAGE);
 
                     MySQL.execute("UPDATE `employee` SET "
                             + "`mobile` = '" + mobile + "', "
-                            + "`username` = '" + username + "',"
                             + "`password` = '" + password + "',"
+                            + "`username` = '" + username + "',"
                             + "`status` = '0' WHERE `id` = '" + id + "'");
-                    reset();
+
                     JOptionPane.showMessageDialog(this, "HR Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                    loadHR("SELECT * FROM `employee`"
-                            + "INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.id "
-                            + "WHERE `employee_type_id`='4'");
-                    loadGender();
+                    commons();
                 } else {
                     JOptionPane.showMessageDialog(this, "You Update User Status", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
@@ -535,18 +538,9 @@ public class HR_mqt extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     *
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        IntelliJTheme.setup(Dashboard.class
-                .getResourceAsStream(
-                        "/themes/Atom_One_DarkContrast.theme.json"));
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HR_mqt().setVisible(true);
             }
         });
     }

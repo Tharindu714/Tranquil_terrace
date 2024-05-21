@@ -131,6 +131,7 @@ public class emp_attendance extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -151,7 +152,7 @@ public class emp_attendance extends javax.swing.JFrame {
         jPanel4.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(245, 71, 104));
+        jLabel1.setForeground(new java.awt.Color(18, 173, 193));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("00 : 00 :00");
         jPanel4.add(jLabel1, java.awt.BorderLayout.CENTER);
@@ -198,8 +199,6 @@ public class emp_attendance extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
 
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new emp_attendance().setVisible(true);
