@@ -292,7 +292,6 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("jLabel7");
         jPanel4.add(jLabel7);
 
         jLabel11.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
@@ -303,7 +302,6 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel12.setText("jLabel7");
         jPanel4.add(jLabel12);
 
         jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
@@ -314,7 +312,6 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("jLabel7");
         jPanel4.add(jLabel8);
 
         jLabel5.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
@@ -325,7 +322,6 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("jLabel7");
         jPanel4.add(jLabel9);
 
         jLabel6.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
@@ -336,7 +332,6 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setText("jLabel7");
         jPanel4.add(jLabel10);
 
         jPanel5.setLayout(new java.awt.BorderLayout());
@@ -409,7 +404,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
