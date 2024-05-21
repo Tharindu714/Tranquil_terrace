@@ -16,6 +16,8 @@ public class emp_salary extends javax.swing.JFrame {
                 + "INNER JOIN `employee` ON `salary`.`employee_id` = `employee`.id "
                 + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id ORDER BY `salary_advance`.`id` ASC");
     }
+    
+
 
     private void loadSalary(String query) {
         try {
@@ -158,7 +160,7 @@ public class emp_salary extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
