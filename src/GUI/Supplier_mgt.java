@@ -110,7 +110,7 @@ public class Supplier_mgt extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Update HR Officer Address");
+        jLabel4.setText("TRANQUIL TERRACE | Supplier Management");
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/circle-xmark.png"))); // NOI18N
         jButton13.setContentAreaFilled(false);

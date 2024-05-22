@@ -1,4 +1,5 @@
 package GUI;
+
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
@@ -7,7 +8,6 @@ import javax.swing.JFrame;
 
 public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
 
-
     public Customer_ChechIn_CheckOut() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -15,7 +15,8 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
                 + "`customer`.`nic/passport` = `customer_visit_hotel`.`customer_nic/passport`"
                 + "INNER JOIN `customer_address` \n"
                 + "ON `customer_visit_hotel`.`id` = `customer_address`.`id` INNER JOIN `customer_city` \n"
-                + "ON `customer_address`.`id` = `customer_city`.`id`");
+                + "ON `customer_address`.`id` = `customer_city`.`id`"
+                + "INNER JOIN `country` ON `customer_city`.`country_id` = `country`.id ");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
@@ -33,6 +34,7 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
                 v.add(resultSet.getString("customer.full_name"));
                 v.add(resultSet.getString("customer.mobile"));
                 v.add(resultSet.getString("customer_city.name"));
+                v.add(resultSet.getString("country.name"));
                 v.add(resultSet.getString("customer_visit_hotel.check_in"));
                 v.add(resultSet.getString("customer_visit_hotel.check_out"));
                 model.addRow(v);
@@ -104,11 +106,11 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "Name", "Mobile", "Country", "Check In", "Check out"
+                "#", "Name", "Mobile", "City", "Country", "Check In", "Check out"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -125,6 +127,7 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
         }
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -141,12 +144,9 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Customer_ChechIn_CheckOut().setVisible(true);
             }
         });
     }
