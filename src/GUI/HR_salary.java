@@ -32,6 +32,8 @@ public class HR_salary extends javax.swing.JFrame {
         genarateNextID();
         jTextField1.setEnabled(false);
         jFormattedTextField4.setEnabled(false);
+        jButton3.setEnabled(false);
+        
     }
 
     private void calculate() {
@@ -124,12 +126,14 @@ public class HR_salary extends javax.swing.JFrame {
             jFormattedTextField1.setText(salary);
             jFormattedTextField1.setEnabled(false);
 
-            String advance = jTable1.getValueAt(selectedRow, 6).toString();
-            jFormattedTextField2.setText(advance);
+            String due = jTable1.getValueAt(selectedRow, 6).toString();
+            jFormattedTextField3.setText(due);
 
-            jFormattedTextField3.setText("0");
+            jFormattedTextField2.setText("0");
 
             jButton1.setEnabled(false);
+            jButton2.setEnabled(false);
+            jButton3.setEnabled(true);
             SetRedeemedAdvance();
         }
     }
@@ -140,6 +144,8 @@ public class HR_salary extends javax.swing.JFrame {
         jDateChooser2.setEnabled(true);
         jFormattedTextField1.setEnabled(true);
         jButton1.setEnabled(true);
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(false);
         jComboBox1.setSelectedItem(0);
         jFormattedTextField1.setText("0");
         jFormattedTextField2.setText("0");
@@ -150,9 +156,19 @@ public class HR_salary extends javax.swing.JFrame {
 
     private void SetRedeemedAdvance() {
         double salary = Double.parseDouble(jFormattedTextField1.getText());
-        double advance = Double.parseDouble(jFormattedTextField2.getText());
-        double redeem = salary - advance;
+        double due = Double.parseDouble(jFormattedTextField3.getText());
+        double redeem = salary - due;
         jFormattedTextField4.setText(String.valueOf(redeem));
+    }
+
+    private void commons() {
+        loadSalary("SELECT * FROM `salary_advance`"
+                + "INNER JOIN `salary` ON `salary_advance`.`salary_id` = `salary`.id "
+                + "INNER JOIN `employee` ON `salary`.`employee_id` = `employee`.id "
+                + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id WHERE `employee_type_id`='4' ORDER BY `salary_advance`.`id` ASC");
+        loadEmp();
+        reset();
+        genarateNextID();
     }
 
     @SuppressWarnings("unchecked")
@@ -178,6 +194,7 @@ public class HR_salary extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jFormattedTextField4 = new javax.swing.JFormattedTextField();
+        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
@@ -225,6 +242,9 @@ public class HR_salary extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jFormattedTextField2KeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField2KeyTyped(evt);
+            }
         });
 
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
@@ -250,7 +270,7 @@ public class HR_salary extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/emp-salary.png"))); // NOI18N
-        jButton2.setText(" Salary Advance ");
+        jButton2.setText(" Salary Reports");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,6 +299,16 @@ public class HR_salary extends javax.swing.JFrame {
 
         jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField4.setText("0");
+
+        jButton3.setBackground(new java.awt.Color(18, 173, 193));
+        jButton3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("+");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -310,9 +340,12 @@ public class HR_salary extends javax.swing.JFrame {
                             .addComponent(jFormattedTextField1)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextField2)
                             .addComponent(jFormattedTextField3)
-                            .addComponent(jFormattedTextField4))
+                            .addComponent(jFormattedTextField4)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)))
                         .addGap(0, 9, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -342,7 +375,9 @@ public class HR_salary extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,11 +386,11 @@ public class HR_salary extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(14, 14, 14)
                 .addComponent(jButton2)
-                .addGap(55, 55, 55))
+                .addGap(59, 59, 59))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
@@ -375,6 +410,7 @@ public class HR_salary extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("TRANQUIL TERRACE | HR salary Management");
 
@@ -459,8 +495,14 @@ public class HR_salary extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jFormattedTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField2KeyReleased
-        calculate();
-        SetRedeemedAdvance();
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow != -1) {
+
+        } else {
+            calculate();
+        }
+
+
     }//GEN-LAST:event_jFormattedTextField2KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -491,7 +533,7 @@ public class HR_salary extends javax.swing.JFrame {
         } else if (due.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter Salary Due", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-
+            calculate();
             try {
                 MySQL.execute("INSERT INTO "
                         + "`salary`(`salary`,`employee_id`,`from_date`,`to_date`,`salary_due`)"
@@ -502,12 +544,7 @@ public class HR_salary extends javax.swing.JFrame {
                         + "VALUES('" + advance + "','" + id + "')");
 
                 JOptionPane.showMessageDialog(this, "Salary Added Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                loadSalary("SELECT * FROM `salary_advance`"
-                        + "INNER JOIN `salary` ON `salary_advance`.`salary_id` = `salary`.id "
-                        + "INNER JOIN `employee` ON `salary`.`employee_id` = `employee`.id "
-                        + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id WHERE `employee_type_id`='4' ORDER BY `salary_advance`.`id` ASC");
-                loadEmp();
-                reset();
+                commons();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -521,46 +558,39 @@ public class HR_salary extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 1) {
             oneClick();
+        } else if (evt.getClickCount() == 2) {
+            commons();
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            int selectedRow = jTable1.getSelectedRow();
-            if (selectedRow != -1) {
-                String id = jTable1.getValueAt(selectedRow, 0).toString();
-                String salary_id = jTextField1.getText();
-                String advance = jFormattedTextField2.getText();
-                String due = jFormattedTextField3.getText();
 
-                if (advance.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Please Enter the Salary advance", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else if (due.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Please Enter due", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    MySQL.execute("UPDATE `salary_advance` SET "
-                            + "`advance` = '" + advance + "' WHERE `id` = '" + id + "'");
-
-                    MySQL.execute("UPDATE `salary` SET "
-                            + "`salary_due` = '" + due + "' WHERE `id` = '" + salary_id + "'");
-                    reset();
-                    JOptionPane.showMessageDialog(this, "HR Salary advance Issued Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                    loadSalary("SELECT * FROM `salary_advance`"
-                            + "INNER JOIN `salary` ON `salary_advance`.`salary_id` = `salary`.id "
-                            + "INNER JOIN `employee` ON `salary`.`employee_id` = `employee`.id "
-                            + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id WHERE `employee_type_id`='4' ORDER BY `salary_advance`.`id` ASC");
-                    loadEmp();
-                    genarateNextID();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jFormattedTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField2MouseClicked
 
     }//GEN-LAST:event_jFormattedTextField2MouseClicked
+
+    private void jFormattedTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField2KeyTyped
+
+    }//GEN-LAST:event_jFormattedTextField2KeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        double due = Double.parseDouble(jFormattedTextField3.getText());
+        double advance = Double.parseDouble(jFormattedTextField2.getText());
+        String salary_id = jTextField1.getText();
+        double advancing = due - advance;
+
+        try {
+            MySQL.execute("UPDATE `salary` SET "
+                    + "`salary_due` = '" + advancing + "' WHERE `id` = '" + salary_id + "'");
+            JOptionPane.showMessageDialog(this, "Salary Advance Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+            commons();
+            jButton3.setEnabled(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class
@@ -576,6 +606,7 @@ public class HR_salary extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
