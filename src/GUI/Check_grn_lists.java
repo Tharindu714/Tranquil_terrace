@@ -150,12 +150,7 @@ public class Check_grn_lists extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
-                "/themes/Atom_One_DarkContrast.theme.json"));
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
