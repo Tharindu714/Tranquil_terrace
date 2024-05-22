@@ -16,7 +16,6 @@ public class Check_food_Reservation extends javax.swing.JFrame {
                 + "INNER JOIN `meal_time` ON `kot`.`meal_time_id` = `meal_time`.id "
                 + "INNER JOIN `kot_status` ON `kot`.`kot_status_id` = `kot_status`.id "
                 + "INNER JOIN `customer` ON `customer_visit_hotel`.`customer_nic/passport` = `customer`.nic/passport "
-                + "INNER JOIN `kot` ON `kot_has_food`.`kot_id` = `kot`.id "
                 + "INNER JOIN `food_item` ON `kot_has_food`.`food_item_id` = `food_item`.id "
                 + "INNER JOIN `food_category` ON `food_item`.`food_category_id` = `food_category`.id ORDER BY `kot`.`id` ASC");
     }
