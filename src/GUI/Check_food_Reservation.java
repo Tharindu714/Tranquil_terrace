@@ -11,8 +11,8 @@ public class Check_food_Reservation extends javax.swing.JFrame {
     public Check_food_Reservation() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        loadRes("SELECT * FROM `kot` INNER JOIN `customer_visit_hotel` ON \n"
-                + "`kot`.`customer_visit_hotel_id` = `customer_visit_hotel`.`id`\n"
+        loadRes("SELECT *FROM `kot`\n"
+                + "INNER JOIN `customer_visit_hotel` ON `kot`.`customer_visit_hotel_id` = `customer_visit_hotel`.`id` \n"
                 + "INNER JOIN `customer` ON `customer_visit_hotel`.`customer_nic/passport` = `customer`.`nic/passport`\n"
                 + "INNER JOIN `kot_has_food` ON `kot`.`id` = `kot_has_food`.`kot_id`\n"
                 + "INNER JOIN `food_item` ON `kot_has_food`.`food_item_id` = `food_item`.`id`\n"
