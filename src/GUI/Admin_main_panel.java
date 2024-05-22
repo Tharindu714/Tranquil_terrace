@@ -147,6 +147,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jButton6.setText("Check Rooms");
         jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jButton6.setPreferredSize(new java.awt.Dimension(200, 35));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(52, 73, 94));
         jButton7.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
@@ -545,7 +550,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
         KS.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        Customer_ChechIn_CheckOut CCC = new Customer_ChechIn_CheckOut();
+        Customer_CheckIn_CheckOut CCC = new Customer_CheckIn_CheckOut();
         CCC.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -568,6 +573,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         Check_food_Reservation CFR = new Check_food_Reservation();
         CFR.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Check_Rooms check_Rooms = new Check_Rooms();
+        check_Rooms.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
