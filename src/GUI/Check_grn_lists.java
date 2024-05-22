@@ -1,18 +1,48 @@
 package GUI;
 
+import com.formdev.flatlaf.IntelliJTheme;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 
-public class Check_inv_list extends javax.swing.JFrame {
+public class Check_grn_lists extends javax.swing.JFrame {
 
-    public Check_inv_list() {
+    public Check_grn_lists() {
         initComponents();
-        loadInv("SELECT * FROM `customer_visit_hotel`"
-                + "INNER JOIN `customer` ON `customer_visit_hotel`.`customer_nic/passport` = `customer`.`nic/passport` "
-                + "INNER JOIN `payement_method` ON `customer_visit_hotel`.`payment_method_id` = `payement_method`.id ORDER BY `customer_visit_hotel`.`id` ASC");
+        loadGRN("SELECT *FROM `grn`\n"
+                + "INNER JOIN `supplier` ON `grn`.`supplier_mobile` = `supplier`.`mobile` \n"
+                + "INNER JOIN `payement_method` ON `grn`.`payment_method_id` = `payement_method`.`id`\n"
+                + "INNER JOIN (SELECT * FROM `grn_item`) AS `grn_items` \n"
+                + "ON `grn_item`.`grn_id` = `grn_items`.`grn_id` AND `grn_item`.`item_id` = `grn_items`.`item_id` \n"
+                + "ORDER BY `grn`.`id` ASC");
         setExtendedState(MAXIMIZED_BOTH);
+    }
+
+    private void loadGRN(String query) {
+        try {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            ResultSet resultSet = MySQL.execute(query);
+
+            while (resultSet.next()) {
+                Vector v = new Vector();
+                v.add(resultSet.getString("id"));
+                v.add(resultSet.getString("supplier.fname"));
+                v.add(resultSet.getString("supplier_mobile"));
+                v.add(resultSet.getString("date"));
+                v.add(resultSet.getString("item.name"));
+                v.add(resultSet.getString("grn_item.unit_price"));
+                v.add(resultSet.getString("grn_item.qty"));
+                v.add(resultSet.getString("grn_item.expiry_date"));
+                v.add(resultSet.getString("payement_method.method"));
+                model.addRow(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -46,7 +76,7 @@ public class Check_inv_list extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Check Invoices of Business");
+        jLabel4.setText("Check Good Recieve Notes of Business");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -78,17 +108,17 @@ public class Check_inv_list extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "NIC / Passport", "Customer Name", "Mobile", "Full amount", "pax", "Payment Method"
+                "GRN ID", "Supplier Name", "Supplier Mobile", "GRN date", "Item Name", "Item price", "QTY", "Expiry date", "Payment Method"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,7 +134,10 @@ public class Check_inv_list extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(8).setResizable(false);
         }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -118,58 +151,18 @@ public class Check_inv_list extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
-    private void loadInv(String query) {
-        try {
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0);
 
-            ResultSet resultSet = MySQL.execute(query);
-
-            while (resultSet.next()) {
-                Vector v = new Vector();
-                v.add(resultSet.getString("id"));
-                v.add(resultSet.getString("customer_nic/passport"));
-                v.add(resultSet.getString("customer.full_name"));
-                v.add(resultSet.getString("customer.mobile"));
-                v.add(resultSet.getString("total"));
-                v.add(resultSet.getString("pax"));
-                v.add(resultSet.getString("payement_method.method"));
-                model.addRow(v);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Check_inv_list.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Check_inv_list.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Check_inv_list.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Check_inv_list.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
+                "/themes/Atom_One_DarkContrast.theme.json"));
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Check_inv_list().setVisible(true);
+                new Check_grn_lists().setVisible(true);
             }
         });
     }
