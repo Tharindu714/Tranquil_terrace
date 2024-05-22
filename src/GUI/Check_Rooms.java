@@ -27,7 +27,8 @@ public class Check_Rooms extends javax.swing.JFrame {
                 + "INNER JOIN `room_status` \n"
                 + "ON `rooms`.`room_status_id` = `room_status`.`id` INNER JOIN `customer_visit_hotel` \n"
                 + "ON `room_assigned_customer`.`id` = `customer_visit_hotel`.`id`"
-                + "INNER JOIN `customer` ON `customer_visit_hotel`.`customer_nic/passport` = `customer`.`nic/passport` ");
+                + "INNER JOIN `customer` ON `customer_visit_hotel`.`customer_nic/passport` = `customer`.`nic/passport`"
+                + "ORDER BY `room_assigned_customer`.`from_date` DESC");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
      
     }
@@ -105,10 +106,10 @@ public class Check_Rooms extends javax.swing.JFrame {
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel4.getAccessibleContext().setAccessibleName("TRANQUIL TERRACE | Check Rooms");
-
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        jTable1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 13)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},

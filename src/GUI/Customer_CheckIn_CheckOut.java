@@ -16,7 +16,8 @@ public class Customer_CheckIn_CheckOut extends javax.swing.JFrame {
                 + "INNER JOIN `customer_address` \n"
                 + "ON `customer_visit_hotel`.`id` = `customer_address`.`id` INNER JOIN `customer_city` \n"
                 + "ON `customer_address`.`id` = `customer_city`.`id`"
-                + "INNER JOIN `country` ON `customer_city`.`country_id` = `country`.id ");
+                + "INNER JOIN `country` ON `customer_city`.`country_id` = `country`.id "
+                + "ORDER BY `customer_visit_hotel`.`check_in` DESC");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }

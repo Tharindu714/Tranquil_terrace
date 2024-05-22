@@ -10,12 +10,10 @@ public class Check_grn_lists extends javax.swing.JFrame {
 
     public Check_grn_lists() {
         initComponents();
-        loadGRN("SELECT *FROM `grn`\n"
-                + "INNER JOIN `supplier` ON `grn`.`supplier_mobile` = `supplier`.`mobile` \n"
+        loadGRN("SELECT * FROM `grn` INNER JOIN `supplier` ON `grn`.`supplier_mobile` = `supplier`.`mobile` \n"
                 + "INNER JOIN `payement_method` ON `grn`.`payment_method_id` = `payement_method`.`id`\n"
-                + "INNER JOIN (SELECT * FROM `grn_item`) AS `grn_items` \n"
-                + "ON `grn_item`.`grn_id` = `grn_items`.`grn_id` AND `grn_item`.`item_id` = `grn_items`.`item_id` \n"
-                + "ORDER BY `grn`.`id` ASC");
+                + "INNER JOIN `grn_item` ON `grn`.`id` = `grn_item`.`grn_id` INNER JOIN `item` ON `grn_item`.`item_id` = `item`.`id`\n"
+                + "ORDER BY `grn`.`id` ASC;");
         setExtendedState(MAXIMIZED_BOTH);
     }
 
