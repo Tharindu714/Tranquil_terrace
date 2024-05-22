@@ -73,7 +73,7 @@ public class resturent_customer extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Normal Resturant Customer Transactions");
+        jLabel4.setText("TRANQUIL TERRACE | Normal Restaurant Customer Transactions");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -81,7 +81,7 @@ public class resturent_customer extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton13)
                 .addContainerGap())
@@ -111,7 +111,7 @@ public class resturent_customer extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Food Category", "Food", "Potion", "Ordered Time", "Paid Price", "payment Method"
+                "ID", "Food Category", "Food", "Portion", "Ordered Time", "Paid Price", "Payment Method"
             }
         ) {
             boolean[] canEdit = new boolean [] {

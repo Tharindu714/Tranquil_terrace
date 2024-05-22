@@ -146,7 +146,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Work Schedule Start date"/>
+            <Property name="text" type="java.lang.String" value="Work Schedule Start Date"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -157,7 +157,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Work Schedule End date"/>
+            <Property name="text" type="java.lang.String" value="Work Schedule End Date"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -295,7 +295,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Salary_id"/>
+            <Property name="text" type="java.lang.String" value="Salary_ID"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
@@ -393,8 +393,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="DinaminaUniWeb" size="22" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="TRANQUIL TERRACE | HR salary Management"/>
+                <Property name="text" type="java.lang.String" value="TRANQUIL TERRACE | HR Salary Management"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -434,11 +437,11 @@
                   <Table columnCount="7" rowCount="4">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
                     <Column editable="false" title="Username" type="java.lang.Object"/>
-                    <Column editable="false" title="Start date" type="java.lang.Object"/>
-                    <Column editable="false" title="End date" type="java.lang.Object"/>
-                    <Column editable="false" title="salary ID" type="java.lang.Object"/>
+                    <Column editable="false" title="Start Date" type="java.lang.Object"/>
+                    <Column editable="false" title="End Date" type="java.lang.Object"/>
+                    <Column editable="false" title="Salary ID" type="java.lang.Object"/>
                     <Column editable="false" title="Salary" type="java.lang.Object"/>
-                    <Column editable="false" title="Salary_due" type="java.lang.Object"/>
+                    <Column editable="false" title="Salary_Due" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

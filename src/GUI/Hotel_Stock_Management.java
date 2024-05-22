@@ -222,9 +222,9 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton6)
                 .addGap(14, 14, 14))
         );
@@ -251,7 +251,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
-        jLabel3.setText("Catagory");
+        jLabel3.setText("Category");
 
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel5.setForeground(java.awt.Color.white);
@@ -366,7 +366,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", " Name", "Catagory", "Department", "Status"
+                "#", " Name", "Category", "Department", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {

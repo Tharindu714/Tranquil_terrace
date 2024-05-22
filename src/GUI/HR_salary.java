@@ -197,11 +197,11 @@ public class HR_salary extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
-        jLabel3.setText("Work Schedule Start date");
+        jLabel3.setText("Work Schedule Start Date");
 
         jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel4.setForeground(java.awt.Color.white);
-        jLabel4.setText("Work Schedule End date");
+        jLabel4.setText("Work Schedule End Date");
 
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel5.setForeground(java.awt.Color.white);
@@ -264,7 +264,7 @@ public class HR_salary extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel8.setForeground(java.awt.Color.white);
-        jLabel8.setText("Salary_id");
+        jLabel8.setText("Salary_ID");
 
         jTextField1.setText("1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -375,8 +375,9 @@ public class HR_salary extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TRANQUIL TERRACE | HR salary Management");
+        jLabel1.setText("TRANQUIL TERRACE | HR Salary Management");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -416,7 +417,7 @@ public class HR_salary extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Username", "Start date", "End date", "salary ID", "Salary", "Salary_due"
+                "ID", "Username", "Start Date", "End Date", "Salary ID", "Salary", "Salary_Due"
             }
         ) {
             boolean[] canEdit = new boolean [] {

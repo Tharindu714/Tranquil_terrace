@@ -86,16 +86,16 @@ public class emp_attendance extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Check Employee Attendance");
+        jLabel4.setText("TRANQUIL TERRACE | Check Employee Attendance");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+                .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(101, 101, 101)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton13)
                 .addContainerGap())
         );
@@ -121,7 +121,7 @@ public class emp_attendance extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Username", "Employee Type", "Date", "On time", "Off time"
+                "ID", "Username", "Employee Type", "Date", "On Time", "Off Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {

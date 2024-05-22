@@ -77,7 +77,7 @@ public class emp_salary extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Check Employee Salary");
+        jLabel4.setText("TRANQUIL TERRACE | Check Employee Salary");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -107,7 +107,7 @@ public class emp_salary extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "First Name", "Last Name", "Mobile", "From date", "To Date", "Monthly Salary", "Advance Withdraws"
+                "ID", "First Name", "Last Name", "Mobile", "From date", "To Date", "Monthly Salary", "Advance Withdraws"
             }
         ) {
             boolean[] canEdit = new boolean [] {

@@ -43,9 +43,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="124" max="32767" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="575" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel1" pref="737" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
@@ -186,7 +186,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Catagory"/>
+            <Property name="text" type="java.lang.String" value="Category"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -358,7 +358,7 @@
                   <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="#" type="java.lang.Object"/>
                     <Column editable="false" title=" Name" type="java.lang.Object"/>
-                    <Column editable="false" title="Catagory" type="java.lang.Object"/>
+                    <Column editable="false" title="Category" type="java.lang.Object"/>
                     <Column editable="false" title="Department" type="java.lang.Object"/>
                     <Column editable="false" title="Status" type="java.lang.Object"/>
                   </Table>

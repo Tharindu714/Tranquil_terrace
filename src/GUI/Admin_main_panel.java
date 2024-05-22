@@ -163,7 +163,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jButton9.setBackground(new java.awt.Color(52, 73, 94));
         jButton9.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Guest Check-ins & outs");
+        jButton9.setText("Guest Check-Ins & Outs");
         jButton9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jButton9.setPreferredSize(new java.awt.Dimension(200, 35));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +175,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jButton10.setBackground(new java.awt.Color(52, 73, 94));
         jButton10.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Resturant Customers");
+        jButton10.setText("Restaurant Customers");
         jButton10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jButton10.setPreferredSize(new java.awt.Dimension(200, 35));
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +314,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jLabel1.setText("00 : 00 :00");
 
         jLabel13.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("My Profile");
 
@@ -330,14 +331,15 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Administrator Dashboard");
+        jLabel4.setText("TRANQUIL TERRACE | Administrator Dashboard");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton13)
                 .addContainerGap())
@@ -355,7 +357,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("User name :");
+        jLabel2.setText("Username :");
         jPanel4.add(jLabel2);
 
         jLabel7.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
@@ -405,6 +407,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
 
         jPanel5.setLayout(new java.awt.BorderLayout());
 
+        jPanel6.setForeground(new java.awt.Color(255, 255, 255));
+
+        jButton14.setBackground(new java.awt.Color(245, 71, 104));
+        jButton14.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jButton14.setForeground(new java.awt.Color(255, 255, 255));
         jButton14.setText("Open NotePad");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -412,6 +419,9 @@ public class Admin_main_panel extends javax.swing.JFrame {
             }
         });
 
+        jButton15.setBackground(new java.awt.Color(245, 71, 104));
+        jButton15.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jButton15.setForeground(new java.awt.Color(255, 255, 255));
         jButton15.setText("Open calculator");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -419,6 +429,9 @@ public class Admin_main_panel extends javax.swing.JFrame {
             }
         });
 
+        jButton16.setBackground(new java.awt.Color(245, 71, 104));
+        jButton16.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jButton16.setForeground(new java.awt.Color(255, 255, 255));
         jButton16.setText("Open calculator");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,23 +444,23 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(58, 58, 58)
                 .addComponent(jButton14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton16)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
         jPanel5.add(jPanel6, java.awt.BorderLayout.LINE_END);

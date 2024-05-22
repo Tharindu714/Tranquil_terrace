@@ -65,7 +65,7 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TRANQUIL TERRACE | Guest Check ins & Check Out");
+        jLabel1.setText("TRANQUIL TERRACE | Guest Check Ins & Check Outs");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/circle-xmark.png"))); // NOI18N
@@ -82,19 +82,21 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton13)
-                .addGap(5, 5, 5))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -106,7 +108,7 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "Name", "Mobile", "City", "Country", "Check In", "Check out"
+                "#", "Name", "Mobile", "City", "Country", "Check In", "Check Out"
             }
         ) {
             boolean[] canEdit = new boolean [] {

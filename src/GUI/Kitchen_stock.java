@@ -162,14 +162,14 @@ public class Kitchen_stock extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Item Unit (Kg, g, ml)");
+        jLabel5.setText("Item Unit (kg, g, ml)");
 
         jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Add new Unit");
+        jLabel7.setText("Add New Unit");
 
         jTextField2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
@@ -194,7 +194,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(18, 173, 193));
+        jButton3.setBackground(new java.awt.Color(52, 73, 94));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("+");
@@ -231,7 +231,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -294,8 +294,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6)
                 .addGap(14, 14, 14))
@@ -304,10 +303,9 @@ public class Kitchen_stock extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel5.add(jPanel1, java.awt.BorderLayout.PAGE_START);

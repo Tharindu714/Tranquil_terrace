@@ -173,7 +173,7 @@ public class HR_attendence extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
-        jLabel3.setText("HR Logged time");
+        jLabel3.setText("HR Logged Time");
 
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
@@ -272,7 +272,7 @@ public class HR_attendence extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Username", "Start Time", "Off time"
+                "ID", "Username", "Start Time", "Off Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {
