@@ -6,9 +6,9 @@ import model.MySQL;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
 
-public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
+public class Customer_CheckIn_CheckOut extends javax.swing.JFrame {
 
-    public Customer_ChechIn_CheckOut() {
+    public Customer_CheckIn_CheckOut() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         loadChecks("SELECT * FROM `customer` INNER JOIN `customer_visit_hotel` ON"
@@ -16,7 +16,8 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
                 + "INNER JOIN `customer_address` \n"
                 + "ON `customer_visit_hotel`.`id` = `customer_address`.`id` INNER JOIN `customer_city` \n"
                 + "ON `customer_address`.`id` = `customer_city`.`id`"
-                + "INNER JOIN `country` ON `customer_city`.`country_id` = `country`.id ");
+                + "INNER JOIN `country` ON `customer_city`.`country_id` = `country`.id "
+                + "ORDER BY `customer_visit_hotel`.`check_in` DESC");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
@@ -52,7 +53,7 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -68,12 +69,12 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
         jLabel1.setText("TRANQUIL TERRACE | Guest Check Ins & Check Outs");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/circle-xmark.png"))); // NOI18N
-        jButton13.setContentAreaFilled(false);
-        jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/circle-xmark.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -82,21 +83,19 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton13)
-                .addContainerGap())
+                .addComponent(jButton1)
+                .addGap(5, 5, 5))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jLabel1)
+                .addContainerGap(16, Short.MAX_VALUE))
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -108,7 +107,7 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "Name", "Mobile", "City", "Country", "Check In", "Check Out"
+                "#", "Name", "Mobile", "City", "Country", "Check In", "Check out"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -138,9 +137,9 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,7 +152,7 @@ public class Customer_ChechIn_CheckOut extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

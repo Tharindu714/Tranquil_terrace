@@ -162,7 +162,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Item Unit (kg, g, ml)");
+        jLabel5.setText("Item Unit (kg, g, ml...)");
 
         jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));

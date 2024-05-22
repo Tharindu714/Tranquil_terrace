@@ -1,6 +1,5 @@
 package GUI;
 
-import com.formdev.flatlaf.IntelliJTheme;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;

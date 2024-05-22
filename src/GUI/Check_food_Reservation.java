@@ -11,14 +11,17 @@ public class Check_food_Reservation extends javax.swing.JFrame {
     public Check_food_Reservation() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        loadRes("SELECT * FROM `kot`"
-                + "INNER JOIN `customer_visit_hotel` ON `kot`.`customer_visit_hotel_id` = `customer_visit_hotel`.id "
-                + "INNER JOIN `meal_time` ON `kot`.`meal_time_id` = `meal_time`.id "
-                + "INNER JOIN `kot_status` ON `kot`.`kot_status_id` = `kot_status`.id "
-                + "INNER JOIN `customer` ON `customer_visit_hotel`.`customer_nic/passport` = `customer`.nic/passport "
-                + "INNER JOIN `kot` ON `kot_has_food`.`kot_id` = `kot`.id "
-                + "INNER JOIN `food_item` ON `kot_has_food`.`food_item_id` = `food_item`.id "
-                + "INNER JOIN `food_category` ON `food_item`.`food_category_id` = `food_category`.id ORDER BY `kot`.`id` ASC");
+        loadRes("SELECT *FROM `kot`\n"
+                + "INNER JOIN `customer_visit_hotel` ON `kot`.`customer_visit_hotel_id` = `customer_visit_hotel`.`id` \n"
+                + "INNER JOIN `customer` ON `customer_visit_hotel`.`customer_nic/passport` = `customer`.`nic/passport`\n"
+                + "INNER JOIN `kot_has_food` ON `kot`.`id` = `kot_has_food`.`kot_id` \n"
+                + "INNER JOIN `food_item` ON `kot_has_food`.`food_item_id` = `food_item`.`id` \n"
+                + "INNER JOIN `kot_status` ON `kot`.`kot_status_id` = `kot_status`.`id` \n"
+                + "INNER JOIN `meal_time` ON `kot`.`meal_time_id` = `meal_time`.`id` \n"
+                + "INNER JOIN `food_category` ON `food_item`.`food_category_id` = `food_category`.`id` \n"
+                + "INNER JOIN (SELECT `kot_id`, `food_item_id`, `qty` FROM `kot_has_food`) AS `food_qty` \n"
+                + "ON `kot_has_food`.`kot_id` = `food_qty`.`kot_id` AND `kot_has_food`.`food_item_id` = `food_qty`.`food_item_id` \n"
+                + "ORDER BY `kot`.`id` ASC");
     }
 
     private void loadRes(String query) {
@@ -127,7 +130,7 @@ public class Check_food_Reservation extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "KOT ID", "NIC /passport", "Customer Name", "Food Order Time", "Food Requested time", "KOT Status", "Meal Time", "Food category", "Food Items", "Req QTY", "Price (per 1)"
+                "KOT ID", "NIC /Passport", "Customer Name", "Food Ordered Time", "Food Requested time", "KOT Status", "Meal Time", "Food Category", "Food Items", "Req QTY", "Price (per 1)"
             }
         ) {
             boolean[] canEdit = new boolean [] {

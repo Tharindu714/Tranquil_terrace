@@ -149,7 +149,7 @@
                     <Column editable="false" title="From date" type="java.lang.Object"/>
                     <Column editable="false" title="To Date" type="java.lang.Object"/>
                     <Column editable="false" title="Monthly Salary" type="java.lang.Object"/>
-                    <Column editable="false" title="Advance Withdraws" type="java.lang.Object"/>
+                    <Column editable="false" title="Advance Withdrawals" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
