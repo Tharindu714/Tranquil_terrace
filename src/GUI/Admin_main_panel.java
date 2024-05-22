@@ -250,6 +250,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jButton21.setText("Admin Profile Update");
         jButton21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jButton21.setPreferredSize(new java.awt.Dimension(200, 35));
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -579,6 +584,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         Check_food_Reservation CFR = new Check_food_Reservation();
         CFR.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        Admin_profile adprof = new Admin_profile();
+        adprof.setVisible(true);
+    }//GEN-LAST:event_jButton21ActionPerformed
 
     /**
      * @param args the command line arguments
