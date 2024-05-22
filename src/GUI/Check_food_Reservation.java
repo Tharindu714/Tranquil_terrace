@@ -1,25 +1,27 @@
 package GUI;
 
+import com.formdev.flatlaf.IntelliJTheme;
 import java.sql.ResultSet;
 import java.util.Vector;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 
-public class emp_salary extends javax.swing.JFrame {
+public class Check_food_Reservation extends javax.swing.JFrame {
 
-    public emp_salary() {
+    public Check_food_Reservation() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        loadSalary("SELECT * FROM `salary_advance`"
-                + "INNER JOIN `salary` ON `salary_advance`.`salary_id` = `salary`.id "
-                + "INNER JOIN `employee` ON `salary`.`employee_id` = `employee`.id "
-                + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id ORDER BY `salary_advance`.`id` ASC");
+        setExtendedState(MAXIMIZED_BOTH);
+        loadRes("SELECT * FROM `kot`"
+                + "INNER JOIN `customer_visit_hotel` ON `kot`.`customer_visit_hotel_id` = `customer_visit_hotel`.id "
+                + "INNER JOIN `meal_time` ON `kot`.`meal_time_id` = `meal_time`.id "
+                + "INNER JOIN `kot_status` ON `kot`.`kot_status_id` = `kot_status`.id "
+                + "INNER JOIN `customer` ON `customer_visit_hotel`.`customer_nic/passport` = `customer`.nic/passport "
+                + "INNER JOIN `kot` ON `kot_has_food`.`kot_id` = `kot`.id "
+                + "INNER JOIN `food_item` ON `kot_has_food`.`food_item_id` = `food_item`.id "
+                + "INNER JOIN `food_category` ON `food_item`.`food_category_id` = `food_category`.id ORDER BY `kot`.`id` ASC");
     }
-    
 
-
-    private void loadSalary(String query) {
+    private void loadRes(String query) {
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
@@ -29,43 +31,43 @@ public class emp_salary extends javax.swing.JFrame {
             while (resultSet.next()) {
                 Vector v = new Vector();
                 v.add(resultSet.getString("id"));
-                v.add(resultSet.getString("employee.first_name"));
-                v.add(resultSet.getString("employee.last_name"));
-                v.add(resultSet.getString("employee.mobile"));
-                v.add(resultSet.getString("salary.from_date"));
-                v.add(resultSet.getString("salary.to_date"));
-                v.add(resultSet.getString("salary.salary"));
-                v.add(resultSet.getString("advance"));
+                v.add(resultSet.getString("customer.nic/passport"));
+                v.add(resultSet.getString("customer.full_name"));
+                v.add(resultSet.getString("ordered_time"));
+                v.add(resultSet.getString("req_time"));
+                v.add(resultSet.getString("kot_status.status"));
+                v.add(resultSet.getString("meal_time.type"));
+                v.add(resultSet.getString("food_category.category"));
+                v.add(resultSet.getString("food_item.name"));
+                v.add(resultSet.getString("kot_has_food.qty"));
+                v.add(resultSet.getString("food_item.price"));
                 model.addRow(v);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel3.setBackground(new java.awt.Color(52, 73, 94));
-        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 50));
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(52, 73, 94));
+
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/circle-xmark.png"))); // NOI18N
         jButton13.setContentAreaFilled(false);
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +79,7 @@ public class emp_salary extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Check Employee Salary");
+        jLabel4.setText("Check Food Reservations");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -95,23 +97,31 @@ public class emp_salary extends javax.swing.JFrame {
             .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
         jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "First Name", "Last Name", "Mobile", "From date", "To Date", "Monthly Salary", "Advance Withdraws"
+                "KOT ID", "NIC /passport", "Customer Name", "Food Order Time", "Food Requested time", "KOT Status", "Meal Time", "Food category", "Food Items", "Req QTY", "Price (per 1)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -122,7 +132,7 @@ public class emp_salary extends javax.swing.JFrame {
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(3);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
@@ -130,48 +140,14 @@ public class emp_salary extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(5).setResizable(false);
             jTable1.getColumnModel().getColumn(6).setResizable(false);
             jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(8).setResizable(false);
+            jTable1.getColumnModel().getColumn(9).setPreferredWidth(3);
+            jTable1.getColumnModel().getColumn(10).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/report.png"))); // NOI18N
-        jPanel2.add(jButton1, java.awt.BorderLayout.CENTER);
-
-        jPanel4.setLayout(new java.awt.BorderLayout());
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/salary-report .png"))); // NOI18N
-        jPanel4.add(jButton2, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
@@ -181,27 +157,24 @@ public class emp_salary extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
+        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
+                "/themes/Atom_One_DarkContrast.theme.json"));
 
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new emp_salary().setVisible(true);
+                new Check_food_Reservation().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
