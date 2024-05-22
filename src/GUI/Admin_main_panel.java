@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 public class Admin_main_panel extends javax.swing.JFrame {
-
+    
     public Admin_main_panel(String username, String mobile, String fname, String lname, String reg) {
         initComponents();
         jLabel7.setText(username);
@@ -19,10 +19,10 @@ public class Admin_main_panel extends javax.swing.JFrame {
         dateTime();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-
+    
     public void dateTime() {
         Timer time;
-
+        
         time = new Timer(0, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -31,7 +31,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
         });
         time.start();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -217,6 +217,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jButton18.setText("Check GRN List");
         jButton18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jButton18.setPreferredSize(new java.awt.Dimension(200, 35));
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton19.setBackground(new java.awt.Color(52, 73, 94));
         jButton19.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
@@ -584,6 +589,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         Check_Rooms CR = new Check_Rooms();
         CR.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        Check_grn_lists CGL = new Check_grn_lists();
+        CGL.setVisible(true);
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     /**
      * @param args the command line arguments
