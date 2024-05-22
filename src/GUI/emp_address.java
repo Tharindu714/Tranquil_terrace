@@ -177,6 +177,7 @@ public class emp_address extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 50));
 
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Update HR Officer Address");
 
@@ -333,6 +334,7 @@ public class emp_address extends javax.swing.JFrame {
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
