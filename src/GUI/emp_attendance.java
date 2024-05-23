@@ -1,11 +1,14 @@
 package GUI;
 
+import com.formdev.flatlaf.IntelliJTheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -13,14 +16,19 @@ import model.MySQL;
 
 public class emp_attendance extends javax.swing.JFrame {
 
+    String query = ("SELECT * FROM `staff_attendence`"
+            + "INNER JOIN `employee` ON `staff_attendence`.`employee_id` = `employee`.id "
+            + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.`id`");
+    HashMap<String, String> TypeMap = new HashMap<>();
+
     public emp_attendance() {
         initComponents();
-        loadAttendance("SELECT * FROM `staff_attendence`"
-                + "INNER JOIN `employee` ON `staff_attendence`.`employee_id` = `employee`.id "
-                + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id ORDER BY `staff_attendence`.`id` ASC");
+        loadAttendance(query + "ORDER BY `staff_attendence`.`id` ASC");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        loadType();
         dateTime();
     }
+
     public void dateTime() {
         Timer time;
 
@@ -32,6 +40,7 @@ public class emp_attendance extends javax.swing.JFrame {
         });
         time.start();
     }
+
     private void loadAttendance(String query) {
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -55,6 +64,80 @@ public class emp_attendance extends javax.swing.JFrame {
 
     }
 
+    private void timeSearch() {
+        int sortIndex = jComboBox4.getSelectedIndex();
+
+        if (sortIndex == 0) {
+            loadAttendance(query + "ORDER BY `staff_attendence`.`id` ASC");
+
+        } else if (sortIndex == 1) {
+            loadAttendance(query + "ORDER BY `staff_attendence`.`on_time` DESC");
+
+        } else if (sortIndex == 2) {
+            loadAttendance(query + "ORDER BY `staff_attendence`.`on_time` ASC");
+
+        } else if (sortIndex == 3) {
+            loadAttendance(query + "ORDER BY `staff_attendence`.`off_time` DESC");
+
+        } else if (sortIndex == 4) {
+            loadAttendance(query + "ORDER BY `staff_attendence`.`off_time` ASC");
+        }
+    }
+
+    private void dateSearch() {
+        int sortIndex = jComboBox6.getSelectedIndex();
+
+        if (sortIndex == 0) {
+            loadAttendance(query + "ORDER BY `staff_attendence`.`id` ASC");
+
+        } else if (sortIndex == 1) {
+            loadAttendance(query + "ORDER BY `staff_attendence`.`date` DESC");
+
+        } else if (sortIndex == 2) {
+            loadAttendance(query + "ORDER BY `staff_attendence`.`date` ASC");
+
+        }
+    }
+
+    private void typeSearch() {
+        String type = jComboBox5.getSelectedItem().toString();
+
+        if (type.equals(0)) {
+            loadAttendance(query + "ORDER BY `staff_attendence`.`id` ASC");
+
+        } else {
+            loadAttendance(query + "WHERE `employee_type`.`type`='" + type + "' ");
+        }
+    }
+
+    private void loadType() {
+        try {
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `employee_type`");
+
+            Vector v = new Vector();
+            v.add("Select");
+
+            while (resultSet.next()) {
+                v.add(resultSet.getString("type"));
+                TypeMap.put(resultSet.getString("type"), resultSet.getString("id"));
+            }
+
+            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
+            jComboBox5.setModel(comboBoxModel);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadUI() {
+        loadAttendance(query + "ORDER BY `staff_attendence`.`id` ASC");
+        loadType();
+        dateTime();
+        jComboBox4.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -65,6 +148,14 @@ public class emp_attendance extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBox6 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -146,6 +237,104 @@ public class emp_attendance extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jPanel5.setPreferredSize(new java.awt.Dimension(788, 60));
+
+        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Order By Time");
+
+        jComboBox4.setBackground(new java.awt.Color(52, 73, 94));
+        jComboBox4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jComboBox4.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "On time DESC", "On time ASC", "Off time DESC", "Off time ASC" }));
+        jComboBox4.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox4ItemStateChanged(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("By Employee Type");
+
+        jComboBox5.setBackground(new java.awt.Color(52, 73, 94));
+        jComboBox5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jComboBox5.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox5.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox5ItemStateChanged(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Order By Date");
+
+        jComboBox6.setBackground(new java.awt.Color(52, 73, 94));
+        jComboBox6.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jComboBox6.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Date DESC", "Date ASC" }));
+        jComboBox6.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox6ItemStateChanged(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(18, 173, 193));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/refresh.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel5, java.awt.BorderLayout.PAGE_START);
+
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/report.png"))); // NOI18N
@@ -168,7 +357,7 @@ public class emp_attendance extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -180,7 +369,7 @@ public class emp_attendance extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
@@ -196,11 +385,25 @@ public class emp_attendance extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
+        timeSearch();
+    }//GEN-LAST:event_jComboBox4ItemStateChanged
 
+    private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
+        typeSearch();
+    }//GEN-LAST:event_jComboBox5ItemStateChanged
+
+    private void jComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox6ItemStateChanged
+        dateSearch();
+    }//GEN-LAST:event_jComboBox6ItemStateChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        loadUI();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public static void main(String args[]) {
+        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
+                "/themes/Atom_One_DarkContrast.theme.json"));
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new emp_attendance().setVisible(true);
@@ -211,12 +414,20 @@ public class emp_attendance extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

@@ -1,5 +1,6 @@
 package GUI;
 
+import com.formdev.flatlaf.IntelliJTheme;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,38 +12,39 @@ import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 
 public class HR_attendence extends javax.swing.JFrame {
-
+    
+    String query = ("SELECT * FROM `staff_attendence`"
+            + "INNER JOIN `employee` ON `staff_attendence`.`employee_id` = `employee`.id "
+            + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id "
+            + "WHERE `employee_type_id`='4'");
     HashMap<String, String> empMap = new HashMap<>();
-
+    
     public HR_attendence() {
         initComponents();
         loadEmp();
-        loadAttendanceTable("SELECT * FROM `staff_attendence`"
-                + "INNER JOIN `employee` ON `staff_attendence`.`employee_id` = `employee`.id "
-                + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id "
-                + "WHERE `employee_type_id`='4'");
+        loadAttendanceTable(query);
         setExtendedState(MAXIMIZED_BOTH);
     }
-
+    
     private void loadEmp() {
         try {
             ResultSet resultSet = MySQL.execute("SELECT `username`,`id` FROM `employee` WHERE `employee_type_id`='4'");
-
+            
             Vector v = new Vector();
             v.add("Select");
-
+            
             while (resultSet.next()) {
                 v.add(resultSet.getString("username"));
                 empMap.put(resultSet.getString("username"), resultSet.getString("id"));
             }
             DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
             jComboBox1.setModel(comboBoxModel);
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    
     private void loggedtime() {
         try {
             String username = jComboBox1.getSelectedItem().toString();
@@ -59,14 +61,14 @@ public class HR_attendence extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
+    
     private void loadAttendanceTable(String query) {
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-
+            
             ResultSet resultSet = MySQL.execute(query);
-
+            
             while (resultSet.next()) {
                 Vector v = new Vector();
                 v.add(resultSet.getString("id"));
@@ -79,14 +81,15 @@ public class HR_attendence extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
+    
     private void reset() {
         jComboBox1.setSelectedItem(0);
         jTextField1.setText("");
         jTextField5.setText("");
         jTable1.clearSelection();
+        jComboBox2.setSelectedIndex(0);
     }
-
+    
     private void commons() {
         reset();
         loadEmp();
@@ -95,7 +98,27 @@ public class HR_attendence extends javax.swing.JFrame {
                 + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id "
                 + "WHERE `employee_type_id`='4'");
     }
-
+    
+    private void timeSearch() {
+        int sortIndex = jComboBox2.getSelectedIndex();
+        
+        if (sortIndex == 0) {
+            loadAttendanceTable(query);
+            
+        } else if (sortIndex == 1) {
+            loadAttendanceTable(query + "ORDER BY `staff_attendence`.`on_time` DESC");
+            
+        } else if (sortIndex == 2) {
+            loadAttendanceTable(query + "ORDER BY `staff_attendence`.`on_time` ASC");
+            
+        } else if (sortIndex == 3) {
+            loadAttendanceTable(query + "ORDER BY `staff_attendence`.`off_time` DESC");
+            
+        } else if (sortIndex == 4) {
+            loadAttendanceTable(query + "ORDER BY `staff_attendence`.`off_time` ASC");
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,6 +136,8 @@ public class HR_attendence extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -216,6 +241,21 @@ public class HR_attendence extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Order By Start & Off Time");
+
+        jComboBox2.setBackground(new java.awt.Color(52, 73, 94));
+        jComboBox2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Start Time ASC", "Start Time DESC", "Off Time ASC", "Off Time DESC" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -232,7 +272,9 @@ public class HR_attendence extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -254,7 +296,11 @@ public class HR_attendence extends javax.swing.JFrame {
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
@@ -321,7 +367,7 @@ public class HR_attendence extends javax.swing.JFrame {
         String user = jComboBox1.getSelectedItem().toString();
         String loggedTime = jTextField1.getText();
         String offTime = jTextField5.getText();
-
+        
         if (loggedTime.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter the Logged time", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (offTime.isEmpty()) {
@@ -339,12 +385,16 @@ public class HR_attendence extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        timeSearch();
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
+    
     public static void main(String args[]) {
-
-        /* Create and display the form */
+        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
+                "/themes/Atom_One_DarkContrast.theme.json"));
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
+                new HR_attendence().setVisible(true);
             }
         });
     }
@@ -354,9 +404,11 @@ public class HR_attendence extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
