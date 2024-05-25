@@ -1,5 +1,6 @@
 package GUI;
 
+import com.formdev.flatlaf.IntelliJTheme;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -486,8 +487,8 @@ public class HR_mqt extends javax.swing.JFrame {
 
                 } else {
                     MySQL.execute("INSERT INTO "
-                            + "`employee`(`first_name`,`last_name`,`mobile`,`username`,`password`,`status`,`registered_date`,`employee_type_id`,`gender_id`)"
-                            + "VALUES('" + fname + "','" + lname + "','" + mobile + "','" + username + "','" + password + "','1','" + datetime + "','4','" + typeMap.get(gender) + "')");
+                            + "`employee`(`first_name`,`last_name`,`mobile`,`username`,`password`,`status`,`registered_date`,`employee_type_id`,`gender_id`,`loggedtime`)"
+                            + "VALUES('" + fname + "','" + lname + "','" + mobile + "','" + username + "','" + password + "','1','" + datetime + "','4','" + typeMap.get(gender) + "','" + datetime + "')");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -559,8 +560,12 @@ public class HR_mqt extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
+        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
+                "/themes/Atom_One_DarkContrast.theme.json"));
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                new HR_mqt().setVisible(true);
+
             }
         });
     }

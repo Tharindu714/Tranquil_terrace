@@ -1,8 +1,6 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -597,12 +595,9 @@ public class HR_salary extends javax.swing.JFrame {
     private void jFormattedTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField2KeyReleased
         int selectedRow = jTable1.getSelectedRow();
         if (selectedRow != -1) {
-
         } else {
             calculate();
         }
-
-
     }//GEN-LAST:event_jFormattedTextField2KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -687,31 +682,39 @@ public class HR_salary extends javax.swing.JFrame {
         double advance = Double.parseDouble(jFormattedTextField2.getText());
         String salary_id = jTextField1.getText();
         double advancing = due - advance;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date issuedDate = jDateChooser3.getDate();
+        String formattedStartDate = sdf.format(issuedDate);
 
-        double latest_advance = Double.parseDouble(jFormattedTextField4.getText());
+        if (formattedStartDate == null) {
+            JOptionPane.showMessageDialog(this, "Please Select the issued date", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
 
-        try {
-            MySQL.execute("UPDATE `salary` SET "
-                    + "`salary_due` = '" + advancing + "' WHERE `id` = '" + salary_id + "'");
+            double latest_advance = Double.parseDouble(jFormattedTextField4.getText());
 
-            MySQL.execute("INSERT INTO "
-                    + "`salary_advance`(`advance`,`salary_id`)"
-                    + "VALUES('" + latest_advance + "','" + salary_id + "')");
+            try {
+                MySQL.execute("UPDATE `salary` SET "
+                        + "`salary_due` = '" + advancing + "' WHERE `id` = '" + salary_id + "'");
 
-            JOptionPane.showMessageDialog(this, "Salary Advance Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-            if (JOptionPane.showConfirmDialog(this, "Do you Want to Print Salary Advance Sheet? ", "Confirmation Alert !",
-                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                generateAdvance();
-                commons();
-                jButton3.setEnabled(false);
-            } else {
-                JOptionPane.showMessageDialog(this, "Salary Advance sheet Print Cancelled", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                commons();
-                jButton3.setEnabled(false);
+                MySQL.execute("INSERT INTO "
+                        + "`salary_advance`(`advance`,`salary_id`)"
+                        + "VALUES('" + latest_advance + "','" + salary_id + "')");
+
+                JOptionPane.showMessageDialog(this, "Salary Advance Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                if (JOptionPane.showConfirmDialog(this, "Do you Want to Print Salary Advance Sheet? ", "Confirmation Alert !",
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    generateAdvance();
+                    commons();
+                    jButton3.setEnabled(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Salary Advance sheet Print Cancelled", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                    commons();
+                    jButton3.setEnabled(false);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

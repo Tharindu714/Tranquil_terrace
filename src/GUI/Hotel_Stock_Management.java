@@ -500,6 +500,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             oneClick();
         } else if (evt.getClickCount() == 2) {
             DeleteCategory();
+            reset();
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
