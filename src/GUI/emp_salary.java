@@ -463,7 +463,7 @@ public class emp_salary extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-                if (JOptionPane.showConfirmDialog(this, "Do you need to Print Employee Salary History Report?", "Confirm Alert",
+        if (JOptionPane.showConfirmDialog(this, "Do you need to Print Employee Salary History Report?", "Confirm Alert",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             try {
                 HashMap<String, Object> map = new HashMap<>();
@@ -485,6 +485,7 @@ public class emp_salary extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Salary_Charts salary_Charts = new Salary_Charts();
         salary_Charts.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
