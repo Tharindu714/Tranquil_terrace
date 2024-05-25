@@ -201,11 +201,10 @@ public class Check_inv_list extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jButton14 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton13 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -230,45 +229,42 @@ public class Check_inv_list extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 50));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jPanel6.setLayout(new java.awt.BorderLayout());
+        jPanel3.setBackground(new java.awt.Color(52, 73, 94));
 
-        jPanel5.setBackground(new java.awt.Color(52, 73, 94));
-
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/circle-xmark.png"))); // NOI18N
-        jButton14.setContentAreaFilled(false);
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/circle-xmark.png"))); // NOI18N
+        jButton13.setContentAreaFilled(false);
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                jButton13ActionPerformed(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("TRANQUIL TERRACE | Invoice History");
+        jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("TRANQUIL TERRACE | Invoice History");
 
-        jButton4.setBackground(new java.awt.Color(18, 173, 193));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/view-detail.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setContentAreaFilled(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setBackground(new java.awt.Color(18, 173, 193));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/view-detail.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setContentAreaFilled(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton14)
-                .addContainerGap())
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,9 +273,7 @@ public class Check_inv_list extends javax.swing.JFrame {
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel6.add(jPanel5, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel6, java.awt.BorderLayout.CENTER);
+        jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -494,6 +488,10 @@ public class Check_inv_list extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         IDSearch();
     }//GEN-LAST:event_jComboBox1ItemStateChanged
@@ -522,29 +520,9 @@ public class Check_inv_list extends javax.swing.JFrame {
         loadUI();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Do you need to Print Invoice History Report?", "Confirm Alert",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            try {
-                HashMap<String, Object> map = new HashMap<>();
-
-                String reportPath = "src//reports//invoice.jasper";
-
-                JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
-                JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
-                JasperViewer.viewReport(jasperPrint, false);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            loadUI();
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
@@ -560,10 +538,8 @@ public class Check_inv_list extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -577,13 +553,10 @@ public class Check_inv_list extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

@@ -8,11 +8,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRTableModelDataSource;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class Kitchen_stock extends javax.swing.JFrame {
 
@@ -310,8 +305,8 @@ public class Kitchen_stock extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton6)
@@ -482,23 +477,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-               if (JOptionPane.showConfirmDialog(this, "Do you need to Print Kitchen Stock Report?", "Confirm Alert",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            try {
-                HashMap<String, Object> map = new HashMap<>();
-
-                String reportPath = "src//reports//Kitchen.jasper";
-
-                JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
-                JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
-                JasperViewer.viewReport(jasperPrint, false);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            commons();
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     public static void main(String args[]) {

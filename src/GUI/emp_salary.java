@@ -6,14 +6,8 @@ import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRTableModelDataSource;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class emp_salary extends javax.swing.JFrame {
 
@@ -463,28 +457,11 @@ public class emp_salary extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-                if (JOptionPane.showConfirmDialog(this, "Do you need to Print Employee Salary History Report?", "Confirm Alert",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            try {
-                HashMap<String, Object> map = new HashMap<>();
-
-                String reportPath = "src//reports//empSal.jasper";
-
-                JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
-                JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
-                JasperViewer.viewReport(jasperPrint, false);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            loadUI();
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Salary_Charts salary_Charts = new Salary_Charts();
-        salary_Charts.setVisible(true);
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {

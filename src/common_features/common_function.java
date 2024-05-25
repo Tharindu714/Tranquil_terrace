@@ -765,11 +765,17 @@ public class common_function extends javax.swing.JFrame {
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         try {
-            HashMap<String, Object> parameter = new HashMap<>();
+            HashMap<String, Object> map = new HashMap<>();
+
+            map.put("id", "1");
+            map.put("name", "Tharindu");
+            map.put("email", "tharinduchanaka6@gmail.com");
+            map.put("mobile", "0751441764");
+            map.put("country", "Sri Lanka");
 
             String reportPath = "src//Resources//Testproject.jasper";
             JRDataSource dataSource = new JREmptyDataSource();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
             e.printStackTrace();

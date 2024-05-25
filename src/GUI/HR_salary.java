@@ -1,8 +1,6 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,12 +11,6 @@ import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRTableModelDataSource;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class HR_salary extends javax.swing.JFrame {
 
@@ -41,82 +33,7 @@ public class HR_salary extends javax.swing.JFrame {
         jTextField1.setEnabled(false);
         jFormattedTextField4.setEnabled(false);
         jButton3.setEnabled(false);
-        jDateChooser3.setEnabled(false);
-    }
-
-    private void generateSalary() {
-        try {
-            HashMap<String, Object> parameter = new HashMap<>();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-            Date startdate = jDateChooser1.getDate();
-            String formattedStartDate = sdf.format(startdate);
-
-            Date enddate = jDateChooser2.getDate();
-            String formattedEndDate = sdf.format(enddate);
-
-            parameter.put("username", jComboBox1.getSelectedItem());
-            parameter.put("Designation", "Human Resource Officer");
-            parameter.put("from_date", formattedStartDate);
-            parameter.put("to_date", formattedEndDate);
-
-            parameter.put("salary", jFormattedTextField1.getText());
-            parameter.put("advance", jFormattedTextField2.getText());
-            parameter.put("salary_due", jFormattedTextField3.getText());
-
-            String reportPath = "src//reports//salarySheet.jasper";
-            JRDataSource dataSource = new JREmptyDataSource();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
-            JasperViewer.viewReport(jasperPrint, false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void generateAdvance() {
-        try {
-            HashMap<String, Object> parameter = new HashMap<>();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date startdate = jDateChooser3.getDate();
-            String formattedStartDate = sdf.format(startdate);
-
-            parameter.put("username", jComboBox1.getSelectedItem());
-            parameter.put("Designation", "Human Resource Officer");
-            parameter.put("from_date", formattedStartDate);
-
-            parameter.put("salary", jFormattedTextField1.getText());
-            parameter.put("Redeemed_price", jFormattedTextField2.getText());
-            parameter.put("salary_due", jFormattedTextField3.getText());
-            parameter.put("advance", jFormattedTextField4.getText());
-
-            String reportPath = "src//reports//salaryadvanceSheet.jasper";
-            JRDataSource dataSource = new JREmptyDataSource();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
-            JasperViewer.viewReport(jasperPrint, false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void salaryReport() {
-        if (JOptionPane.showConfirmDialog(this, "Do you need to Print Salary History Report?", "Confirm Alert",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            try {
-                HashMap<String, Object> map = new HashMap<>();
-
-                String reportPath = "src//reports//salaryhistorySheet.jasper";
-
-                JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
-                JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
-                JasperViewer.viewReport(jasperPrint, false);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            commons();
-            jButton3.setEnabled(false);
-        }
+        
     }
 
     private void calculate() {
@@ -164,7 +81,6 @@ public class HR_salary extends javax.swing.JFrame {
                 v.add(resultSet.getString("salary.id"));
                 v.add(resultSet.getString("salary.salary"));
                 v.add(resultSet.getString("salary.salary_due"));
-                v.add(resultSet.getString("advance"));
                 model.addRow(v);
             }
         } catch (Exception e) {
@@ -202,7 +118,6 @@ public class HR_salary extends javax.swing.JFrame {
 
             jDateChooser1.setEnabled(false);
             jDateChooser2.setEnabled(false);
-            jDateChooser3.setEnabled(true);
 
             String id = jTable1.getValueAt(selectedRow, 4).toString();
             jTextField1.setText(id);
@@ -227,7 +142,6 @@ public class HR_salary extends javax.swing.JFrame {
         jComboBox1.setEnabled(true);
         jDateChooser1.setEnabled(true);
         jDateChooser2.setEnabled(true);
-        jDateChooser3.setEnabled(false);
         jFormattedTextField1.setEnabled(true);
         jButton1.setEnabled(true);
         jButton2.setEnabled(true);
@@ -281,8 +195,6 @@ public class HR_salary extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jButton3 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
@@ -398,12 +310,6 @@ public class HR_salary extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
-        jLabel10.setForeground(java.awt.Color.white);
-        jLabel10.setText("Salary Issued Date");
-
-        jDateChooser3.setDateFormatString("yyyy MM dd"); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -420,7 +326,7 @@ public class HR_salary extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel9)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -434,13 +340,11 @@ public class HR_salary extends javax.swing.JFrame {
                                 .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jFormattedTextField3)
-                                .addComponent(jFormattedTextField4)
-                                .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jFormattedTextField4))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -463,10 +367,6 @@ public class HR_salary extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -485,11 +385,11 @@ public class HR_salary extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(14, 14, 14)
                 .addComponent(jButton2)
-                .addGap(8, 8, 8))
+                .addGap(59, 59, 59))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
@@ -545,17 +445,17 @@ public class HR_salary extends javax.swing.JFrame {
         jTable1.setAlignmentX(RIGHT_ALIGNMENT);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Username", "Start Date", "End Date", "Salary ID", "Monthly Salary", "Salary Due", "Last Advance"
+                "ID", "Username", "Start Date", "End Date", "Salary ID", "Salary", "Salary_Due"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -579,7 +479,6 @@ public class HR_salary extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
             jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
         }
 
         jPanel5.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -644,14 +543,7 @@ public class HR_salary extends javax.swing.JFrame {
                         + "VALUES('" + advance + "','" + id + "')");
 
                 JOptionPane.showMessageDialog(this, "Salary Added Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                if (JOptionPane.showConfirmDialog(this, "Do you Want to Print Salary Sheet? ", "Confirmation Alert !",
-                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    generateSalary();
-                    commons();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Salary sheet Print Cancelled", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                    commons();
-                }
+                commons();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -671,7 +563,7 @@ public class HR_salary extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        salaryReport();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jFormattedTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField2MouseClicked
@@ -688,28 +580,12 @@ public class HR_salary extends javax.swing.JFrame {
         String salary_id = jTextField1.getText();
         double advancing = due - advance;
 
-        double latest_advance = Double.parseDouble(jFormattedTextField4.getText());
-
         try {
             MySQL.execute("UPDATE `salary` SET "
                     + "`salary_due` = '" + advancing + "' WHERE `id` = '" + salary_id + "'");
-
-            MySQL.execute("INSERT INTO "
-                    + "`salary_advance`(`advance`,`salary_id`)"
-                    + "VALUES('" + latest_advance + "','" + salary_id + "')");
-
             JOptionPane.showMessageDialog(this, "Salary Advance Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-            if (JOptionPane.showConfirmDialog(this, "Do you Want to Print Salary Advance Sheet? ", "Confirmation Alert !",
-                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                generateAdvance();
-                commons();
-                jButton3.setEnabled(false);
-            } else {
-                JOptionPane.showMessageDialog(this, "Salary Advance sheet Print Cancelled", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                commons();
-                jButton3.setEnabled(false);
-            }
-
+            commons();
+            jButton3.setEnabled(false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -734,13 +610,11 @@ public class HR_salary extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
