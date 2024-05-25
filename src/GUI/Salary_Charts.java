@@ -271,7 +271,7 @@ public class Salary_Charts extends javax.swing.JFrame {
         lineRenderer.setSeriesPaint(0, Color.decode("#34495E"));
         lineRenderer.setSeriesStroke(0, new BasicStroke(3.0f));
         ChartPanel lineChartPanel = new ChartPanel(lineChart);
-        lineChartPanel.setBackground(Color.red);
+        
 
         jPanel1.removeAll(); 
         jPanel1.add(lineChartPanel, BorderLayout.CENTER);
