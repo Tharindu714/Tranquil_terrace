@@ -210,6 +210,7 @@ public class Salary_Charts extends javax.swing.JFrame {
             ChartPanel pieChartPanel = new ChartPanel(pieChart);
 
             jPanel1.removeAll(); 
+            
             jPanel1.add(pieChartPanel, BorderLayout.CENTER);
             jPanel1.revalidate(); 
             jPanel1.repaint();
