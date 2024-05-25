@@ -246,6 +246,11 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jButton20.setText("Income Charts");
         jButton20.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jButton20.setPreferredSize(new java.awt.Dimension(200, 35));
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
 
         jButton21.setBackground(new java.awt.Color(52, 73, 94));
         jButton21.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
@@ -640,6 +645,10 @@ public class Admin_main_panel extends javax.swing.JFrame {
         Check_grn_lists CGL = new Check_grn_lists();
         CGL.setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        
+    }//GEN-LAST:event_jButton20ActionPerformed
 
     /**
      * @param args the command line arguments
