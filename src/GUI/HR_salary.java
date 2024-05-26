@@ -81,11 +81,7 @@ public class HR_salary extends javax.swing.JFrame {
             parameter.put("username", jComboBox1.getSelectedItem());
             parameter.put("Designation", "Human Resource Officer");
             parameter.put("from_date", formattedStartDate);
-
-            parameter.put("salary", jFormattedTextField1.getText());
             parameter.put("Redeemed_price", jFormattedTextField2.getText());
-            parameter.put("salary_due", jFormattedTextField3.getText());
-            parameter.put("advance", jFormattedTextField4.getText());
 
             String reportPath = "src//reports//salaryadvanceSheet.jasper";
             JRDataSource dataSource = new JREmptyDataSource();

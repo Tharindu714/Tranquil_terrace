@@ -197,7 +197,7 @@ public class resturent_customer extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("TRANQUIL TERRACE | Resturant Invoice History");
+        jLabel4.setText("TRANQUIL TERRACE | Restaurant Invoice History");
 
         jButton3.setBackground(new java.awt.Color(18, 173, 193));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/view-detail.png"))); // NOI18N
