@@ -383,7 +383,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 1) {
             oneClick();
-        }else if(evt.getClickCount() == 2){
+        } else if (evt.getClickCount() == 2) {
             reset();
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -470,11 +470,12 @@ public class Kitchen_stock extends javax.swing.JFrame {
 
             } else {
                 MySQL.execute("INSERT INTO `item_unit`(`unit`)VALUES('" + unit + "')");
+                JOptionPane.showMessageDialog(this, "New Unit Standard Detected", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                commons();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        JOptionPane.showMessageDialog(this, "New Unit Standard Detected", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
         commons();
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -484,7 +485,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-               if (JOptionPane.showConfirmDialog(this, "Do you need to Print Kitchen Stock Report?", "Confirm Alert",
+        if (JOptionPane.showConfirmDialog(this, "Do you need to Print Kitchen Stock Report?", "Confirm Alert",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             try {
                 HashMap<String, Object> map = new HashMap<>();

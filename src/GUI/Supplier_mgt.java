@@ -382,7 +382,7 @@ public class Supplier_mgt extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 1) {
             oneClick();
-        }else if (evt.getClickCount() == 1){
+        }else if (evt.getClickCount() == 2){
             commons();
         }
     }//GEN-LAST:event_jTable1MouseClicked
