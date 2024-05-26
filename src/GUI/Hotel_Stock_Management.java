@@ -334,7 +334,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("New Food Category");
+        jLabel7.setText("New Equipment Category");
 
         jTextField2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
