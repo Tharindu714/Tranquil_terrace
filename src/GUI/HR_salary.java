@@ -400,6 +400,7 @@ public class HR_salary extends javax.swing.JFrame {
         jLabel10.setForeground(java.awt.Color.white);
         jLabel10.setText("Salary Issued Date");
 
+        jDateChooser3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         jDateChooser3.setDateFormatString("yyyy MM dd"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -549,7 +550,7 @@ public class HR_salary extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Username", "Start Date", "End Date", "Salary ID", "Monthly Salary", "Salary Due", "Last Advance"
+                "ID", "Username", "Start Date", "End Date", "Salary ID", "Monthly Salary", "Salary Due", "Redeemed advance"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -684,13 +685,14 @@ public class HR_salary extends javax.swing.JFrame {
         double advancing = due - advance;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date issuedDate = jDateChooser3.getDate();
-        String formattedStartDate = sdf.format(issuedDate);
+        String issuedjDate = sdf.format(issuedDate);
 
-        if (formattedStartDate == null) {
+        if (issuedjDate.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Select the issued date", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
 
             double latest_advance = Double.parseDouble(jFormattedTextField4.getText());
+           double advanceUpdate = latest_advance + advance;
 
             try {
                 MySQL.execute("UPDATE `salary` SET "
@@ -698,7 +700,7 @@ public class HR_salary extends javax.swing.JFrame {
 
                 MySQL.execute("INSERT INTO "
                         + "`salary_advance`(`advance`,`salary_id`)"
-                        + "VALUES('" + latest_advance + "','" + salary_id + "')");
+                        + "VALUES('" + advanceUpdate + "','" + salary_id + "')");
 
                 JOptionPane.showMessageDialog(this, "Salary Advance Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 if (JOptionPane.showConfirmDialog(this, "Do you Want to Print Salary Advance Sheet? ", "Confirmation Alert !",
