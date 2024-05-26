@@ -121,7 +121,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
     private void reset() {
         jTextField1.setText("");
         jTextField1.setEditable(true);
-
+        jTextField2.setEnabled(true);
         jComboBox1.setSelectedIndex(0);
         jComboBox2.setSelectedIndex(0);
         jComboBox3.setSelectedIndex(0);
