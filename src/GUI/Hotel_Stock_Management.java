@@ -600,14 +600,14 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String unit = jTextField2.getText();
         try {
-            ResultSet resultSet = MySQL.execute("SELECT * FROM `food_category`"
-                    + "WHERE `category`='" + unit + "'");
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `eq_category`"
+                    + "WHERE `name`='" + unit + "'");
             if (resultSet.next()) {
                 JOptionPane.showMessageDialog(this, "This Category is Already Added", "Can't Duplicate Categories", JOptionPane.WARNING_MESSAGE);
 
             } else {
-                MySQL.execute("INSERT INTO `food_category`(`category`)VALUES('" + unit + "')");
-                JOptionPane.showMessageDialog(this, "New Food Category Added", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                MySQL.execute("INSERT INTO `eq_category`(`name`)VALUES('" + unit + "')");
+                JOptionPane.showMessageDialog(this, "New Equipment Category Added", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 commons();
             }
         } catch (Exception e) {
