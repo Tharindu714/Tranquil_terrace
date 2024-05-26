@@ -36,7 +36,7 @@ public class Salary_Charts extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
@@ -96,12 +96,12 @@ public class Salary_Charts extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/graph-curve.png"))); // NOI18N
-        jButton7.setContentAreaFilled(false);
-        jButton7.setPreferredSize(new java.awt.Dimension(35, 35));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/graph-curve.png"))); // NOI18N
+        jButton2.setContentAreaFilled(false);
+        jButton2.setPreferredSize(new java.awt.Dimension(35, 35));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7jButton3ActionPerformed(evt);
+                jButton2jButton3ActionPerformed(evt);
             }
         });
 
@@ -122,7 +122,7 @@ public class Salary_Charts extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(641, Short.MAX_VALUE))
@@ -133,7 +133,7 @@ public class Salary_Charts extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -251,7 +251,7 @@ public class Salary_Charts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         try {
 
@@ -285,7 +285,7 @@ public class Salary_Charts extends javax.swing.JFrame {
         jPanel1.add(lineChartPanel, BorderLayout.CENTER);
         jPanel1.revalidate();
         SwingUtilities.updateComponentTreeUI(this);
-    }//GEN-LAST:event_jButton7jButton3ActionPerformed
+    }                                                
 
     private void jButton8jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8jButton2ActionPerformed
         DefaultPieDataset dataset = new DefaultPieDataset();
@@ -361,8 +361,8 @@ public class Salary_Charts extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

@@ -57,18 +57,8 @@ public class emp_salary extends javax.swing.JFrame {
         }
 
     }
-
-    private void typeSearch() {
-        String type = jComboBox5.getSelectedItem().toString();
-
-        if (type.equals(0)) {
-            loadSalary(query + "ORDER BY `salary_advance`.`id` ASC");
-
-        } else {
-            loadSalary(query + "WHERE `employee_type`.`type`='" + type + "' ");
-        }
-    }
-
+    
+//Database Loading and Searching 
     private void loadType() {
         try {
             ResultSet resultSet = MySQL.execute("SELECT * FROM `employee_type`");
@@ -86,6 +76,17 @@ public class emp_salary extends javax.swing.JFrame {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void typeSearch() {
+        String type = jComboBox5.getSelectedItem().toString();
+
+        if (type.equals(0)) {
+            loadSalary(query + "ORDER BY `salary_advance`.`id` ASC");
+
+        } else {
+            loadSalary(query + "WHERE `employee_type`.`type`='" + type + "' ");
         }
     }
 
@@ -119,6 +120,7 @@ public class emp_salary extends javax.swing.JFrame {
             loadSalary(query + "WHERE `employee`.`username`='" + name + "' ");
         }
     }
+    //Database Loading and Searching 
 
     private void timeSearch() {
         int sortIndex = jComboBox4.getSelectedIndex();
@@ -140,7 +142,7 @@ public class emp_salary extends javax.swing.JFrame {
         }
     }
 
-    private void dateSearch() {
+    private void salarySearch() {
         int sortIndex = jComboBox6.getSelectedIndex();
 
         if (sortIndex == 0) {
@@ -451,7 +453,7 @@ public class emp_salary extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox5ItemStateChanged
 
     private void jComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox6ItemStateChanged
-        dateSearch();
+        salarySearch();
     }//GEN-LAST:event_jComboBox6ItemStateChanged
 
     private void jComboBox7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox7ItemStateChanged

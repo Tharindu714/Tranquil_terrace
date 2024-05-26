@@ -5,7 +5,6 @@ import java.awt.BasicStroke;
 import org.jfree.chart.plot.CategoryPlot;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
 import model.MySQL;
@@ -14,10 +13,9 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
+
 
 public class income_chart extends javax.swing.JFrame {
 
