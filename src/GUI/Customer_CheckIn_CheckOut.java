@@ -321,7 +321,7 @@ public class Customer_CheckIn_CheckOut extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Order By date");
+        jLabel5.setText("Order By Date");
 
         jComboBox4.setBackground(new java.awt.Color(52, 73, 94));
         jComboBox4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N

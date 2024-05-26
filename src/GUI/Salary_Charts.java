@@ -101,7 +101,7 @@ public class Salary_Charts extends javax.swing.JFrame {
         jButton7.setPreferredSize(new java.awt.Dimension(35, 35));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7jButton3ActionPerformed(evt);
+                jButton7jButton1ActionPerformed(evt);
             }
         });
 
@@ -110,7 +110,7 @@ public class Salary_Charts extends javax.swing.JFrame {
         jButton8.setPreferredSize(new java.awt.Dimension(35, 35));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8jButton2ActionPerformed(evt);
+                jButton8jButton1ActionPerformed(evt);
             }
         });
 
@@ -131,10 +131,10 @@ public class Salary_Charts extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -191,7 +191,71 @@ public class Salary_Charts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton6jButton1ActionPerformed
 
-    private void jButton7jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7jButton3ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton7jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7jButton1ActionPerformed
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        try {
+           
+            ResultSet resultSet = MySQL.execute("SELECT employee_type.type, AVG(salary.salary) AS average_salary "
+                    + "FROM employee "
+                    + "JOIN employee_type ON employee.employee_type_id = employee_type.id "
+                    + "JOIN salary ON employee.id = salary.employee_id "
+                    + "GROUP BY employee_type.type");
+
+           
+            while (resultSet.next()) {
+                String employeeType = resultSet.getString("type");
+                double averageSalary = resultSet.getDouble("average_salary");
+
+                dataset.setValue(employeeType, averageSalary);
+            }
+
+         
+            JFreeChart pieChart = ChartFactory.createPieChart("Average Salary by Employee Type", dataset, true, true, false);
+            pieChart.setBackgroundPaint(new Color(255, 255, 255));
+            PiePlot piePlot = (PiePlot) pieChart.getPlot();
+            piePlot.setBackgroundPaint(new Color(255, 255, 255)); 
+
+            for (Object keyObj : dataset.getKeys()) {
+                Comparable<?> key = (Comparable<?>) keyObj;
+                switch (key.toString()) {
+                    case "Administrator":
+                        piePlot.setSectionPaint(key, Color.decode("#F54768"));
+                        break;
+                    case "Receptionist":
+                        piePlot.setSectionPaint(key, Color.decode("#FDD037"));
+                        break;
+                    case "HR":
+                        piePlot.setSectionPaint(key, Color.decode("#34495E")); 
+                        break;
+                    case "Kitchen Operator":
+                        piePlot.setSectionPaint(key, Color.decode("#36B64F"));
+                        break;
+                    default:
+                        piePlot.setSectionPaint(key, Color.decode("#7F7F7F"));
+                        break;
+                }
+            }
+            piePlot.setLabelFont(new Font("DinaminaUniWeb ", Font.PLAIN, 14)); 
+            piePlot.setLabelBackgroundPaint(new Color(255, 255, 255, 255));
+            piePlot.setLabelOutlinePaint(null);
+            ChartPanel pieChartPanel = new ChartPanel(pieChart);
+
+            jPanel1.removeAll(); 
+            
+            jPanel1.add(pieChartPanel, BorderLayout.CENTER);
+            jPanel1.revalidate(); 
+            jPanel1.repaint();
+            SwingUtilities.updateComponentTreeUI(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton7jButton1ActionPerformed
+
+    private void jButton8jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8jButton1ActionPerformed
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         try {
 
@@ -225,64 +289,11 @@ public class Salary_Charts extends javax.swing.JFrame {
         jPanel1.add(lineChartPanel, BorderLayout.CENTER);
         jPanel1.revalidate();
         SwingUtilities.updateComponentTreeUI(this);
-    }//GEN-LAST:event_jButton7jButton3ActionPerformed
+    }//GEN-LAST:event_jButton8jButton1ActionPerformed
 
-    private void jButton8jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8jButton2ActionPerformed
-        DefaultPieDataset dataset = new DefaultPieDataset();
-        try {
-
-            ResultSet resultSet = MySQL.execute("SELECT employee_type.type, AVG(salary.salary) AS average_salary "
-                    + "FROM employee "
-                    + "JOIN employee_type ON employee.employee_type_id = employee_type.id "
-                    + "JOIN salary ON employee.id = salary.employee_id "
-                    + "GROUP BY employee_type.type");
-
-            while (resultSet.next()) {
-                String employeeType = resultSet.getString("type");
-                double averageSalary = resultSet.getDouble("average_salary");
-
-                dataset.setValue(employeeType, averageSalary);
-            }
-
-            JFreeChart pieChart = ChartFactory.createPieChart("Average Salary by Employee Type", dataset, true, true, false);
-            pieChart.setBackgroundPaint(new Color(255, 255, 255));
-            PiePlot piePlot = (PiePlot) pieChart.getPlot();
-            piePlot.setBackgroundPaint(new Color(255, 255, 255));
-
-            for (Object keyObj : dataset.getKeys()) {
-                Comparable<?> key = (Comparable<?>) keyObj;
-                switch (key.toString()) {
-                    case "Administrator":
-                        piePlot.setSectionPaint(key, Color.decode("#46494B"));
-                        break;
-                    case "Receptionist":
-                        piePlot.setSectionPaint(key, Color.decode("#FDD037"));
-                        break;
-                    case "HR":
-                        piePlot.setSectionPaint(key, Color.decode("#12ADC1"));
-                        break;
-                    case "Kitchen Operator":
-                        piePlot.setSectionPaint(key, Color.decode("#36B64F"));
-                        break;
-                    default:
-                        piePlot.setSectionPaint(key, Color.decode("#F54768"));
-                        break;
-                }
-            }
-            piePlot.setLabelFont(new Font("DinaminaUniWeb ", Font.PLAIN, 14));
-            piePlot.setLabelBackgroundPaint(new Color(0, 0, 0, 0));
-            piePlot.setLabelOutlinePaint(null);
-            ChartPanel pieChartPanel = new ChartPanel(pieChart);
-
-            jPanel1.removeAll();
-            jPanel1.add(pieChartPanel, BorderLayout.CENTER);
-            jPanel1.revalidate();
-            jPanel1.repaint();
-            SwingUtilities.updateComponentTreeUI(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton8jButton2ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       
+    }                                                
 
     /**
      * @param args the command line arguments
