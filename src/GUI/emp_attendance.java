@@ -165,8 +165,6 @@ public class emp_attendance extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -363,14 +361,6 @@ public class emp_attendance extends javax.swing.JFrame {
         jLabel1.setText("00 : 00 :00");
         jPanel4.add(jLabel1, java.awt.BorderLayout.CENTER);
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(60, 60));
-        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/report.png"))); // NOI18N
-        jPanel2.add(jButton1);
-
-        jPanel4.add(jPanel2, java.awt.BorderLayout.LINE_END);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -449,7 +439,6 @@ public class emp_attendance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -462,7 +451,6 @@ public class emp_attendance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
