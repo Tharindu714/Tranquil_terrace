@@ -138,6 +138,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             String eq_name = jTable1.getValueAt(selectedRow, 1).toString();
             jTextField1.setText(eq_name);
             jTextField1.setEnabled(false);
+            jTextField2.setEnabled(false);
 
             String category = jTable1.getValueAt(selectedRow, 2).toString();
             jComboBox3.setSelectedItem(category);
@@ -608,7 +609,10 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             } else {
                 MySQL.execute("INSERT INTO `eq_category`(`name`)VALUES('" + unit + "')");
                 JOptionPane.showMessageDialog(this, "New Equipment Category Added", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                jTextField2.setText("");
+                jTextField2.setEnabled(false);
                 commons();
+
             }
         } catch (Exception e) {
             e.printStackTrace();
