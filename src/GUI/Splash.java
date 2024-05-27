@@ -2,6 +2,8 @@ package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
 import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Splash extends javax.swing.JFrame {
 
@@ -9,6 +11,13 @@ public class Splash extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
+                try {
+          ;
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource("/resources/T2.png"));
+            this.setIconImage(imageIcon.getImage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Image loading error");
+        }
         Thread th = new Thread(
                 () -> {
                     for (int i = 0; i <= 100; i++) {

@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `customer_city` (
   CONSTRAINT `fk_customer_city_country1` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.customer_city: ~9 rows (approximately)
+-- Dumping data for table hotel_db.customer_city: ~8 rows (approximately)
 REPLACE INTO `customer_city` (`id`, `name`, `country_id`) VALUES
 	(1, 'Bandarawela', 1),
 	(2, 'Mumbai', 3),
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `customer_visit_hotel` (
   CONSTRAINT `FK_customer_visit_hotel_payement_method` FOREIGN KEY (`payment_method_id`) REFERENCES `payement_method` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.customer_visit_hotel: ~5 rows (approximately)
+-- Dumping data for table hotel_db.customer_visit_hotel: ~4 rows (approximately)
 REPLACE INTO `customer_visit_hotel` (`id`, `check_in`, `pax`, `check_out`, `total`, `customer_nic/passport`, `payment_method_id`) VALUES
 	(1, '2024-05-10 10:00:00', 2, '2024-05-18 15:00:00', 15000, 'G2N9834K3', 1),
 	(2, '2024-05-01 14:00:00', 1, '2024-05-18 17:35:57', 50000, 'D2H6862M2', 2),
@@ -168,21 +168,27 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `registered_date` date NOT NULL,
   `employee_type_id` int NOT NULL,
   `gender_id` int NOT NULL,
+  `loggedtime` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_u8ser_type_idx` (`employee_type_id`),
   KEY `fk_user_gender1_idx` (`gender_id`),
   CONSTRAINT `fk_user_gender1` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`id`),
   CONSTRAINT `fk_user_u8ser_type` FOREIGN KEY (`employee_type_id`) REFERENCES `employee_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.employee: ~6 rows (approximately)
-REPLACE INTO `employee` (`id`, `first_name`, `last_name`, `mobile`, `username`, `password`, `status`, `registered_date`, `employee_type_id`, `gender_id`) VALUES
-	(1, 'Tharindu', 'Chanaka', '0751441764', 'TChanaka', 'tharindu1122', 1, '2024-03-20', 1, 1),
-	(2, 'Sadeesha', 'Nilakshini', '0747179730', 'SNilakshini', 'Sadeesha123', 1, '2024-03-18', 1, 2),
-	(3, 'Kasuni', 'Jayamali', '0765749090', 'GDJayamali', 'Kasuni234', 1, '2024-04-01', 4, 2),
-	(4, 'Maleesha', 'Shehan', '0754329874', 'MShehan', 'Malee789', 1, '2024-05-10', 3, 1),
-	(5, 'Dhanushka', 'Lakmal', '0712346789', 'DLakmal', 'LakmalD865', 1, '2024-05-01', 2, 1),
-	(6, 'Kavindaya', 'Rathnayaka', '0785670034', 'SKavindaya', 'kaveS567', 1, '2024-04-12', 5, 2);
+-- Dumping data for table hotel_db.employee: ~10 rows (approximately)
+REPLACE INTO `employee` (`id`, `first_name`, `last_name`, `mobile`, `username`, `password`, `status`, `registered_date`, `employee_type_id`, `gender_id`, `loggedtime`) VALUES
+	(1, 'Tharindu', 'Chanaka', '0751441764', 'TChanaka', 'tharindu1122', 1, '2024-03-20', 1, 1, '2024-05-22 03:03:01'),
+	(2, 'Sadeesha', 'Nilakshini', '0747179730', 'SNilakshini', 'Sadeesha123', 1, '2024-03-18', 1, 2, '2024-05-22 03:03:03'),
+	(3, 'Kasuni', 'Jayamali', '0748763400', 'KJayamali2003', 'KasuniJaYamaLI6785', 1, '2024-04-01', 4, 2, '2024-05-22 03:03:04'),
+	(4, 'Maleesha', 'Shehan', '0754329874', 'MShehan', 'Malee789', 1, '2024-05-10', 3, 1, '2024-05-22 03:03:05'),
+	(5, 'Dhanushka', 'Lakmal', '0712346789', 'DLakmal', 'LakmalD865', 1, '2024-05-01', 2, 1, '2024-05-22 03:03:06'),
+	(6, 'Kavindaya', 'Rathnayaka', '0785670034', 'SKavindaya', 'kaveS567', 1, '2024-04-12', 5, 2, '2024-05-22 03:03:07'),
+	(7, 'Sandaruwan', 'Jayasinghe', '0781236743', 'sandaruwan De Jaysinghe', 'sandaru123', 1, '2024-05-20', 4, 1, '2024-05-22 03:03:07'),
+	(8, 'Anya', 'Hasalwood', '0712346790', 'AHasalwood678', 'anya456haselwood', 1, '2024-05-20', 4, 2, '2024-05-22 03:03:08'),
+	(9, 'Madushanka', 'Lakmal', '0763472300', 'MaduLakmal', 'Madushanka8790', 1, '2024-05-20', 1, 1, '2024-05-22 03:03:09'),
+	(10, 'Brayan', 'Gabrial', '0785641234', 'BGabrial', 'bgnotme335', 1, '2024-05-21', 4, 1, '2024-05-22 03:03:10'),
+	(11, 'Tharaka', 'Sankalpa', '0765432390', 'Tharka@JavaInstitute', 'tharakasankalpa678', 1, '2024-05-22', 1, 1, '2024-05-22 03:05:09');
 
 -- Dumping structure for table hotel_db.employee_type
 CREATE TABLE IF NOT EXISTS `employee_type` (
@@ -191,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `employee_type` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.employee_type: ~5 rows (approximately)
+-- Dumping data for table hotel_db.employee_type: ~4 rows (approximately)
 REPLACE INTO `employee_type` (`id`, `type`) VALUES
 	(1, 'Administrator'),
 	(2, 'Staff'),
@@ -236,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `food_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.food_category: ~13 rows (approximately)
+-- Dumping data for table hotel_db.food_category: ~11 rows (approximately)
 REPLACE INTO `food_category` (`id`, `category`) VALUES
 	(1, 'Soup'),
 	(2, 'Salad'),
@@ -263,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `food_item` (
   CONSTRAINT `fk_food_item_food_category1` FOREIGN KEY (`food_category_id`) REFERENCES `food_category` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.food_item: ~38 rows (approximately)
+-- Dumping data for table hotel_db.food_item: ~34 rows (approximately)
 REPLACE INTO `food_item` (`id`, `name`, `price`, `food_category_id`) VALUES
 	(3, 'Vegitable Soup', 350, 1),
 	(4, 'Chicken Soup', 550, 1),
@@ -329,7 +335,7 @@ CREATE TABLE IF NOT EXISTS `grn` (
   CONSTRAINT `fk_grn_supplier1` FOREIGN KEY (`supplier_mobile`) REFERENCES `supplier` (`mobile`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.grn: ~10 rows (approximately)
+-- Dumping data for table hotel_db.grn: ~9 rows (approximately)
 REPLACE INTO `grn` (`id`, `date`, `supplier_mobile`, `payment_method_id`) VALUES
 	(1, '2024-05-02', '0712345698', 1),
 	(2, '2024-05-02', '0761665789', 2),
@@ -378,9 +384,9 @@ CREATE TABLE IF NOT EXISTS `hotel_eq` (
   CONSTRAINT `fk_hotel_eq_department1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`),
   CONSTRAINT `fk_hotel_eq_eq_category1` FOREIGN KEY (`eq_category_id`) REFERENCES `eq_category` (`id`),
   CONSTRAINT `fk_hotel_eq_eq_status1` FOREIGN KEY (`eq_status_id`) REFERENCES `eq_status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.hotel_eq: ~15 rows (approximately)
+-- Dumping data for table hotel_db.hotel_eq: ~13 rows (approximately)
 REPLACE INTO `hotel_eq` (`id`, `name`, `department_id`, `eq_category_id`, `eq_status_id`) VALUES
 	(1, 'Telephones', 2, 1, 1),
 	(2, 'Microwave', 4, 1, 1),
@@ -393,10 +399,8 @@ REPLACE INTO `hotel_eq` (`id`, `name`, `department_id`, `eq_category_id`, `eq_st
 	(9, 'Bed sheets & Pillows', 1, 2, 1),
 	(10, 'Flower vases', 1, 6, 1),
 	(11, 'Wall hangers', 1, 6, 1),
-	(12, 'Employee Stationaries', 3, 7, 1),
-	(13, 'Other Stationaries', 1, 7, 1),
-	(14, 'Brooms', 1, 8, 1),
-	(15, 'Mops', 1, 8, 1);
+	(12, 'Employee Stationaries', 1, 7, 1),
+	(17, 'Dishwashing Bar', 4, 8, 1);
 
 -- Dumping structure for table hotel_db.ingrediant
 CREATE TABLE IF NOT EXISTS `ingrediant` (
@@ -432,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   PRIMARY KEY (`id`),
   KEY `fk_item_item_unit1_idx` (`item_unit_id`),
   CONSTRAINT `fk_item_item_unit1` FOREIGN KEY (`item_unit_id`) REFERENCES `item_unit` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table hotel_db.item: ~5 rows (approximately)
 REPLACE INTO `item` (`id`, `name`, `min_qty`, `current_qty`, `item_unit_id`) VALUES
@@ -440,14 +444,15 @@ REPLACE INTO `item` (`id`, `name`, `min_qty`, `current_qty`, `item_unit_id`) VAL
 	(2, 'Lime', 6, 4, 2),
 	(3, 'Chilli 1kg', 2, 3, 6),
 	(4, 'Coca Cola', 20, 10, 7),
-	(5, 'Sauce', 3, 10, 7);
+	(5, 'Sauce', 30, 10, 7),
+	(6, 'Pepper', 10, 10, 6);
 
 -- Dumping structure for table hotel_db.item_unit
 CREATE TABLE IF NOT EXISTS `item_unit` (
   `id` int NOT NULL AUTO_INCREMENT,
   `unit` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table hotel_db.item_unit: ~6 rows (approximately)
 REPLACE INTO `item_unit` (`id`, `unit`) VALUES
@@ -456,7 +461,8 @@ REPLACE INTO `item_unit` (`id`, `unit`) VALUES
 	(4, 'l'),
 	(5, 'ml'),
 	(6, 'packets'),
-	(7, 'Bottels');
+	(7, 'Bottels'),
+	(8, 'Bundle');
 
 -- Dumping structure for table hotel_db.kot
 CREATE TABLE IF NOT EXISTS `kot` (
@@ -513,7 +519,7 @@ CREATE TABLE IF NOT EXISTS `kot_status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.kot_status: ~5 rows (approximately)
+-- Dumping data for table hotel_db.kot_status: ~4 rows (approximately)
 REPLACE INTO `kot_status` (`id`, `status`) VALUES
 	(1, 'Pending'),
 	(2, 'Received'),
@@ -565,7 +571,7 @@ CREATE TABLE IF NOT EXISTS `other_services` (
   CONSTRAINT `fk_Other_services_custermer_visit_hotel1` FOREIGN KEY (`customer_visit_hotel_id`) REFERENCES `customer_visit_hotel` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.other_services: ~5 rows (approximately)
+-- Dumping data for table hotel_db.other_services: ~4 rows (approximately)
 REPLACE INTO `other_services` (`id`, `service`, `price`, `customer_visit_hotel_id`) VALUES
 	(1, 'Night Camping', 15000, 2),
 	(2, 'Adventure Tours', 20000, 1),
@@ -596,7 +602,7 @@ CREATE TABLE IF NOT EXISTS `res_order` (
   CONSTRAINT `FK_res_order_payement_method` FOREIGN KEY (`payment_method_id`) REFERENCES `payement_method` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.res_order: ~5 rows (approximately)
+-- Dumping data for table hotel_db.res_order: ~4 rows (approximately)
 REPLACE INTO `res_order` (`id`, `order_date`, `total`, `payment_method_id`) VALUES
 	(1, '2024-05-18 20:58:36', 1500, 1),
 	(2, '2024-05-18 20:58:39', 2000, 2),
@@ -617,7 +623,7 @@ CREATE TABLE IF NOT EXISTS `res_order_has_food_item` (
   CONSTRAINT `fk_res_order_has_food_item_res_order1` FOREIGN KEY (`res_order_id`) REFERENCES `res_order` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.res_order_has_food_item: ~5 rows (approximately)
+-- Dumping data for table hotel_db.res_order_has_food_item: ~4 rows (approximately)
 REPLACE INTO `res_order_has_food_item` (`id`, `res_order_id`, `food_item_id`, `qty`) VALUES
 	(1, 1, 12, 1),
 	(2, 2, 26, 2),
@@ -636,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   CONSTRAINT `fk_rooms_room_status1` FOREIGN KEY (`room_status_id`) REFERENCES `room_status` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.rooms: ~10 rows (approximately)
+-- Dumping data for table hotel_db.rooms: ~8 rows (approximately)
 REPLACE INTO `rooms` (`id`, `room_name`, `room_status_id`, `price`) VALUES
 	(1, 'No 1', 2, 7500),
 	(2, 'No 2', 1, 8000),
@@ -693,19 +699,18 @@ CREATE TABLE IF NOT EXISTS `salary` (
   `employee_id` int NOT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
+  `salary_due` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_salary_user1_idx` (`employee_id`),
   CONSTRAINT `fk_salary_user1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.salary: ~6 rows (approximately)
-REPLACE INTO `salary` (`id`, `salary`, `employee_id`, `from_date`, `to_date`) VALUES
-	(1, 50000, 2, '2024-05-01', '2024-05-30'),
-	(2, 40000, 3, '2024-05-01', '2024-05-30'),
-	(3, 70000, 1, '2024-05-01', '2024-05-30'),
-	(4, 30000, 6, '2024-05-01', '2024-05-30'),
-	(5, 35000, 4, '2024-05-01', '2024-05-30'),
-	(6, 30000, 5, '2024-05-01', '2024-05-30');
+-- Dumping data for table hotel_db.salary: ~4 rows (approximately)
+REPLACE INTO `salary` (`id`, `salary`, `employee_id`, `from_date`, `to_date`, `salary_due`) VALUES
+	(12, 60000, 7, '2024-04-01', '2024-05-01', 60000),
+	(13, 100000, 7, '2024-04-01', '2024-05-21', 0),
+	(14, 40000, 3, '2024-05-01', '2024-05-21', 30000),
+	(15, 75000, 8, '2024-04-03', '2024-05-01', 73000);
 
 -- Dumping structure for table hotel_db.salary_advance
 CREATE TABLE IF NOT EXISTS `salary_advance` (
@@ -715,16 +720,13 @@ CREATE TABLE IF NOT EXISTS `salary_advance` (
   PRIMARY KEY (`id`),
   KEY `fk_salary_advance_salary1_idx` (`salary_id`),
   CONSTRAINT `fk_salary_advance_salary1` FOREIGN KEY (`salary_id`) REFERENCES `salary` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.salary_advance: ~6 rows (approximately)
+-- Dumping data for table hotel_db.salary_advance: ~3 rows (approximately)
 REPLACE INTO `salary_advance` (`id`, `advance`, `salary_id`) VALUES
-	(1, 10000, 1),
-	(2, 5000, 3),
-	(3, 2500, 4),
-	(4, 25000, 2),
-	(5, 10000, 5),
-	(6, 7000, 6);
+	(12, 49000, 13),
+	(13, 10000, 14),
+	(14, 2000, 15);
 
 -- Dumping structure for table hotel_db.staff_address
 CREATE TABLE IF NOT EXISTS `staff_address` (
@@ -738,14 +740,15 @@ CREATE TABLE IF NOT EXISTS `staff_address` (
   KEY `fk_staff_address_user1_idx` (`employee_id`),
   CONSTRAINT `fk_staff_address_city1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
   CONSTRAINT `fk_staff_address_user1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table hotel_db.staff_address: ~4 rows (approximately)
 REPLACE INTO `staff_address` (`id`, `line1`, `line2`, `city_id`, `employee_id`) VALUES
 	(1, '291/1,', 'Uduhulpotha', 1, 1),
 	(2, '303/2,', 'Boghamadiththa', 4, 2),
-	(3, '204/5,', '2nd lane', 6, 4),
-	(4, '89/6', 'Royals street', 2, 5);
+	(3, '344/5,', '2nd lane', 1, 7),
+	(4, '89/6', 'Royals street', 5, 3),
+	(5, '324-10 Havelock Rd', 'Colombo 05', 2, 8);
 
 -- Dumping structure for table hotel_db.staff_attendence
 CREATE TABLE IF NOT EXISTS `staff_attendence` (
@@ -757,9 +760,9 @@ CREATE TABLE IF NOT EXISTS `staff_attendence` (
   PRIMARY KEY (`id`),
   KEY `fk_staff_attendence_user1_idx` (`employee_id`),
   CONSTRAINT `fk_staff_attendence_user1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.staff_attendence: ~10 rows (approximately)
+-- Dumping data for table hotel_db.staff_attendence: ~8 rows (approximately)
 REPLACE INTO `staff_attendence` (`id`, `date`, `on_time`, `off_time`, `employee_id`) VALUES
 	(1, '2024-05-01', '2024-05-01 07:00:00', '2024-05-01 22:00:00', 2),
 	(2, '2024-05-02', '2024-05-02 07:00:00', '2024-05-02 22:00:00', 3),
@@ -770,7 +773,9 @@ REPLACE INTO `staff_attendence` (`id`, `date`, `on_time`, `off_time`, `employee_
 	(7, '2024-05-05', '2024-05-05 08:30:00', '2024-05-05 19:30:00', 4),
 	(8, '2024-05-05', '2024-05-05 07:00:00', '2024-05-05 22:00:00', 5),
 	(9, '2024-05-05', '2024-05-05 09:00:00', '2024-05-05 18:00:00', 2),
-	(10, '2024-05-05', '2024-05-05 08:00:00', '2024-05-05 20:00:00', 3);
+	(10, '2024-05-05', '2024-05-05 08:00:00', '2024-05-05 20:00:00', 3),
+	(11, '2024-05-22', '2024-05-22 03:03:04', '2024-05-22 09:40:12', 3),
+	(12, '2024-05-22', '2024-05-22 03:03:07', '2024-05-22 09:50:04', 7);
 
 -- Dumping structure for table hotel_db.status
 CREATE TABLE IF NOT EXISTS `status` (
@@ -801,7 +806,7 @@ CREATE TABLE IF NOT EXISTS `stock_usage` (
   CONSTRAINT `fk_stock_usage_item1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.stock_usage: ~2 rows (approximately)
+-- Dumping data for table hotel_db.stock_usage: ~0 rows (approximately)
 REPLACE INTO `stock_usage` (`id`, `date`, `qty`, `item_id`, `department_id`, `employee_id`) VALUES
 	(1, '2024-05-18', 5, 1, 4, 3),
 	(2, '2024-05-17', 20, 4, 4, 4);
@@ -815,7 +820,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   PRIMARY KEY (`mobile`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table hotel_db.supplier: ~5 rows (approximately)
+-- Dumping data for table hotel_db.supplier: ~4 rows (approximately)
 REPLACE INTO `supplier` (`mobile`, `fname`, `lname`, `email`) VALUES
 	('0712345698', 'Geeth', 'Kalhara', 'geethk@gmail.com'),
 	('0714327832', 'Saman', 'Perera', 'samanp@gmail.com'),
@@ -850,3 +855,4 @@ REPLACE INTO `work_schedule` (`id`, `date`, `employee_id`, `status_id`) VALUES
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+department
