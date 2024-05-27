@@ -995,7 +995,7 @@ public class HrMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        Attendance Attendance = new Attendance();
+        HrAttendance Attendance = new HrAttendance();
         Attendance.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
