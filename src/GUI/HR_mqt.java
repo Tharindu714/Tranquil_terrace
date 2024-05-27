@@ -489,8 +489,8 @@ public class HR_mqt extends javax.swing.JFrame {
 
                 } else {
                     MySQL.execute("INSERT INTO "
-                            + "`employee`(`first_name`,`last_name`,`mobile`,`username`,`password`,`status`,`registered_date`,`employee_type_id`,`gender_id`,`loggedtime`)"
-                            + "VALUES('" + fname + "','" + lname + "','" + mobile + "','" + username + "','" + password + "','1','" + datetime + "','4','" + typeMap.get(gender) + "','" + datetime + "')");
+                            + "`employee`(`first_name`,`last_name`,`mobile`,`username`,`password`,`status`,`registered_date`,`employee_type_id`,`gender_id`,`loggedtime`,`department_id`)"
+                            + "VALUES('" + fname + "','" + lname + "','" + mobile + "','" + username + "','" + password + "','1','" + datetime + "','4','" + typeMap.get(gender) + "','" + datetime + "','3')");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
