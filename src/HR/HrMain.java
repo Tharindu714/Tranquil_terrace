@@ -992,7 +992,7 @@ public class HrMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        Salary salary = new Salary();
+        empSalary salary = new empSalary();
         salary.setVisible(true);
 
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -1000,6 +1000,7 @@ public class HrMain extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         Dashboard dashboard = new Dashboard();
         dashboard.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jButton13ActionPerformed
 

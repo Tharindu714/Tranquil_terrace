@@ -242,7 +242,7 @@ public class empSalary extends javax.swing.JFrame {
         loadSalary("SELECT * FROM `salary_advance`"
                 + "INNER JOIN `salary` ON `salary_advance`.`salary_id` = `salary`.id "
                 + "INNER JOIN `employee` ON `salary`.`employee_id` = `employee`.id "
-                + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id WHERE `employee_type_id`!='1' AND `employee_type_id`!='4' ORDER BY `salary_advance`.`id` ASC");
+                + "INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.id WHERE `employee_type_id`!='1' ORDER BY `salary_advance`.`id` ASC");
         loadEmp();
         reset();
         genarateNextID();
