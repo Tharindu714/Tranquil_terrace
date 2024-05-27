@@ -12,18 +12,12 @@ import model.MySQL;
 import model.UserBean;
 import GUI.Dashboard;
 
-/**
- *
- * @author DS
- */
+
 public class HrMain extends javax.swing.JFrame {
 
     public HashMap<String, UserBean> userMap = new HashMap<>();
     public Vector<UserBean> userVector = new Vector<>();
 
-    /**
-     * Creates new form HrDashboard
-     */
 //    public HrMain() {
     public HrMain(String fullName, String mobile, String regDate, String lgTime, String percentage) {
         initComponents();
@@ -972,19 +966,19 @@ public class HrMain extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         WorkSchedule ws = new WorkSchedule();
         ws.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         EmployeeManagement em = new EmployeeManagement();
         em.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         FoodItemManagement fd = new FoodItemManagement();
         fd.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -994,19 +988,19 @@ public class HrMain extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         EmpAttendance Attendance = new EmpAttendance();
         Attendance.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         Salary salary = new Salary();
         salary.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         Dashboard dashboard = new Dashboard();
         dashboard.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void employeeIdjTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeIdjTextField2ActionPerformed

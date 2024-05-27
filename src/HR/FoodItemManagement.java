@@ -502,8 +502,7 @@ public class FoodItemManagement extends javax.swing.JFrame {
 
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        HrSignIn hr = new HrSignIn();
-        hr.setVisible(true);
+  this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void foodTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foodTableMouseClicked
