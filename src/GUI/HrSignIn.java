@@ -318,8 +318,7 @@ public class HrSignIn extends javax.swing.JFrame {
 
             try {
 
-                System.out.println(user);
-                System.out.println(password);
+                
 
                 ResultSet rs = MySQL.execute("SELECT * FROM `employee` "
                         + "WHERE `userName`='" + user + "' AND `password`='" + password + "' ");
@@ -334,7 +333,7 @@ public class HrSignIn extends javax.swing.JFrame {
                                 + "SET `loggedtime`='" + datetime + "'"
                                 + "WHERE `username`='" + user + "'");
 
-                        JOptionPane.showMessageDialog(this, "Login Successful", "SUCCESSFULLY LOGIN", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Login Successfully", "SUCCESSFULLY LOGIN", JOptionPane.INFORMATION_MESSAGE);
 
                         String mobile = rs.getString("mobile");
                         String fUll = rs.getString("first_name") +" "+ rs.getString("last_name");
@@ -347,13 +346,13 @@ public class HrSignIn extends javax.swing.JFrame {
 
                     } else {
 
-                        JOptionPane.showMessageDialog(this, "Access Denid from THis Department", "Warning", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Access Denid from This Department", "Warning", JOptionPane.WARNING_MESSAGE);
 
                     }
 
                 } else {
 
-                    JOptionPane.showMessageDialog(this, "User Name or Password Error", "warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Invalid Login Details", "warning", JOptionPane.WARNING_MESSAGE);
 
                 }
 

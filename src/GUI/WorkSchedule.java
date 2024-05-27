@@ -85,10 +85,6 @@ public class WorkSchedule extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         employeeTable = new javax.swing.JTable();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel48 = new javax.swing.JLabel();
@@ -485,28 +481,6 @@ public class WorkSchedule extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel49.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
-        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel49.setText("Total Employees : ");
-
-        jLabel50.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel50.setText("Count");
-
-        jComboBox5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jComboBox5.setForeground(java.awt.Color.white);
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please Select" }));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
-        jLabel8.setForeground(java.awt.Color.white);
-        jLabel8.setText("Select Category");
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -530,7 +504,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                         .addComponent(jLabel36)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(emFullName)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 478, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel44)
@@ -540,18 +514,10 @@ public class WorkSchedule extends javax.swing.JFrame {
                         .addComponent(jLabel47)
                         .addGap(18, 18, 18)
                         .addComponent(emDep)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel49)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel50))
-                    .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -566,44 +532,34 @@ public class WorkSchedule extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
                     .addComponent(jSeparator3)
                     .addComponent(jScrollPane1))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel38)
+                            .addComponent(emUserName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel40)
+                            .addComponent(emType))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel43)
+                            .addComponent(emMobile1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel36)
+                                .addComponent(emFullName))
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel44)
+                                .addComponent(emPercentage)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel49)
-                            .addComponent(jLabel50)))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                            .addGap(37, 37, 37)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel38)
-                                .addComponent(emUserName))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel40)
-                                .addComponent(emType))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel43)
-                                .addComponent(emMobile1)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel36)
-                                    .addComponent(emFullName))
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel44)
-                                    .addComponent(emPercentage)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel47)
-                                .addComponent(emDep))
-                            .addGap(54, 54, 54))))
+                            .addComponent(jLabel47)
+                            .addComponent(emDep))
+                        .addGap(54, 54, 54)))
                 .addGap(22, 22, 22))
         );
 
@@ -1027,7 +983,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                     MySQL.execute("INSERT INTO `hotel_db`.`work_schedule` (`date`, `employee_id`, `status_id`, `on_time`, `off_time`)"
                             + " VALUES ('" + date + "', '" + employeeId + "', '2', '" + ontme + "', '" + offtme + "');");
 
-                    JOptionPane.showMessageDialog(this, "SChedule Activate Successfully", "Wrong", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Schedule Activate Successfully", "Wrong", JOptionPane.INFORMATION_MESSAGE);
 
                     loadworkSchedule("");
                 } catch (Exception e) {
@@ -1099,10 +1055,6 @@ public class WorkSchedule extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
-
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
 
         int selectedRow = employeeTable.getSelectedRow();
@@ -1119,18 +1071,6 @@ public class WorkSchedule extends javax.swing.JFrame {
 
     }//GEN-LAST:event_employeeTableMouseClicked
 
-//    private String clockConverter(String Time) {
-//        try {
-//
-//            Date startTime = new SimpleDateFormat("hh:mm").parse(Time);
-//            String date = new SimpleDateFormat("HH:mm:ss").format(startTime);
-//            return date;
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
 
     private void WorkScheduleTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorkScheduleTableMouseClicked
 
@@ -1258,7 +1198,6 @@ public class WorkSchedule extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1269,11 +1208,8 @@ public class WorkSchedule extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

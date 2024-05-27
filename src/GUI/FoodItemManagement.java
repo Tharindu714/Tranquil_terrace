@@ -563,7 +563,7 @@ public class FoodItemManagement extends javax.swing.JFrame {
                     MySQL.execute("INSERT INTO `hotel_db`.`food_item` (`name`, `price`, `food_category_id`) "
                             + "VALUES ('" + newFoodName.getText() + "', '" + newFoodPrice.getText() + "', '" + foodcategory.get(newFoodCateegory.getSelectedItem()) + "');");
 
-                    JOptionPane.showMessageDialog(this, foodName.getText(), "Successfully ", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, foodName.getText(), "Food Added Successfully", JOptionPane.INFORMATION_MESSAGE);
                     loadFoods();
 
                 } else {
