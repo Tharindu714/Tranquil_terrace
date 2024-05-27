@@ -96,7 +96,7 @@ public class Salary_Charts extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/graph-curve.png"))); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/chart-pie-alt.png"))); // NOI18N
         jButton7.setContentAreaFilled(false);
         jButton7.setPreferredSize(new java.awt.Dimension(35, 35));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +105,7 @@ public class Salary_Charts extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/chart-pie-alt.png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/graph-curve.png"))); // NOI18N
         jButton8.setContentAreaFilled(false);
         jButton8.setPreferredSize(new java.awt.Dimension(35, 35));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +161,7 @@ public class Salary_Charts extends javax.swing.JFrame {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         try {
 
-            ResultSet resultSet = MySQL.execute("SELECT `employee`.`first_name`, `employee`.`last_name`, DATE_FORMAT(`salary`.`from_date`, '%Y-%m') AS month, SUM(`salary`.`salary`) AS `monthly_salary` FROM `salary` "
+            ResultSet resultSet = MySQL.execute("SELECT `employee`.`first_name`, `employee`.`last_name`, DATE_FORMAT(`salary`.`to_date`, '%m-%d') AS month, SUM(`salary`.`salary`) AS `monthly_salary` FROM `salary` "
                     + "INNER JOIN `employee` ON `salary`.`employee_id` = `employee`.`id` GROUP BY `employee`.`id`, month");
 
             while (resultSet.next()) {
@@ -192,20 +192,19 @@ public class Salary_Charts extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7jButton1ActionPerformed
         DefaultPieDataset dataset = new DefaultPieDataset();
         try {
-           
+
             ResultSet resultSet = MySQL.execute("SELECT employee_type.type, AVG(salary.salary) AS average_salary "
                     + "FROM employee "
                     + "JOIN employee_type ON employee.employee_type_id = employee_type.id "
                     + "JOIN salary ON employee.id = salary.employee_id "
                     + "GROUP BY employee_type.type");
 
-           
             while (resultSet.next()) {
                 String employeeType = resultSet.getString("type");
                 double averageSalary = resultSet.getDouble("average_salary");
@@ -213,11 +212,10 @@ public class Salary_Charts extends javax.swing.JFrame {
                 dataset.setValue(employeeType, averageSalary);
             }
 
-         
             JFreeChart pieChart = ChartFactory.createPieChart("Average Salary by Employee Type", dataset, true, true, false);
             pieChart.setBackgroundPaint(new Color(255, 255, 255));
             PiePlot piePlot = (PiePlot) pieChart.getPlot();
-            piePlot.setBackgroundPaint(new Color(255, 255, 255)); 
+            piePlot.setBackgroundPaint(new Color(255, 255, 255));
 
             for (Object keyObj : dataset.getKeys()) {
                 Comparable<?> key = (Comparable<?>) keyObj;
@@ -229,7 +227,7 @@ public class Salary_Charts extends javax.swing.JFrame {
                         piePlot.setSectionPaint(key, Color.decode("#FDD037"));
                         break;
                     case "HR":
-                        piePlot.setSectionPaint(key, Color.decode("#34495E")); 
+                        piePlot.setSectionPaint(key, Color.decode("#34495E"));
                         break;
                     case "Kitchen Operator":
                         piePlot.setSectionPaint(key, Color.decode("#36B64F"));
@@ -239,15 +237,15 @@ public class Salary_Charts extends javax.swing.JFrame {
                         break;
                 }
             }
-            piePlot.setLabelFont(new Font("DinaminaUniWeb ", Font.PLAIN, 14)); 
+            piePlot.setLabelFont(new Font("DinaminaUniWeb ", Font.PLAIN, 14));
             piePlot.setLabelBackgroundPaint(new Color(255, 255, 255, 255));
             piePlot.setLabelOutlinePaint(null);
             ChartPanel pieChartPanel = new ChartPanel(pieChart);
 
-            jPanel1.removeAll(); 
-            
+            jPanel1.removeAll();
+
             jPanel1.add(pieChartPanel, BorderLayout.CENTER);
-            jPanel1.revalidate(); 
+            jPanel1.revalidate();
             jPanel1.repaint();
             SwingUtilities.updateComponentTreeUI(this);
         } catch (Exception e) {
@@ -259,7 +257,7 @@ public class Salary_Charts extends javax.swing.JFrame {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         try {
 
-            ResultSet resultSet = MySQL.execute("SELECT `employee`.`first_name`, `employee`.`last_name`, DATE_FORMAT(`salary`.`from_date`, '%Y-%m') AS month, SUM(`salary`.`salary`) AS `monthly_salary` FROM `salary` "
+            ResultSet resultSet = MySQL.execute("SELECT `employee`.`first_name`, `employee`.`last_name`, DATE_FORMAT(`salary`.`to_date`, '%m-%d') AS month, SUM(`salary`.`salary`) AS `monthly_salary` FROM `salary` "
                     + "INNER JOIN `employee` ON `salary`.`employee_id` = `employee`.`id` GROUP BY `employee`.`id`, month");
 
             while (resultSet.next()) {
@@ -291,9 +289,9 @@ public class Salary_Charts extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jButton8jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       
-    }                                                
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+
+    }
 
     /**
      * @param args the command line arguments
