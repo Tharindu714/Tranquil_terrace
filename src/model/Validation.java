@@ -197,7 +197,7 @@ public class Validation extends javax.swing.JFrame {
 
         } else {
             number = getText;
-            
+            System.out.println(number);
 
         }
 

@@ -42,14 +42,6 @@ public class HrMain extends javax.swing.JFrame {
         hrLogTime.setText(lgTime);
         loadWorkSchedule("");
         loadStocks();
-        loadDate();
-
-    }
-
-    private void loadDate() {
-
-        String date = new SimpleDateFormat("yyyy-MMMM-dd EEEE").format(new Date());
-        Dat.setText(date);
 
     }
 
@@ -318,7 +310,7 @@ public class HrMain extends javax.swing.JFrame {
         HrPercentage = new javax.swing.JLabel();
         absentWorkers = new javax.swing.JButton();
         AvailbleRooms = new javax.swing.JButton();
-        Dat = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         timePicker1.set24hourMode(false);
         timePicker1.setName(""); // NOI18N
@@ -657,6 +649,7 @@ public class HrMain extends javax.swing.JFrame {
 
         offTime.setEditable(false);
         offTime.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        offTime.setText("Off Time");
         offTime.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 offTimeFocusGained(evt);
@@ -721,7 +714,7 @@ public class HrMain extends javax.swing.JFrame {
                                                 .addComponent(jLabel39)
                                                 .addGap(11, 11, 11)
                                                 .addComponent(emType)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(11, 11, 11)
                                         .addComponent(emFullName))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -867,10 +860,10 @@ public class HrMain extends javax.swing.JFrame {
             }
         });
 
-        Dat.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
-        Dat.setForeground(new java.awt.Color(18, 173, 193));
-        Dat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Dat.setText("Day Time");
+        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(18, 173, 193));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Day Time");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -920,7 +913,7 @@ public class HrMain extends javax.swing.JFrame {
                                 .addComponent(HrPercentage)))
                         .addGap(15, 18, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(Dat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(53, 53, 53))))
         );
         jPanel6Layout.setVerticalGroup(
@@ -931,7 +924,7 @@ public class HrMain extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(Dat)
+                .addComponent(jLabel2)
                 .addGap(88, 88, 88)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
@@ -992,7 +985,7 @@ public class HrMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        FoodItemManagement fd = new FoodItemManagement();
+ FoodItemManagement fd = new FoodItemManagement();
         fd.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -1002,7 +995,7 @@ public class HrMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        EmpAttendance Attendance = new EmpAttendance();
+        HrAttendance Attendance = new HrAttendance();
         Attendance.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -1097,7 +1090,7 @@ public class HrMain extends javax.swing.JFrame {
 
             int selectedRow = attendanceTable.getSelectedRow();
 
-            if (selectedRow != -1) {
+            if (selectedRow != -1 && attendanceTable.getValueAt(selectedRow, 4).toString() != "Active") {
 
                 String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
@@ -1106,27 +1099,23 @@ public class HrMain extends javax.swing.JFrame {
                 String EmployeeId = attendanceTable.getValueAt(selectedRow, 1).toString();
 
                 if (offTime.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Please Select Off Time", "Error", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Please Select Off Time", "Error", JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
 
                     MySQL.execute("INSERT INTO `hotel_db`.`staff_attendence` (`date`, `on_time`, `off_time`, `employee_id`) "
-                            + "VALUES ('" + date + "', '" + onTime + "', '" + offTime.getText() + "', '" + EmployeeId + "');");
+                            + "VALUES ('" + date + "', '" + onTime + "', '" + offTime + "', '" + EmployeeId + "');");
 
-                    System.out.println("hello");
-
-                    MySQL.execute("UPDATE `hotel_db`.`work_schedule` SET `status_id`='1' WHERE  `id`='" + attendanceTable.getValueAt(selectedRow, 0).toString() + "'");
+                    MySQL.execute("UPDATE `hotel_db`.`work_schedule` SET `status_id`='1' WHERE  `id`='" + attendanceTable.getValueAt(selectedRow, 0).toString() + "';');");
 
                     JOptionPane.showMessageDialog(this, "Attendance Marked", "successfully", JOptionPane.INFORMATION_MESSAGE);
 
                     loadAttendance("");
-                    loadWorkSchedule("");
-                    clearData();
                 }
 
             } else {
 
-                JOptionPane.showMessageDialog(this, "please Select Attendance", "warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Attendance Already Marked", "warning", JOptionPane.WARNING_MESSAGE);
 
             }
 
@@ -1210,7 +1199,6 @@ public class HrMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AvailbleRooms;
-    private javax.swing.JLabel Dat;
     private javax.swing.JLabel HrPercentage;
     private javax.swing.JTable WorkScheduleTable;
     private javax.swing.JButton absentWorkers;
@@ -1236,6 +1224,7 @@ public class HrMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;

@@ -19,7 +19,7 @@ import model.UserBean;
  *
  * @author DS
  */
-public class EmpAttendance extends javax.swing.JFrame {
+public class HrAttendance extends javax.swing.JFrame {
 
     public HashMap<String, UserBean> userMap = new HashMap<>();
     public Vector<UserBean> userVector = new Vector<>();
@@ -27,7 +27,7 @@ public class EmpAttendance extends javax.swing.JFrame {
     /**
      * Creates new form Attendance
      */
-    public EmpAttendance() {
+    public HrAttendance() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         loadWorkSchedule("");
@@ -77,6 +77,7 @@ public class EmpAttendance extends javax.swing.JFrame {
 
     }
 
+    
     private void loadWorkSchedule(String queary) {
 
         try {
@@ -358,6 +359,7 @@ public class EmpAttendance extends javax.swing.JFrame {
 
         offTime.setEditable(false);
         offTime.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        offTime.setText("Off Time");
         offTime.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 offTimeFocusGained(evt);
@@ -531,14 +533,15 @@ public class EmpAttendance extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
-
+  
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        try {
+try {
 
             int selectedRow = attendanceTable.getSelectedRow();
 
-            if (selectedRow != -1) {
+            if (selectedRow != -1 && attendanceTable.getValueAt(selectedRow, 4).toString() != "Active") {
 
                 String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
@@ -547,34 +550,31 @@ public class EmpAttendance extends javax.swing.JFrame {
                 String EmployeeId = attendanceTable.getValueAt(selectedRow, 1).toString();
 
                 if (offTime.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Please Select Off Time", "Error", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Please Select Off Time", "Error", JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
 
                     MySQL.execute("INSERT INTO `hotel_db`.`staff_attendence` (`date`, `on_time`, `off_time`, `employee_id`) "
-                            + "VALUES ('" + date + "', '" + onTime + "', '" + offTime.getText() + "', '" + EmployeeId + "');");
+                            + "VALUES ('" + date + "', '" + onTime + "', '" + offTime + "', '" + EmployeeId + "');");
 
-                    System.out.println("hello");
-
-                    MySQL.execute("UPDATE `hotel_db`.`work_schedule` SET `status_id`='1' WHERE  `id`='" + attendanceTable.getValueAt(selectedRow, 0).toString() + "'");
+                    MySQL.execute("UPDATE `hotel_db`.`work_schedule` SET `status_id`='1' WHERE  `id`='" + attendanceTable.getValueAt(selectedRow, 0).toString() + "';');");
 
                     JOptionPane.showMessageDialog(this, "Attendance Marked", "successfully", JOptionPane.INFORMATION_MESSAGE);
 
                     loadAttendance("");
-                    loadWorkSchedule("");
-                    clearData();
                 }
 
             } else {
 
-                JOptionPane.showMessageDialog(this, "please Select Attendance", "warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Attendance Already Marked", "warning", JOptionPane.WARNING_MESSAGE);
 
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
+        
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void employeeIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeIdMouseClicked
@@ -599,7 +599,8 @@ public class EmpAttendance extends javax.swing.JFrame {
 
     }//GEN-LAST:event_attendanceTableMouseClicked
 
-
+     
+    
     private void employeeIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_employeeIdKeyReleased
 
         if (evt.getKeyCode() == 10) {
@@ -629,16 +630,14 @@ public class EmpAttendance extends javax.swing.JFrame {
 
     private void timePicker1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_timePicker1PropertyChange
 
-        try {
-            Date startTime = new SimpleDateFormat("hh:mm a").parse(timePicker1.getSelectedTime());
-            String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-
-            String time = new SimpleDateFormat("HH:mm:ss").format(startTime);
-            offTime.setText(date + " " + time);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Date startTime = new SimpleDateFormat("hh:mm a").parse(timePicker1.getSelectedTime());
+//            String time = new SimpleDateFormat("HH:mm:ss").format(startTime);
+//            onTime.setText(this.Date.getText() + " " + time);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }//GEN-LAST:event_timePicker1PropertyChange
 
     private void employeeIdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeIdMouseReleased
@@ -728,7 +727,7 @@ public class EmpAttendance extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmpAttendance().setVisible(true);
+                new HrAttendance().setVisible(true);
             }
         });
     }

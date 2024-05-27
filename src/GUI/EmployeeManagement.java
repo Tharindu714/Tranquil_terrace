@@ -4,18 +4,18 @@
  */
 package GUI;
 
-    import com.formdev.flatlaf.IntelliJTheme;
-    import java.sql.ResultSet;
-    import java.text.SimpleDateFormat;
-    import java.util.Date;
-    import java.util.HashMap;
-    import java.util.Vector;
-    import javax.swing.DefaultComboBoxModel;
-    import javax.swing.JOptionPane;
-    import javax.swing.table.DefaultTableModel;
-    import model.MySQL;
-    import model.UserBean;
-    import model.Validation;
+import com.formdev.flatlaf.IntelliJTheme;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.MySQL;
+import model.UserBean;
+import model.Validation;
 
 /**
  *
@@ -637,7 +637,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
                             + "VALUES ('" + firstName.getText() + "', '" + lastName.getText() + "', '" + Mobile.getText() + "', '" + UserName.getText() + "', '" + String.valueOf(password.getPassword()) + "', '1', '" + date
                             + "', '" + role.get(Role.getSelectedItem()) + "', '" + genderMap.get(gender.getSelectedItem()) + "', '" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "', '" + department.get(depart.getSelectedItem()) + "');");
 
-                    JOptionPane.showMessageDialog(this, firstName.getText() + " Success Fully Registerd", "Complete", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, firstName.getText() + " Registering Successfully", "Complete", JOptionPane.INFORMATION_MESSAGE);
                     employeeManagement("");
 
                 } catch (Exception e) {
