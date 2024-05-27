@@ -19,7 +19,7 @@ import model.UserBean;
  *
  * @author DS
  */
-public class HrAttendance extends javax.swing.JFrame {
+public class Attendance extends javax.swing.JFrame {
 
     public HashMap<String, UserBean> userMap = new HashMap<>();
     public Vector<UserBean> userVector = new Vector<>();
@@ -27,7 +27,7 @@ public class HrAttendance extends javax.swing.JFrame {
     /**
      * Creates new form Attendance
      */
-    public HrAttendance() {
+    public Attendance() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         loadWorkSchedule("");
@@ -727,7 +727,7 @@ try {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HrAttendance().setVisible(true);
+                new Attendance().setVisible(true);
             }
         });
     }
