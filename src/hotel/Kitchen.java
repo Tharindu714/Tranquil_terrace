@@ -1,24 +1,16 @@
 package hotel;
-
 import GUI.Dashboard;
 import com.formdev.flatlaf.IntelliJTheme;
 import java.awt.BorderLayout;
-
 public class Kitchen extends javax.swing.JFrame {
-
     public Kitchen() {
         initComponents();
         jPanel2.removeAll();
         kotstatuschange desk = new kotstatuschange();
         jPanel2.add(desk, BorderLayout.CENTER);
         setExtendedState(MAXIMIZED_BOTH);
-
         repaint();
         revalidate();
-       
-
-//        repaint();
-//        revalidate();
     }
 
     @SuppressWarnings("unchecked")
@@ -152,48 +144,36 @@ public class Kitchen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-
         this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-
         jPanel2.removeAll();
         kotstatuschange desk = new kotstatuschange();
         jPanel2.add(desk, BorderLayout.CENTER);
 
         repaint();
         revalidate();
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
         jPanel2.removeAll();
         ingsetup cust = new ingsetup();
         jPanel2.add(cust, BorderLayout.CENTER);
-
         repaint();
         revalidate();
-        
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-
         jPanel2.removeAll();
         addnewfood rest = new addnewfood();
         jPanel2.add(rest, BorderLayout.CENTER);
-
         repaint();
         revalidate();
-        
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
                 "/themes/Atom_One_DarkContrast.theme.json"));

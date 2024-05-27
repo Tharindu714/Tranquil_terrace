@@ -1,6 +1,4 @@
-
 package hotel;
-
 import GUI.Dashboard;
 import com.formdev.flatlaf.IntelliJTheme;
 import java.awt.event.ActionEvent;
@@ -9,10 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
 
-
 public class Kitchen_Dashboard extends javax.swing.JFrame {
-
-    
     public Kitchen_Dashboard(String username, String mobile, String fname, String lname, String reg) {
         initComponents();
         jLabel7.setText(username);
@@ -36,7 +31,6 @@ public class Kitchen_Dashboard extends javax.swing.JFrame {
         time.start();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -1,5 +1,4 @@
 package hotel;
-
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Vector;
