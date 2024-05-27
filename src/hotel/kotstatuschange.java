@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package hotel;
 
 import java.sql.ResultSet;
@@ -440,7 +437,6 @@ public class kotstatuschange extends javax.swing.JPanel {
             while (resultset.next()) {
                 String fcato = resultset.getString("status");
 
-                System.out.println(fcato);
                 v.add(fcato);
 
                 DefaultComboBoxModel def = new DefaultComboBoxModel(v);

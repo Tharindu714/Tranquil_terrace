@@ -1,23 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package hotel;
 
 import GUI.Dashboard;
-import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.IntelliJTheme;
 import java.awt.BorderLayout;
 
-/**
- *
- * @author maleesha
- */
 public class Kitchen extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Kitchen
-     */
     public Kitchen() {
         initComponents();
         jPanel2.removeAll();
@@ -164,8 +152,7 @@ public class Kitchen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        Dashboard dashboard = new Dashboard();
-        dashboard.setVisible(true);
+
         this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -179,9 +166,6 @@ public class Kitchen extends javax.swing.JFrame {
         repaint();
         revalidate();
         
-
-//        repaint();
-//        revalidate();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
