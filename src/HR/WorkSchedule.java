@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package HR;
 
 import GUI.Dashboard;
@@ -1052,7 +1049,8 @@ public class WorkSchedule extends javax.swing.JFrame {
     }//GEN-LAST:event_onTimeFocusGained
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        this.dispose();
+                HrSignIn hr = new HrSignIn();
+        hr.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked

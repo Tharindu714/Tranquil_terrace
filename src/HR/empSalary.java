@@ -1,4 +1,4 @@
-package GUI;
+package HR;
 
 import com.formdev.flatlaf.IntelliJTheme;
 import java.sql.ResultSet;
@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import GUI.Dashboard;
 
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;

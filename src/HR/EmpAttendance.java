@@ -1,4 +1,3 @@
-
 package HR;
 
 import com.formdev.flatlaf.IntelliJTheme;
@@ -504,7 +503,8 @@ public class EmpAttendance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        this.dispose();
+        HrSignIn hr = new HrSignIn();
+        hr.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
 

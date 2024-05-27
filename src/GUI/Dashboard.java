@@ -1,5 +1,6 @@
 package GUI;
 
+import HR.HrSignIn;
 import hotel.Kitchen_Signin;
 import com.formdev.flatlaf.IntelliJTheme;
 
@@ -150,7 +151,9 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        HrSignIn hr = new HrSignIn();
+        hr.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

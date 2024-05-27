@@ -506,9 +506,8 @@ public class Salary extends javax.swing.JFrame {
     }//GEN-LAST:event_salaeryIdActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Dashboard dashboard = new Dashboard();
-        dashboard.setVisible(true);
-        this.dispose();
+        HrSignIn hr = new HrSignIn();
+        hr.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void salaryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salaryTableMouseClicked
