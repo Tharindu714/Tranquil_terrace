@@ -56,6 +56,7 @@ public class kotstatuschange extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        jPanel3.setBackground(new java.awt.Color(52, 73, 94));
         jPanel3.setPreferredSize(new java.awt.Dimension(225, 615));
 
         jLabel2.setBackground(new java.awt.Color(0, 153, 153));
@@ -80,7 +81,7 @@ public class kotstatuschange extends javax.swing.JPanel {
 
         jLabel8.setText("0");
 
-        jButton12.setBackground(new java.awt.Color(52, 73, 94));
+        jButton12.setBackground(new java.awt.Color(245, 71, 104));
         jButton12.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("update status");
