@@ -12,10 +12,10 @@ import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import model.MySQL;
-
 
 public class Validation extends javax.swing.JFrame {
 
@@ -26,6 +26,8 @@ public class Validation extends javax.swing.JFrame {
     private static String text = "";
     private static String text1 = "";
     private static String number = "";
+    private static String pnnumber = "";
+    public static final int PASSWORD_LENGTH = 8;
 
 //    public void focusLost(JTextField js) {
 //
@@ -38,37 +40,117 @@ public class Validation extends javax.swing.JFrame {
 //        js.setBorder(defaultBorder);
 //
 //    }
+    public boolean is_Valid_Password(JPasswordField pwd) {
 
-    public  String emptyValue(JTextField js, String txt) {
+        String password = String.valueOf(pwd.getPassword());
+
+        if (password.length() < PASSWORD_LENGTH) {
+            return false;
+        }
+
+        int charCount = 0;
+        int numCount = 0;
+        for (int i = 0; i < password.length(); i++) {
+
+            char ch = password.charAt(i);
+
+            if (is_Numeric(ch)) {
+                numCount++;
+            } else if (is_Letter(ch)) {
+                charCount++;
+            } else {
+                return false;
+            }
+        }
+
+        return (charCount >= 2 && numCount >= 2);
+    }
+
+    public static boolean is_Letter(char ch) {
+        ch = Character.toUpperCase(ch);
+        return (ch >= 'A' && ch <= 'Z');
+    }
+
+    public static boolean is_Numeric(char ch) {
+
+        return (ch >= '0' && ch <= '9');
+    }
+
+    public boolean phoneNumberValidate(JTextField js) {
 
         String getText = js.getText();
 
         if (getText.isEmpty()) {
 
             inCorrect(js);
-            return "Please Enter " + txt + "";
+            JOptionPane.showMessageDialog(this, "phone Number is Empty", "warning", JOptionPane.WARNING_MESSAGE);
+            return true;
+
+        }
+
+        if (!getText.matches("\\d+")) { // not equals number
+
+            JOptionPane.showMessageDialog(this, "don't input charactor input numbers only", "warning", JOptionPane.WARNING_MESSAGE);
+            inCorrect(js);
+            js.setText(pnnumber);
+
+        } else {
+            pnnumber = getText;
+
+        }
+
+        if (getText.length() == 10) {
+
+            correct(js);
+            return false;
+
+        } else if (getText.length() > 10) {
+
+            inCorrect(js);
+
+            JOptionPane.showMessageDialog(this, "Phone is Longer than 10 didgits,please input valid phone number", "warning", JOptionPane.WARNING_MESSAGE);
+
+            return true;
+
+        } else if (getText.length() < 10) {
+
+            inCorrect(js);
+            JOptionPane.showMessageDialog(this, "Phone is lower than 10 didgits,please input valid phone number", "warning", JOptionPane.WARNING_MESSAGE);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean emptyValue(JTextField js, String key) {
+
+        String getText = js.getText();
+
+        if (getText.isEmpty() || getText.equals(key)) {
+
+            inCorrect(js);
+            return true;
 
         }
 
         correct(js);
-        return "done";
+        return false;
     }
 
-    public String emptyValue(JComboBox js,String txt) {
+    public boolean emptyValue(JComboBox js) {
 
         String get = String.valueOf(js.getSelectedItem());
 
         if (get.equals(String.valueOf(js.getItemAt(0)))) {
 //            return get;
-            return "Please Select " + txt + "";
+            return true;
 
         }
 
-        return "done";
+        return false;
 
     }
 
-    
 //    numbers block , only charaters
     public String valiDateText(JTextField js, String txt) {
 
@@ -96,14 +178,14 @@ public class Validation extends javax.swing.JFrame {
         return "done";
     }
 
-    public String phoneNumberValidate(JTextField js) {
+    public String numberValues(JTextField js) {
 
         String getText = js.getText();
 
         if (getText.isEmpty()) {
 
             inCorrect(js);
-            return "phone Number is Empty";
+            return "false";
 
         }
 
@@ -111,7 +193,7 @@ public class Validation extends javax.swing.JFrame {
             inCorrect(js);
             js.setText(number);
 
-//            JOptionPane.showMessageDialog(null, "don't input charactors | input numbers only", "warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "don't input charactors | input numbers only", "warning", JOptionPane.WARNING_MESSAGE);
 
         } else {
             number = getText;
@@ -119,21 +201,11 @@ public class Validation extends javax.swing.JFrame {
 
         }
 
-        if (getText.length() == 10) {
+        if (true) {
 
             correct(js);
             return "done";
 
-        } else if (getText.length() > 10) {
-
-            inCorrect(js);
-
-            return "Phone is Longer than 10 didgits,please input valid phone number  ";
-
-        } else if (getText.length() < 10) {
-
-            inCorrect(js);
-            return "Phone is lower than 10 didgits,please input valid phone number  ";
         }
 
         return "done";

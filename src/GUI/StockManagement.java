@@ -17,6 +17,7 @@ public class StockManagement extends javax.swing.JFrame {
      */
     public StockManagement() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -69,9 +70,9 @@ public class StockManagement extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(370, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(144, 144, 144)
                 .addComponent(jButton6)
                 .addGap(14, 14, 14))
         );
@@ -200,12 +201,12 @@ public class StockManagement extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(12, 12, 12)
                 .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
 
-        jPanel3.setLayout(new java.awt.GridLayout());
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -213,7 +214,7 @@ public class StockManagement extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", " Name", "Catagory", "Department", "Status"
+                "#", "Item", "Catagory", "Department", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -249,79 +250,11 @@ public class StockManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String eqname = jTextField1.getText();
-        String catagory = jComboBox3.getSelectedItem().toString();
-        String department = jComboBox2.getSelectedItem().toString();
-        String status = jComboBox1.getSelectedItem().toString();
-
-        if (eqname.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please Enter the equipment name", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (catagory.equals(0)) {
-            JOptionPane.showMessageDialog(this, "Please Select the Catagory", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (department.equals(0)) {
-            JOptionPane.showMessageDialog(this, "Please Select the Specific Department", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (status.equals(0)) {
-            JOptionPane.showMessageDialog(this, "Please Select the Item Status", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else {
-            try {
-                ResultSet resultSet = MySQL.execute("SELECT * FROM `hotel_eq`"
-                    + "WHERE `name`='" + eqname + "'");
-
-                if (resultSet.next()) {
-                    JOptionPane.showMessageDialog(this, "This Equipment is Already Added", "Warning", JOptionPane.WARNING_MESSAGE);
-
-                } else {
-                    MySQL.execute("INSERT INTO "
-                        + "`hotel_eq`(`name`,`eq_category_id`,`department_id`,`eq_status_id`)"
-                        + "VALUES('" + eqname + "','" + catMap.get(catagory) + "','" + DeptMap.get(department) + "','" + statusMap.get(status) + "')");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            JOptionPane.showMessageDialog(this, "Equipment Added Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-            commons();
-
-        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            int selectedRow = jTable1.getSelectedRow();
-
-            if (selectedRow != -1) {
-                String id = jTable1.getValueAt(selectedRow, 0).toString();
-                String catagory = jComboBox3.getSelectedItem().toString();
-                String department = jComboBox2.getSelectedItem().toString();
-                String status = jComboBox1.getSelectedItem().toString();
-
-                if (catagory.equals(0)) {
-                    JOptionPane.showMessageDialog(this, "Please Upadate the Catagory", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else if (department.equals(0)) {
-                    JOptionPane.showMessageDialog(this, "Please Update the Specific Department", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else if (status.equals(0)) {
-                    JOptionPane.showMessageDialog(this, "Please Update the Item Status", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else {
-
-                    try {
-                        MySQL.execute("UPDATE `hotel_eq` "
-                            + "SET `department_id`='" + DeptMap.get(department) + "',"
-                            + "`eq_category_id`='" + catMap.get(catagory) + "',"
-                            + "`eq_status_id`='" + statusMap.get(status) + "'"
-                            + "WHERE `id`='" + id + "'");
-
-                        JOptionPane.showMessageDialog(this, "Equipment Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                        commons();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Please select the equipment", "Message", JOptionPane.WARNING_MESSAGE);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -333,11 +266,7 @@ public class StockManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if (evt.getClickCount() == 1) {
-            oneClick();
-        } else if (evt.getClickCount() == 2) {
-            DeleteCategory();
-        }
+       
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**

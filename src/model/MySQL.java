@@ -10,7 +10,7 @@ public class MySQL {
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_db", "root", "tharinduCHA@8754");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", "root", "Ds7838@#");
         } catch (Exception e) {
             e.printStackTrace();
         }

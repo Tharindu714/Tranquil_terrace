@@ -6,6 +6,16 @@ package GUI;
 
 import GUI.Dashboard;
 import com.formdev.flatlaf.IntelliJTheme;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.MySQL;
+import model.UserBean;
+import model.Validation;
 
 /**
  *
@@ -13,12 +23,19 @@ import com.formdev.flatlaf.IntelliJTheme;
  */
 public class WorkSchedule extends javax.swing.JFrame {
 
+    public HashMap<String, UserBean> userMap = new HashMap<>();
+    public Vector<UserBean> userVector = new Vector<>();
+
     /**
      * Creates new form WorkSchedule
      */
     public WorkSchedule() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        loadEmployee();
+        loadworkSchedule("");
+        department(dateDepart.getText());
+
     }
 
     /**
@@ -41,33 +58,32 @@ public class WorkSchedule extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        onTime = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        offTime = new javax.swing.JTextField();
+        emEmId = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        Date = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel46 = new javax.swing.JLabel();
+        WorkScheduleTable = new javax.swing.JTable();
+        emDep = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
+        emPercentage = new javax.swing.JLabel();
+        emFullName = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
+        emUserName = new javax.swing.JLabel();
+        emType = new javax.swing.JLabel();
+        emMobile1 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        employeeTable = new javax.swing.JTable();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
@@ -76,19 +92,45 @@ public class WorkSchedule extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel48 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        dateDepart = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        departmentTable = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
 
-        timePicker1.setDisplayText(jTextField1);
+        timePicker1.set24hourMode(false);
+        timePicker1.setName(""); // NOI18N
+        timePicker1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                timePicker1FocusLost(evt);
+            }
+        });
+        timePicker1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                timePicker1MouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                timePicker1MouseReleased(evt);
+            }
+        });
+        timePicker1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                timePicker1PropertyChange(evt);
+            }
+        });
 
-        timePicker2.setDisplayText(jTextField5);
+        timePicker2.set24hourMode(false);
+        timePicker2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                timePicker2PropertyChange(evt);
+            }
+        });
 
         dateChooser1.setForeground(new java.awt.Color(0, 51, 102));
-        dateChooser1.setTextRefernce(jTextField7);
+        dateChooser1.setDateFormat("yyyy-MM-dd");
+        dateChooser1.setTextRefernce(Date);
 
-        dateChooser2.setTextRefernce(jTextField8);
+        dateChooser2.setDateFormat("yyyy-MM-dd");
+        dateChooser2.setTextRefernce(dateDepart);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -117,7 +159,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1306, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1313, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6)
                 .addGap(14, 14, 14))
@@ -146,22 +188,30 @@ public class WorkSchedule extends javax.swing.JFrame {
         jLabel3.setForeground(java.awt.Color.white);
         jLabel3.setText("On TIme");
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jTextField1.setForeground(java.awt.Color.white);
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        onTime.setEditable(false);
+        onTime.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        onTime.setForeground(java.awt.Color.white);
+        onTime.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                onTimeFocusGained(evt);
             }
         });
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        onTime.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onTimeMouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTextField1MouseReleased(evt);
+                onTimeMouseReleased(evt);
             }
         });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        onTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                onTimeActionPerformed(evt);
+            }
+        });
+        onTime.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                onTimePropertyChange(evt);
             }
         });
 
@@ -169,34 +219,44 @@ public class WorkSchedule extends javax.swing.JFrame {
         jLabel6.setForeground(java.awt.Color.white);
         jLabel6.setText("Off Time");
 
-        jTextField5.setEditable(false);
-        jTextField5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jTextField5.setForeground(java.awt.Color.white);
-        jTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
+        offTime.setEditable(false);
+        offTime.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        offTime.setForeground(java.awt.Color.white);
+        offTime.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField5MouseClicked(evt);
+                offTimeMouseClicked(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTextField5MouseReleased(evt);
+                offTimeMouseReleased(evt);
             }
         });
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        offTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                offTimeActionPerformed(evt);
+            }
+        });
+        offTime.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                offTimePropertyChange(evt);
             }
         });
 
-        jTextField6.setEditable(false);
-        jTextField6.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jTextField6.setForeground(java.awt.Color.white);
-        jTextField6.addMouseListener(new java.awt.event.MouseAdapter() {
+        emEmId.setEditable(false);
+        emEmId.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        emEmId.setForeground(java.awt.Color.white);
+        emEmId.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField6MouseClicked(evt);
+                emEmIdMouseClicked(evt);
             }
         });
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        emEmId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                emEmIdActionPerformed(evt);
+            }
+        });
+        emEmId.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                emEmIdPropertyChange(evt);
             }
         });
 
@@ -204,19 +264,19 @@ public class WorkSchedule extends javax.swing.JFrame {
         jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setText("Date");
 
-        jTextField7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jTextField7.setForeground(java.awt.Color.white);
-        jTextField7.addMouseListener(new java.awt.event.MouseAdapter() {
+        Date.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        Date.setForeground(java.awt.Color.white);
+        Date.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField7MouseClicked(evt);
+                DateMouseClicked(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTextField7MouseReleased(evt);
+                DateMouseReleased(evt);
             }
         });
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        Date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                DateActionPerformed(evt);
             }
         });
 
@@ -240,16 +300,6 @@ public class WorkSchedule extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(102, 102, 102));
-        jButton5.setText("Delete ");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -257,19 +307,18 @@ public class WorkSchedule extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Date)
+                    .addComponent(emEmId, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField5)
+                    .addComponent(offTime)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                         .addGap(71, 71, 71))
-                    .addComponent(jTextField1)
+                    .addComponent(onTime)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -278,62 +327,71 @@ public class WorkSchedule extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel2)
                 .addGap(10, 10, 10)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(emEmId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(onTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(offTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(433, Short.MAX_VALUE))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        WorkScheduleTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        WorkScheduleTable.setForeground(new java.awt.Color(255, 255, 255));
+        WorkScheduleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Username", "Start Time", "Off time"
+                "ID", "Employee ID", "Start Time", "Off time", "status", "date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
-        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setShowGrid(false);
-        jScrollPane1.setViewportView(jTable1);
+        WorkScheduleTable.setSelectionBackground(new java.awt.Color(245, 71, 104));
+        WorkScheduleTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        WorkScheduleTable.setShowGrid(false);
+        WorkScheduleTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                WorkScheduleTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(WorkScheduleTable);
+        if (WorkScheduleTable.getColumnModel().getColumnCount() > 0) {
+            WorkScheduleTable.getColumnModel().getColumn(0).setResizable(false);
+            WorkScheduleTable.getColumnModel().getColumn(1).setResizable(false);
+            WorkScheduleTable.getColumnModel().getColumn(2).setResizable(false);
+            WorkScheduleTable.getColumnModel().getColumn(4).setResizable(false);
+        }
 
-        jLabel46.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel46.setText("name");
+        emDep.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        emDep.setForeground(new java.awt.Color(255, 255, 255));
+        emDep.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        emDep.setText("name");
 
         jLabel47.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -343,15 +401,15 @@ public class WorkSchedule extends javax.swing.JFrame {
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel44.setText("Working Percentage  :");
 
-        jLabel45.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        jLabel45.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel45.setText("User Full Name");
+        emPercentage.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        emPercentage.setForeground(new java.awt.Color(255, 255, 255));
+        emPercentage.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        emPercentage.setText("100%");
 
-        jLabel37.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel37.setText("User Full Name");
+        emFullName.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        emFullName.setForeground(new java.awt.Color(255, 255, 255));
+        emFullName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        emFullName.setText("User Full Name");
 
         jLabel36.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -361,32 +419,32 @@ public class WorkSchedule extends javax.swing.JFrame {
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel38.setText("Employee User Name : ");
 
-        jLabel39.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel39.setText("User Full Name");
+        emUserName.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        emUserName.setForeground(new java.awt.Color(255, 255, 255));
+        emUserName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        emUserName.setText("User Full Name");
 
-        jLabel41.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        jLabel41.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel41.setText("User Full Name");
+        emType.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        emType.setForeground(new java.awt.Color(255, 255, 255));
+        emType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        emType.setText("User Full Name");
 
-        jLabel42.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel42.setText("075XXXXXXX");
+        emMobile1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        emMobile1.setForeground(new java.awt.Color(255, 255, 255));
+        emMobile1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        emMobile1.setText("075XXXXXXX");
 
         jLabel40.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel40.setText("Employee Type : ");
+        jLabel40.setText("Employee Role : ");
 
         jLabel43.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel43.setText("Employee Mobile : ");
 
-        jTable3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jTable3.setForeground(new java.awt.Color(255, 255, 255));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        employeeTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        employeeTable.setForeground(new java.awt.Color(255, 255, 255));
+        employeeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -394,7 +452,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "employee", "Department", "last Attend"
+                "ID", "Employee", "Department", "Mobile"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -405,10 +463,23 @@ public class WorkSchedule extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable3.setSelectionBackground(new java.awt.Color(245, 71, 104));
-        jTable3.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTable3.setShowGrid(false);
-        jScrollPane3.setViewportView(jTable3);
+        employeeTable.setSelectionBackground(new java.awt.Color(245, 71, 104));
+        employeeTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        employeeTable.setShowGrid(false);
+        employeeTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                employeeTableFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                employeeTableFocusLost(evt);
+            }
+        });
+        employeeTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                employeeTableMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(employeeTable);
 
         jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
@@ -442,35 +513,34 @@ public class WorkSchedule extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addComponent(jLabel38)
-                            .addGap(11, 11, 11)
-                            .addComponent(jLabel39))
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addComponent(jLabel36)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel37)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel40)
                             .addComponent(jLabel43))
-                        .addGap(51, 51, 51)
+                        .addGap(45, 45, 45)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel42)
-                            .addComponent(jLabel41))))
-                .addGap(52, 52, 52)
+                            .addComponent(emMobile1)
+                            .addComponent(emType)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(emUserName))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel36)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(emFullName)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel44)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel45))
+                        .addComponent(emPercentage))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel47)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel46)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addComponent(emDep)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel49)
@@ -496,43 +566,45 @@ public class WorkSchedule extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
                     .addComponent(jSeparator3)
                     .addComponent(jScrollPane1))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel36)
-                                    .addComponent(jLabel37))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel38)
-                                    .addComponent(jLabel39))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel40)
-                                    .addComponent(jLabel41)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel44)
-                                    .addComponent(jLabel45))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel47)
-                                    .addComponent(jLabel46))
-                                .addGap(30, 30, 30))))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel43)
-                    .addComponent(jLabel42)
-                    .addComponent(jLabel49)
-                    .addComponent(jLabel50))
-                .addGap(15, 15, 15))
+                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel49)
+                            .addComponent(jLabel50)))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                            .addGap(37, 37, 37)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel38)
+                                .addComponent(emUserName))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel40)
+                                .addComponent(emType))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel43)
+                                .addComponent(emMobile1)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel36)
+                                    .addComponent(emFullName))
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel44)
+                                    .addComponent(emPercentage)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel47)
+                                .addComponent(emDep))
+                            .addGap(54, 54, 54))))
+                .addGap(22, 22, 22))
         );
 
         jPanel3.add(jPanel6, java.awt.BorderLayout.PAGE_START);
@@ -544,23 +616,28 @@ public class WorkSchedule extends javax.swing.JFrame {
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel48.setText("Date");
 
-        jTextField8.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
-        jTextField8.setForeground(java.awt.Color.white);
-        jTextField8.addMouseListener(new java.awt.event.MouseAdapter() {
+        dateDepart.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        dateDepart.setForeground(java.awt.Color.white);
+        dateDepart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField8MouseClicked(evt);
+                dateDepartMouseClicked(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTextField8MouseReleased(evt);
+                dateDepartMouseReleased(evt);
             }
         });
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        dateDepart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                dateDepartActionPerformed(evt);
+            }
+        });
+        dateDepart.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateDepartPropertyChange(evt);
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        departmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -579,10 +656,10 @@ public class WorkSchedule extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane2.setViewportView(departmentTable);
+        if (departmentTable.getColumnModel().getColumnCount() > 0) {
+            departmentTable.getColumnModel().getColumn(0).setResizable(false);
+            departmentTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jButton7.setBackground(new java.awt.Color(245, 71, 104));
@@ -609,7 +686,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel48)
                         .addGap(34, 34, 34)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                        .addComponent(dateDepart, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                         .addGap(125, 125, 125))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -627,7 +704,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel48)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -644,81 +721,379 @@ public class WorkSchedule extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadworkSchedule(String date) {
+
+        try {
+
+            String query = "SELECT * FROM `work_schedule` "
+                    + "INNER JOIN `status` ON"
+                    + "`status`.`id`=`work_schedule`.`status_id`"
+                    + "INNER JOIN `employee` ON"
+                    + "`employee`.`id`=`work_schedule`.`employee_id`"
+                    + "WHERE `employee`.`employee_type_id`!='1' " + date + ""
+                    + "ORDER BY `date` DESC,`on_time` ASC ";
+
+            ResultSet rs = MySQL.execute(query);
+
+            DefaultTableModel tableModel = (DefaultTableModel) WorkScheduleTable.getModel();
+            tableModel.setRowCount(0);
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString("work_schedule.id"));
+                v.add(rs.getString("employee.id"));
+                v.add(rs.getString("on_time"));
+                v.add(rs.getString("off_time"));
+
+                if (rs.getString("work_schedule.status_id").equals("1")) {
+                    v.add(rs.getString("status.type"));
+                } else {
+                    v.add(rs.getString("status.type"));
+                }
+                v.add(rs.getString("date"));
+
+                tableModel.addRow(v);
+
+            }
+
+            department(dateDepart.getText());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private String percentage(String userId) {
+
+        try {
+
+            String date = new SimpleDateFormat("yyyy-MM").format(new Date());
+
+            ResultSet workSchedule = MySQL.execute("SELECT COUNT(*) FROM `work_schedule` WHERE `status_id`='1' AND `employee_id`='" + userId + "' AND `date` LIKE '" + date + "%'");
+            ResultSet Attendance = MySQL.execute("SELECT COUNT(*) FROM `staff_attendence` WHERE  `employee_id`='" + userId + "' AND `date` LIKE '" + date + "%'");
+
+            workSchedule.next();
+            Attendance.next();
+
+            if (Attendance.getInt("COUNT(*)") != 0 && workSchedule.getInt("COUNT(*)") != 0) {
+                double percentage = (Attendance.getDouble("COUNT(*)") / workSchedule.getDouble("COUNT(*)")) * 100;
+
+                return percentage + " %";
+            }
+
+            return "0%";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    private void loadEmployee() {
+
+        try {
+
+            String query = "SELECT * FROM `employee` "
+                    + "INNER JOIN `department` ON"
+                    + "`department`.`id`=`employee`.`department_id`"
+                    + "INNER JOIN `employee_type` ON"
+                    + "`employee_type`.`id`=`employee`.`employee_type_id`"
+                    + "INNER JOIN `status` ON"
+                    + "`status`.`id`=`employee`.`status`"
+                    + "WHERE `employee_type`.`type`!='Administrator'"
+                    + "ORDER BY `employee`.`department_id` ASC ";
+
+            ResultSet rs = MySQL.execute(query);
+
+            DefaultTableModel tableModel = (DefaultTableModel) employeeTable.getModel();
+            tableModel.setRowCount(0);
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString("employee.id"));
+                v.add(rs.getString("first_name"));
+                v.add(rs.getString("department.name"));
+                v.add(rs.getString("mobile"));
+
+                UserBean bean = new UserBean();
+
+                bean.setEmId(rs.getString("employee.id"));
+                bean.setUserName(rs.getString("employee.username"));
+                bean.setMobile(rs.getString("mobile"));
+                bean.setFullName(rs.getString("first_name") + " " + rs.getString("last_name"));
+                bean.setUserRole(rs.getString("employee_type.type"));
+                bean.setPercentage(percentage(rs.getString("employee.id")));
+                bean.setStatus(rs.getString("status.type"));
+                bean.setDepartment(rs.getString("department.name"));
+
+                tableModel.addRow(v);
+                userMap.put(rs.getString("employee.id"), bean);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void loadData(String beanId) {
+
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+        UserBean bean = userMap.get(beanId);
+        emFullName.setText(bean.getFullName());
+        emMobile1.setText(bean.getMobile());
+        emPercentage.setText(bean.getPercentage());
+        emType.setText(bean.getUserRole());
+        emUserName.setText(bean.getUserName());
+        emEmId.setText(bean.getEmId());
+        emDep.setText(bean.getDepartment());
+
+    }
+
+    private void department(String date) {
+
+        try {
+
+            String query = "SELECT COUNT(*) AS qty,`department`.`name` FROM `work_schedule` \n"
+                    + "INNER JOIN `employee` ON \n"
+                    + "`employee`.`id`=`work_schedule`.`employee_id` \n"
+                    + "INNER JOIN `department` ON `department`.`id`=`employee`.`department_id`\n"
+                    + "WHERE `work_schedule`.`date`='" + date + "'\n"
+                    + "GROUP BY  `department`.`name` ";
+
+            ResultSet rs = MySQL.execute(query);
+
+            DefaultTableModel tableModel = (DefaultTableModel) departmentTable.getModel();
+            tableModel.setRowCount(0);
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString("name"));
+                v.add(rs.getString("qty"));
+
+                tableModel.addRow(v);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+
+        department(dateDepart.getText());
+        loadworkSchedule("AND `work_schedule`.`date`='" + dateDepart.getText() + "'");
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void dateDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateDepartActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_dateDepartActionPerformed
 
-    private void jTextField8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField8MouseReleased
+    private void dateDepartMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateDepartMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8MouseReleased
+    }//GEN-LAST:event_dateDepartMouseReleased
 
-    private void jTextField8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField8MouseClicked
+    private void dateDepartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateDepartMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8MouseClicked
+    }//GEN-LAST:event_dateDepartMouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void clearData() {
+
+        emEmId.setText("");
+        onTime.setText("");
+        offTime.setText("");
+        Date.setText("");
+        WorkScheduleTable.clearSelection();
+        employeeTable.clearSelection();
+
+        emFullName.setText("");
+        emUserName.setText("");
+        emType.setText("");
+        emMobile1.setText("");
+
+    }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        String employeeId = emEmId.getText();
+        String OnTme = onTime.getText();
+        String OffTme = offTime.getText();
+        String date = Date.getText();
+        boolean Found = false;
+
+        int selectedRow = WorkScheduleTable.getSelectedRow();
+
+        if (selectedRow != -1) {
+
+            if (employeeId.equals(WorkScheduleTable.getValueAt(selectedRow, 1).toString())) {
+                Found = true;
+                System.out.println("true");
+            } else {
+                Found = false;
+                System.out.println("false");
+            }
+
+            if (OnTme.equals(WorkScheduleTable.getValueAt(selectedRow, 2).toString()) && Found) {
+                Found = true;
+                System.out.println("true");
+            } else {
+                Found = false;
+                System.out.println("false");
+
+            }
+
+            if (OffTme.equals(WorkScheduleTable.getValueAt(selectedRow, 3).toString()) && Found) {
+                Found = true;
+                System.out.println("true");
+            } else {
+                Found = false;
+                System.out.println("false");
+
+            }
+
+            if (date.equals(WorkScheduleTable.getValueAt(selectedRow, 5).toString()) && Found) {
+                Found = true;
+                System.out.println("true");
+            } else {
+                Found = false;
+                System.out.println("false");
+
+            }
+
+            if (!Found) {
+
+                try {
+
+                    MySQL.execute("UPDATE `hotel_db`.`work_schedule` "
+                            + "SET `date`='" + date + "', `employee_id`='" + employeeId + "',"
+                            + "`on_time`='" + OnTme + "', `off_time`='" + OffTme + "' "
+                            + "WHERE  `id`='" + WorkScheduleTable.getValueAt(selectedRow, 0) + "'");
+                    JOptionPane.showMessageDialog(this, "Schedule Updated", "Updated", JOptionPane.INFORMATION_MESSAGE);
+                    loadworkSchedule("");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Schedule has already Exsits", "Wrong", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Please Select First", "Wrong", JOptionPane.ERROR_MESSAGE);
+
+        }
+
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
+        int selectedRow = WorkScheduleTable.getSelectedRow();
+
+        if (selectedRow == -1) {
+
+            String employeeId = emEmId.getText();
+            String ontme = onTime.getText();
+            String offtme = offTime.getText();
+            String date = Date.getText();
+
+            Validation valid = new Validation();
+
+            if (valid.emptyValue(emEmId, "")) {
+
+                JOptionPane.showMessageDialog(this, "Please Enter Employee Id or Select Employee", "Wrong", JOptionPane.ERROR_MESSAGE);
+
+            } else if (valid.emptyValue(onTime, "")) {
+
+                JOptionPane.showMessageDialog(this, "Please Select Schedule Start Time", "Wrong", JOptionPane.ERROR_MESSAGE);
+
+            } else if (valid.emptyValue(offTime, "")) {
+
+                JOptionPane.showMessageDialog(this, "Please Select Schedule End Time", "Wrong", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+
+                try {
+                    MySQL.execute("INSERT INTO `hotel_db`.`work_schedule` (`date`, `employee_id`, `status_id`, `on_time`, `off_time`)"
+                            + " VALUES ('" + date + "', '" + employeeId + "', '2', '" + ontme + "', '" + offtme + "');");
+
+                    JOptionPane.showMessageDialog(this, "SChedule Activate Successfully", "Wrong", JOptionPane.INFORMATION_MESSAGE);
+
+                    loadworkSchedule("");
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Insert Faild", "Wrong", JOptionPane.ERROR_MESSAGE);
+
+                }
+
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(this, "this Schedule already Exists, please make new Schedule", "Wrong", JOptionPane.ERROR_MESSAGE);
+            clearData();
+
+        }
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void DateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_DateActionPerformed
 
-    private void jTextField7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseReleased
+    private void DateMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DateMouseReleased
 
-    }//GEN-LAST:event_jTextField7MouseReleased
+    }//GEN-LAST:event_DateMouseReleased
 
-    private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseClicked
+    private void DateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DateMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7MouseClicked
+    }//GEN-LAST:event_DateMouseClicked
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void emEmIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emEmIdActionPerformed
 
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_emEmIdActionPerformed
 
-    private void jTextField6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField6MouseClicked
+    private void emEmIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emEmIdMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6MouseClicked
+    }//GEN-LAST:event_emEmIdMouseClicked
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void offTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offTimeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_offTimeActionPerformed
 
-    private void jTextField5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField5MouseReleased
+    private void offTimeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_offTimeMouseReleased
 
-        timePicker2.showPopup(this, 100, 465);
-        jTextField5.setText(timePicker2.getSelectedTime());
-    }//GEN-LAST:event_jTextField5MouseReleased
+        timePicker2.showPopup(this, 100, 200);
+        offTime.setText(timePicker2.getSelectedTime());
+    }//GEN-LAST:event_offTimeMouseReleased
 
-    private void jTextField5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField5MouseClicked
+    private void offTimeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_offTimeMouseClicked
 
-    }//GEN-LAST:event_jTextField5MouseClicked
+    }//GEN-LAST:event_offTimeMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void onTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onTimeActionPerformed
 
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_onTimeActionPerformed
 
-    private void jTextField1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseReleased
+    private void onTimeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onTimeMouseReleased
+        timePicker1.showPopup(this, 100, 100);
+        onTime.setText(timePicker1.getSelectedTime());
+    }//GEN-LAST:event_onTimeMouseReleased
 
-        timePicker1.showPopup(this, 100, 400);
-        jTextField1.setText(timePicker1.getSelectedTime());
-    }//GEN-LAST:event_jTextField1MouseReleased
+    private void onTimeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_onTimeFocusGained
 
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-
-    }//GEN-LAST:event_jTextField1FocusGained
+    }//GEN-LAST:event_onTimeFocusGained
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.dispose();
@@ -727,6 +1102,120 @@ public class WorkSchedule extends javax.swing.JFrame {
     private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox5ActionPerformed
+
+    private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
+
+        int selectedRow = employeeTable.getSelectedRow();
+
+        if (evt.getClickCount() == 1 && selectedRow != -1) {
+
+            String employeeId = employeeTable.getValueAt(selectedRow, 0).toString();
+            onTime.setText("");
+            offTime.setText("");
+            loadData(employeeId);
+
+        }
+
+
+    }//GEN-LAST:event_employeeTableMouseClicked
+
+//    private String clockConverter(String Time) {
+//        try {
+//
+//            Date startTime = new SimpleDateFormat("hh:mm").parse(Time);
+//            String date = new SimpleDateFormat("HH:mm:ss").format(startTime);
+//            return date;
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+
+    private void WorkScheduleTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WorkScheduleTableMouseClicked
+
+        int selectedRow = WorkScheduleTable.getSelectedRow();
+
+        if (evt.getClickCount() == 1 && selectedRow != -1) {
+
+            String employeeId = WorkScheduleTable.getValueAt(selectedRow, 1).toString();
+            loadData(employeeId);
+            String ontTime = WorkScheduleTable.getValueAt(selectedRow, 2).toString();
+            String offTTime = WorkScheduleTable.getValueAt(selectedRow, 3).toString();
+            String date = WorkScheduleTable.getValueAt(selectedRow, 5).toString();
+
+            this.onTime.setText(ontTime);
+            this.offTime.setText(offTTime);
+            this.Date.setText(date);
+
+        }
+
+
+    }//GEN-LAST:event_WorkScheduleTableMouseClicked
+
+    private void timePicker1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timePicker1MouseClicked
+
+    }//GEN-LAST:event_timePicker1MouseClicked
+
+    private void offTimePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_offTimePropertyChange
+
+    }//GEN-LAST:event_offTimePropertyChange
+
+    private void timePicker1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_timePicker1PropertyChange
+
+        try {
+            Date startTime = new SimpleDateFormat("hh:mm a").parse(timePicker1.getSelectedTime());
+            String time = new SimpleDateFormat("HH:mm:ss").format(startTime);
+            onTime.setText(this.Date.getText() + " " + time);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_timePicker1PropertyChange
+
+    private void timePicker1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timePicker1MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timePicker1MouseReleased
+
+    private void timePicker1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_timePicker1FocusLost
+
+    }//GEN-LAST:event_timePicker1FocusLost
+
+    private void emEmIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_emEmIdPropertyChange
+    }//GEN-LAST:event_emEmIdPropertyChange
+
+    private void onTimePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_onTimePropertyChange
+
+    }//GEN-LAST:event_onTimePropertyChange
+
+    private void onTimeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onTimeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_onTimeMouseClicked
+
+    private void timePicker2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_timePicker2PropertyChange
+        try {
+            Date startTime = new SimpleDateFormat("hh:mm a").parse(timePicker2.getSelectedTime());
+            String time = new SimpleDateFormat("HH:mm:ss").format(startTime);
+            offTime.setText(this.Date.getText() + " " + time);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_timePicker2PropertyChange
+
+    private void employeeTableFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_employeeTableFocusLost
+
+
+    }//GEN-LAST:event_employeeTableFocusLost
+
+    private void employeeTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_employeeTableFocusGained
+        // TODO add your handling code here:
+        WorkScheduleTable.clearSelection();
+    }//GEN-LAST:event_employeeTableFocusGained
+
+    private void dateDepartPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateDepartPropertyChange
+
+    }//GEN-LAST:event_dateDepartPropertyChange
 
     /**
      * @param args the command line arguments
@@ -751,11 +1240,22 @@ public class WorkSchedule extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Date;
+    private javax.swing.JTable WorkScheduleTable;
     private com.raven.datechooser.DateChooser dateChooser1;
     private com.raven.datechooser.DateChooser dateChooser2;
+    private javax.swing.JTextField dateDepart;
+    private javax.swing.JTable departmentTable;
+    private javax.swing.JLabel emDep;
+    private javax.swing.JTextField emEmId;
+    private javax.swing.JLabel emFullName;
+    private javax.swing.JLabel emMobile1;
+    private javax.swing.JLabel emPercentage;
+    private javax.swing.JLabel emType;
+    private javax.swing.JLabel emUserName;
+    private javax.swing.JTable employeeTable;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox5;
@@ -763,16 +1263,10 @@ public class WorkSchedule extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
@@ -791,14 +1285,8 @@ public class WorkSchedule extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField offTime;
+    private javax.swing.JTextField onTime;
     private com.raven.swing.TimePicker timePicker1;
     private com.raven.swing.TimePicker timePicker2;
     // End of variables declaration//GEN-END:variables
