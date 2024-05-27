@@ -1049,8 +1049,7 @@ public class WorkSchedule extends javax.swing.JFrame {
     }//GEN-LAST:event_onTimeFocusGained
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-                HrSignIn hr = new HrSignIn();
-        hr.setVisible(true);
+this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
