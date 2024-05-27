@@ -545,10 +545,10 @@ public class HR_mqt extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "HR Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                     commons();
                 } else {
-                    JOptionPane.showMessageDialog(this, "You Update User Status", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "You Update User Status", "Warning", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Please select Specific User", "Message", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please select Specific User", "Message", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             e.printStackTrace();

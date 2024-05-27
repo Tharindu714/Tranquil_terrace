@@ -269,11 +269,10 @@ public class addnewfood extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+
         String foodname = jTextField3.getText();
         String foodcatogory = jComboBox1.getSelectedItem().toString();
         String foodprice = jTextField2.getText();
-        double price = Double.parseDouble(foodprice);
 
         if (foodname.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter food name", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -285,55 +284,67 @@ public class addnewfood extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter price", "Warning", JOptionPane.WARNING_MESSAGE);
 
         } else {
-
             try {
-                ResultSet rest = MySQL.execute("SELECT `id` FROM `food_category` WHERE `category`='" + foodcatogory + "' ");
-                if (rest.next()) {
-                    int id = rest.getInt("id");
-                    MySQL.execute("INSERT INTO `food_item` (`name`,`price`,`food_category_id`) VALUES ('" + foodname + "','" + price + "','" + catMap.get(foodcatogory) + "')");
+                ResultSet resultSet = MySQL.execute("SELECT * FROM `food_item`"
+                        + "WHERE `name`='" + foodname + "'");
 
+                if (resultSet.next()) {
+                    JOptionPane.showMessageDialog(this, "This Food item is Already Added", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+                    MySQL.execute("INSERT INTO "
+                            + "`food_item`(`name`,`food_category_id`,`price`)"
+                            + "VALUES('" + foodname + "','" + catMap.get(foodcatogory) + "','" + foodprice + "')");
                 }
-
             } catch (Exception e) {
+                e.printStackTrace();
             }
+
+            JOptionPane.showMessageDialog(this, "New Food item Added Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
             reset();
             load_c();
             loaddata();
-
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
-        String foodname = jTextField3.getText();
+        try {
+            int selectedRow = jTable1.getSelectedRow();
+            if (selectedRow != -1) {
+                String foodname = jTextField3.getText();
+                String id = jTable1.getValueAt(selectedRow, 0).toString();
+                String foodcatogory = jComboBox1.getSelectedItem().toString();
+                String foodprice = jTextField2.getText();
 
-        String foodcatogory = jComboBox1.getSelectedItem().toString();
-        String foodprice = jTextField2.getText();
-        double price = Double.parseDouble(foodprice);
+                if (foodname.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Please enter food name", "Warning", JOptionPane.WARNING_MESSAGE);
 
-        if (foodname.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter food name", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else if (foodcatogory.equals(0)) {
+                    JOptionPane.showMessageDialog(this, "Please select food gategory", "Warning", JOptionPane.WARNING_MESSAGE);
 
-        } else if (foodcatogory.equals(0)) {
-            JOptionPane.showMessageDialog(this, "Please select food gategory", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else if (foodprice.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Please enter price", "Warning", JOptionPane.WARNING_MESSAGE);
 
-        } else if (foodprice.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter price", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    try {
+                        MySQL.execute("UPDATE `food_item` "
+                                + "SET `price`='" + foodprice + "',"
+                                + "WHERE `id`='" + id + "'");
 
-        } else {
+                        JOptionPane.showMessageDialog(this, "Food item Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                        reset();
+                        load_c();
+                        loaddata();
 
-            try {
-                ResultSet rest = MySQL.execute("SELECT `id` FROM `food_category` WHERE `category`='" + catMap.get(foodcatogory) + "' ");
-                if (rest.next()) {
-                    int id = rest.getInt("id");
-                    MySQL.execute("UPDATE food_item SET `name`='" + foodname + "',`price`='" + price + "',`food_category_id`='" + id + "' WHERE `id` = '" + fid + "'");
-
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-
-            } catch (Exception e) {
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select the Food item", "Message", JOptionPane.WARNING_MESSAGE);
             }
-            reset();
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
