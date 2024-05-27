@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package hotel;
 
 import java.sql.ResultSet;
@@ -11,10 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 
-/**
- *
- * @author maleesha
- */
+
 public class addnewfood extends javax.swing.JPanel {
 
     private int fid;
@@ -23,6 +16,7 @@ public class addnewfood extends javax.swing.JPanel {
     public addnewfood() {
         initComponents();
         load_c();
+        loaddata();
     }
 
     /**
@@ -380,30 +374,6 @@ public class addnewfood extends javax.swing.JPanel {
 
     }
 
-//    private void addnewfood() {
-//
-//        String foodname = jTextField1.getText();
-//        String foodcatogory = jComboBox1.getSelectedItem().toString();
-//        String foodprice = jTextField1.getText();
-//
-//        if (foodname == null) {
-//            JOptionPane.showMessageDialog(this, "Please enter food name", "Warning", JOptionPane.WARNING_MESSAGE);
-//        } else if (foodcatogory.equals(0)) {
-//            JOptionPane.showMessageDialog(this, "Please select food gategory", "Warning", JOptionPane.WARNING_MESSAGE);
-//
-//        } else if (foodprice == null) {
-//            JOptionPane.showMessageDialog(this, "Please enter price", "Warning", JOptionPane.WARNING_MESSAGE);
-//
-//        } else {
-//
-//            try {
-//                ResultSet rest = mysql.search("SELECT `id` FROM `food_category` WHERE `category`='" + foodcatogory + "' ");
-//
-//            } catch (Exception e) {
-//            }
-//
-//        }
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton12;

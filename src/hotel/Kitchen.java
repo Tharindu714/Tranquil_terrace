@@ -53,6 +53,7 @@ public class Kitchen extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel8.setPreferredSize(new java.awt.Dimension(800, 50));
         jPanel8.setLayout(new java.awt.BorderLayout());
