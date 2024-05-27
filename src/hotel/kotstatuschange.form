@@ -196,7 +196,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Incoming Order"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[137, 35]"/>
+              <Dimension value="[137, 40]"/>
             </Property>
           </Properties>
           <Constraints>

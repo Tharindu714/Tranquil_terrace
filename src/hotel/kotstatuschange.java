@@ -141,7 +141,7 @@ public class kotstatuschange extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Incoming Order");
-        jLabel3.setPreferredSize(new java.awt.Dimension(137, 35));
+        jLabel3.setPreferredSize(new java.awt.Dimension(137, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
