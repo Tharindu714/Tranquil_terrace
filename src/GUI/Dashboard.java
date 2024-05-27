@@ -1,5 +1,6 @@
 package GUI;
 
+
 import com.formdev.flatlaf.IntelliJTheme;
 
 public class Dashboard extends javax.swing.JFrame {
