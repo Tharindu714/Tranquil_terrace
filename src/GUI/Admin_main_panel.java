@@ -2,13 +2,16 @@ package GUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
 public class Admin_main_panel extends javax.swing.JFrame {
-    
+
     public Admin_main_panel(String username, String mobile, String fname, String lname, String reg) {
         initComponents();
         jLabel7.setText(username);
@@ -19,10 +22,10 @@ public class Admin_main_panel extends javax.swing.JFrame {
         dateTime();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-    
+
     public void dateTime() {
         Timer time;
-        
+
         time = new Timer(0, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -31,7 +34,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
         });
         time.start();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -564,6 +567,13 @@ public class Admin_main_panel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process proc = runtime.exec("shutdown -s -t 0");
+        } catch (IOException ex) {
+            Logger.getLogger(Admin_main_panel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.exit(0);
 
     }//GEN-LAST:event_jButton15ActionPerformed
 
