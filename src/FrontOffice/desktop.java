@@ -11,6 +11,7 @@ public class desktop extends javax.swing.JFrame {
     public desktop() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        setLocationRelativeTo(null);
         jPanel2.removeAll();
         NewJPanel desk = new NewJPanel();
         jPanel2.add(desk, BorderLayout.CENTER);
