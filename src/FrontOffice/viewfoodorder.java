@@ -1,4 +1,3 @@
-
 package FrontOffice;
 
 import java.sql.ResultSet;
@@ -7,6 +6,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 
+
 /**
  *
  * @author maleesha
@@ -14,7 +14,7 @@ import model.MySQL;
 public class viewfoodorder extends javax.swing.JPanel {
 
     /**
-     * Creates new form viewfoodorder
+
      */
     public viewfoodorder() {
         initComponents();
@@ -194,7 +194,7 @@ public class viewfoodorder extends javax.swing.JPanel {
                     int st = stid.getInt("id");
                     int It = stid.getInt("id");
                     
-                   MySQL.execute("UPDATE `kot` SET `kot_status_id`='" + st + "' WHERE `customer_visit_hotel_id`='" + It + "'");
+                    MySQL.execute("UPDATE `kot` SET `kot_status_id`='" + st + "' WHERE `customer_visit_hotel_id`='" + It + "'");
                     
                 }
             }

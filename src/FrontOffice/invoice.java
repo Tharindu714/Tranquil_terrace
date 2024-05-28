@@ -1,16 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package FrontOffice;
 
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.idbeen;
 import model.MySQL;
 import model.idbeen;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -121,6 +118,7 @@ public class invoice extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
         jLabel3.setText("Customer NIC /  PASSPORT");
 
+        jTextField1.setText("851246793V");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -174,6 +172,11 @@ public class invoice extends javax.swing.JPanel {
 
         jComboBox1.setBackground(new java.awt.Color(52, 73, 94));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseReleased(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -181,7 +184,15 @@ public class invoice extends javax.swing.JPanel {
         });
         jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 100, 30));
 
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField5KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField5KeyReleased(evt);
             }
@@ -316,9 +327,30 @@ public class invoice extends javax.swing.JPanel {
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+    private String ntime;
 
     private double totle;
     private double balnce;
+
+    private void loadt() {
+        Thread t = new Thread(() -> {
+            while (true) {
+                LocalDateTime myDateObj = LocalDateTime.now();
+
+                DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+                String formattedDate = myDateObj.format(myFormatObj);
+                ntime = formattedDate;
+
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                }
+            }
+
+        });
+        t.start();
+    }
 
     private void reset() {
         DefaultTableModel tgbc = (DefaultTableModel) jTable1.getModel();
@@ -460,11 +492,6 @@ public class invoice extends javax.swing.JPanel {
             ResultSet result = MySQL.execute("SELECT * FROM `laundry_aux` WHERE `customer_visit_hotel_id`='" + id + "'");
 
             while (result.next()) {
-//                String serviceid = result.getString("id");
-//                String service = result.getString("room_name");
-//
-//                String to_date = "room time";
-//                String price = result.getString("price");
 
                 String serviceid = result.getString("id");
                 String service = result.getString("service_description");
@@ -510,11 +537,13 @@ public class invoice extends javax.swing.JPanel {
 
                 double totala = price * qty;
 
+                String stu = Double.toString(price);
+
                 Vector vtc = new Vector();
                 vtc.add(" food:For65" + serviceid);
                 vtc.add(service + "  (" + price + "*" + qty + ") ");
                 vtc.add(totala);
-                vtc.add(to_date);
+                vtc.add(stu);
 
                 tgbc.addRow(vtc);
 
@@ -560,11 +589,6 @@ public class invoice extends javax.swing.JPanel {
         }
 
         jLabel39.setText(String.valueOf(totle));
-//        
-//        String bsc = jTextField5.getText();
-//        Double dsc = Double.valueOf(bsc);
-//        balnce = dsc - totle;
-//        jLabel37.setText(String.valueOf(balnce));
 
     }
 
@@ -573,23 +597,6 @@ public class invoice extends javax.swing.JPanel {
 
         balnce = totle - Double.parseDouble(payamount);
         jLabel37.setText(String.valueOf(balnce));
-
-    }
-
-    private void load_p() {
-
-        String combo = jComboBox1.getSelectedItem().toString();
-
-        String cvt = "card";
-
-        if (combo != cvt) {
-            jTextField5.setText(null);
-            jTextField5.setEditable(true);
-        } else {
-            jTextField5.setText(String.valueOf(totle));
-            jTextField5.setEditable(false);
-
-        }
 
     }
 
@@ -662,13 +669,31 @@ public class invoice extends javax.swing.JPanel {
         calbalence();
     }//GEN-LAST:event_jTextField5KeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void printin() {
+        try {
+            HashMap< String, Object> map = new HashMap<>();
+            String reportpath = "src//resourse//table.jasper";
+            JRDataSource datas = new JRTableModelDataSource(jTable1.getModel());
+            JasperPrint jdbc = JasperFillManager.fillReport(reportpath, map, datas);
+            JasperViewer.viewReport(jdbc, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+    }
+
+    private void insert() {
         String tid = jComboBox2.getSelectedItem().toString();
 
         String combo = jComboBox1.getSelectedItem().toString();
         String paid = jTextField5.getText();
         double out = Double.parseDouble(paid);
+
+        if (combo.contentEquals("Card")) {
+            System.out.println("ok");
+        } else {
+            System.out.println("no");
+        }
 
         try {
             ResultSet rest = MySQL.execute("SELECT `id` FROM `payement_method` WHERE method ='" + combo + "'");
@@ -676,18 +701,43 @@ public class invoice extends javax.swing.JPanel {
                 int id = rest.getInt("id");
 
                 MySQL.execute("UPDATE `customer_visit_hotel` SET `total` = '" + totle + "',`payment_method_id` ='" + id + "' WHERE id = '" + tid + "'");
-                System.out.println("ok");
-                System.out.println(id);
-                System.out.println(totle);
-                System.out.println(tid);
 
             }
         } catch (Exception e) {
         }
+        reset();
 
+    }
+
+    private void Pus() {
+        String combo = jComboBox1.getSelectedItem().toString();
+        String value = Double.toString(totle);
+
+        if (combo.contentEquals("Card")) {
+            jTextField5.setText(value);
+            jTextField5.setEditable(false);
+        } else {
+            jTextField5.setText("");
+            jTextField5.setEditable(true);
+        }
+    }
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here: ; printin();
+    insert();
+        String method = jComboBox1.getSelectedItem().toString();
+
+        String amount = jTextField5.getText().toString();
         try {
             HashMap< String, Object> map = new HashMap<>();
-            String reportpath = "src//reports//invoice2.jasper";
+
+            map.put("Parameter1", ntime);
+            map.put("Parameter2", method);
+            map.put("Parameter3", totle);
+            map.put("Parameter4", amount);
+
+            map.put("Parameter5", balnce);
+            String reportpath = "src//resourse//tabletu.jasper";
             JRDataSource datas = new JRTableModelDataSource(jTable1.getModel());
             JasperPrint jdbc = JasperFillManager.fillReport(reportpath, map, datas);
             JasperViewer.viewReport(jdbc, false);
@@ -696,27 +746,21 @@ public class invoice extends javax.swing.JPanel {
             e.printStackTrace();;
         }
 
-        try {
-
-            HashMap<String, Object> map = new HashMap<>();
-            map.put("Parameter1", "");
-            map.put("Parameter2", combo);
-            map.put("Parameter3", totle);
-            map.put("Parameter4", out);
-            map.put("Parameter5", balnce);
-
-            String reportpath = "src//reports//invoice2.jasper";
-            JRDataSource data = new JREmptyDataSource();
-
-            JasperPrint jdbc = JasperFillManager.fillReport(reportpath, map, data);
-            JasperViewer.viewReport(jdbc, false);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        reset();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jTextField5KeyPressed
+
+    private void jComboBox1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseReleased
+        // TODO add your handling code here:
+        Pus();
+    }//GEN-LAST:event_jComboBox1MouseReleased
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -754,4 +798,8 @@ public class invoice extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
+
+    private void toString(double totle) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -2,7 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package hotel;
+package FrontOffice;
+
+import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
+import javax.swing.ButtonModel;
+import javax.swing.JOptionPane;
+import model.MySQL;
+import java.util.HashMap;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -10,11 +20,106 @@ package hotel;
  */
 public class custemer extends javax.swing.JPanel {
 
-    /**
-     * Creates new form custemer
-     */
+    public static HashMap<String, Integer> CityMap = new HashMap();
+    public static HashMap<String, Integer> CountryMap = new HashMap();
+
     public custemer() {
         initComponents();
+        loadCustomer();
+        loadCities();
+        loadCountry();
+    }
+
+    public void loadCustomer() {
+
+        try {
+            ResultSet resultSet = MySQL.execute(
+                    "SELECT `full_name`,`nic/passport`,`mobile`,`gender`,`line1`,`line2`,`name` FROM `customer` "
+                    + "INNER JOIN `gender` ON `customer`.`gender_id` = `gender`.`id`"
+                    + "INNER JOIN `customer_address` ON `customer_address`.`customer_nic/passport`= `customer`.`nic/passport`"
+                    + "INNER JOIN `customer_city` ON `customer_city`.`id` = `customer_address`.`customer_city_id`");
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            while (resultSet.next()) {
+
+                Vector<String> vector = new Vector<>();
+
+                vector.add(resultSet.getString("full_name"));
+                vector.add(resultSet.getString("nic/passport"));
+                vector.add(resultSet.getString("mobile"));
+                vector.add(resultSet.getString("gender.gender"));
+                
+                vector.add(resultSet.getString("customer_address.line1")+" "+
+                resultSet.getString("customer_address.line2")+" "+
+                resultSet.getString("customer_city.name"));
+
+                model.addRow(vector);
+                jTable1.setModel(model);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void loadCities() {
+
+        try {
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `city`");
+
+            Vector vector = new Vector();
+            vector.add("Select City");
+
+            while (resultSet.next()) {
+                vector.add(resultSet.getString("name"));
+                CityMap.put(resultSet.getString("name"), resultSet.getInt("id"));
+            }
+
+            DefaultComboBoxModel model = new DefaultComboBoxModel(vector);
+            jComboBox3.setModel(model);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void loadCountry() {
+
+        try {
+
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `country`");
+
+            Vector vector = new Vector();
+            vector.add("Select Country");
+
+            while (resultSet.next()) {
+                vector.add(resultSet.getString("name"));
+                CountryMap.put(resultSet.getString("name"), resultSet.getInt("id"));
+            }
+
+            DefaultComboBoxModel model = new DefaultComboBoxModel(vector);
+            jComboBox4.setModel(model);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void reset() {
+        jTextField1.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        buttonGroup1.clearSelection();
+        jTextField8.setText("");
+        jTextField9.setText("");
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
     }
 
     /**
@@ -25,15 +130,16 @@ public class custemer extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel3 = new javax.swing.JPanel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -93,12 +199,12 @@ public class custemer extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(472, Short.MAX_VALUE))
+                .addContainerGap(474, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -107,7 +213,6 @@ public class custemer extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jButton7.setForeground(new java.awt.Color(51, 51, 51));
         jButton7.setText("Register Now");
@@ -124,7 +229,7 @@ public class custemer extends javax.swing.JPanel {
         jButton13.setBackground(new java.awt.Color(52, 73, 94));
         jButton13.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jButton13.setText("Update customer ");
+        jButton13.setText("Update Customer ");
         jButton13.setMaximumSize(new java.awt.Dimension(50, 50));
         jButton13.setMinimumSize(new java.awt.Dimension(50, 50));
         jButton13.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -134,26 +239,16 @@ public class custemer extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(253, 208, 55));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Issu Room");
-        jButton2.setMaximumSize(new java.awt.Dimension(50, 50));
-        jButton2.setMinimumSize(new java.awt.Dimension(50, 50));
-        jButton2.setPreferredSize(new java.awt.Dimension(50, 50));
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(211, Short.MAX_VALUE)
+                .addContainerGap(398, Short.MAX_VALUE)
                 .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(40, 40, 40))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,48 +256,230 @@ public class custemer extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
         add(jPanel4, java.awt.BorderLayout.PAGE_END);
 
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jLabel2.setText("Full name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 19, 0, 0);
+        jPanel5.add(jLabel2, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 83;
+        gridBagConstraints.ipadx = 538;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 19, 0, 0);
+        jPanel5.add(jTextField1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 134;
+        gridBagConstraints.ipadx = 777;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 12, 0, 12);
+        jPanel5.add(jSeparator1, gridBagConstraints);
 
         jLabel7.setText("NIC  OR  Passport ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 19, 0, 0);
+        jPanel5.add(jLabel7, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 18;
+        gridBagConstraints.ipadx = 238;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 19, 0, 0);
+        jPanel5.add(jTextField4, gridBagConstraints);
 
         jLabel8.setText("Mobile ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 48;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 38, 0, 0);
+        jPanel5.add(jLabel8, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 48;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 35;
+        gridBagConstraints.ipadx = 239;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 38, 0, 0);
+        jPanel5.add(jTextField5, gridBagConstraints);
 
         jLabel11.setText("Gender");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 19, 0, 0);
+        jPanel5.add(jLabel11, gridBagConstraints);
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText(" Male");
+        jRadioButton1.setActionCommand("1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 19, 0, 0);
+        jPanel5.add(jRadioButton1, gridBagConstraints);
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Female");
+        jRadioButton2.setActionCommand("2");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 18, 0, 0);
+        jPanel5.add(jRadioButton2, gridBagConstraints);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "full name", "NIC", "mobile", "Gender", "address"
+                "full name", "NIC", "mobile", "Gender", "address"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 17;
+        gridBagConstraints.gridwidth = 133;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 715;
+        gridBagConstraints.ipady = 111;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(7, 21, 32, 0);
+        jPanel5.add(jScrollPane1, gridBagConstraints);
+
         jLabel4.setText("address ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 20, 0, 0);
+        jPanel5.add(jLabel4, gridBagConstraints);
 
         jLabel12.setText("line1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 20, 0, 0);
+        jPanel5.add(jLabel12, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 33;
+        gridBagConstraints.ipadx = 254;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 20, 0, 0);
+        jPanel5.add(jTextField8, gridBagConstraints);
 
         jLabel13.setText("line2");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 48;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 23, 0, 0);
+        jPanel5.add(jLabel13, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 48;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 84;
+        gridBagConstraints.ipadx = 281;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 23, 0, 0);
+        jPanel5.add(jTextField9, gridBagConstraints);
 
         jLabel14.setText("city");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(22, 20, 0, 0);
+        jPanel5.add(jLabel14, gridBagConstraints);
+
+        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField10ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 34;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 107;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 18, 0, 0);
+        jPanel5.add(jTextField10, gridBagConstraints);
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 34, 0, 0);
+        jPanel5.add(jComboBox3, gridBagConstraints);
 
         jButton3.setBackground(new java.awt.Color(52, 73, 94));
         jButton3.setText("add new city");
@@ -211,148 +488,347 @@ public class custemer extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 81;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 22;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 27, 0, 0);
+        jPanel5.add(jButton3, gridBagConstraints);
 
         jLabel15.setText("country");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 20, 0, 0);
+        jPanel5.add(jLabel15, gridBagConstraints);
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(16, 34, 0, 0);
+        jPanel5.add(jComboBox4, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 34;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 107;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(14, 18, 0, 0);
+        jPanel5.add(jTextField11, gridBagConstraints);
 
         jButton4.setBackground(new java.awt.Color(52, 73, 94));
         jButton4.setText("add new country");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton2)))
-                                .addGap(55, 55, 55)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jTextField1)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel15))
-                                .addGap(50, 50, 50)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jComboBox4, 0, 124, Short.MAX_VALUE)
-                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1)))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-        );
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 81;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 27, 0, 0);
+        jPanel5.add(jButton4, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridwidth = 134;
+        gridBagConstraints.ipadx = 777;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 12, 0, 12);
+        jPanel5.add(jSeparator2, gridBagConstraints);
 
         add(jPanel5, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        String fname = jTextField1.getText();
+        String nop = jTextField4.getText();
+        String mobile = jTextField5.getText();
+        ButtonModel gender = buttonGroup1.getSelection();
+        String addl1 = jTextField8.getText();
+        String addl2 = jTextField9.getText();
+        String city = String.valueOf(jComboBox3.getSelectedItem());
+        String country = String.valueOf(jComboBox4.getSelectedItem());
+
+        if (fname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Your Full Name", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else if (nop.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Your NIC or Passport", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else if (mobile.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Your Mobile Number", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else if (gender == null) {
+            JOptionPane.showMessageDialog(this, "Please Select Your Gender", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else if (addl1.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Your Address Line 1", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else if (addl2.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Your Address Line 2", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else if (city.equals("Select City")) {
+            JOptionPane.showMessageDialog(this, "Please Select Your  City", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else if (country.equals("Select Country")) {
+            JOptionPane.showMessageDialog(this, "Please Select Your country", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            String genderId = gender.getActionCommand();
+            int cityId = CityMap.get(city);
+            int countryid = CountryMap.get(country);
+
+            try {
+                ResultSet resultSet = MySQL.execute("SELECT * FROM `customer`"
+                        + "WHERE `full_name`='" + fname + "' AND `nic/passport`='" + nop + "'");
+
+                if (resultSet.next()) {
+                    JOptionPane.showMessageDialog(this, "This customer already exists", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+                    MySQL.execute("INSERT INTO `customer` (`nic/passport`, `mobile`, `full_name`,`gender_id`)\n"
+                            + "VALUES ('"+nop+"', '"+mobile+"', '"+fname+"', '"+genderId+"');\n"
+                            + "\n"
+                            + "INSERT INTO `customer_address` (`line1`, `line2`, `customer_city_id`, `customer_nic/passport`)\n"
+                            + "VALUES ('"+addl1+"', '"+addl2+"','"+cityId+"', '"+nop+"');"
+                    );
+
+                    JOptionPane.showMessageDialog(this, "successfully registered",
+                            "information", JOptionPane.INFORMATION_MESSAGE);
+
+                    loadCustomer();
+                    reset();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
+
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select row", "Warning", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            String id = String.valueOf(jTable1.getValueAt(selectedRow, 0));
+
+            String fname = jTextField1.getText();
+            String nop = jTextField4.getText();
+            String mobile = jTextField5.getText();
+            ButtonModel gender = buttonGroup1.getSelection();
+            String addl1 = jTextField8.getText();
+            String addl2 = jTextField9.getText();
+            String city = String.valueOf(jComboBox3.getSelectedItem());
+            String country = String.valueOf(jComboBox4.getSelectedItem());
+
+            if (fname.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Your Full Name", "Warning", JOptionPane.ERROR_MESSAGE);
+
+            } else if (nop.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Your NIC or Passport", "Warning", JOptionPane.ERROR_MESSAGE);
+
+            } else if (mobile.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Your Mobile Number", "Warning", JOptionPane.ERROR_MESSAGE);
+
+            } else if (addl1.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Your Address Line 1", "Warning", JOptionPane.ERROR_MESSAGE);
+
+            } else if (addl2.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Your Address Line 2", "Warning", JOptionPane.ERROR_MESSAGE);
+
+            } else if (city.equals("Select City")) {
+                JOptionPane.showMessageDialog(this, "Please Select Your  City", "Warning", JOptionPane.ERROR_MESSAGE);
+
+            } else if (country.equals("Select Country")) {
+                JOptionPane.showMessageDialog(this, "Please Select Your country", "Warning", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String genderId = gender.getActionCommand();
+                int cityId = CityMap.get(city);
+                int countryid = CountryMap.get(country);
+
+                try {
+
+                    MySQL.execute(""
+                    //                           UPDATE `customer` SET"
+                    //                            + " `nic/passport` = '" + nop + "'"
+                    //                            + " `mobile` = '" + mobile + "' "  
+                    //                            + " `full_name` = '" + fname + "' "
+                    //                            + " `gender_id` = '" + genderId + "',"
+                    //                                                     
+                    //                            
+                    //                            + "WHERE `id` = '" + id + "'
+
+                    );
+                       JOptionPane.showMessageDialog(this, "successfully update",
+                            "information", JOptionPane.INFORMATION_MESSAGE);
+
+
+                    loadCustomer();
+                    reset();
+
+                    jTable1.setEnabled(true);
+                    jButton7.setEnabled(true);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+
+        String cityname = jTextField10.getText();
+
+        if (cityname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter City Name", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+
+            try {
+                ResultSet resultSet = MySQL.execute("SELECT * FROM `city` WHERE `name` = '" + cityname + "'");
+
+                if (resultSet.next()) {
+                    JOptionPane.showMessageDialog(this, "This City Already Exists", "Warning", JOptionPane.WARNING_MESSAGE);
+                    jTextField10.setText("");
+
+                } else {
+                    MySQL.execute("INSERT INTO `city`(`name`) VALUES ('" + cityname + "')");
+
+                    JOptionPane.showMessageDialog(this, "successfully Added New City",
+                            "information", JOptionPane.INFORMATION_MESSAGE);
+
+                    jTextField10.setText("");
+                    loadCities();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+
+        if (evt.getClickCount() == 2) {
+
+            jTable1.setEnabled(false);
+            jButton7.setEnabled(false);
+
+            int selectedRow = jTable1.getSelectedRow();
+
+            String fname = String.valueOf(jTable1.getValueAt(selectedRow, 1));
+            jTextField1.setText(fname);
+
+            String nop = String.valueOf(jTable1.getValueAt(selectedRow, 2));
+            jTextField4.setText(nop);
+
+            String mobile = String.valueOf(jTable1.getValueAt(selectedRow, 3));
+            jTextField5.setText(mobile);
+
+            String gender = String.valueOf(jTable1.getValueAt(selectedRow, 4));
+
+            if (gender.equals("Male")) {
+                jRadioButton1.setSelected(true);
+            }
+            if (gender.equals("Female")) {
+                jRadioButton2.setSelected(true);
+            }
+
+            String addl1 = String.valueOf(jTable1.getValueAt(selectedRow, 5));
+            jTextField8.setText(addl1);
+
+            String addl2 = String.valueOf(jTable1.getValueAt(selectedRow, 6));
+            jTextField9.setText(addl2);
+
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+
+        String countryname = jTextField11.getText();
+
+        if (countryname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Country Name", "Warning", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+
+            try {
+                ResultSet resultSet = MySQL.execute("SELECT * FROM `country` WHERE `name` = '" + countryname + "'");
+
+                if (resultSet.next()) {
+                    JOptionPane.showMessageDialog(this, "This Country Already Exists", "Warning", JOptionPane.WARNING_MESSAGE);
+                    jTextField11.setText("");
+
+                } else {
+                    MySQL.execute("INSERT INTO `country` (`name`) VALUES ('" + countryname + "')");
+
+                    JOptionPane.showMessageDialog(this, "successfully Added New country",
+                            "information", JOptionPane.INFORMATION_MESSAGE);
+
+                    jTextField11.setText("");
+                    loadCountry();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;

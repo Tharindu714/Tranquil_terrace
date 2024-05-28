@@ -1,18 +1,9 @@
-
 package FrontOffice;
 
-import FrontOffice.viewfoodorder;
 import java.awt.BorderLayout;
 
-/**
- *
- * @author maleesha
- */
 public class foodnavi extends javax.swing.JPanel {
 
-    /**
-     * Creates new form foodnavi
-     */
     public foodnavi() {
         initComponents();
         jPanel2.removeAll();

@@ -1,4 +1,3 @@
-
 package FrontOffice;
 
 import java.awt.Color;
@@ -11,13 +10,16 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 
+
 /**
  *
  * @author maleesha
  */
 public class Roomallocation extends javax.swing.JPanel {
 
-
+    /**
+     * Creates new form Roomallocation
+     */
     static boolean rms = true;
 
     public Roomallocation() {
@@ -289,7 +291,7 @@ public class Roomallocation extends javax.swing.JPanel {
 
 //                ResultSet rest = mysql.search("SELECT `id` FROM `customer_visit_hotel` WHERE `customer_nic/passport`='" + nic + "'");
 //                ResultSet uest = mysql.search("SELECT `id` FROM `rooms` WHERE `room_name`='" + room + "'");
-                MySQL.execute("INSERT INTO room_assigned_customer"
+               MySQL.execute("INSERT INTO room_assigned_customer"
                         + " (from_date,customer_visit_hotel_id,to_date,rooms_id) "
                         + "VALUES ('" + checkin + "',"
                         + " (select id from customer_visit_hotel WHERE `customer_nic/passport`= '" + nic + "' AND `check_in` = '" + checkin + "'),"
@@ -297,6 +299,8 @@ public class Roomallocation extends javax.swing.JPanel {
                         + " (SELECT `id` FROM `rooms` WHERE `room_name` = '" + room + "'))");
             } catch (Exception e) {
             }
+            JOptionPane.showMessageDialog(this, "successfully allocate",
+                    "sucess", JOptionPane.INFORMATION_MESSAGE);
             reset();
 
         }
