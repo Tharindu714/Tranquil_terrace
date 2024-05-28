@@ -24,7 +24,7 @@ public class resturent_customer extends javax.swing.JFrame {
             + "INNER JOIN `food_category` ON `food_item`.`food_category_id` = `food_category`.id ");
     HashMap<String, String> payMap = new HashMap<>();
     HashMap<String, String> catMap = new HashMap<>();
-
+    
     public resturent_customer() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
