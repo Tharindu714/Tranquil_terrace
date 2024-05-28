@@ -109,10 +109,10 @@ public class Check_food_Reservation extends javax.swing.JFrame {
             loadRes(query + "ORDER BY `kot`.`id` ASC");
 
         } else if (sortIndex == 1) {
-            loadRes(query + "ORDER BY `customer_visit_hotel`.`total` DESC");
+            loadRes(query + "ORDER BY `food_item`.`price` DESC");
 
         } else if (sortIndex == 2) {
-            loadRes(query + "ORDER BY `customer_visit_hotel`.`total` ASC");
+            loadRes(query + "ORDER BY `food_item`.`price` ASC");
 
         }
     }
