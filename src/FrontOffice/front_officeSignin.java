@@ -2,7 +2,6 @@ package FrontOffice;
 
 import GUI.Dashboard;
 import com.formdev.flatlaf.IntelliJTheme;
-import hotel.Kitchen_Dashboard;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -298,13 +297,8 @@ public class front_officeSignin extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(this, "Login Successful", "SUCCESSFULLY LOGIN", JOptionPane.INFORMATION_MESSAGE);
 
-                    String mobile = resultset.getString("mobile");
-                    String fname = resultset.getString("first_name");
-                    String lname = resultset.getString("last_name");
-                    String reg = resultset.getString("registered_date");
-
-                    FrontOfficeProfile FP = new FrontOfficeProfile(username, mobile, fname, lname, reg);
-                    FP.setVisible(true);
+                    desktop desk = new desktop();
+                    desk.setVisible(true);
                     this.dispose();
 
                     setEmployeeUsername(username);
