@@ -28,6 +28,7 @@ public class NewJPanel extends javax.swing.JPanel {
         loadt();
         load_payment();
 
+
     }
 
     private void loadt() {

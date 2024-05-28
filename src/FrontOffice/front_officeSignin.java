@@ -2,6 +2,7 @@ package FrontOffice;
 
 import GUI.Dashboard;
 import com.formdev.flatlaf.IntelliJTheme;
+import hotel.Kitchen_Dashboard;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +10,16 @@ import javax.swing.JOptionPane;
 import model.MySQL;
 
 public class front_officeSignin extends javax.swing.JFrame {
+
+    private static String employeeUsername;
+
+    public static String getEmployeeUsername() {
+        return employeeUsername;
+    }
+
+    private static void setEmployeeUsername(String employeeUsername) {
+        front_officeSignin.employeeUsername = employeeUsername;
+    }
 
     public front_officeSignin() {
         initComponents();
@@ -287,9 +298,16 @@ public class front_officeSignin extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(this, "Login Successful", "SUCCESSFULLY LOGIN", JOptionPane.INFORMATION_MESSAGE);
 
-                    desktop des = new desktop();
-                    des.setVisible(true);
+                    String mobile = resultset.getString("mobile");
+                    String fname = resultset.getString("first_name");
+                    String lname = resultset.getString("last_name");
+                    String reg = resultset.getString("registered_date");
+
+                    FrontOfficeProfile FP = new FrontOfficeProfile(username, mobile, fname, lname, reg);
+                    FP.setVisible(true);
                     this.dispose();
+
+                    setEmployeeUsername(username);
 
                 } else {
                     JOptionPane.showMessageDialog(this, "You are Not a Valid User", "Warning", JOptionPane.WARNING_MESSAGE);

@@ -1,5 +1,6 @@
 package GUI;
 
+import FrontOffice.front_officeSignin;
 import HR.HrSignIn;
 import hotel.Kitchen_Signin;
 import com.formdev.flatlaf.IntelliJTheme;
@@ -96,6 +97,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButton4.setText("Receptionist");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4);
 
         jButton2.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
@@ -155,6 +161,12 @@ public class Dashboard extends javax.swing.JFrame {
         hr.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        front_officeSignin fo = new front_officeSignin();
+        fo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

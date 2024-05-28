@@ -1,28 +1,24 @@
 package FrontOffice;
+
 import com.formdev.flatlaf.FlatDarkLaf;
 import FrontOffice.custemer;
+import GUI.Dashboard;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.UIManager;
-
 
 public class desktop extends javax.swing.JFrame {
 
-    /**
-     * Creates new form desktop
-     */
     public desktop() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
         jPanel2.removeAll();
         NewJPanel desk = new NewJPanel();
         jPanel2.add(desk, BorderLayout.CENTER);
 
         repaint();
         revalidate();
-        setExtendedState(MAXIMIZED_BOTH);
 
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -56,10 +52,12 @@ public class desktop extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jProgressBar6 = new javax.swing.JProgressBar();
         jLabel7 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(52, 73, 94));
         jPanel1.setPreferredSize(new java.awt.Dimension(225, 450));
@@ -366,6 +364,15 @@ public class desktop extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(28, 6, 202, 18);
         jPanel1.add(jPanel3, gridBagConstraints);
 
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/circle-xmark.png"))); // NOI18N
+        jButton6.setContentAreaFilled(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new java.awt.GridBagConstraints());
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
         jPanel2.setLayout(new java.awt.BorderLayout());
@@ -386,6 +393,7 @@ public class desktop extends javax.swing.JFrame {
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -512,6 +520,12 @@ public class desktop extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseClicked
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Dashboard dashboard = new Dashboard();
+        dashboard.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -552,6 +566,7 @@ public class desktop extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
