@@ -15,6 +15,7 @@ public class AdminSignUp extends javax.swing.JFrame {
 
     public AdminSignUp() {
         initComponents();
+        
         jPasswordField4.setText("This is your Password");
         loadGender();
     }
