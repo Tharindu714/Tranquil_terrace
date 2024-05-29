@@ -1191,7 +1191,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                 String reportPath = "src//reports//work_schedule.jasper";
 
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", "root", "Ds7838@#");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", "root", "tharinduCHA@8754");
 
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, connection);
                 JasperViewer.viewReport(jasperPrint, false);
