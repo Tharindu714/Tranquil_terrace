@@ -5,14 +5,17 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 
-
+/**
+ *
+ * @author maleesha
+ */
 public class foododer extends javax.swing.JPanel {
 
     private String ntime;
@@ -30,7 +33,6 @@ public class foododer extends javax.swing.JPanel {
 
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,7 +42,6 @@ public class foododer extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -51,6 +52,7 @@ public class foododer extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -60,42 +62,51 @@ public class foododer extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel9.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("food order");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 129, 27));
 
         jLabel8.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("custemer nic");
-
-        jTextField1.setText("851246793V");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 101, 27));
 
         jLabel10.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("select food");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 139, 27));
 
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField2KeyReleased(evt);
             }
         });
+        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 120, 210, 30));
 
         jLabel11.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("quentity");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 139, 27));
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
+        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 210, 30));
 
         jLabel13.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("request time");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 158, 139, 27));
 
         jLabel14.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("meal time");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 139, 27));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -103,71 +114,24 @@ public class foododer extends javax.swing.JPanel {
                 jComboBox2ActionPerformed(evt);
             }
         });
+        jComboBox2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jComboBox2KeyReleased(evt);
+            }
+        });
+        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 203, 32));
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 61, 800, 10));
+        jPanel3.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 191, 190, 32));
 
         jLabel1.setText(" 0");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 28, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
-            .addComponent(jSeparator1)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 120, 190, 30));
 
         add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
@@ -214,7 +178,7 @@ public class foododer extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -227,6 +191,15 @@ public class foododer extends javax.swing.JPanel {
             }
         });
         jScrollPane4.setViewportView(jTable4);
+        if (jTable4.getColumnModel().getColumnCount() > 0) {
+            jTable4.getColumnModel().getColumn(0).setResizable(false);
+            jTable4.getColumnModel().getColumn(1).setResizable(false);
+            jTable4.getColumnModel().getColumn(2).setResizable(false);
+            jTable4.getColumnModel().getColumn(3).setResizable(false);
+            jTable4.getColumnModel().getColumn(4).setResizable(false);
+            jTable4.getColumnModel().getColumn(5).setResizable(false);
+            jTable4.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -261,6 +234,27 @@ public class foododer extends javax.swing.JPanel {
 
             jTextField2.setText(food);
             jLabel1.setText(id);
+
+            DefaultTableModel tgbc = (DefaultTableModel) jTable4.getModel();
+            tgbc.setRowCount(0);
+
+        }
+
+    }
+
+    HashMap<String, Integer> table = new HashMap<>();
+    HashMap<String, Integer> food = new HashMap<>();
+
+    private void doubleclick() {
+
+        int selectedRow = jTable4.getSelectedRow();
+        if (selectedRow != -1) {
+            int id = (int) jTable4.getValueAt(selectedRow, 0);
+            String nicu = jTable4.getValueAt(jTable4.getSelectedRow(), 1).toString();
+
+            jTextField1.setText(nicu);
+            this.table.put(nicu, id);
+
             DefaultTableModel tgbc = (DefaultTableModel) jTable4.getModel();
             tgbc.setRowCount(0);
 
@@ -272,42 +266,68 @@ public class foododer extends javax.swing.JPanel {
         DefaultTableModel tgbc = (DefaultTableModel) jTable4.getModel();
         tgbc.setRowCount(0);
         jTextField2.setText("");
-        jTextField1.setText("");
         jTextField3.setText("");
+        jTextField1.setText("");
         jLabel1.setText("");
         jComboBox2.setSelectedItem(0);
 
     }
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code gehere:
-
-
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        String nic = jTextField1.getText();
-        String food = jTextField2.getText();
 
-        String id = jLabel1.getText();
-        String qty = jTextField3.getText();
+        try {
 
-        int ide = Integer.parseInt(id);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date startdate = jDateChooser1.getDate();
-        String formattedStartDate = sdf.format(startdate);
+            JOptionPane.showMessageDialog(this, "successfully",
+                    "Order added successfull", JOptionPane.INFORMATION_MESSAGE);
+            int rowc = jTable4.getRowCount();
 
-        String meal = jComboBox2.getSelectedItem().toString();
+            for (int i = 0; i < rowc; i++) {
+//            int i = jTable4.getSelectedRow();
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
 
+                String date = dtf.format(now);
+                String maile = jTable4.getValueAt(i, 3).toString();
+                String coustomer = jTable4.getValueAt(i, 1).toString();
+                String time = jTable4.getValueAt(i, 4).toString();
+                String foode = jTable4.getValueAt(i, 2).toString();
+                String qty = jTable4.getValueAt(i, 6).toString();
+                Integer qtyr = Integer.valueOf(qty);
 
-        JOptionPane.showMessageDialog(this, "food added success",
-                "success", JOptionPane.INFORMATION_MESSAGE);
+                int id = table.get(coustomer);
+                int foodid = food.get(foode);
+                int maelid = this.mail.get(maile);
+
+                MySQL.execute("INSERT INTO `kot`"
+                        + " (`ordered_time`,`req_time`,`meal_time_id`,`kot_status_id`,`customer_visit_hotel_id`) VALUE"
+                        + " ('" + date + "','" + time + "','" + maelid + "','1','" + id + "')  WHERE `customer_visit_hotel_id` = '" + id + "'");
+                System.out.println("int sussce");
+                ResultSet search = MySQL.execute("SELECT `id` FROM `kot` WHERE ordered_time = '" + date + "'");
+
+                if (search.next()) {
+                    System.out.println("search ok");
+
+                    int kotid = search.getInt("id");
+                    MySQL.execute("INSERT INTO `kot_has_food` (`kot_id`,`food_item_id`,`qty`) VALUE ('" + kotid + "','" + foodid + "','" + qtyr + "') ;");
+
+                }
+
+                System.out.println("ok");
+            }
+
+            DefaultTableModel tgbc = (DefaultTableModel) jTable4.getModel();
+            tgbc.setRowCount(0);
+            reset();
+
+        } catch (Exception e) {
+        }
 
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
@@ -318,12 +338,85 @@ public class foododer extends javax.swing.JPanel {
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
         // TODO add your handling code here:
 
-        if (evt.getClickCount() == 1) {
+        if (evt.getClickCount() == 2) {
+
             oneclick();
-        } else if (evt.getClickCount() == 2) {
+            doubleclick();
+        } else if (evt.getClickCount() == 3) {
             reset();
+        } else if (evt.getClickCount() == 3) {
+
         }
     }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jComboBox2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox2KeyReleased
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jComboBox2KeyReleased
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+
+        try {
+
+            DefaultTableModel tgbc = (DefaultTableModel) jTable4.getModel();
+            tgbc.setRowCount(0);
+            String text = jTextField1.getText();
+
+            ResultSet rest = MySQL.execute("SELECT `customer_nic/passport`,`id` FROM customer_visit_hotel WHERE `customer_nic/passport` LIKE '" + text + "%' AND payment_method_id = '3'");
+            while (rest.next()) {
+                int aInt = rest.getInt("id");
+                String stu = rest.getString("customer_nic/passport");
+
+                Vector vtc = new Vector();
+                vtc.add(aInt);
+                //                vtc.add(f_name);
+                vtc.add(stu);
+                vtc.add("");
+                vtc.add("");
+                vtc.add("");
+                vtc.add("");
+                vtc.add("");
+
+                tgbc.addRow(vtc);
+
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        // TODO add your handling code here:
+
+        String nic = jTextField1.getText();
+        String food = jTextField2.getText();
+        String qty = jTextField3.getText();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date startdate = jDateChooser1.getDate();
+        String formattedStartDate = sdf.format(startdate);
+
+        Object selectedItem = jComboBox2.getSelectedItem();
+
+        DefaultTableModel tgbc = (DefaultTableModel) jTable4.getModel();
+        tgbc.setRowCount(0);
+
+        Vector vtc = new Vector();
+        vtc.add("");
+//                vtc.add(f_name);
+        vtc.add(nic);
+        vtc.add(food);
+        vtc.add(selectedItem);
+        vtc.add(formattedStartDate);
+        vtc.add("Pending");
+        vtc.add(qty);
+
+        tgbc.addRow(vtc);
+
+
+    }//GEN-LAST:event_jTextField3KeyReleased
 
 //    private void loadcatogory() {
 //        try {
@@ -359,6 +452,7 @@ public class foododer extends javax.swing.JPanel {
                 int id = rest.getInt("id");
                 String name = rest.getString("name");
                 String nulll = "";
+                this.food.put(name, id);
 
                 Vector vtc = new Vector();
 
@@ -381,21 +475,26 @@ public class foododer extends javax.swing.JPanel {
 
     }
 
+    HashMap<String, Integer> mail = new HashMap<>();
+
     private void loadmail() {
         try {
             jComboBox2.removeAllItems();
             Vector v = new Vector();
 
-            ResultSet resultset = MySQL.execute("SELECT `type` FROM  `meal_time`");
+            ResultSet resultset = MySQL.execute("SELECT * FROM  `meal_time`");
 
             while (resultset.next()) {
                 String iato = resultset.getString("type");
+                int ia = resultset.getInt("id");
 
                 System.out.println(iato);
                 v.add(iato);
 
                 DefaultComboBoxModel def = new DefaultComboBoxModel(v);
                 jComboBox2.setModel(def);
+
+                this.mail.put(iato, ia);
             }
         } catch (Exception e) {
 
