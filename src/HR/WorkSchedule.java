@@ -732,7 +732,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             department(dateDepart.getText());
 
         } catch (Exception e) {
-                 Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -759,7 +759,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             return "0%";
 
         } catch (Exception e) {
-                     Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
             return null;
         }
@@ -809,7 +809,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -856,7 +856,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-                     Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -956,7 +956,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                     loadworkSchedule("");
 
                 } catch (Exception e) {
-                                Dashboard.log.warning(e.toString());
+                    Dashboard.log.warning(e.toString());
 
                 }
 
@@ -1010,7 +1010,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                     loadworkSchedule("");
                 } catch (Exception e) {
 
-                           Dashboard.log.warning(e.toString());
+                    Dashboard.log.warning(e.toString());
 
                     JOptionPane.showMessageDialog(this, "Insert Faild", "Wrong", JOptionPane.ERROR_MESSAGE);
 
@@ -1132,7 +1132,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             onTime.setText(this.Date.getText() + " " + time);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }//GEN-LAST:event_timePicker1PropertyChange
@@ -1163,7 +1163,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             offTime.setText(this.Date.getText() + " " + time);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }//GEN-LAST:event_timePicker2PropertyChange
@@ -1197,7 +1197,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         } else {
@@ -1209,17 +1209,8 @@ public class WorkSchedule extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
                 "/themes/Atom_One_DarkContrast.theme.json"));
-
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new WorkSchedule().setVisible(true);
