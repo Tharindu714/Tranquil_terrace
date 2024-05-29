@@ -1183,7 +1183,7 @@ public class WorkSchedule extends javax.swing.JFrame {
     }//GEN-LAST:event_dateDepartPropertyChange
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Do you need to Print Employee Attendance Report?", "Confirm Alert",
+        if (JOptionPane.showConfirmDialog(this, "Do you need to Print Employee Work Schedule Report?", "Confirm Alert",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             try {
                 HashMap<String, Object> map = new HashMap<>();
