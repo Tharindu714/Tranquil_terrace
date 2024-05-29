@@ -38,7 +38,8 @@ public class emp_address extends javax.swing.JFrame {
             jComboBox2.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -56,7 +57,8 @@ public class emp_address extends javax.swing.JFrame {
             jComboBox1.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -82,7 +84,8 @@ public class emp_address extends javax.swing.JFrame {
                 model.addRow(vector);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -141,7 +144,8 @@ public class emp_address extends javax.swing.JFrame {
                 commons();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -431,7 +435,8 @@ public class emp_address extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "HR Officer Address Added Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 commons();
             } catch (Exception e) {
-                e.printStackTrace();
+                           Dashboard.log.warning(e.toString());
+
             }
 
         }
@@ -464,7 +469,8 @@ public class emp_address extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "HR Officer Address Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 commons();
             } catch (Exception e) {
-                e.printStackTrace();
+                           Dashboard.log.warning(e.toString());
+
             }
 
         }

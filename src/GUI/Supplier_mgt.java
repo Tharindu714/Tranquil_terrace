@@ -31,7 +31,8 @@ public class Supplier_mgt extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -332,7 +333,8 @@ public class Supplier_mgt extends javax.swing.JFrame {
                             + "VALUES('" + mobile + "','" + fname + "','" + lname + "','" + email + "')");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                            Dashboard.log.warning(e.toString());
+
             }
 
             JOptionPane.showMessageDialog(this, "Supplier Registered Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
@@ -375,7 +377,8 @@ public class Supplier_mgt extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please select Specific supplier", "Message", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

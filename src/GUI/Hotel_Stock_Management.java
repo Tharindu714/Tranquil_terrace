@@ -53,7 +53,8 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -74,7 +75,8 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             jComboBox3.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -94,7 +96,8 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             jComboBox2.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -114,7 +117,8 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             jComboBox1.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -179,7 +183,8 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                 commons();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -509,7 +514,8 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                             + "VALUES('" + eqname + "','" + catMap.get(catagory) + "','" + DeptMap.get(department) + "','" + statusMap.get(status) + "')");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                           Dashboard.log.warning(e.toString());
+
             }
 
             JOptionPane.showMessageDialog(this, "Equipment Added Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
@@ -546,14 +552,16 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Equipment Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                         commons();
                     } catch (Exception e) {
-                        e.printStackTrace();
+                                    Dashboard.log.warning(e.toString());
+
                     }
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Please select the equipment", "Message", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -591,7 +599,8 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                            Dashboard.log.warning(e.toString());
+
             }
         } else {
             commons();
@@ -615,7 +624,8 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
         commons();
     }//GEN-LAST:event_jButton4ActionPerformed

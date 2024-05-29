@@ -187,7 +187,8 @@ public class Salary_Charts extends javax.swing.JFrame {
             jPanel1.revalidate();
             SwingUtilities.updateComponentTreeUI(this);
         } catch (Exception e) {
-            e.printStackTrace();
+                      Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton6jButton1ActionPerformed
 
@@ -249,7 +250,8 @@ public class Salary_Charts extends javax.swing.JFrame {
             jPanel1.repaint();
             SwingUtilities.updateComponentTreeUI(this);
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton7jButton1ActionPerformed
 
@@ -269,7 +271,8 @@ public class Salary_Charts extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
 
         JFreeChart lineChart = ChartFactory.createLineChart("Employee Salary", "Month", "Salary", dataset);

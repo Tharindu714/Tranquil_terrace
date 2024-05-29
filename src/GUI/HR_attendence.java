@@ -41,7 +41,8 @@ public class HR_attendence extends javax.swing.JFrame {
             jComboBox1.setModel(comboBoxModel);
             
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }
     
@@ -59,6 +60,8 @@ public class HR_attendence extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
+                       
+
         }
     }
     
@@ -78,7 +81,8 @@ public class HR_attendence extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
     
@@ -380,7 +384,8 @@ public class HR_attendence extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "HR attendance Marked Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 commons();
             } catch (Exception e) {
-                e.printStackTrace();
+                            Dashboard.log.warning(e.toString());
+
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

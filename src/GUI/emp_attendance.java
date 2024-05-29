@@ -65,7 +65,8 @@ public class emp_attendance extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -421,7 +422,8 @@ public class emp_attendance extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                           Dashboard.log.warning(e.toString());
+
             }
         } else {
             loadUI();

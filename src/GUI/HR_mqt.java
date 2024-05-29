@@ -49,7 +49,8 @@ public class HR_mqt extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -70,7 +71,8 @@ public class HR_mqt extends javax.swing.JFrame {
             jComboBox2.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -139,7 +141,8 @@ public class HR_mqt extends javax.swing.JFrame {
                     jPasswordField1.setText(password);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                           Dashboard.log.warning(e.toString());
+
             }
         }
     }
@@ -493,7 +496,8 @@ public class HR_mqt extends javax.swing.JFrame {
                             + "VALUES('" + fname + "','" + lname + "','" + mobile + "','" + username + "','" + password + "','1','" + datetime + "','4','" + typeMap.get(gender) + "','" + datetime + "','3')");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                            Dashboard.log.warning(e.toString());
+
             }
 
             JOptionPane.showMessageDialog(this, "User Registered Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
@@ -551,7 +555,8 @@ public class HR_mqt extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please select Specific User", "Message", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

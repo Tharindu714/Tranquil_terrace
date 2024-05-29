@@ -171,7 +171,8 @@ public class income_chart extends javax.swing.JFrame {
             jPanel3.revalidate();
             SwingUtilities.updateComponentTreeUI(this);
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton6jButton1ActionPerformed
 
@@ -194,7 +195,8 @@ public class income_chart extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
 
         JFreeChart lineChart = ChartFactory.createLineChart("Daily Hotel Income", "Date", "Daily Income", dataset);

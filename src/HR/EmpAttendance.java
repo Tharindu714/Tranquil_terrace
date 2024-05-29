@@ -51,7 +51,8 @@ public class EmpAttendance extends javax.swing.JFrame {
             return "0%";
 
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
             return null;
         }
 
@@ -127,7 +128,8 @@ public class EmpAttendance extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-            e.printStackTrace();
+                      Dashboard.log.warning(e.toString());
+
 
         }
 
@@ -546,7 +548,8 @@ public class EmpAttendance extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                    Dashboard.log.warning(e.toString());
+
         }
 
 
@@ -676,7 +679,8 @@ public class EmpAttendance extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
 
     }

@@ -47,7 +47,8 @@ public class Admin_profile extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -68,7 +69,8 @@ public class Admin_profile extends javax.swing.JFrame {
             jComboBox2.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -116,7 +118,8 @@ public class Admin_profile extends javax.swing.JFrame {
                     jPasswordField1.setText(password);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                            Dashboard.log.warning(e.toString());
+
             }
         }
     }
@@ -501,7 +504,8 @@ public class Admin_profile extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please select Specific Administrator", "Alert", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

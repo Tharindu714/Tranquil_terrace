@@ -43,7 +43,8 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -64,7 +65,8 @@ public class Kitchen_stock extends javax.swing.JFrame {
             jComboBox1.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -416,7 +418,8 @@ public class Kitchen_stock extends javax.swing.JFrame {
                             + "VALUES('" + itemName + "','" + qty + "','" + current_qty + "','" + UnitMap.get(unit) + "')");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                           Dashboard.log.warning(e.toString());
+
             }
 
             JOptionPane.showMessageDialog(this, "Item Added to Stock Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
@@ -449,14 +452,16 @@ public class Kitchen_stock extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Stock Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                         commons();
                     } catch (Exception e) {
-                        e.printStackTrace();
+                                   Dashboard.log.warning(e.toString());
+
                     }
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Please select the Stock item", "Message", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -474,7 +479,8 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 commons();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
         commons();
 
@@ -497,7 +503,8 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                           Dashboard.log.warning(e.toString());
+
             }
         } else {
             commons();

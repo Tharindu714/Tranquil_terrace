@@ -562,7 +562,8 @@ public class Admin_main_panel extends javax.swing.JFrame {
             Runtime runtime = Runtime.getRuntime();
             runtime.exec("notepad.exe");
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -582,7 +583,8 @@ public class Admin_main_panel extends javax.swing.JFrame {
             Runtime runtime = Runtime.getRuntime();
             runtime.exec("calc.exe");
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 

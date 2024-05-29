@@ -64,7 +64,8 @@ public class empSalary extends javax.swing.JFrame {
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
-            e.printStackTrace();
+                      Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -85,7 +86,8 @@ public class empSalary extends javax.swing.JFrame {
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
-            e.printStackTrace();
+                      Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -102,7 +104,8 @@ public class empSalary extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                           Dashboard.log.warning(e.toString());
+
             }
         } else {
             commons();
@@ -134,7 +137,8 @@ public class empSalary extends javax.swing.JFrame {
                 jTextField1.setText(String.valueOf(nextID));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -159,7 +163,8 @@ public class empSalary extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -180,7 +185,8 @@ public class empSalary extends javax.swing.JFrame {
             jComboBox1.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                     Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -670,7 +676,8 @@ public class empSalary extends javax.swing.JFrame {
                     commons();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                          Dashboard.log.warning(e.toString());
+
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -736,7 +743,8 @@ public class empSalary extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                            Dashboard.log.warning(e.toString());
+
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed

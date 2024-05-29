@@ -36,7 +36,7 @@ public class AdminSignUp extends javax.swing.JFrame {
             jComboBox1.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Dashboard.log.warning(e.toString());
         }
     }
 
@@ -441,7 +441,8 @@ public class AdminSignUp extends javax.swing.JFrame {
                             + "VALUES('" + fname + "','" + lname + "','" + mobile + "','" + username + "','" + password + "','1','" + datetime + "','1','" + typeMap.get(gender) + "','" + datetime + "')");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                            Dashboard.log.warning(e.toString());
+
             }
 
             JOptionPane.showMessageDialog(this, "User Registered Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);

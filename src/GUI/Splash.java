@@ -25,7 +25,8 @@ public class Splash extends javax.swing.JFrame {
                         try {
                             Thread.sleep(25);
                         } catch (Exception e) {
-                            e.printStackTrace();
+                                        Dashboard.log.warning(e.toString());
+
                         }
                     }
                     Dashboard d = new Dashboard();

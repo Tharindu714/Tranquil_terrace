@@ -319,7 +319,8 @@ public class AdminSignin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "You are Not a Valid User", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                            Dashboard.log.warning(e.toString());
+
             }
 
         }

@@ -4,9 +4,31 @@ import FrontOffice.front_officeSignin;
 import HR.HrSignIn;
 import hotel.Kitchen_Signin;
 import com.formdev.flatlaf.IntelliJTheme;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class Dashboard extends javax.swing.JFrame {
 
+    
+    public static Logger log;
+    public static FileHandler Handler;
+
+    static {
+
+        try {
+
+            log = Logger.getLogger("gui");
+            Handler = new FileHandler("log.txt", true);
+            Handler.setFormatter(new SimpleFormatter());
+            log.addHandler(Handler);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
     public Dashboard() {
         initComponents();
     }
