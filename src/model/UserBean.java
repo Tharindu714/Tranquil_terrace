@@ -1,13 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package model;
-
-/**
- *
- * @author DS
- */
 public class UserBean {
 
     private String userName;
@@ -28,30 +18,19 @@ public class UserBean {
     
     
 
-    /**
-     * @return the userName
-     */
     public String getUserName() {
         return userName;
     }
 
-    /**
-     * @param userName the userName to set
-     */
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    /**
-     * @return the userRole
-     */
+
     public String getUserRole() {
         return userRole;
     }
 
-    /**
-     * @param userRole the userRole to set
-     */
     public void setUserRole(String userRole) {
         this.userRole = userRole;
     }

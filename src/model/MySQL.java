@@ -26,5 +26,4 @@ public class MySQL {
                 return null;
             }
     }
-
 }

@@ -61,8 +61,6 @@ public class Check_Rooms extends javax.swing.JFrame {
             }
         } catch (Exception e) {
                        Dashboard.log.warning(e.toString());
-
-
         }
 
     }

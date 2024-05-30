@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
 package model;
 
 import javax.swing.JComboBox;
@@ -39,9 +35,6 @@ public class ValidationTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of is_Valid_Password method, of class Validation.
-     */
     @Test
     public void testIs_Valid_Password() {
         System.out.println("is_Valid_Password");
