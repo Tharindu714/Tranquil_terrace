@@ -540,7 +540,7 @@ public class HR_salary extends javax.swing.JFrame {
 
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 15)); // NOI18N
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setAlignmentX(RIGHT_ALIGNMENT);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -565,6 +565,7 @@ public class HR_salary extends javax.swing.JFrame {
         jTable1.setFocusable(false);
         jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);

@@ -292,7 +292,7 @@ public class Check_grn_lists extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(452, 302));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 15)); // NOI18N
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -315,6 +315,7 @@ public class Check_grn_lists extends javax.swing.JFrame {
         });
         jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);

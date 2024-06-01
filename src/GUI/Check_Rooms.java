@@ -421,7 +421,7 @@ public class Check_Rooms extends javax.swing.JFrame {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(452, 300));
 
-        jTable1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 13)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 15)); // NOI18N
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -443,6 +443,7 @@ public class Check_Rooms extends javax.swing.JFrame {
             }
         });
         jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
