@@ -67,7 +67,7 @@ public class HR_salary extends javax.swing.JFrame {
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -89,7 +89,7 @@ public class HR_salary extends javax.swing.JFrame {
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -107,7 +107,7 @@ public class HR_salary extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         } else {
@@ -140,7 +140,7 @@ public class HR_salary extends javax.swing.JFrame {
                 jTextField1.setText(String.valueOf(nextID));
             }
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -166,7 +166,7 @@ public class HR_salary extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -316,10 +316,8 @@ public class HR_salary extends javax.swing.JFrame {
         jLabel6.setText("Salary Advance");
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFormattedTextField1.setText("0");
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFormattedTextField2.setText("0");
         jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField2MouseClicked(evt);
@@ -338,6 +336,7 @@ public class HR_salary extends javax.swing.JFrame {
         jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setText("Salary Due");
 
+        jFormattedTextField3.setEditable(false);
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField3.setText("0");
 
@@ -651,7 +650,7 @@ public class HR_salary extends javax.swing.JFrame {
                     commons();
                 }
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         }
@@ -690,12 +689,14 @@ public class HR_salary extends javax.swing.JFrame {
         Date issuedDate = jDateChooser3.getDate();
         String issuedjDate = sdf.format(issuedDate);
 
+        double latest_advance = Double.parseDouble(jFormattedTextField4.getText());
+        double advanceUpdate = latest_advance + advance;
+
         if (issuedjDate.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Select the issued date", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (latest_advance < 0) {   
+            JOptionPane.showMessageDialog(this, "Can't type Minus numbers for salary advance", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-
-            double latest_advance = Double.parseDouble(jFormattedTextField4.getText());
-           double advanceUpdate = latest_advance + advance;
 
             try {
                 MySQL.execute("UPDATE `salary` SET "
@@ -718,7 +719,7 @@ public class HR_salary extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         }

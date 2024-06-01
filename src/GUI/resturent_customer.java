@@ -24,7 +24,7 @@ public class resturent_customer extends javax.swing.JFrame {
             + "INNER JOIN `food_category` ON `food_item`.`food_category_id` = `food_category`.id ");
     HashMap<String, String> payMap = new HashMap<>();
     HashMap<String, String> catMap = new HashMap<>();
-    
+
     public resturent_customer() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -52,7 +52,7 @@ public class resturent_customer extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -74,7 +74,7 @@ public class resturent_customer extends javax.swing.JFrame {
             jComboBox4.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -106,7 +106,7 @@ public class resturent_customer extends javax.swing.JFrame {
             jComboBox3.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -414,18 +414,30 @@ public class resturent_customer extends javax.swing.JFrame {
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         timeSearch();
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
         SearchCategory();
+        jComboBox2.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
         Searchpay();
+        jComboBox3.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
         priceSearch();
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox5ItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -445,7 +457,7 @@ public class resturent_customer extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         } else {
