@@ -53,12 +53,12 @@ public class emp_salary extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
     }
-    
+
 //Database Loading and Searching 
     private void loadType() {
         try {
@@ -76,7 +76,7 @@ public class emp_salary extends javax.swing.JFrame {
             jComboBox5.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -108,7 +108,7 @@ public class emp_salary extends javax.swing.JFrame {
             jComboBox7.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -450,18 +450,30 @@ public class emp_salary extends javax.swing.JFrame {
 
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
         timeSearch();
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
+        jComboBox7.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
         typeSearch();
+        jComboBox4.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
+        jComboBox7.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox5ItemStateChanged
 
     private void jComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox6ItemStateChanged
         salarySearch();
+        jComboBox5.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox7.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox6ItemStateChanged
 
     private void jComboBox7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox7ItemStateChanged
         EmpSearch();
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox7ItemStateChanged
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -481,7 +493,7 @@ public class emp_salary extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         } else {

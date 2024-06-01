@@ -60,7 +60,7 @@ public class Check_Rooms extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
         }
 
     }
@@ -115,7 +115,7 @@ public class Check_Rooms extends javax.swing.JFrame {
             jComboBox3.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -147,7 +147,7 @@ public class Check_Rooms extends javax.swing.JFrame {
             jComboBox4.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -179,7 +179,7 @@ public class Check_Rooms extends javax.swing.JFrame {
             jComboBox6.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -200,7 +200,7 @@ public class Check_Rooms extends javax.swing.JFrame {
             jComboBox5.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -534,18 +534,38 @@ public class Check_Rooms extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         IDSearch();
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         timeSearch();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
         roomSearch();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
         roomStatsus();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -554,12 +574,23 @@ public class Check_Rooms extends javax.swing.JFrame {
 
     private void jComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox6ItemStateChanged
         searchCustomer();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox6ItemStateChanged
 
     private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
         SearchMobile();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox5ItemStateChanged
 
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Do you need to Print Room History Report?", "Confirm Alert",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -573,7 +604,7 @@ public class Check_Rooms extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         } else {

@@ -575,10 +575,20 @@ public class Check_food_Reservation extends javax.swing.JFrame {
 
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
         searchCustomer();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
         SearchMobile();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox5ItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -587,6 +597,11 @@ public class Check_food_Reservation extends javax.swing.JFrame {
 
     private void jComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox6ItemStateChanged
         searchkot();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox6ItemStateChanged
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

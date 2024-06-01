@@ -78,7 +78,7 @@ public class Customer_CheckIn_CheckOut extends javax.swing.JFrame {
             jComboBox1.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -99,7 +99,7 @@ public class Customer_CheckIn_CheckOut extends javax.swing.JFrame {
             jComboBox2.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -120,7 +120,7 @@ public class Customer_CheckIn_CheckOut extends javax.swing.JFrame {
             jComboBox3.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -445,18 +445,31 @@ public class Customer_CheckIn_CheckOut extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         searchCity();
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         searchCountry();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
         SearchMobile();
+        jComboBox2.setSelectedIndex(0);
+        jComboBox1.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
         timeSearch();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

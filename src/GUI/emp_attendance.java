@@ -65,7 +65,7 @@ public class emp_attendance extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -396,14 +396,20 @@ public class emp_attendance extends javax.swing.JFrame {
 
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
         timeSearch();
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
         typeSearch();
+        jComboBox4.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox5ItemStateChanged
 
     private void jComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox6ItemStateChanged
         dateSearch();
+        jComboBox5.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox6ItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -423,7 +429,7 @@ public class emp_attendance extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         } else {
