@@ -265,6 +265,7 @@ public class Admin_profile extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Username");
 
+        jTextField5.setEditable(false);
         jTextField5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(255, 255, 255));
 
