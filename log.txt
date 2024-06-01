@@ -2,3 +2,89 @@ May 29, 2024 8:28:06 AM HR.WorkSchedule jButton5ActionPerformed
 WARNING: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 May 29, 2024 8:29:25 AM HR.WorkSchedule jButton5ActionPerformed
 WARNING: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+May 29, 2024 9:12:59 AM HR.WorkSchedule jButton5ActionPerformed
+WARNING: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+May 29, 2024 9:13:04 AM HR.WorkSchedule jButton5ActionPerformed
+WARNING: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+May 29, 2024 9:14:04 AM HR.empSalary jButton1ActionPerformed
+WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'employee_id' at row 1
+May 29, 2024 9:14:05 AM HR.empSalary jButton1ActionPerformed
+WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'employee_id' at row 1
+May 29, 2024 9:14:05 AM HR.empSalary jButton1ActionPerformed
+WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'employee_id' at row 1
+May 29, 2024 9:14:06 AM HR.empSalary jButton1ActionPerformed
+WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'employee_id' at row 1
+May 29, 2024 9:14:06 AM HR.empSalary jButton1ActionPerformed
+WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'employee_id' at row 1
+Jun 01, 2024 10:41:26 PM GUI.AdminSignin jButton3ActionPerformed
+WARNING: java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "model.MySQL.connection" is null
+Jun 01, 2024 11:30:34 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Administrator'' at line 1
+Jun 01, 2024 11:30:34 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Administrator'' at line 1
+Jun 01, 2024 11:30:37 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Reception'' at line 1
+Jun 01, 2024 11:30:37 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Reception'' at line 1
+Jun 01, 2024 11:30:39 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Back Office'' at line 1
+Jun 01, 2024 11:30:39 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Back Office'' at line 1
+Jun 01, 2024 11:30:41 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Kitchen'' at line 1
+Jun 01, 2024 11:30:41 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Kitchen'' at line 1
+Jun 01, 2024 11:30:42 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Administrator'' at line 1
+Jun 01, 2024 11:30:42 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Administrator'' at line 1
+Jun 01, 2024 11:30:45 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Select'' at line 1
+Jun 01, 2024 11:30:45 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Select'' at line 1
+Jun 01, 2024 11:30:48 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Administrator'' at line 1
+Jun 01, 2024 11:30:48 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Administrator'' at line 1
+Jun 01, 2024 11:30:51 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Reception'' at line 1
+Jun 01, 2024 11:30:51 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Reception'' at line 1
+Jun 01, 2024 11:42:26 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Administrator'' at line 1
+Jun 01, 2024 11:42:26 PM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCWHERE `hotel_eq`.`name`='Administrator'' at line 1
+Jun 02, 2024 12:01:41 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:01:41 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:01:42 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:01:42 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:01:44 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:01:44 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:01:48 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:01:48 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:03:35 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:03:35 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:03:39 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:03:39 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:04:06 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:04:06 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:04:08 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:04:08 AM GUI.Hotel_Stock_Management loadEquipment
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
+Jun 02, 2024 12:31:04 AM GUI.Kitchen_stock loadKStock
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BY `item`.`id` ASC' at line 1
