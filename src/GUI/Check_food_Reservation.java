@@ -64,7 +64,7 @@ public class Check_food_Reservation extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -134,7 +134,7 @@ public class Check_food_Reservation extends javax.swing.JFrame {
             jComboBox4.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -155,7 +155,7 @@ public class Check_food_Reservation extends javax.swing.JFrame {
             jComboBox6.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -176,7 +176,7 @@ public class Check_food_Reservation extends javax.swing.JFrame {
             jComboBox5.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -547,14 +547,30 @@ public class Check_food_Reservation extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         PointSearch();
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
+
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         timeSearch();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
         pricesearch();
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
