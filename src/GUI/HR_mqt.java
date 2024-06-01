@@ -22,6 +22,7 @@ public class HR_mqt extends javax.swing.JFrame {
                 + "INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.id "
                 + "WHERE `employee_type_id`='4'");
         setExtendedState(MAXIMIZED_BOTH);
+        jTextField5.setEnabled(false);
     }
 
     private void loadHR(String query) {
@@ -49,7 +50,7 @@ public class HR_mqt extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -71,31 +72,23 @@ public class HR_mqt extends javax.swing.JFrame {
             jComboBox2.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
 
     private void reset() {
         jTextField1.setText("");
-        jTextField1.setEditable(true);
-
+        jTextField1.setEnabled(true);
         jTextField2.setText("");
-        jTextField2.setEditable(true);
-
-        jTextField3.setText("");
-
-        jTextField4.setText("");
-
+        jTextField2.setEnabled(true);
         jTextField5.setText("");
-        jTextField5.setEditable(true);
-
+        jTextField3.setText("");
+        jTextField4.setText("");
         jPasswordField1.setText("");
-
         jComboBox2.setSelectedIndex(0);
         jComboBox2.setEnabled(true);
         jComboBox1.setSelectedIndex(0);
-
         jTable1.clearSelection();
         jButton1.setEnabled(true);
         jTextField1.grabFocus();
@@ -141,7 +134,7 @@ public class HR_mqt extends javax.swing.JFrame {
                     jPasswordField1.setText(password);
                 }
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         }
@@ -250,6 +243,11 @@ public class HR_mqt extends javax.swing.JFrame {
 
         jTextField3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTextField3.setForeground(java.awt.Color.white);
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel5.setForeground(java.awt.Color.white);
@@ -401,7 +399,7 @@ public class HR_mqt extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
-        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 15)); // NOI18N
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -422,6 +420,7 @@ public class HR_mqt extends javax.swing.JFrame {
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -454,7 +453,7 @@ public class HR_mqt extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 1) {
             oneClick();
-        }else if (evt.getClickCount() == 2){
+        } else if (evt.getClickCount() == 2) {
             commons();
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -468,14 +467,19 @@ public class HR_mqt extends javax.swing.JFrame {
         String password = String.valueOf(jPasswordField1.getPassword());
         String gender = jComboBox2.getSelectedItem().toString();
 
+        boolean mobRegx = !mobile.matches("07[01245678]{1}[0-9]{7}$");
+
         if (fname.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter the first name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (lname.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter last name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (mobile.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter Correct Mobile Number", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (!mobile.matches("07[01245678]{1}[0-9]{7}$")) {
+        } else if (mobRegx) {
             JOptionPane.showMessageDialog(this, "Invalid Mobile Number", "Warning", JOptionPane.ERROR_MESSAGE);
+            jTextField4.setEnabled(false);
+            jPasswordField1.setEnabled(false);
+            JOptionPane.showMessageDialog(this, "Type correct Mobile number to register HR Officer", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (username.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter HR User Name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (password.isEmpty()) {
@@ -496,7 +500,7 @@ public class HR_mqt extends javax.swing.JFrame {
                             + "VALUES('" + fname + "','" + lname + "','" + mobile + "','" + username + "','" + password + "','1','" + datetime + "','4','" + typeMap.get(gender) + "','" + datetime + "','3')");
                 }
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
 
@@ -555,8 +559,7 @@ public class HR_mqt extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please select Specific User", "Message", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
-
+            Dashboard.log.warning(e.toString());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -565,6 +568,11 @@ public class HR_mqt extends javax.swing.JFrame {
         empAddress.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        jTextField4.setEnabled(true);
+        jPasswordField1.setEnabled(true);
+    }//GEN-LAST:event_jTextField3KeyReleased
 
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(

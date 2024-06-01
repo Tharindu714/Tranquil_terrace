@@ -12,10 +12,7 @@ import model.MySQL;
 import GUI.Dashboard;
 import model.UserBean;
 
-/**
- *
- * @author DS
- */
+
 public class EmpAttendance extends javax.swing.JFrame {
 
     public HashMap<String, UserBean> userMap = new HashMap<>();

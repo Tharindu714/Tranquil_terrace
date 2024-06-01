@@ -31,7 +31,7 @@ public class Supplier_mgt extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -167,6 +167,11 @@ public class Supplier_mgt extends javax.swing.JFrame {
 
         jTextField3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTextField3.setForeground(java.awt.Color.white);
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel6.setForeground(java.awt.Color.white);
@@ -174,6 +179,16 @@ public class Supplier_mgt extends javax.swing.JFrame {
 
         jTextField4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTextField4.setForeground(java.awt.Color.white);
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField4KeyReleased(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(245, 71, 104));
         jButton1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
@@ -214,10 +229,10 @@ public class Supplier_mgt extends javax.swing.JFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField2)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField4))
                     .addContainerGap(13, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
@@ -253,7 +268,7 @@ public class Supplier_mgt extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 15)); // NOI18N
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -276,6 +291,7 @@ public class Supplier_mgt extends javax.swing.JFrame {
         });
         jTable1.setSelectionBackground(new java.awt.Color(245, 71, 104));
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -307,18 +323,24 @@ public class Supplier_mgt extends javax.swing.JFrame {
         String mobile = jTextField3.getText();
         String email = jTextField4.getText();
 
+        boolean mobRegx = !mobile.matches("07[01245678]{1}[0-9]{7}$");
+        boolean emailRegx = !email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@"
+                + "[^-][A-Za-z0-9\\+-]+(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$");
+
         if (fname.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter the first name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (lname.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter last name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (mobile.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter Correct Mobile Number", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (!mobile.matches("07[01245678]{1}[0-9]{7}$")) {
+        } else if (mobRegx) {
+            JOptionPane.showMessageDialog(this, "Invalid Mobile Number", "Warning", JOptionPane.ERROR_MESSAGE);
+            jTextField4.setEnabled(false);
+            JOptionPane.showMessageDialog(this, "First Type correct mobile number before enter Email", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter Email Address", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@"
-                + "[^-][A-Za-z0-9\\+-]+(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
-            JOptionPane.showMessageDialog(this, "Invalid Email Address", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (emailRegx) {
+            JOptionPane.showMessageDialog(this, "Invalid Email Address", "Warning", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 ResultSet resultSet = MySQL.execute("SELECT * FROM `supplier`"
@@ -333,7 +355,7 @@ public class Supplier_mgt extends javax.swing.JFrame {
                             + "VALUES('" + mobile + "','" + fname + "','" + lname + "','" + email + "')");
                 }
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
 
@@ -356,14 +378,6 @@ public class Supplier_mgt extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Please Enter the first name", "Warning", JOptionPane.WARNING_MESSAGE);
                 } else if (lname.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Please Enter last name", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else if (mobile.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Please Enter Correct Mobile Number", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else if (!mobile.matches("07[01245678]{1}[0-9]{7}$")) {
-                } else if (email.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Please Enter Email Address", "Warning", JOptionPane.WARNING_MESSAGE);
-                } else if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@"
-                        + "[^-][A-Za-z0-9\\+-]+(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
-                    JOptionPane.showMessageDialog(this, "Invalid Email Address", "Warning", JOptionPane.WARNING_MESSAGE);
                 } else {
 
                     MySQL.execute("UPDATE `supplier` SET "
@@ -377,7 +391,7 @@ public class Supplier_mgt extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please select Specific supplier", "Message", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -385,17 +399,30 @@ public class Supplier_mgt extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 1) {
             oneClick();
-        }else if (evt.getClickCount() == 2){
+        } else if (evt.getClickCount() == 2) {
             commons();
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+
+    }//GEN-LAST:event_jTextField4KeyReleased
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        jTextField4.setEnabled(true);
+    }//GEN-LAST:event_jTextField3KeyReleased
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
-                "/themes/Atom_One_DarkContrast.theme.json"));
+        IntelliJTheme.setup(Dashboard.class
+                .getResourceAsStream(
+                        "/themes/Atom_One_DarkContrast.theme.json"));
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Supplier_mgt().setVisible(true);

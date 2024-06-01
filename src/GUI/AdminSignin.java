@@ -1,6 +1,5 @@
 package GUI;
 
-
 import com.formdev.flatlaf.IntelliJTheme;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -37,7 +36,6 @@ public class AdminSignin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jImagePanel1 = new main.JImagePanel();
         jImagePanel3 = new main.JImagePanel();
         jImagePanel4 = new main.JImagePanel();
@@ -120,16 +118,6 @@ public class AdminSignin extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(52, 73, 94));
-        jButton4.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 13)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("   Create New Account");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         jImagePanel1.setFitToPanel(true);
         jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logo.png"))); // NOI18N
         jImagePanel1.setSmoothRendering(true);
@@ -192,7 +180,6 @@ public class AdminSignin extends javax.swing.JFrame {
                             .addComponent(jImagePanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                             .addComponent(jTextField1)
                             .addComponent(jPasswordField1)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
@@ -223,9 +210,7 @@ public class AdminSignin extends javax.swing.JFrame {
                     .addComponent(jImagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
         );
@@ -295,22 +280,23 @@ public class AdminSignin extends javax.swing.JFrame {
 
             try {
                 ResultSet resultset = MySQL.execute("SELECT * FROM `employee`"
-                        + "WHERE `username`='" + username + "' AND `password`='" + password + "' AND `employee_type_id`='1'");
+                        + "WHERE `username`='" + username + "' AND `password`='" + password + "' AND `employee_type_id`IN (1,6)");
                 if (resultset.next()) {
                     String datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
                     MySQL.execute("UPDATE `employee` "
                             + "SET `loggedtime`='" + datetime + "'"
                             + "WHERE `username`='" + username + "'");
-                    
+
                     JOptionPane.showMessageDialog(this, "Login Successful", "SUCCESSFULLY LOGIN", JOptionPane.INFORMATION_MESSAGE);
 
                     String mobile = resultset.getString("mobile");
                     String fname = resultset.getString("first_name");
                     String lname = resultset.getString("last_name");
                     String reg = resultset.getString("registered_date");
+                    int emp_type = resultset.getInt("employee_type_id");
 
-                    Admin_main_panel AMP = new Admin_main_panel(username, mobile, fname, lname, reg);
+                    Admin_main_panel AMP = new Admin_main_panel(username, mobile, fname, lname, reg,emp_type);
                     AMP.setVisible(true);
                     this.dispose();
 
@@ -319,18 +305,12 @@ public class AdminSignin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "You are Not a Valid User", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
 
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        AdminSignUp adsignup = new AdminSignUp();
-        adsignup.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         Dashboard dashboard = new Dashboard();
@@ -354,7 +334,6 @@ public class AdminSignin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private main.JImagePanel jImagePanel1;
     private main.JImagePanel jImagePanel3;

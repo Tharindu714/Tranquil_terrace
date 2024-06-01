@@ -1,3 +1,5 @@
+package model;
+
 public class UserBean {
 
     private String userName;
@@ -15,8 +17,6 @@ public class UserBean {
     private String last_name;
     private String password;
     private String gender;
-    
-    
 
     public String getUserName() {
         return userName;
@@ -25,7 +25,6 @@ public class UserBean {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
 
     public String getUserRole() {
         return userRole;

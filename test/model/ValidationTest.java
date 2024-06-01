@@ -10,10 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Tharindu
- */
+
 public class ValidationTest {
     
     public ValidationTest() {
@@ -47,9 +44,7 @@ public class ValidationTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of is_Letter method, of class Validation.
-     */
+
     @Test
     public void testIs_Letter() {
         System.out.println("is_Letter");
@@ -61,9 +56,6 @@ public class ValidationTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of is_Numeric method, of class Validation.
-     */
     @Test
     public void testIs_Numeric() {
         System.out.println("is_Numeric");
