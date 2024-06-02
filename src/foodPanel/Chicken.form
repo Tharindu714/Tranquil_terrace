@@ -16,40 +16,17 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
     <Property name="columns" type="int" value="0"/>
-    <Property name="horizontalGap" type="int" value="2"/>
-    <Property name="rows" type="int" value="2"/>
-    <Property name="verticalGap" type="int" value="2"/>
+    <Property name="horizontalGap" type="int" value="5"/>
+    <Property name="rows" type="int" value="1"/>
+    <Property name="verticalGap" type="int" value="5"/>
   </Layout>
   <SubComponents>
-    <Container class="main.JImagePanel" name="jImagePanel1">
-      <Properties>
-        <Property name="centerImage" type="boolean" value="true"/>
-        <Property name="fitToPanel" type="boolean" value="true"/>
-        <Property name="imageIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/food_img/chicken_noodle.jpeg"/>
-        </Property>
-        <Property name="smoothRendering" type="boolean" value="true"/>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="203" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Container class="main.JImagePanel" name="jImagePanel2">
       <Properties>
         <Property name="centerImage" type="boolean" value="true"/>
         <Property name="fitToPanel" type="boolean" value="true"/>
         <Property name="imageIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/food_img/chicken_rice_basmati.jpeg"/>
+          <Image iconType="3" name="/food_img/roasted_chicken.jpeg"/>
         </Property>
         <Property name="smoothRendering" type="boolean" value="true"/>
       </Properties>
@@ -57,12 +34,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="203" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="409" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -80,12 +57,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="203" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="409" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -103,12 +80,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="203" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="409" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

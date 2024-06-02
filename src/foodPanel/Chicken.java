@@ -26,45 +26,26 @@ public class Chicken extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jImagePanel1 = new main.JImagePanel();
         jImagePanel2 = new main.JImagePanel();
         jImagePanel3 = new main.JImagePanel();
         jImagePanel4 = new main.JImagePanel();
 
-        setLayout(new java.awt.GridLayout(2, 0, 2, 2));
-
-        jImagePanel1.setCenterImage(true);
-        jImagePanel1.setFitToPanel(true);
-        jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/chicken_noodle.jpeg"))); // NOI18N
-        jImagePanel1.setSmoothRendering(true);
-
-        javax.swing.GroupLayout jImagePanel1Layout = new javax.swing.GroupLayout(jImagePanel1);
-        jImagePanel1.setLayout(jImagePanel1Layout);
-        jImagePanel1Layout.setHorizontalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
-        );
-        jImagePanel1Layout.setVerticalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
-        );
-
-        add(jImagePanel1);
+        setLayout(new java.awt.GridLayout(1, 0, 5, 5));
 
         jImagePanel2.setCenterImage(true);
         jImagePanel2.setFitToPanel(true);
-        jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/chicken_rice_basmati.jpeg"))); // NOI18N
+        jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/roasted_chicken.jpeg"))); // NOI18N
         jImagePanel2.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel2Layout = new javax.swing.GroupLayout(jImagePanel2);
         jImagePanel2.setLayout(jImagePanel2Layout);
         jImagePanel2Layout.setHorizontalGroup(
             jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGap(0, 123, Short.MAX_VALUE)
         );
         jImagePanel2Layout.setVerticalGroup(
             jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 409, Short.MAX_VALUE)
         );
 
         add(jImagePanel2);
@@ -78,11 +59,11 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel3.setLayout(jImagePanel3Layout);
         jImagePanel3Layout.setHorizontalGroup(
             jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGap(0, 123, Short.MAX_VALUE)
         );
         jImagePanel3Layout.setVerticalGroup(
             jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 409, Short.MAX_VALUE)
         );
 
         add(jImagePanel3);
@@ -96,11 +77,11 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel4.setLayout(jImagePanel4Layout);
         jImagePanel4Layout.setHorizontalGroup(
             jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGap(0, 123, Short.MAX_VALUE)
         );
         jImagePanel4Layout.setVerticalGroup(
             jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 409, Short.MAX_VALUE)
         );
 
         add(jImagePanel4);
@@ -108,7 +89,6 @@ public class Chicken extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private main.JImagePanel jImagePanel1;
     private main.JImagePanel jImagePanel2;
     private main.JImagePanel jImagePanel3;
     private main.JImagePanel jImagePanel4;
