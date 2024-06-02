@@ -29,7 +29,11 @@ public class SoupPanel extends javax.swing.JPanel {
         jImagePanel2 = new main.JImagePanel();
         jImagePanel1 = new main.JImagePanel();
 
-        setLayout(new java.awt.GridLayout(1, 2, 2, 2));
+        setLayout(new java.awt.GridLayout(1, 2, 5, 5));
+
+        jImagePanel2.setFitToPanel(true);
+        jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/veg_soup.jpeg"))); // NOI18N
+        jImagePanel2.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel2Layout = new javax.swing.GroupLayout(jImagePanel2);
         jImagePanel2.setLayout(jImagePanel2Layout);
@@ -39,10 +43,14 @@ public class SoupPanel extends javax.swing.JPanel {
         );
         jImagePanel2Layout.setVerticalGroup(
             jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
 
         add(jImagePanel2);
+
+        jImagePanel1.setFitToPanel(true);
+        jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/chicken_soup.jpeg"))); // NOI18N
+        jImagePanel1.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel1Layout = new javax.swing.GroupLayout(jImagePanel1);
         jImagePanel1.setLayout(jImagePanel1Layout);
@@ -52,7 +60,7 @@ public class SoupPanel extends javax.swing.JPanel {
         );
         jImagePanel1Layout.setVerticalGroup(
             jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
 
         add(jImagePanel1);

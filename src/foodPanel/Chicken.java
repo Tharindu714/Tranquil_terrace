@@ -31,7 +31,7 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel3 = new main.JImagePanel();
         jImagePanel4 = new main.JImagePanel();
 
-        setLayout(new java.awt.GridLayout(2, 0, 2, 2));
+        setLayout(new java.awt.GridLayout(2, 0, 10, 10));
 
         jImagePanel1.setCenterImage(true);
         jImagePanel1.setFitToPanel(true);
@@ -42,11 +42,11 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel1.setLayout(jImagePanel1Layout);
         jImagePanel1Layout.setHorizontalGroup(
             jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGap(0, 233, Short.MAX_VALUE)
         );
         jImagePanel1Layout.setVerticalGroup(
             jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 264, Short.MAX_VALUE)
         );
 
         add(jImagePanel1);
@@ -60,11 +60,11 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel2.setLayout(jImagePanel2Layout);
         jImagePanel2Layout.setHorizontalGroup(
             jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGap(0, 233, Short.MAX_VALUE)
         );
         jImagePanel2Layout.setVerticalGroup(
             jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 264, Short.MAX_VALUE)
         );
 
         add(jImagePanel2);
@@ -78,11 +78,11 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel3.setLayout(jImagePanel3Layout);
         jImagePanel3Layout.setHorizontalGroup(
             jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGap(0, 233, Short.MAX_VALUE)
         );
         jImagePanel3Layout.setVerticalGroup(
             jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 264, Short.MAX_VALUE)
         );
 
         add(jImagePanel3);
@@ -96,11 +96,11 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel4.setLayout(jImagePanel4Layout);
         jImagePanel4Layout.setHorizontalGroup(
             jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGap(0, 233, Short.MAX_VALUE)
         );
         jImagePanel4Layout.setVerticalGroup(
             jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGap(0, 264, Short.MAX_VALUE)
         );
 
         add(jImagePanel4);

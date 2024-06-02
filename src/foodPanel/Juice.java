@@ -29,30 +29,38 @@ public class Juice extends javax.swing.JPanel {
         jImagePanel2 = new main.JImagePanel();
         jImagePanel1 = new main.JImagePanel();
 
-        setLayout(new java.awt.GridLayout(1, 0, 2, 2));
+        setLayout(new java.awt.GridLayout(1, 0, 5, 5));
+
+        jImagePanel2.setFitToPanel(true);
+        jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/lime_juice.jpeg"))); // NOI18N
+        jImagePanel2.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel2Layout = new javax.swing.GroupLayout(jImagePanel2);
         jImagePanel2.setLayout(jImagePanel2Layout);
         jImagePanel2Layout.setHorizontalGroup(
             jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 375, Short.MAX_VALUE)
+            .addGap(0, 373, Short.MAX_VALUE)
         );
         jImagePanel2Layout.setVerticalGroup(
             jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
 
         add(jImagePanel2);
+
+        jImagePanel1.setFitToPanel(true);
+        jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/mixed_fruit.jpeg"))); // NOI18N
+        jImagePanel1.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel1Layout = new javax.swing.GroupLayout(jImagePanel1);
         jImagePanel1.setLayout(jImagePanel1Layout);
         jImagePanel1Layout.setHorizontalGroup(
             jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 375, Short.MAX_VALUE)
+            .addGap(0, 373, Short.MAX_VALUE)
         );
         jImagePanel1Layout.setVerticalGroup(
             jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
 
         add(jImagePanel1);
