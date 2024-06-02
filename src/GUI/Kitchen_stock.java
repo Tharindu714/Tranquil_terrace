@@ -17,12 +17,17 @@ import net.sf.jasperreports.view.JasperViewer;
 public class Kitchen_stock extends javax.swing.JFrame {
 
     HashMap<String, String> UnitMap = new HashMap<>();
+    HashMap<String, String> Unit2Map = new HashMap<>();
+    
+    String query = ("SELECT * FROM `item`"
+                + "INNER JOIN `item_unit` ON `item`.`item_unit_id` = `item_unit`.id ");
 
     public Kitchen_stock() {
         initComponents();
-        loadKStock("SELECT * FROM `item`"
-                + "INNER JOIN `item_unit` ON `item`.`item_unit_id` = `item_unit`.id ORDER BY `item`.`id` ASC");
+        loadKStock(query + "ORDER BY `item`.`id` ASC");
         loadUnits();
+//        loadCurrentqty();
+        loadStandardunits();
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -92,6 +97,85 @@ public class Kitchen_stock extends javax.swing.JFrame {
             jButton1.setEnabled(false);
         }
     }
+    
+    private void currentqtySearch() {
+        int sortIndex = jComboBox4.getSelectedIndex();
+
+        if (sortIndex == 0) {
+            loadKStock(query + "ORDER BY `item`.`id` ASC");
+
+        } else if (sortIndex == 1) {
+            loadKStock(query + "ORDER BY `item`.`current_qty` DESC");
+
+        } else if (sortIndex == 2) {
+            loadKStock(query + "ORDER BY `item`.`current_qty` ASC");
+
+        } 
+    }
+    
+//    private void loadCurrentqty() {
+//        try {
+//            ResultSet resultSet = MySQL.execute("SELECT * FROM `item`");
+//
+//            Vector v = new Vector();
+//            v.add("Select");
+//
+//            while (resultSet.next()) {
+//                v.add(resultSet.getString("current_qty"));
+//                QtyMap.put(resultSet.getString("current_qty"), resultSet.getString("id"));
+//            }
+//
+//            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
+//            jComboBox4.setModel(comboBoxModel);
+//
+//        } catch (Exception e) {
+//                        Dashboard.log.warning(e.toString());
+//
+//        }
+//    }
+    
+//    private void currentqtySearch() {
+//        String unit = jComboBox4.getSelectedItem().toString();
+//
+//        if (unit.equals(0)) {
+//             loadKStock(query + "ORDER BY `item`.`id` ASC");
+//
+//        } else {
+//             loadKStock(query + "WHERE `item_unit`.`unit`='" + unit + "' ");
+//        }
+//    }
+
+    private void loadStandardunits() {
+        try {
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `item_unit`");
+
+            Vector v = new Vector();
+            v.add("Select");
+
+            while (resultSet.next()) {
+                v.add(resultSet.getString("unit"));
+                Unit2Map.put(resultSet.getString("unit"), resultSet.getString("id"));
+            }
+
+            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
+            jComboBox5.setModel(comboBoxModel);
+
+        } catch (Exception e) {
+                        Dashboard.log.warning(e.toString());
+
+        }
+    }
+    
+    private void standardunitSearch() {
+        String qty = jComboBox5.getSelectedItem().toString();
+
+        if (qty.equals(0)) {
+             loadKStock(query + "ORDER BY `item`.`id` ASC");
+
+        } else {
+             loadKStock(query + "WHERE `item`.`current_qty`='" + qty + "' ");
+        }
+    }
 
     private void reset() {
         jTextField1.setText("");
@@ -133,6 +217,10 @@ public class Kitchen_stock extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
@@ -212,6 +300,26 @@ public class Kitchen_stock extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Order By Current QTY");
+
+        jComboBox4.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox4ItemStateChanged(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Order By Unit");
+
+        jComboBox5.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox5ItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -219,28 +327,33 @@ public class Kitchen_stock extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox4, 0, 204, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField1)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
+                    .addComponent(jComboBox5, 0, 204, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +386,15 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.LINE_START);
@@ -512,6 +633,17 @@ public class Kitchen_stock extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
+        currentqtySearch();
+        jComboBox5.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_jComboBox4ItemStateChanged
+
+    private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
+        standardunitSearch();
+        jComboBox4.setSelectedIndex(0);
+    }//GEN-LAST:event_jComboBox5ItemStateChanged
+
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
                 "/themes/Atom_One_DarkContrast.theme.json"));
@@ -531,6 +663,8 @@ public class Kitchen_stock extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
@@ -538,7 +672,9 @@ public class Kitchen_stock extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
