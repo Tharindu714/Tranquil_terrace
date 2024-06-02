@@ -46,7 +46,7 @@ public class main_interface extends javax.swing.JFrame {
             ResultSet resultSet = MySQL.execute("SELECT * FROM `food_category`");
 
             Vector v = new Vector();
-            v.add("Select");
+            v.add("Select food Category");
 
             while (resultSet.next()) {
                 v.add(resultSet.getString("category"));
@@ -136,85 +136,69 @@ public class main_interface extends javax.swing.JFrame {
     private void SearchFood() {
         int sortIndex = jComboBox1.getSelectedIndex();
 
-        if (sortIndex == 0) {
-
-        } else if (sortIndex == 1) {
-            jPanel7.removeAll();
+        if (sortIndex == 1) {
             SoupPanel sp = new SoupPanel();
             jPanel7.add(sp, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 2) {
-            jPanel7.removeAll();
+        if (sortIndex == 2) {
             salad_panel sp = new salad_panel();
             jPanel7.add(sp, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 3) {
-            jPanel7.removeAll();
+        if (sortIndex == 3) {
             Juice j = new Juice();
             jPanel7.add(j, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 4) {
-            jPanel7.removeAll();
+        if (sortIndex == 4) {
             rice rice = new rice();
             jPanel7.add(rice, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 5) {
-            jPanel7.removeAll();
+        if (sortIndex == 5) {
             noodles n = new noodles();
             jPanel7.add(n, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 6) {
-            jPanel7.removeAll();
+        if (sortIndex == 6) {
             Spegetti spg = new Spegetti();
             jPanel7.add(spg, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 7) {
-            jPanel7.removeAll();
+        if (sortIndex == 7) {
             Macaroni mac = new Macaroni();
             jPanel7.add(mac, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 8) {
-            jPanel7.removeAll();
+        if (sortIndex == 8) {
             devilled dv = new devilled();
             jPanel7.add(dv, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 9) {
-            jPanel7.removeAll();
+        if (sortIndex == 9) {
             Chicken ch = new Chicken();
             jPanel7.add(ch, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 10) {
-            jPanel7.removeAll();
+        if (sortIndex == 10) {
             FriedFoods ff = new FriedFoods();
             jPanel7.add(ff, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 11) {
-            jPanel7.removeAll();
+        if (sortIndex == 11) {
             fishfood ff = new fishfood();
             jPanel7.add(ff, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 12) {
-            jPanel7.removeAll();
+        if (sortIndex == 12) {
             dessert dd = new dessert();
             jPanel7.add(dd, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
+        }
 
-        } else if (sortIndex == 13) {
-            jPanel7.removeAll();
+        if (sortIndex == 13) {
             hotDrinks HD = new hotDrinks();
             jPanel7.add(HD, BorderLayout.CENTER);
-            jPanel7.setBackground(Color.black);
         }
     }
 
@@ -431,7 +415,7 @@ public class main_interface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-
+        SearchFood();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
@@ -466,6 +450,7 @@ public class main_interface extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1MousePressed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        jPanel7.removeAll();
         SearchFood();
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
