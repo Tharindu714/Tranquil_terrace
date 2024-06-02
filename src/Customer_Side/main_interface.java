@@ -2,11 +2,61 @@ package Customer_Side;
 
 import GUI.Dashboard;
 import com.formdev.flatlaf.IntelliJTheme;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import model.MySQL;
 
 public class main_interface extends javax.swing.JFrame {
 
+    HashMap<String, String> catMap = new HashMap<>();
+    HashMap<String, String> userMap = new HashMap<>();
+
     public main_interface() {
         initComponents();
+        loadCat();
+        loadCustomer();
+    }
+
+    private void loadCat() {
+        try {
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `food_category`");
+
+            Vector v = new Vector();
+            v.add("Select");
+
+            while (resultSet.next()) {
+                v.add(resultSet.getString("category"));
+                catMap.put(resultSet.getString("category"), resultSet.getString("id"));
+            }
+
+            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
+            jComboBox1.setModel(comboBoxModel);
+
+        } catch (Exception e) {
+            Dashboard.log.warning(e.toString());
+        }
+    }
+
+    private void loadCustomer() {
+        try {
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `kot_customer_type`");
+
+            Vector v = new Vector();
+            v.add("Select");
+
+            while (resultSet.next()) {
+                v.add(resultSet.getString("category"));
+                userMap.put(resultSet.getString("category"), resultSet.getString("id"));
+            }
+
+            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
+            jComboBox3.setModel(comboBoxModel);
+
+        } catch (Exception e) {
+            Dashboard.log.warning(e.toString());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -24,15 +74,9 @@ public class main_interface extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        jImagePanel2 = new main.JImagePanel();
-        jImagePanel3 = new main.JImagePanel();
-        jImagePanel4 = new main.JImagePanel();
-        jImagePanel6 = new main.JImagePanel();
-        jImagePanel5 = new main.JImagePanel();
-        jImagePanel7 = new main.JImagePanel();
         jPanel8 = new javax.swing.JPanel();
         jComboBox6 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -125,118 +169,14 @@ public class main_interface extends javax.swing.JFrame {
         jComboBox3.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select guest" }));
         jPanel6.add(jComboBox3);
-
-        jComboBox4.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
-        jComboBox4.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mobile" }));
-        jPanel6.add(jComboBox4);
-
-        jComboBox5.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
-        jComboBox5.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Username" }));
-        jPanel6.add(jComboBox5);
+        jPanel6.add(jTextField1);
+        jPanel6.add(jTextField2);
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 30, 750, -1));
 
-        jPanel7.setLayout(new java.awt.GridLayout(2, 3, 10, 10));
-
-        jImagePanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jImagePanel2.setPreferredSize(new java.awt.Dimension(150, 150));
-
-        javax.swing.GroupLayout jImagePanel2Layout = new javax.swing.GroupLayout(jImagePanel2);
-        jImagePanel2.setLayout(jImagePanel2Layout);
-        jImagePanel2Layout.setHorizontalGroup(
-            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
-        );
-        jImagePanel2Layout.setVerticalGroup(
-            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jImagePanel2);
-
-        jImagePanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jImagePanel3.setPreferredSize(new java.awt.Dimension(150, 150));
-
-        javax.swing.GroupLayout jImagePanel3Layout = new javax.swing.GroupLayout(jImagePanel3);
-        jImagePanel3.setLayout(jImagePanel3Layout);
-        jImagePanel3Layout.setHorizontalGroup(
-            jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
-        );
-        jImagePanel3Layout.setVerticalGroup(
-            jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jImagePanel3);
-
-        jImagePanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jImagePanel4.setPreferredSize(new java.awt.Dimension(150, 150));
-
-        javax.swing.GroupLayout jImagePanel4Layout = new javax.swing.GroupLayout(jImagePanel4);
-        jImagePanel4.setLayout(jImagePanel4Layout);
-        jImagePanel4Layout.setHorizontalGroup(
-            jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
-        );
-        jImagePanel4Layout.setVerticalGroup(
-            jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jImagePanel4);
-
-        jImagePanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jImagePanel6.setPreferredSize(new java.awt.Dimension(150, 150));
-
-        javax.swing.GroupLayout jImagePanel6Layout = new javax.swing.GroupLayout(jImagePanel6);
-        jImagePanel6.setLayout(jImagePanel6Layout);
-        jImagePanel6Layout.setHorizontalGroup(
-            jImagePanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
-        );
-        jImagePanel6Layout.setVerticalGroup(
-            jImagePanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jImagePanel6);
-
-        jImagePanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jImagePanel5.setPreferredSize(new java.awt.Dimension(150, 150));
-
-        javax.swing.GroupLayout jImagePanel5Layout = new javax.swing.GroupLayout(jImagePanel5);
-        jImagePanel5.setLayout(jImagePanel5Layout);
-        jImagePanel5Layout.setHorizontalGroup(
-            jImagePanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
-        );
-        jImagePanel5Layout.setVerticalGroup(
-            jImagePanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jImagePanel5);
-
-        jImagePanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jImagePanel7.setPreferredSize(new java.awt.Dimension(150, 150));
-
-        javax.swing.GroupLayout jImagePanel7Layout = new javax.swing.GroupLayout(jImagePanel7);
-        jImagePanel7.setLayout(jImagePanel7Layout);
-        jImagePanel7Layout.setHorizontalGroup(
-            jImagePanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
-        );
-        jImagePanel7Layout.setVerticalGroup(
-            jImagePanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jImagePanel7);
-
-        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 60, 750, 330));
+        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel7.setLayout(new java.awt.BorderLayout());
+        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 70, 750, 340));
 
         jComboBox6.setFont(new java.awt.Font("Microsoft YaHei", 0, 15)); // NOI18N
         jComboBox6.setForeground(new java.awt.Color(255, 255, 255));
@@ -294,8 +234,6 @@ public class main_interface extends javax.swing.JFrame {
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
                 "/themes/Atom_One_DarkContrast.theme.json"));
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new main_interface().setVisible(true);
@@ -308,16 +246,8 @@ public class main_interface extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
     private main.JImagePanel jImagePanel1;
-    private main.JImagePanel jImagePanel2;
-    private main.JImagePanel jImagePanel3;
-    private main.JImagePanel jImagePanel4;
-    private main.JImagePanel jImagePanel5;
-    private main.JImagePanel jImagePanel6;
-    private main.JImagePanel jImagePanel7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -329,5 +259,7 @@ public class main_interface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
