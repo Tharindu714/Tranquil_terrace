@@ -33,82 +33,106 @@ public class rice extends javax.swing.JPanel {
         jImagePanel4 = new main.JImagePanel();
         jImagePanel6 = new main.JImagePanel();
 
-        setLayout(new java.awt.GridLayout(2, 0, 2, 2));
+        setLayout(new java.awt.GridLayout(2, 0, 5, 5));
+
+        jImagePanel3.setFitToPanel(true);
+        jImagePanel3.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/veg_rice.jpeg"))); // NOI18N
+        jImagePanel3.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel3Layout = new javax.swing.GroupLayout(jImagePanel3);
         jImagePanel3.setLayout(jImagePanel3Layout);
         jImagePanel3Layout.setHorizontalGroup(
             jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
+            .addGap(0, 256, Short.MAX_VALUE)
         );
         jImagePanel3Layout.setVerticalGroup(
             jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
         add(jImagePanel3);
+
+        jImagePanel2.setFitToPanel(true);
+        jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/chicken_rice_samba.jpeg"))); // NOI18N
+        jImagePanel2.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel2Layout = new javax.swing.GroupLayout(jImagePanel2);
         jImagePanel2.setLayout(jImagePanel2Layout);
         jImagePanel2Layout.setHorizontalGroup(
             jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
+            .addGap(0, 256, Short.MAX_VALUE)
         );
         jImagePanel2Layout.setVerticalGroup(
             jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
         add(jImagePanel2);
+
+        jImagePanel1.setFitToPanel(true);
+        jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/chicken_rice_basmati.jpeg"))); // NOI18N
+        jImagePanel1.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel1Layout = new javax.swing.GroupLayout(jImagePanel1);
         jImagePanel1.setLayout(jImagePanel1Layout);
         jImagePanel1Layout.setHorizontalGroup(
             jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
+            .addGap(0, 256, Short.MAX_VALUE)
         );
         jImagePanel1Layout.setVerticalGroup(
             jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
         add(jImagePanel1);
+
+        jImagePanel5.setFitToPanel(true);
+        jImagePanel5.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/mixed_rice.jpeg"))); // NOI18N
+        jImagePanel5.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel5Layout = new javax.swing.GroupLayout(jImagePanel5);
         jImagePanel5.setLayout(jImagePanel5Layout);
         jImagePanel5Layout.setHorizontalGroup(
             jImagePanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
+            .addGap(0, 256, Short.MAX_VALUE)
         );
         jImagePanel5Layout.setVerticalGroup(
             jImagePanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
         add(jImagePanel5);
+
+        jImagePanel4.setFitToPanel(true);
+        jImagePanel4.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/biriyani.jpeg"))); // NOI18N
+        jImagePanel4.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel4Layout = new javax.swing.GroupLayout(jImagePanel4);
         jImagePanel4.setLayout(jImagePanel4Layout);
         jImagePanel4Layout.setHorizontalGroup(
             jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
+            .addGap(0, 256, Short.MAX_VALUE)
         );
         jImagePanel4Layout.setVerticalGroup(
             jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
         add(jImagePanel4);
+
+        jImagePanel6.setFitToPanel(true);
+        jImagePanel6.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/nasigoreng.jpeg"))); // NOI18N
+        jImagePanel6.setSmoothRendering(true);
 
         javax.swing.GroupLayout jImagePanel6Layout = new javax.swing.GroupLayout(jImagePanel6);
         jImagePanel6.setLayout(jImagePanel6Layout);
         jImagePanel6Layout.setHorizontalGroup(
             jImagePanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
+            .addGap(0, 256, Short.MAX_VALUE)
         );
         jImagePanel6Layout.setVerticalGroup(
             jImagePanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
         add(jImagePanel6);
