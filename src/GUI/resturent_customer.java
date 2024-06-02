@@ -17,18 +17,26 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class resturent_customer extends javax.swing.JFrame {
 
-    String query = ("SELECT * FROM `res_order_has_food_item`"
-            + "INNER JOIN `res_order` ON `res_order_has_food_item`.`res_order_id` = `res_order`.id "
-            + "INNER JOIN `food_item` ON `res_order_has_food_item`.`food_item_id` = `food_item`.id "
-            + "INNER JOIN `payement_method` ON `res_order`.`payment_method_id` = `payement_method`.id "
-            + "INNER JOIN `food_category` ON `food_item`.`food_category_id` = `food_category`.id ");
+    String query = ("SELECT *FROM `kot`\n"
+            + "INNER JOIN `customer_visit_hotel` ON `kot`.`customer_visit_hotel_id` = `customer_visit_hotel`.`id` \n"
+            + "INNER JOIN `customer` ON `customer_visit_hotel`.`customer_nic/passport` = `customer`.`nic/passport`\n"
+            + "INNER JOIN `payement_method` ON `customer_visit_hotel`.`payment_method_id` = `payement_method`.`id`\n"
+            + "INNER JOIN `kot_has_food` ON `kot`.`id` = `kot_has_food`.`kot_id` \n"
+            + "INNER JOIN `kot_customer_type` ON `kot`.`kot_customer_type_id` = `kot_customer_type`.`id` \n"
+            + "INNER JOIN `food_item` ON `kot_has_food`.`food_item_id` = `food_item`.`id` \n"
+            + "INNER JOIN `kot_status` ON `kot`.`kot_status_id` = `kot_status`.`id` \n"
+            + "INNER JOIN `meal_time` ON `kot`.`meal_time_id` = `meal_time`.`id` \n"
+            + "INNER JOIN `food_category` ON `food_item`.`food_category_id` = `food_category`.`id` \n"
+            + "INNER JOIN (SELECT `kot_id`, `food_item_id`, `qty` FROM `kot_has_food`) AS `food_qty` \n"
+            + "ON `kot_has_food`.`kot_id` = `food_qty`.`kot_id` AND `kot_has_food`.`food_item_id` = `food_qty`.`food_item_id` \n");
+
     HashMap<String, String> payMap = new HashMap<>();
     HashMap<String, String> catMap = new HashMap<>();
 
     public resturent_customer() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        loadRes(query + "ORDER BY `res_order_has_food_item`.`id` ASC");
+        loadRes(query + "WHERE  `kot_customer_type_id`='2'");
         loadPayment();
         loadCategory();
     }
@@ -45,9 +53,9 @@ public class resturent_customer extends javax.swing.JFrame {
                 v.add(resultSet.getString("id"));
                 v.add(resultSet.getString("food_category.category"));
                 v.add(resultSet.getString("food_item.name"));
-                v.add(resultSet.getString("qty"));
-                v.add(resultSet.getString("res_order.order_date"));
-                v.add(resultSet.getString("res_order.total"));
+                v.add(resultSet.getString("kot_has_food.qty"));
+                v.add(resultSet.getString("ordered_time"));
+                v.add(resultSet.getString("food_item.price"));
                 v.add(resultSet.getString("payement_method.method"));
                 model.addRow(v);
             }
@@ -83,10 +91,10 @@ public class resturent_customer extends javax.swing.JFrame {
         String pay = jComboBox4.getSelectedItem().toString();
 
         if (pay.equals(0)) {
-            loadRes(query + "ORDER BY `res_order_has_food_item`.`id` ASC");
+            loadRes(query + "WHERE  `kot_customer_type_id`='2'");
 
         } else {
-            loadRes(query + "WHERE `payement_method`.`method`='" + pay + "' ");
+            loadRes(query + "WHERE `payement_method`.`method`='" + pay + "' AND `kot_customer_type_id`='2'");
         }
     }
 
@@ -115,10 +123,10 @@ public class resturent_customer extends javax.swing.JFrame {
         String cat = jComboBox3.getSelectedItem().toString();
 
         if (cat.equals(0)) {
-            loadRes(query + "ORDER BY `res_order_has_food_item`.`id` ASC");
+            loadRes(query + "WHERE  `kot_customer_type_id`='2'");
 
         } else {
-            loadRes(query + "WHERE `food_category`.`category`='" + cat + "' ");
+            loadRes(query + "WHERE `food_category`.`category`='" + cat + "' AND `kot_customer_type_id`='2'");
         }
     }
 
@@ -126,13 +134,13 @@ public class resturent_customer extends javax.swing.JFrame {
         int sortIndex = jComboBox2.getSelectedIndex();
 
         if (sortIndex == 0) {
-            loadRes(query + "ORDER BY `res_order_has_food_item`.`id` ASC");
+            loadRes(query + "WHERE  `kot_customer_type_id`='2'");
 
         } else if (sortIndex == 1) {
-            loadRes(query + "ORDER BY `res_order`.`order_date` ASC");
+            loadRes(query + "WHERE  `kot_customer_type_id`='2' ORDER BY `kot`.`ordered_time` ASC");
 
         } else if (sortIndex == 2) {
-            loadRes(query + "ORDER BY `res_order`.`order_date` DESC");
+            loadRes(query + "WHERE  `kot_customer_type_id`='2' ORDER BY `kot`.`ordered_time` DESC");
         }
     }
 
@@ -140,18 +148,18 @@ public class resturent_customer extends javax.swing.JFrame {
         int sortIndex = jComboBox5.getSelectedIndex();
 
         if (sortIndex == 0) {
-            loadRes(query + "ORDER BY `res_order_has_food_item`.`id` ASC");
+            loadRes(query + "WHERE  `kot_customer_type_id`='2'");
 
         } else if (sortIndex == 1) {
-            loadRes(query + "ORDER BY `res_order`.`total` ASC");
+            loadRes(query + "WHERE  `kot_customer_type_id`='2' ORDER BY `food_item`.`price` ASC");
 
         } else if (sortIndex == 2) {
-            loadRes(query + "ORDER BY `res_order`.`total` DESC");
+            loadRes(query + "WHERE  `kot_customer_type_id`='2' ORDER BY `food_item`.`price` DESC");
         }
     }
 
     private void loadUI() {
-        loadRes(query + "ORDER BY `res_order_has_food_item`.`id` ASC");
+        loadRes(query + "WHERE  `kot_customer_type_id`='2'");
         loadPayment();
         loadCategory();
         jComboBox2.setSelectedIndex(0);

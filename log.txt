@@ -88,3 +88,21 @@ Jun 02, 2024 12:04:08 AM GUI.Hotel_Stock_Management loadEquipment
 WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'status.type' in 'where clause'
 Jun 02, 2024 12:31:04 AM GUI.Kitchen_stock loadKStock
 WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BY `item`.`id` ASC' at line 1
+Jun 02, 2024 2:45:09 PM GUI.resturent_customer loadRes
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order.order_date' in 'order clause'
+Jun 02, 2024 2:45:09 PM GUI.resturent_customer loadRes
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order.order_date' in 'order clause'
+Jun 02, 2024 2:45:13 PM GUI.resturent_customer loadRes
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order_has_food_item.id' in 'order clause'
+Jun 02, 2024 2:45:13 PM GUI.resturent_customer loadRes
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order_has_food_item.id' in 'order clause'
+Jun 02, 2024 2:45:18 PM GUI.resturent_customer loadRes
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order_has_food_item.id' in 'order clause'
+Jun 02, 2024 2:45:19 PM GUI.resturent_customer loadRes
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order_has_food_item.id' in 'order clause'
+Jun 02, 2024 2:45:21 PM GUI.resturent_customer loadRes
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order_has_food_item.id' in 'order clause'
+Jun 02, 2024 2:45:34 PM GUI.resturent_customer loadRes
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order.total' in 'order clause'
+Jun 02, 2024 2:45:34 PM GUI.resturent_customer loadRes
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order.total' in 'order clause'
