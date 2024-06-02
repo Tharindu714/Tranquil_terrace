@@ -449,7 +449,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
         jTextField2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton4.setBackground(new java.awt.Color(18, 173, 193));
+        jButton4.setBackground(new java.awt.Color(52, 73, 94));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("+");

@@ -17,17 +17,14 @@ import net.sf.jasperreports.view.JasperViewer;
 public class Kitchen_stock extends javax.swing.JFrame {
 
     HashMap<String, String> UnitMap = new HashMap<>();
-    HashMap<String, String> Unit2Map = new HashMap<>();
-    
+
     String query = ("SELECT * FROM `item`"
-                + "INNER JOIN `item_unit` ON `item`.`item_unit_id` = `item_unit`.id ");
+            + "INNER JOIN `item_unit` ON `item`.`item_unit_id` = `item_unit`.id ");
 
     public Kitchen_stock() {
         initComponents();
         loadKStock(query + "ORDER BY `item`.`id` ASC");
         loadUnits();
-//        loadCurrentqty();
-        loadStandardunits();
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -48,10 +45,8 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
-
+            Dashboard.log.warning(e.toString());
         }
-
     }
 
     private void loadUnits() {
@@ -59,7 +54,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
             ResultSet resultSet = MySQL.execute("SELECT * FROM `item_unit`");
 
             Vector v = new Vector();
-            v.add("Select");
+            v.add("Select");  //0 index
 
             while (resultSet.next()) {
                 v.add(resultSet.getString("unit"));
@@ -68,9 +63,10 @@ public class Kitchen_stock extends javax.swing.JFrame {
 
             DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
             jComboBox1.setModel(comboBoxModel);
+            jComboBox5.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -97,7 +93,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
             jButton1.setEnabled(false);
         }
     }
-    
+
     private void currentqtySearch() {
         int sortIndex = jComboBox4.getSelectedIndex();
 
@@ -110,70 +106,17 @@ public class Kitchen_stock extends javax.swing.JFrame {
         } else if (sortIndex == 2) {
             loadKStock(query + "ORDER BY `item`.`current_qty` ASC");
 
-        } 
-    }
-    
-//    private void loadCurrentqty() {
-//        try {
-//            ResultSet resultSet = MySQL.execute("SELECT * FROM `item`");
-//
-//            Vector v = new Vector();
-//            v.add("Select");
-//
-//            while (resultSet.next()) {
-//                v.add(resultSet.getString("current_qty"));
-//                QtyMap.put(resultSet.getString("current_qty"), resultSet.getString("id"));
-//            }
-//
-//            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
-//            jComboBox4.setModel(comboBoxModel);
-//
-//        } catch (Exception e) {
-//                        Dashboard.log.warning(e.toString());
-//
-//        }
-//    }
-    
-//    private void currentqtySearch() {
-//        String unit = jComboBox4.getSelectedItem().toString();
-//
-//        if (unit.equals(0)) {
-//             loadKStock(query + "ORDER BY `item`.`id` ASC");
-//
-//        } else {
-//             loadKStock(query + "WHERE `item_unit`.`unit`='" + unit + "' ");
-//        }
-//    }
-
-    private void loadStandardunits() {
-        try {
-            ResultSet resultSet = MySQL.execute("SELECT * FROM `item_unit`");
-
-            Vector v = new Vector();
-            v.add("Select");
-
-            while (resultSet.next()) {
-                v.add(resultSet.getString("unit"));
-                Unit2Map.put(resultSet.getString("unit"), resultSet.getString("id"));
-            }
-
-            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
-            jComboBox5.setModel(comboBoxModel);
-
-        } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
-
         }
     }
-    
-    private void standardunitSearch() {
-        String qty = jComboBox5.getSelectedItem().toString();
 
-        if (qty.equals(0)) {
-             loadKStock(query + "ORDER BY `item`.`id` ASC");
+    private void standardunitSearch() {
+        String unit = jComboBox5.getSelectedItem().toString();
+
+        if (unit.equals(0)) {
+            loadKStock(query + "ORDER BY `item`.`id` ASC");
 
         } else {
-             loadKStock(query + "WHERE `item`.`current_qty`='" + qty + "' ");
+            loadKStock(query + "WHERE `item_unit`.`unit`='" + unit + "' ");
         }
     }
 
@@ -304,6 +247,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Order By Current QTY");
 
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Quantity DESC", "Quantity ASC" }));
         jComboBox4.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox4ItemStateChanged(evt);
@@ -329,29 +273,28 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox4, 0, 204, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                     .addComponent(jComboBox5, 0, 204, Short.MAX_VALUE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -508,7 +451,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
         if (evt.getClickCount() == 1) {
             oneClick();
         } else if (evt.getClickCount() == 2) {
-            reset();
+            commons();
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -540,7 +483,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
                             + "VALUES('" + itemName + "','" + qty + "','" + current_qty + "','" + UnitMap.get(unit) + "')");
                 }
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
 
@@ -574,7 +517,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Stock Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                         commons();
                     } catch (Exception e) {
-                                   Dashboard.log.warning(e.toString());
+                        Dashboard.log.warning(e.toString());
 
                     }
                 }
@@ -582,7 +525,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please select the Stock item", "Message", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -601,7 +544,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 commons();
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
         commons();
@@ -625,7 +568,7 @@ public class Kitchen_stock extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         } else {
@@ -636,12 +579,14 @@ public class Kitchen_stock extends javax.swing.JFrame {
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
         currentqtySearch();
         jComboBox5.setSelectedIndex(0);
-        
+        jComboBox1.setSelectedIndex(0);
+
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
         standardunitSearch();
         jComboBox4.setSelectedIndex(0);
+        jComboBox1.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox5ItemStateChanged
 
     public static void main(String args[]) {
