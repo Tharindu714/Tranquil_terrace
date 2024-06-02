@@ -2,16 +2,21 @@ package Customer_Side;
 
 import GUI.Dashboard;
 import com.formdev.flatlaf.IntelliJTheme;
+
 import foodPanel.Chicken;
 import foodPanel.FriedFoods;
 import foodPanel.Juice;
 import foodPanel.Macaroni;
 import foodPanel.SoupPanel;
 import foodPanel.Spegetti;
+import foodPanel.dessert;
 import foodPanel.devilled;
+import foodPanel.fishfood;
+import foodPanel.hotDrinks;
 import foodPanel.noodles;
 import foodPanel.rice;
 import foodPanel.salad_panel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -127,68 +132,89 @@ public class main_interface extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
-    private void panelChange(){
-        jPanel7.removeAll();
-        jPanel7.setBackground(Color.black);
-    }
 
     private void SearchFood() {
         int sortIndex = jComboBox1.getSelectedIndex();
 
         if (sortIndex == 0) {
-            panelChange();
-            
+
         } else if (sortIndex == 1) {
-            panelChange();
+            jPanel7.removeAll();
             SoupPanel sp = new SoupPanel();
             jPanel7.add(sp, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
 
         } else if (sortIndex == 2) {
-            panelChange();
+            jPanel7.removeAll();
             salad_panel sp = new salad_panel();
             jPanel7.add(sp, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
 
         } else if (sortIndex == 3) {
-            panelChange();
+            jPanel7.removeAll();
             Juice j = new Juice();
             jPanel7.add(j, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
 
         } else if (sortIndex == 4) {
-            panelChange();
+            jPanel7.removeAll();
             rice rice = new rice();
             jPanel7.add(rice, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
 
         } else if (sortIndex == 5) {
-            panelChange();
+            jPanel7.removeAll();
             noodles n = new noodles();
             jPanel7.add(n, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
 
         } else if (sortIndex == 6) {
-            panelChange();
+            jPanel7.removeAll();
             Spegetti spg = new Spegetti();
             jPanel7.add(spg, BorderLayout.CENTER);
             jPanel7.setBackground(Color.black);
-            
+
         } else if (sortIndex == 7) {
-            panelChange();
+            jPanel7.removeAll();
             Macaroni mac = new Macaroni();
             jPanel7.add(mac, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
 
         } else if (sortIndex == 8) {
-            panelChange();
+            jPanel7.removeAll();
             devilled dv = new devilled();
             jPanel7.add(dv, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
 
         } else if (sortIndex == 9) {
-            panelChange();
+            jPanel7.removeAll();
             Chicken ch = new Chicken();
             jPanel7.add(ch, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
 
         } else if (sortIndex == 10) {
-            panelChange();
+            jPanel7.removeAll();
             FriedFoods ff = new FriedFoods();
             jPanel7.add(ff, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
+
+        } else if (sortIndex == 11) {
+            jPanel7.removeAll();
+            fishfood ff = new fishfood();
+            jPanel7.add(ff, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
+
+        } else if (sortIndex == 12) {
+            jPanel7.removeAll();
+            dessert dd = new dessert();
+            jPanel7.add(dd, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
+
+        } else if (sortIndex == 13) {
+            jPanel7.removeAll();
+            hotDrinks HD = new hotDrinks();
+            jPanel7.add(HD, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
         }
     }
 
@@ -288,15 +314,19 @@ public class main_interface extends javax.swing.JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(600, 25));
         jPanel6.setLayout(new java.awt.GridLayout(1, 0, 8, 6));
 
-        jComboBox1.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 15)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select food Category" }));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(250, 24));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
             }
         });
         jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jComboBox1MousePressed(evt);
             }
@@ -308,7 +338,7 @@ public class main_interface extends javax.swing.JFrame {
         });
         jPanel6.add(jComboBox1);
 
-        jComboBox3.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
+        jComboBox3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 15)); // NOI18N
         jComboBox3.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select guest" }));
         jComboBox3.addItemListener(new java.awt.event.ItemListener() {
@@ -318,6 +348,8 @@ public class main_interface extends javax.swing.JFrame {
         });
         jPanel6.add(jComboBox3);
 
+        jTextField1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField1FocusGained(evt);
@@ -339,6 +371,8 @@ public class main_interface extends javax.swing.JFrame {
         jPanel6.add(jTextField1);
 
         jTextField2.setEditable(false);
+        jTextField2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel6.add(jTextField2);
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 30, 750, -1));
@@ -434,6 +468,10 @@ public class main_interface extends javax.swing.JFrame {
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         SearchFood();
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+
+    }//GEN-LAST:event_jComboBox1MouseClicked
 
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
