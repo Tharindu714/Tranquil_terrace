@@ -106,3 +106,5 @@ Jun 02, 2024 2:45:34 PM GUI.resturent_customer loadRes
 WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order.total' in 'order clause'
 Jun 02, 2024 2:45:34 PM GUI.resturent_customer loadRes
 WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order.total' in 'order clause'
+Jun 02, 2024 7:36:34 PM Customer_Side.main_interface loadCustomer
+WARNING: java.sql.SQLException: Column 'category' not found.

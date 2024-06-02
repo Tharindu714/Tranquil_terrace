@@ -2,21 +2,38 @@ package Customer_Side;
 
 import GUI.Dashboard;
 import com.formdev.flatlaf.IntelliJTheme;
+import foodPanel.Chicken;
+import foodPanel.FriedFoods;
+import foodPanel.Juice;
+import foodPanel.Macaroni;
+import foodPanel.SoupPanel;
+import foodPanel.Spegetti;
+import foodPanel.devilled;
+import foodPanel.noodles;
+import foodPanel.rice;
+import foodPanel.salad_panel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JPanel;
 import model.MySQL;
 
 public class main_interface extends javax.swing.JFrame {
 
     HashMap<String, String> catMap = new HashMap<>();
     HashMap<String, String> userMap = new HashMap<>();
+    HashMap<String, String> extraMap = new HashMap<>();
 
     public main_interface() {
         initComponents();
         loadCat();
         loadCustomer();
+        loadExtras();
+        jTextField2.setText("Your User name");
     }
 
     private void loadCat() {
@@ -47,8 +64,8 @@ public class main_interface extends javax.swing.JFrame {
             v.add("Select");
 
             while (resultSet.next()) {
-                v.add(resultSet.getString("category"));
-                userMap.put(resultSet.getString("category"), resultSet.getString("id"));
+                v.add(resultSet.getString("type"));
+                userMap.put(resultSet.getString("type"), resultSet.getString("id"));
             }
 
             DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
@@ -56,6 +73,122 @@ public class main_interface extends javax.swing.JFrame {
 
         } catch (Exception e) {
             Dashboard.log.warning(e.toString());
+        }
+    }
+
+    private void loadExtras() {
+        try {
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `extra_item_added`");
+
+            Vector v = new Vector();
+            v.add("Select Extra Preferances");
+
+            while (resultSet.next()) {
+                v.add(resultSet.getString("description"));
+                extraMap.put(resultSet.getString("description"), resultSet.getString("id"));
+            }
+
+            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
+            jComboBox6.setModel(comboBoxModel);
+
+        } catch (Exception e) {
+            Dashboard.log.warning(e.toString());
+        }
+    }
+
+    private void customerIdentify() {
+        String customer = jComboBox3.getSelectedItem().toString();
+
+        if (customer.equals("Select")) {
+            jTextField1.setEnabled(false);
+
+        } else if (customer.equals("Guest")) {
+            jTextField1.setEnabled(true);
+            jTextField1.grabFocus();
+
+        } else {
+            jTextField1.setEnabled(false);
+        }
+    }
+
+    private void customerSearch() {
+        String mobile = jTextField1.getText();
+        try {
+            ResultSet resultSet = MySQL.execute("SELECT *\n"
+                    + "FROM customer\n"
+                    + "WHERE mobile = '" + mobile + "';");
+
+            if (resultSet.next()) {
+                jTextField1.setEnabled(false);
+                String username = resultSet.getString("full_name");
+                jTextField2.setText(username);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void panelChange(){
+        jPanel7.removeAll();
+        jPanel7.setBackground(Color.black);
+    }
+
+    private void SearchFood() {
+        int sortIndex = jComboBox1.getSelectedIndex();
+
+        if (sortIndex == 0) {
+            panelChange();
+            
+        } else if (sortIndex == 1) {
+            panelChange();
+            SoupPanel sp = new SoupPanel();
+            jPanel7.add(sp, BorderLayout.CENTER);
+
+        } else if (sortIndex == 2) {
+            panelChange();
+            salad_panel sp = new salad_panel();
+            jPanel7.add(sp, BorderLayout.CENTER);
+
+        } else if (sortIndex == 3) {
+            panelChange();
+            Juice j = new Juice();
+            jPanel7.add(j, BorderLayout.CENTER);
+
+        } else if (sortIndex == 4) {
+            panelChange();
+            rice rice = new rice();
+            jPanel7.add(rice, BorderLayout.CENTER);
+
+        } else if (sortIndex == 5) {
+            panelChange();
+            noodles n = new noodles();
+            jPanel7.add(n, BorderLayout.CENTER);
+
+        } else if (sortIndex == 6) {
+            panelChange();
+            Spegetti spg = new Spegetti();
+            jPanel7.add(spg, BorderLayout.CENTER);
+            jPanel7.setBackground(Color.black);
+            
+        } else if (sortIndex == 7) {
+            panelChange();
+            Macaroni mac = new Macaroni();
+            jPanel7.add(mac, BorderLayout.CENTER);
+
+        } else if (sortIndex == 8) {
+            panelChange();
+            devilled dv = new devilled();
+            jPanel7.add(dv, BorderLayout.CENTER);
+
+        } else if (sortIndex == 9) {
+            panelChange();
+            Chicken ch = new Chicken();
+            jPanel7.add(ch, BorderLayout.CENTER);
+
+        } else if (sortIndex == 10) {
+            panelChange();
+            FriedFoods ff = new FriedFoods();
+            jPanel7.add(ff, BorderLayout.CENTER);
         }
     }
 
@@ -158,6 +291,16 @@ public class main_interface extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select food Category" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jComboBox1MousePressed(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -168,8 +311,34 @@ public class main_interface extends javax.swing.JFrame {
         jComboBox3.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
         jComboBox3.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select guest" }));
+        jComboBox3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox3ItemStateChanged(evt);
+            }
+        });
         jPanel6.add(jComboBox3);
+
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
         jPanel6.add(jTextField1);
+
+        jTextField2.setEditable(false);
         jPanel6.add(jTextField2);
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 30, 750, -1));
@@ -230,6 +399,41 @@ public class main_interface extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
+        customerIdentify();
+    }//GEN-LAST:event_jComboBox3ItemStateChanged
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        if (jTextField1.getText().equals("")) {
+            jTextField1.setText("Please Enter Mobile Number");
+        }
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        if (jTextField1.getText().equals("Please Enter Mobile Number")) {
+            jTextField1.setText("");
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            customerSearch();
+        }
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        jTextField1.setEnabled(true);
+        jTextField2.setText("Your User name");
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jComboBox1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MousePressed
+
+    }//GEN-LAST:event_jComboBox1MousePressed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        SearchFood();
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
