@@ -1,16 +1,17 @@
 package foodPanel;
 
+import Customer_Side.main_interface;
 import GUI.Dashboard;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import model.MySQL;
 
 public class SoupPanel extends javax.swing.JPanel {
 
-//Search Current last ID
     String searchQuery = ("SELECT `id` FROM `kot` ORDER BY `id` DESC");
     String commonQuery = ("SELECT `name`,`price` FROM `food_item` ");
 
@@ -42,6 +43,53 @@ public class SoupPanel extends javax.swing.JPanel {
                 jLabel1.setText(foodname + " | " + foodprice);
             }
         } catch (SQLException e) {
+            Dashboard.log.warning(e.toString());
+        }
+    }
+
+    private void addVeg() {
+        String DateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+
+        try {
+            ResultSet resultset = MySQL.execute(searchQuery);
+            if (resultset.next()) {
+                int id = resultset.getInt("id");
+                int nextID = id + 1;
+
+                MySQL.execute("INSERT INTO "
+                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`,`extra_item_added_id`)"
+                        + "VALUES('" + nextID + "','" + DateTime + "','1','1','1')");
+
+                MySQL.execute("INSERT INTO "
+                        + "`kot_has_food`(`kot_id`,`food_item_id`,`qty`)"
+                        + "VALUES('" + nextID + "','3','1')");
+
+                JOptionPane.showMessageDialog(this, "Vegetable Soup Added", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            Dashboard.log.warning(e.toString());
+        }
+    }
+
+    private void addChicken() {
+        String DateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        try {
+            ResultSet resultset = MySQL.execute(searchQuery);
+            if (resultset.next()) {
+                int id = resultset.getInt("id");
+                int nextID = id + 1;
+
+                MySQL.execute("INSERT INTO "
+                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`,`extra_item_added_id`)"
+                        + "VALUES('" + nextID + "','" + DateTime + "','1','1','1')");
+
+                MySQL.execute("INSERT INTO "
+                        + "`kot_has_food`(`kot_id`,`food_item_id`,`qty`)"
+                        + "VALUES('" + nextID + "','4','1')");
+
+                JOptionPane.showMessageDialog(this, "Chicken Soup Added", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
             Dashboard.log.warning(e.toString());
         }
     }
@@ -115,50 +163,11 @@ public class SoupPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jImagePanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jImagePanel2MouseClicked
-        String DateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-
-        try {
-            ResultSet resultset = MySQL.execute(searchQuery);
-            if (resultset.next()) {
-                int id = resultset.getInt("id");
-                int nextID = id + 1;
-
-                MySQL.execute("INSERT INTO "
-                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`)"
-                        + "VALUES('" + nextID + "','" + DateTime + "','1','1')");
-
-                MySQL.execute("INSERT INTO "
-                        + "`kot_has_food`(`kot_id`,`food_item_id`,`qty`)"
-                        + "VALUES('" + nextID + "','3','1')");
-
-                JOptionPane.showMessageDialog(this, "Vegetable Soup Added", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-        }
+        addVeg();
     }//GEN-LAST:event_jImagePanel2MouseClicked
 
     private void jImagePanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jImagePanel1MouseClicked
-        String DateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        try {
-            ResultSet resultset = MySQL.execute(searchQuery);
-            if (resultset.next()) {
-                int id = resultset.getInt("id");
-                int nextID = id + 1;
-
-                MySQL.execute("INSERT INTO "
-                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`)"
-                        + "VALUES('" + nextID + "','" + DateTime + "','1','1')");
-
-                MySQL.execute("INSERT INTO "
-                        + "`kot_has_food`(`kot_id`,`food_item_id`,`qty`)"
-                        + "VALUES('" + nextID + "','4','1')");
-
-                JOptionPane.showMessageDialog(this, "Chicken Soup Added", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-        }
+        addChicken();
     }//GEN-LAST:event_jImagePanel1MouseClicked
 
     private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
