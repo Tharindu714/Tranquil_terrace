@@ -28,8 +28,11 @@ public class salad_panel extends javax.swing.JPanel {
 
         jImagePanel3 = new main.JImagePanel();
         jImagePanel4 = new main.JImagePanel();
+        jLabel1 = new javax.swing.JLabel();
         jImagePanel1 = new main.JImagePanel();
+        jLabel2 = new javax.swing.JLabel();
         jImagePanel2 = new main.JImagePanel();
+        jLabel3 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jImagePanel3Layout = new javax.swing.GroupLayout(jImagePanel3);
         jImagePanel3.setLayout(jImagePanel3Layout);
@@ -47,51 +50,45 @@ public class salad_panel extends javax.swing.JPanel {
         jImagePanel4.setFitToPanel(true);
         jImagePanel4.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/cucumber_salad.jpeg"))); // NOI18N
         jImagePanel4.setSmoothRendering(true);
+        jImagePanel4.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jImagePanel4Layout = new javax.swing.GroupLayout(jImagePanel4);
-        jImagePanel4.setLayout(jImagePanel4Layout);
-        jImagePanel4Layout.setHorizontalGroup(
-            jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-        jImagePanel4Layout.setVerticalGroup(
-            jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
-        );
+        jLabel1.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Cucumber Salad");
+        jLabel1.setOpaque(true);
+        jImagePanel4.add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel4);
 
         jImagePanel1.setFitToPanel(true);
         jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/veg_mixed_salad.jpeg"))); // NOI18N
         jImagePanel1.setSmoothRendering(true);
+        jImagePanel1.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jImagePanel1Layout = new javax.swing.GroupLayout(jImagePanel1);
-        jImagePanel1.setLayout(jImagePanel1Layout);
-        jImagePanel1Layout.setHorizontalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-        jImagePanel1Layout.setVerticalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
-        );
+        jLabel2.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Vegitable Mix Salad");
+        jLabel2.setOpaque(true);
+        jImagePanel1.add(jLabel2, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel1);
 
         jImagePanel2.setFitToPanel(true);
         jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/Fruit _Salad .jpeg"))); // NOI18N
         jImagePanel2.setSmoothRendering(true);
+        jImagePanel2.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jImagePanel2Layout = new javax.swing.GroupLayout(jImagePanel2);
-        jImagePanel2.setLayout(jImagePanel2Layout);
-        jImagePanel2Layout.setHorizontalGroup(
-            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-        jImagePanel2Layout.setVerticalGroup(
-            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
-        );
+        jLabel3.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Fruit Salad");
+        jLabel3.setOpaque(true);
+        jImagePanel2.add(jLabel3, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel2);
     }// </editor-fold>//GEN-END:initComponents
@@ -102,5 +99,8 @@ public class salad_panel extends javax.swing.JPanel {
     private main.JImagePanel jImagePanel2;
     private main.JImagePanel jImagePanel3;
     private main.JImagePanel jImagePanel4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

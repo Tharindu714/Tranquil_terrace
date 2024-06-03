@@ -27,41 +27,39 @@ public class SoupPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jImagePanel2 = new main.JImagePanel();
+        jLabel2 = new javax.swing.JLabel();
         jImagePanel1 = new main.JImagePanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridLayout(1, 2, 5, 5));
 
         jImagePanel2.setFitToPanel(true);
         jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/veg_soup.jpeg"))); // NOI18N
         jImagePanel2.setSmoothRendering(true);
+        jImagePanel2.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jImagePanel2Layout = new javax.swing.GroupLayout(jImagePanel2);
-        jImagePanel2.setLayout(jImagePanel2Layout);
-        jImagePanel2Layout.setHorizontalGroup(
-            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 323, Short.MAX_VALUE)
-        );
-        jImagePanel2Layout.setVerticalGroup(
-            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
-        );
+        jLabel2.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Vegitable Soup");
+        jLabel2.setOpaque(true);
+        jImagePanel2.add(jLabel2, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel2);
 
         jImagePanel1.setFitToPanel(true);
         jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/chicken_soup.jpeg"))); // NOI18N
         jImagePanel1.setSmoothRendering(true);
+        jImagePanel1.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jImagePanel1Layout = new javax.swing.GroupLayout(jImagePanel1);
-        jImagePanel1.setLayout(jImagePanel1Layout);
-        jImagePanel1Layout.setHorizontalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 323, Short.MAX_VALUE)
-        );
-        jImagePanel1Layout.setVerticalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
-        );
+        jLabel1.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Chicken Soup");
+        jLabel1.setOpaque(true);
+        jImagePanel1.add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel1);
     }// </editor-fold>//GEN-END:initComponents
@@ -70,5 +68,7 @@ public class SoupPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private main.JImagePanel jImagePanel1;
     private main.JImagePanel jImagePanel2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
