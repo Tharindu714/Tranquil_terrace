@@ -108,3 +108,21 @@ Jun 02, 2024 2:45:34 PM GUI.resturent_customer loadRes
 WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'res_order.total' in 'order clause'
 Jun 02, 2024 7:36:34 PM Customer_Side.main_interface loadCustomer
 WARNING: java.sql.SQLException: Column 'category' not found.
+Jun 03, 2024 2:26:33 PM foodPanel.SoupPanel jImagePanel2MouseClicked
+WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'food_item_id' at row 1
+Jun 03, 2024 2:27:32 PM foodPanel.SoupPanel jImagePanel2MouseClicked
+WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'food_item_id' at row 1
+Jun 03, 2024 2:34:27 PM foodPanel.SoupPanel jImagePanel2MouseClicked
+WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'food_item_id' at row 1
+Jun 03, 2024 2:37:15 PM foodPanel.SoupPanel jImagePanel2MouseClicked
+WARNING: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`hotel_db`.`kot_has_food`, CONSTRAINT `fk_kot_has_food_kot1` FOREIGN KEY (`kot_id`) REFERENCES `kot` (`id`))
+Jun 03, 2024 2:40:02 PM foodPanel.SoupPanel jImagePanel2MouseClicked
+WARNING: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`hotel_db`.`kot_has_food`, CONSTRAINT `fk_kot_has_food_kot1` FOREIGN KEY (`kot_id`) REFERENCES `kot` (`id`))
+Jun 03, 2024 6:46:43 PM Customer_Side.main_interface jButton1ActionPerformed
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`customer_visit_hotel_id` = ''WHERE `id` = '9'' at line 1
+Jun 03, 2024 6:47:33 PM Customer_Side.main_interface jButton1ActionPerformed
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`customer_visit_hotel_id` = '200132200757'WHERE `id` = '9'' at line 1
+Jun 03, 2024 6:51:02 PM Customer_Side.main_interface jButton1ActionPerformed
+WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'kot_customer_type_id' at row 1
+Jun 03, 2024 6:53:04 PM Customer_Side.main_interface jButton1ActionPerformed
+WARNING: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Out of range value for column 'customer_visit_hotel_id' at row 1

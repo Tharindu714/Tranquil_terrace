@@ -18,27 +18,25 @@ import foodPanel.rice;
 import foodPanel.salad_panel;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import model.MySQL;
 
 public class main_interface extends javax.swing.JFrame {
 
     HashMap<String, String> catMap = new HashMap<>();
-    HashMap<String, String> userMap = new HashMap<>();
+
     HashMap<String, String> extraMap = new HashMap<>();
 
     public main_interface() {
         initComponents();
         loadCat();
-        loadCustomer();
         loadExtras();
-        jTextField2.setText("Your User name");
+        genarateLastID();
     }
 
     private void loadCat() {
@@ -55,26 +53,6 @@ public class main_interface extends javax.swing.JFrame {
 
             DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
             jComboBox1.setModel(comboBoxModel);
-
-        } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-        }
-    }
-
-    private void loadCustomer() {
-        try {
-            ResultSet resultSet = MySQL.execute("SELECT * FROM `kot_customer_type`");
-
-            Vector v = new Vector();
-            v.add("Select");
-
-            while (resultSet.next()) {
-                v.add(resultSet.getString("type"));
-                userMap.put(resultSet.getString("type"), resultSet.getString("id"));
-            }
-
-            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
-            jComboBox3.setModel(comboBoxModel);
 
         } catch (Exception e) {
             Dashboard.log.warning(e.toString());
@@ -98,38 +76,6 @@ public class main_interface extends javax.swing.JFrame {
 
         } catch (Exception e) {
             Dashboard.log.warning(e.toString());
-        }
-    }
-
-    private void customerIdentify() {
-        String customer = jComboBox3.getSelectedItem().toString();
-
-        if (customer.equals("Select")) {
-            jTextField1.setEnabled(false);
-
-        } else if (customer.equals("Guest")) {
-            jTextField1.setEnabled(true);
-            jTextField1.grabFocus();
-
-        } else {
-            jTextField1.setEnabled(false);
-        }
-    }
-
-    private void customerSearch() {
-        String mobile = jTextField1.getText();
-        try {
-            ResultSet resultSet = MySQL.execute("SELECT *\n"
-                    + "FROM customer\n"
-                    + "WHERE mobile = '" + mobile + "';");
-
-            if (resultSet.next()) {
-                jTextField1.setEnabled(false);
-                String username = resultSet.getString("full_name");
-                jTextField2.setText(username);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -202,6 +148,20 @@ public class main_interface extends javax.swing.JFrame {
         }
     }
 
+    private void genarateLastID() {
+        try {
+            ResultSet resultset = MySQL.execute("SELECT `id` FROM `kot` ORDER BY `id` DESC");
+            if (resultset.next()) {
+                int id = resultset.getInt("id");
+                jLabel5.setText(String.valueOf(id));
+            }
+        } catch (Exception e) {
+            Dashboard.log.warning(e.toString());
+
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -216,15 +176,14 @@ public class main_interface extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jComboBox6 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -292,7 +251,7 @@ public class main_interface extends javax.swing.JFrame {
         jPanel4.add(jLabel3, java.awt.BorderLayout.PAGE_START);
 
         jPanel6.setPreferredSize(new java.awt.Dimension(600, 25));
-        jPanel6.setLayout(new java.awt.GridLayout(1, 0, 8, 6));
+        jPanel6.setLayout(new java.awt.BorderLayout());
 
         jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 15)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
@@ -316,44 +275,7 @@ public class main_interface extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel6.add(jComboBox1);
-
-        jComboBox3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 15)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select guest" }));
-        jComboBox3.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox3ItemStateChanged(evt);
-            }
-        });
-        jPanel6.add(jComboBox3);
-
-        jTextField1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField1FocusLost(evt);
-            }
-        });
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
-            }
-        });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
-            }
-        });
-        jPanel6.add(jTextField1);
-
-        jTextField2.setEditable(false);
-        jTextField2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel6.add(jTextField2);
+        jPanel6.add(jComboBox1, java.awt.BorderLayout.LINE_END);
 
         jPanel7.setPreferredSize(new java.awt.Dimension(379, 409));
         jPanel7.setLayout(new java.awt.BorderLayout());
@@ -366,6 +288,11 @@ public class main_interface extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Next");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -374,7 +301,7 @@ public class main_interface extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
         );
@@ -397,6 +324,16 @@ public class main_interface extends javax.swing.JFrame {
         jLabel4.setText("Experince Comfort, Embrace Tranquility");
         jPanel9.add(jLabel4, java.awt.BorderLayout.CENTER);
 
+        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("KOT No:");
+        jLabel2.setPreferredSize(new java.awt.Dimension(50, 20));
+
+        jLabel5.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("1");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -408,23 +345,31 @@ public class main_interface extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(8, 8, 8))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(192, 192, 192))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -442,33 +387,6 @@ public class main_interface extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
-        customerIdentify();
-    }//GEN-LAST:event_jComboBox3ItemStateChanged
-
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
-        if (jTextField1.getText().equals("")) {
-            jTextField1.setText("Please Enter Mobile Number");
-        }
-    }//GEN-LAST:event_jTextField1FocusLost
-
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        if (jTextField1.getText().equals("Please Enter Mobile Number")) {
-            jTextField1.setText("");
-        }
-    }//GEN-LAST:event_jTextField1FocusGained
-
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            customerSearch();
-        }
-    }//GEN-LAST:event_jTextField1KeyReleased
-
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        jTextField1.setEnabled(true);
-        jTextField2.setText("Your User name");
-    }//GEN-LAST:event_jTextField1MouseClicked
-
     private void jComboBox1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MousePressed
 
     }//GEN-LAST:event_jComboBox1MousePressed
@@ -481,6 +399,10 @@ public class main_interface extends javax.swing.JFrame {
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
 
     }//GEN-LAST:event_jComboBox1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
@@ -496,12 +418,13 @@ public class main_interface extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox6;
     private main.JImagePanel jImagePanel1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -510,7 +433,5 @@ public class main_interface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
