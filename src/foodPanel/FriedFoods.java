@@ -59,7 +59,7 @@ public class FriedFoods extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
-        jLabel1.setForeground(null);
+        jLabel1.setForeground(java.awt.Color.white);
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Fried Chicken");
         jLabel1.setOpaque(true);
