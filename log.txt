@@ -126,3 +126,9 @@ Jun 03, 2024 6:51:02 PM Customer_Side.main_interface jButton1ActionPerformed
 WARNING: java.sql.SQLException: Incorrect integer value: 'null' for column 'kot_customer_type_id' at row 1
 Jun 03, 2024 6:53:04 PM Customer_Side.main_interface jButton1ActionPerformed
 WARNING: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Out of range value for column 'customer_visit_hotel_id' at row 1
+Jun 03, 2024 11:54:22 PM Customer_Side.main_interface loadCat
+WARNING: java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "model.MySQL.connection" is null
+Jun 03, 2024 11:54:22 PM Customer_Side.main_interface loadExtras
+WARNING: java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "model.MySQL.connection" is null
+Jun 03, 2024 11:54:22 PM Customer_Side.main_interface genarateLastID
+WARNING: java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "model.MySQL.connection" is null
