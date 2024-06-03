@@ -27,7 +27,7 @@ public class salad_panel extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel1.setText(foodname + " | " + foodprice);
+                jLabel1.setText(foodname + "|" + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -40,7 +40,7 @@ public class salad_panel extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel2.setText(foodname + " | " + foodprice);
+                jLabel2.setText(foodname + "|" + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -53,7 +53,7 @@ public class salad_panel extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel3.setText(foodname + " | " + foodprice);
+                jLabel3.setText(foodname + "|" + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
