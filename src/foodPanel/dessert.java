@@ -27,7 +27,8 @@ public class dessert extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel1.setText(foodname + " | " + foodprice);
+                jLabel1.setText(foodname);
+                jLabel3.setText("Rs." + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -40,7 +41,8 @@ public class dessert extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel2.setText(foodname + " | " + foodprice);
+                jLabel2.setText(foodname);
+                jLabel4.setText("Rs." + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -52,14 +54,16 @@ public class dessert extends javax.swing.JPanel {
 
         jImagePanel1 = new main.JImagePanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jImagePanel2 = new main.JImagePanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridLayout(1, 0, 5, 5));
 
         jImagePanel1.setCenterImage(true);
         jImagePanel1.setFitToPanel(true);
-        jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/watalappan.jpeg"))); // NOI18N
+        jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/watalappan.jpg"))); // NOI18N
         jImagePanel1.setSmoothRendering(true);
         jImagePanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,6 +79,12 @@ public class dessert extends javax.swing.JPanel {
         jLabel1.setText("Watalappan");
         jLabel1.setOpaque(true);
         jImagePanel1.add(jLabel1, java.awt.BorderLayout.PAGE_END);
+
+        jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 1, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("jLabel3");
+        jImagePanel1.add(jLabel3, java.awt.BorderLayout.PAGE_START);
 
         add(jImagePanel1);
 
@@ -96,6 +106,12 @@ public class dessert extends javax.swing.JPanel {
         jLabel2.setText("Ice Cream");
         jLabel2.setOpaque(true);
         jImagePanel2.add(jLabel2, java.awt.BorderLayout.PAGE_END);
+
+        jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("jLabel4");
+        jImagePanel2.add(jLabel4, java.awt.BorderLayout.PAGE_START);
 
         add(jImagePanel2);
     }// </editor-fold>//GEN-END:initComponents
@@ -152,5 +168,7 @@ public class dessert extends javax.swing.JPanel {
     private main.JImagePanel jImagePanel2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
