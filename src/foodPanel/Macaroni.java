@@ -27,7 +27,9 @@ public class Macaroni extends javax.swing.JPanel {
     private void initComponents() {
 
         jImagePanel1 = new main.JImagePanel();
+        jLabel1 = new javax.swing.JLabel();
         jImagePanel4 = new main.JImagePanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridLayout(1, 0, 5, 5));
 
@@ -35,17 +37,15 @@ public class Macaroni extends javax.swing.JPanel {
         jImagePanel1.setFitToPanel(true);
         jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/cheese_macaroni.jpeg"))); // NOI18N
         jImagePanel1.setSmoothRendering(true);
+        jImagePanel1.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jImagePanel1Layout = new javax.swing.GroupLayout(jImagePanel1);
-        jImagePanel1.setLayout(jImagePanel1Layout);
-        jImagePanel1Layout.setHorizontalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 197, Short.MAX_VALUE)
-        );
-        jImagePanel1Layout.setVerticalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabel1.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Cheese Macaroni");
+        jLabel1.setOpaque(true);
+        jImagePanel1.add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel1);
 
@@ -53,17 +53,15 @@ public class Macaroni extends javax.swing.JPanel {
         jImagePanel4.setFitToPanel(true);
         jImagePanel4.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/prawn_cheese_macaroni.jpeg"))); // NOI18N
         jImagePanel4.setSmoothRendering(true);
+        jImagePanel4.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jImagePanel4Layout = new javax.swing.GroupLayout(jImagePanel4);
-        jImagePanel4.setLayout(jImagePanel4Layout);
-        jImagePanel4Layout.setHorizontalGroup(
-            jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 197, Short.MAX_VALUE)
-        );
-        jImagePanel4Layout.setVerticalGroup(
-            jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabel2.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Prawn Cheese Macaroni");
+        jLabel2.setOpaque(true);
+        jImagePanel4.add(jLabel2, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel4);
     }// </editor-fold>//GEN-END:initComponents
@@ -72,5 +70,7 @@ public class Macaroni extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private main.JImagePanel jImagePanel1;
     private main.JImagePanel jImagePanel4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
