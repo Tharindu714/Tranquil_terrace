@@ -26,64 +26,28 @@ public class Chicken extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jImagePanel1 = new main.JImagePanel();
-        jImagePanel2 = new main.JImagePanel();
         jImagePanel3 = new main.JImagePanel();
+        jLabel2 = new javax.swing.JLabel();
         jImagePanel4 = new main.JImagePanel();
+        jLabel3 = new javax.swing.JLabel();
+        jImagePanel2 = new main.JImagePanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setLayout(new java.awt.GridLayout(2, 0, 10, 10));
-
-        jImagePanel1.setCenterImage(true);
-        jImagePanel1.setFitToPanel(true);
-        jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/chicken_noodle.jpeg"))); // NOI18N
-        jImagePanel1.setSmoothRendering(true);
-
-        javax.swing.GroupLayout jImagePanel1Layout = new javax.swing.GroupLayout(jImagePanel1);
-        jImagePanel1.setLayout(jImagePanel1Layout);
-        jImagePanel1Layout.setHorizontalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 233, Short.MAX_VALUE)
-        );
-        jImagePanel1Layout.setVerticalGroup(
-            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
-        );
-
-        add(jImagePanel1);
-
-        jImagePanel2.setCenterImage(true);
-        jImagePanel2.setFitToPanel(true);
-        jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/chicken_rice_basmati.jpeg"))); // NOI18N
-        jImagePanel2.setSmoothRendering(true);
-
-        javax.swing.GroupLayout jImagePanel2Layout = new javax.swing.GroupLayout(jImagePanel2);
-        jImagePanel2.setLayout(jImagePanel2Layout);
-        jImagePanel2Layout.setHorizontalGroup(
-            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 233, Short.MAX_VALUE)
-        );
-        jImagePanel2Layout.setVerticalGroup(
-            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
-        );
-
-        add(jImagePanel2);
+        setLayout(new java.awt.GridLayout(1, 0, 5, 5));
 
         jImagePanel3.setCenterImage(true);
         jImagePanel3.setFitToPanel(true);
         jImagePanel3.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/Pepper Chicken .jpeg"))); // NOI18N
         jImagePanel3.setSmoothRendering(true);
+        jImagePanel3.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jImagePanel3Layout = new javax.swing.GroupLayout(jImagePanel3);
-        jImagePanel3.setLayout(jImagePanel3Layout);
-        jImagePanel3Layout.setHorizontalGroup(
-            jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 233, Short.MAX_VALUE)
-        );
-        jImagePanel3Layout.setVerticalGroup(
-            jImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
-        );
+        jLabel2.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Pepper Chicken");
+        jLabel2.setOpaque(true);
+        jImagePanel3.add(jLabel2, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel3);
 
@@ -91,26 +55,42 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel4.setFitToPanel(true);
         jImagePanel4.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/chicken_steak.jpeg"))); // NOI18N
         jImagePanel4.setSmoothRendering(true);
+        jImagePanel4.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jImagePanel4Layout = new javax.swing.GroupLayout(jImagePanel4);
-        jImagePanel4.setLayout(jImagePanel4Layout);
-        jImagePanel4Layout.setHorizontalGroup(
-            jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 233, Short.MAX_VALUE)
-        );
-        jImagePanel4Layout.setVerticalGroup(
-            jImagePanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
-        );
+        jLabel3.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Chicken Steak");
+        jLabel3.setOpaque(true);
+        jImagePanel4.add(jLabel3, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel4);
+
+        jImagePanel2.setCenterImage(true);
+        jImagePanel2.setFitToPanel(true);
+        jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource("/food_img/roasted_chicken.jpeg"))); // NOI18N
+        jImagePanel2.setSmoothRendering(true);
+        jImagePanel2.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Roasted Chicken");
+        jLabel1.setOpaque(true);
+        jImagePanel2.add(jLabel1, java.awt.BorderLayout.PAGE_END);
+
+        add(jImagePanel2);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private main.JImagePanel jImagePanel1;
     private main.JImagePanel jImagePanel2;
     private main.JImagePanel jImagePanel3;
     private main.JImagePanel jImagePanel4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
