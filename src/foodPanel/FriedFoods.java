@@ -88,7 +88,6 @@ public class FriedFoods extends javax.swing.JPanel {
         jLabel2.setBackground(new java.awt.Color(52, 73, 94));
         jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Potato Chips");
         jLabel2.setOpaque(true);
         jImagePanel2.add(jLabel2, java.awt.BorderLayout.PAGE_END);
@@ -109,7 +108,6 @@ public class FriedFoods extends javax.swing.JPanel {
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
         jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Fried Chicken");
         jLabel1.setOpaque(true);
         jImagePanel1.add(jLabel1, java.awt.BorderLayout.PAGE_END);
@@ -129,7 +127,6 @@ public class FriedFoods extends javax.swing.JPanel {
         jLabel3.setBackground(new java.awt.Color(52, 73, 94));
         jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Fried Sausages");
         jLabel3.setOpaque(true);
         jImagePanel3.add(jLabel3, java.awt.BorderLayout.PAGE_END);

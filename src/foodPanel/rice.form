@@ -46,7 +46,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Vegetable Rice"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
@@ -78,12 +77,11 @@
               <Color blue="5e" green="49" red="34" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="DinaminaUniWeb" size="20" style="0"/>
+              <Font name="DinaminaUniWeb" size="15" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Chicken Rice(Samba)"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
@@ -115,12 +113,11 @@
               <Color blue="5e" green="49" red="34" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="DinaminaUniWeb" size="20" style="0"/>
+              <Font name="DinaminaUniWeb" size="15" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Chicken Rice(Basmati)"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
@@ -157,7 +154,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Mixed Rice"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
@@ -231,7 +227,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Nasi Goreng"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>

@@ -42,7 +42,7 @@ public class rice extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel3.setText(foodname + "|" + foodprice);
+                jLabel3.setText(foodname + " | " + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -55,7 +55,7 @@ public class rice extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel4.setText(foodname + "|" + foodprice);
+                jLabel4.setText(foodname + " | " + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -68,7 +68,7 @@ public class rice extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel2.setText(foodname + "|" + foodprice);
+                jLabel2.setText(foodname + " | " + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -81,7 +81,7 @@ public class rice extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel6.setText(foodname + "|" + foodprice);
+                jLabel6.setText(foodname + " | " + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -94,7 +94,7 @@ public class rice extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel5.setText(foodname + "|" + foodprice);
+                jLabel5.setText(foodname + " | " + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -133,7 +133,6 @@ public class rice extends javax.swing.JPanel {
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Vegetable Rice");
         jLabel1.setOpaque(true);
         jImagePanel3.add(jLabel1, java.awt.BorderLayout.PAGE_END);
@@ -151,9 +150,8 @@ public class rice extends javax.swing.JPanel {
         jImagePanel2.setLayout(new java.awt.BorderLayout());
 
         jLabel3.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Chicken Rice(Samba)");
         jLabel3.setOpaque(true);
         jImagePanel2.add(jLabel3, java.awt.BorderLayout.PAGE_END);
@@ -171,9 +169,8 @@ public class rice extends javax.swing.JPanel {
         jImagePanel1.setLayout(new java.awt.BorderLayout());
 
         jLabel4.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Chicken Rice(Basmati)");
         jLabel4.setOpaque(true);
         jImagePanel1.add(jLabel4, java.awt.BorderLayout.PAGE_END);
@@ -193,7 +190,6 @@ public class rice extends javax.swing.JPanel {
         jLabel2.setBackground(new java.awt.Color(52, 73, 94));
         jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Mixed Rice");
         jLabel2.setOpaque(true);
         jImagePanel5.add(jLabel2, java.awt.BorderLayout.PAGE_END);
@@ -233,7 +229,6 @@ public class rice extends javax.swing.JPanel {
         jLabel5.setBackground(new java.awt.Color(52, 73, 94));
         jLabel5.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Nasi Goreng");
         jLabel5.setOpaque(true);
         jImagePanel6.add(jLabel5, java.awt.BorderLayout.PAGE_END);

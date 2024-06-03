@@ -132,3 +132,15 @@ Jun 03, 2024 11:54:22 PM Customer_Side.main_interface loadExtras
 WARNING: java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "model.MySQL.connection" is null
 Jun 03, 2024 11:54:22 PM Customer_Side.main_interface genarateLastID
 WARNING: java.lang.NullPointerException: Cannot invoke "java.sql.Connection.createStatement()" because "model.MySQL.connection" is null
+Jun 04, 2024 1:00:54 AM foodPanel.rice jImagePanel2MouseClicked
+WARNING: java.sql.SQLException: Field 'extra_item_added_id' doesn't have a default value
+Jun 04, 2024 1:00:54 AM foodPanel.rice jImagePanel2MouseClicked
+WARNING: java.sql.SQLException: Field 'extra_item_added_id' doesn't have a default value
+Jun 04, 2024 1:01:06 AM foodPanel.rice jImagePanel2MouseClicked
+WARNING: java.sql.SQLException: Field 'extra_item_added_id' doesn't have a default value
+Jun 04, 2024 1:01:07 AM foodPanel.rice jImagePanel2MouseClicked
+WARNING: java.sql.SQLException: Field 'extra_item_added_id' doesn't have a default value
+Jun 04, 2024 1:01:08 AM foodPanel.rice jImagePanel2MouseClicked
+WARNING: java.sql.SQLException: Field 'extra_item_added_id' doesn't have a default value
+Jun 04, 2024 1:01:09 AM foodPanel.rice jImagePanel2MouseClicked
+WARNING: java.sql.SQLException: Field 'extra_item_added_id' doesn't have a default value

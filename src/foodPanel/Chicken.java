@@ -85,11 +85,15 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel3.setLayout(new java.awt.BorderLayout());
 
         jLabel2.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Pepper Chicken");
         jLabel2.setOpaque(true);
+        jLabel2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jLabel2PropertyChange(evt);
+            }
+        });
         jImagePanel3.add(jLabel2, java.awt.BorderLayout.PAGE_END);
 
         add(jImagePanel3);
@@ -106,9 +110,8 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel4.setLayout(new java.awt.BorderLayout());
 
         jLabel3.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Chicken Steak");
         jLabel3.setOpaque(true);
         jImagePanel4.add(jLabel3, java.awt.BorderLayout.PAGE_END);
@@ -127,9 +130,8 @@ public class Chicken extends javax.swing.JPanel {
         jImagePanel2.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Roasted Chicken");
         jLabel1.setOpaque(true);
         jImagePanel2.add(jLabel1, java.awt.BorderLayout.PAGE_END);
@@ -205,6 +207,10 @@ public class Chicken extends javax.swing.JPanel {
             Dashboard.log.warning(e.toString());
         }
     }//GEN-LAST:event_jImagePanel2MouseClicked
+
+    private void jLabel2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLabel2PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2PropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

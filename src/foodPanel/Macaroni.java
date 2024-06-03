@@ -92,7 +92,6 @@ public class Macaroni extends javax.swing.JPanel {
         jLabel2.setBackground(new java.awt.Color(52, 73, 94));
         jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Prawn Cheese Macaroni");
         jLabel2.setOpaque(true);
         jImagePanel4.add(jLabel2, java.awt.BorderLayout.PAGE_END);

@@ -25,7 +25,7 @@ public class Spegetti extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel1.setText(foodname + "|" + foodprice);
+                jLabel1.setText(foodname + " | " + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -38,7 +38,7 @@ public class Spegetti extends javax.swing.JPanel {
             if (rs.next()) {
                 String foodname = rs.getString("name");
                 String foodprice = rs.getString("price");
-                jLabel2.setText(foodname + "|" + foodprice);
+                jLabel2.setText(foodname + " | " + foodprice);
             }
         } catch (SQLException e) {
             Dashboard.log.warning(e.toString());
@@ -67,7 +67,7 @@ public class Spegetti extends javax.swing.JPanel {
         jImagePanel4.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cheese Spegatti");
@@ -87,7 +87,7 @@ public class Spegetti extends javax.swing.JPanel {
         jImagePanel3.setLayout(new java.awt.BorderLayout());
 
         jLabel2.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Sea Food Spegatti");

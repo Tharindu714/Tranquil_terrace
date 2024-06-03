@@ -103,7 +103,7 @@ public class devilled extends javax.swing.JPanel {
         jImagePanel1.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Chicken Deviled");
@@ -124,7 +124,7 @@ public class devilled extends javax.swing.JPanel {
         jImagePanel3.setLayout(new java.awt.BorderLayout());
 
         jLabel3.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Cuttlefish Deviled");
@@ -145,7 +145,7 @@ public class devilled extends javax.swing.JPanel {
         jImagePanel4.setLayout(new java.awt.BorderLayout());
 
         jLabel4.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Mixed Deviled");
@@ -166,7 +166,7 @@ public class devilled extends javax.swing.JPanel {
         jImagePanel2.setLayout(new java.awt.BorderLayout());
 
         jLabel2.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Fish Deviled");
