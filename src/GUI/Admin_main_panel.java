@@ -32,8 +32,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
         }
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-
-    String location = null;
+    String path = null;
     String fileName;
 
     public void dateTime() {
@@ -108,8 +107,64 @@ public class Admin_main_panel extends javax.swing.JFrame {
         }
     }
 
-    static void Backupdbtosql() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void MysqlRestoreProgram() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String dbHost = "localhost";
+        String dbPort = "3306";
+        String dbName = "hotel_db";
+        String dbUser = "root";
+        String dbPass = "tharinduCHA@8754";
+        String dumpExe = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe";
+        String dumpSavePath = "C:\\Users\\Tharindu\\Documents\\NetBeansProjects\\hotel_project\\src\\restoredDb\\";
+        String fileName = "Restored_File" + sdf.format(new Date().getTime()) + ".sql";
+        Restoredbtosql(dbHost, dbPort, dbUser, dbPass, dbName, dumpExe, dumpSavePath, fileName);
+    }
+
+    public void Restoredbtosql(String host, String port, String user, String password, String dbName, String dumpExe, String dumpSavePath, String fileName) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+
+            String batchCommand;
+            if (password != "") {
+                batchCommand = dumpExe
+                        + " -h " + host
+                        + " --port " + port
+                        + " -u " + user
+                        + " --password=" + password
+                        + " --add-drop-database -B " + dbName
+                        + " -r \"" + dumpSavePath + "" + "Restore" + new Date().getTime() + ".sql";
+            } else {
+                batchCommand = dumpExe
+                        + " -h " + host
+                        + " --port " + "3306"
+                        + " -u " + user
+                        + " --add-drop-database -B " + dbName
+                        + " -r \"" + dumpSavePath + "" + "Restore" + new Date().getTime() + ".sql";
+            }
+            System.out.println("Execute Commond - " + batchCommand);
+            System.out.println("Processing.. " + "STARTED " + sdf.format(new Date()));
+            Date sDate = new Date();
+            Process runtimeProcess = Runtime.getRuntime().exec(batchCommand);
+            int processComplete = runtimeProcess.waitFor();
+
+            System.out.println("Processing.. " + "END " + sdf.format(new Date()));
+            Date eDate = new Date();
+            long duration = eDate.getTime() - sDate.getTime();
+            int seconds = (int) ((duration / 1000) % 60);
+            long minutes = ((duration - seconds) / 1000) / 60;
+            System.err.println("TOTAL TIME : " + minutes + " minutes :: ");
+            System.err.print(seconds + " seconds :: ");
+            System.err.print(duration + " milliseconds");
+            if (processComplete == 0) {
+                System.out.println("Restore Complete");
+                JOptionPane.showMessageDialog(this, "Restored Successfully ", "Restored !", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                System.out.println("Restore Failure");
+                JOptionPane.showMessageDialog(this, "This Can not be restored at the  moment", "Restore Failed", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -136,6 +191,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -507,6 +563,14 @@ public class Admin_main_panel extends javax.swing.JFrame {
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Microsoft JhengHei", 0, 10)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -539,6 +603,10 @@ public class Admin_main_panel extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -580,7 +648,9 @@ public class Admin_main_panel extends javax.swing.JFrame {
                         .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
@@ -1053,16 +1123,17 @@ public class Admin_main_panel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton21MouseExited
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
+        MysqlRestoreProgram();
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jImagePanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jImagePanel1MouseClicked
         try {
-            if (JOptionPane.showConfirmDialog(this, "Do you want to shutdown the System", "All Unsaved Processes will be erased !",
+            if (JOptionPane.showConfirmDialog(this, "Do you want to shutdown the System", "Unsaved Processes will be erased !",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 Runtime runtime = Runtime.getRuntime();
                 try {
-                    Process proc = runtime.exec("shutdown -s -t 1000");
+                    Process proc = runtime.exec("shutdown -s -t 60");
+                    JOptionPane.showMessageDialog(this, "Your PC will Shutdown in 60 sec... ", "Save all your Progresses", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
                     Logger.getLogger(Admin_main_panel.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1077,11 +1148,13 @@ public class Admin_main_panel extends javax.swing.JFrame {
 
     private void jImagePanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jImagePanel2MouseClicked
         try {
-            if (JOptionPane.showConfirmDialog(this, "Do you want to Restart the System", "All Unsaved Processes will be erased !",
+            if (JOptionPane.showConfirmDialog(this, "Do you want to Restart the System", "Unsaved Processes will be erased !",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 Runtime runtime = Runtime.getRuntime();
                 try {
-                    Process proc = runtime.exec("shutdown -r -t 1000");
+                    Process proc = runtime.exec("shutdown -r -t 60");
+                    JOptionPane.showMessageDialog(this, "Your PC will Restart in 60 sec... ", "Save all your Progresses", JOptionPane.INFORMATION_MESSAGE);
+
                 } catch (IOException ex) {
                     Logger.getLogger(Admin_main_panel.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1112,6 +1185,19 @@ public class Admin_main_panel extends javax.swing.JFrame {
             Dashboard.log.warning(e.toString());
         }
     }//GEN-LAST:event_jImagePanel3MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        JFileChooser JF = new JFileChooser();
+        JF.showOpenDialog(this);
+        try {
+            File file = JF.getSelectedFile();
+            path = file.getAbsolutePath();
+            path = path.replace('\\', '/');
+            jLabel14.setText(path);
+        } catch (Exception e) {
+            Dashboard.log.warning(e.toString());
+        }
+    }//GEN-LAST:event_jLabel14MouseClicked
 
     public static void main(String args[]) {
         IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
@@ -1154,6 +1240,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
