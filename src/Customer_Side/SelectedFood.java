@@ -1,15 +1,32 @@
 package Customer_Side;
 
+
+import java.sql.ResultSet;
+import javax.swing.ButtonModel;
+import model.MySQL;
+
+/**
+ *
+ * @author Tharindu
+ */
 public class SelectedFood extends javax.swing.JFrame {
 
     public SelectedFood() {
         initComponents();
+
+    }
+
+    private void reset() {
+        jTextField2.setEnabled(false);
+        jTextField3.setEnabled(false);
+
     }
       
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -157,9 +174,22 @@ public class SelectedFood extends javax.swing.JFrame {
         jLabel2.setText("Type Your KOT No Here:");
         jLabel2.setPreferredSize(new java.awt.Dimension(50, 20));
 
+        jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jFormattedTextField1MouseEntered(evt);
+            }
+        });
         jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextField1ActionPerformed(evt);
+            }
+        });
+        jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jFormattedTextField1KeyReleased(evt);
             }
         });
 
@@ -169,20 +199,32 @@ public class SelectedFood extends javax.swing.JFrame {
         jLabel3.setPreferredSize(new java.awt.Dimension(50, 20));
 
         jTextField1.setEditable(false);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Are You a Guest ?");
         jLabel5.setPreferredSize(new java.awt.Dimension(50, 20));
 
+        buttonGroup1.add(jCheckBox1);
         jCheckBox1.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
         jCheckBox1.setText("Yes");
+        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBox1ItemStateChanged(evt);
+            }
+        });
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
         });
 
+        buttonGroup1.add(jCheckBox2);
         jCheckBox2.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
         jCheckBox2.setText("No");
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +242,12 @@ public class SelectedFood extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Enter Mobile Number");
         jLabel7.setPreferredSize(new java.awt.Dimension(50, 20));
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("DinaminaUniWeb", 0, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -316,6 +364,8 @@ public class SelectedFood extends javax.swing.JFrame {
                 jCheckBox9ActionPerformed(evt);
             }
         });
+
+        jCheckBox2.setActionCommand("2");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -451,6 +501,8 @@ public class SelectedFood extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        jCheckBox1.setActionCommand("1");
+
         getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -458,11 +510,11 @@ public class SelectedFood extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
@@ -505,6 +557,78 @@ public class SelectedFood extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox9ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jFormattedTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyReleased
+
+        try {
+            String input = jFormattedTextField1.getText();
+            if (!input.isEmpty()) {
+                int kotId = Integer.parseInt(input);
+                ResultSet resultSet = MySQL.execute("SELECT * FROM `kot` "
+                        + "JOIN kot_has_food ON kot.id = kot_has_food.kot_id "
+                        + "JOIN food_item ON kot_has_food.food_item_id = food_item.id "
+                        + "JOIN food_category ON food_item.food_category_id = food_category.id "
+                        + "WHERE kot.id = " + kotId);
+
+                if (resultSet.next()) {
+                    String foodItemName = resultSet.getString("food_item.name");
+                    jTextField1.setText(foodItemName);
+                } else {
+                    jTextField1.setText("");
+                }
+            } else {
+                jTextField1.setText("");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_jFormattedTextField1KeyReleased
+
+    private void jFormattedTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1KeyPressed
+
+    private void jFormattedTextField1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1MouseEntered
+
+    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+        try {
+
+            ButtonModel guestSelection = buttonGroup1.getSelection();
+
+            if (guestSelection != null) {
+                String guestType = guestSelection.getActionCommand();
+                if (guestType.equals("1")) {
+
+                    MySQL.execute("UPDATE kot SET kot_customer_type_id = (SELECT id FROM kot_customer_type WHERE TYPE = 'Guest') WHERE kot_customer_type_id = 1");
+                    jTextField2.setEnabled(true);
+                    jTextField3.setEnabled(true);
+                    
+                } else if (guestType.equals("2")) {
+                    MySQL.execute("UPDATE kot SET kot_customer_type_id = (SELECT id FROM kot_customer_type WHERE TYPE = 'Customer') WHERE kot_customer_type_id = 2");
+                    reset();
+                } else {
+                  
+                }
+
+            } else {
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jCheckBox1ItemStateChanged
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+       
+    }//GEN-LAST:event_jTextField2KeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -518,6 +642,7 @@ public class SelectedFood extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;

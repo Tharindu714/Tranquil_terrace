@@ -382,6 +382,11 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         jTextField1.setForeground(java.awt.Color.white);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 13)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
@@ -810,6 +815,10 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
         jComboBox4.setSelectedIndex(0);
         jComboBox5.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox6ItemStateChanged
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
