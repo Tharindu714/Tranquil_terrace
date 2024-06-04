@@ -107,63 +107,55 @@ public class Admin_main_panel extends javax.swing.JFrame {
         }
     }
 
-    public void MysqlRestoreProgram() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+       public void MysqlRestoreProgram() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String dbHost = "localhost";
         String dbPort = "3306";
         String dbName = "hotel_db";
         String dbUser = "root";
         String dbPass = "tharinduCHA@8754";
-        String dumpExe = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe";
-        String dumpSavePath = "C:\\Users\\Tharindu\\Documents\\NetBeansProjects\\hotel_project\\src\\restoredDb\\";
-        String fileName = "Restored_File" + sdf.format(new Date().getTime()) + ".sql";
-        Restoredbtosql(dbHost, dbPort, dbUser, dbPass, dbName, dumpExe, dumpSavePath, fileName);
+        String exePath = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe";
+        String savePath = "C:\\Users\\Tharindu\\Documents\\NetBeansProjects\\hotel_project\\src\\restoredDb\\";
+        String fileName = "Restored_File_" + sdf.format(new Date()) + ".sql";
+        
+        Restoredbtosql(dbHost, dbPort, dbUser, dbPass, dbName, exePath, savePath, fileName);
     }
 
-    public void Restoredbtosql(String host, String port, String user, String password, String dbName, String dumpExe, String dumpSavePath, String fileName) {
+    public void Restoredbtosql(String host, String port, String user, String password, String dbName, String exePath, String savePath, String fileName) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
             String batchCommand;
-            if (password != "") {
-                batchCommand = dumpExe
-                        + " -h " + host
-                        + " --port " + port
-                        + " -u " + user
-                        + " --password=" + password
-                        + " --add-drop-database -B " + dbName
-                        + " -r \"" + dumpSavePath + "" + "Restore" + new Date().getTime() + ".sql";
+            if (!password.isEmpty()) {
+                batchCommand = String.format("\"%s\" -h %s --port %s -u %s --password=%s --add-drop-database -B %s -r \"%s%s\"",
+                        exePath, host, port, user, password, dbName, savePath, fileName);
             } else {
-                batchCommand = dumpExe
-                        + " -h " + host
-                        + " --port " + "3306"
-                        + " -u " + user
-                        + " --add-drop-database -B " + dbName
-                        + " -r \"" + dumpSavePath + "" + "Restore" + new Date().getTime() + ".sql";
+                batchCommand = String.format("\"%s\" -h %s --port %s -u %s --add-drop-database -B %s -r \"%s%s\"",
+                        exePath, host, port, user, dbName, savePath, fileName);
             }
-            System.out.println("Execute Commond - " + batchCommand);
-            System.out.println("Processing.. " + "STARTED " + sdf.format(new Date()));
-            Date sDate = new Date();
+            
+            System.out.println("Executing Command - " + batchCommand);
+            System.out.println("Processing.. STARTED " + sdf.format(new Date()));
+            Date startDate = new Date();
             Process runtimeProcess = Runtime.getRuntime().exec(batchCommand);
             int processComplete = runtimeProcess.waitFor();
-
-            System.out.println("Processing.. " + "END " + sdf.format(new Date()));
-            Date eDate = new Date();
-            long duration = eDate.getTime() - sDate.getTime();
+            
+            System.out.println("Processing.. ENDED " + sdf.format(new Date()));
+            Date endDate = new Date();
+            long duration = endDate.getTime() - startDate.getTime();
             int seconds = (int) ((duration / 1000) % 60);
             long minutes = ((duration - seconds) / 1000) / 60;
-            System.err.println("TOTAL TIME : " + minutes + " minutes :: ");
-            System.err.print(seconds + " seconds :: ");
-            System.err.print(duration + " milliseconds");
+            System.err.println("TOTAL TIME : " + minutes + " minutes :: " + seconds + " seconds :: " + duration + " milliseconds");
+            
             if (processComplete == 0) {
                 System.out.println("Restore Complete");
-                JOptionPane.showMessageDialog(this, "Restored Successfully ", "Restored !", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Restored Successfully", "Restored!", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 System.out.println("Restore Failure");
-                JOptionPane.showMessageDialog(this, "This Can not be restored at the  moment", "Restore Failed", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "This cannot be restored at the moment", "Restore Failed", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            System.err.println(ex.getMessage());
+            System.err.println("Error: " + ex.getMessage());
         }
     }
 
