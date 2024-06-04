@@ -32,6 +32,11 @@ public class main_interface extends javax.swing.JFrame {
         initComponents();
         loadCat();
         genarateLastID();
+       
+
+    
+
+   
     }
 
     private void loadCat() {
@@ -60,6 +65,7 @@ public class main_interface extends javax.swing.JFrame {
         if (sortIndex == 1) {
             SoupPanel sp = new SoupPanel();
             jPanel7.add(sp, BorderLayout.CENTER);
+
         }
 
         if (sortIndex == 2) {
