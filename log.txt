@@ -144,3 +144,5 @@ Jun 04, 2024 1:01:08 AM foodPanel.rice jImagePanel2MouseClicked
 WARNING: java.sql.SQLException: Field 'extra_item_added_id' doesn't have a default value
 Jun 04, 2024 1:01:09 AM foodPanel.rice jImagePanel2MouseClicked
 WARNING: java.sql.SQLException: Field 'extra_item_added_id' doesn't have a default value
+Jun 04, 2024 1:56:28 PM GUI.Admin_main_panel jTextField1MouseClicked
+WARNING: java.lang.NullPointerException: Cannot invoke "java.io.File.getAbsolutePath()" because "file" is null
