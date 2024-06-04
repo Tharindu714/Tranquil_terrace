@@ -1027,7 +1027,6 @@ public class SelectedFood extends javax.swing.JFrame {
 
     private void jFormattedTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyReleased
         SearchForFood();
-        jFormattedTextField1.setEnabled(false);
     }//GEN-LAST:event_jFormattedTextField1KeyReleased
 
     private void jFormattedTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyPressed
