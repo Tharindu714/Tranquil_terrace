@@ -19,32 +19,14 @@ import model.MySQL;
  */
 public class selected_food extends javax.swing.JPanel {
 
-    HashMap<String, String> extraMap = new HashMap<>();
+
     HashMap<String, String> userMap = new HashMap<>();
 
     public selected_food() {
         initComponents();
     }
 
-    private void loadExtras() {
-        try {
-            ResultSet resultSet = MySQL.execute("SELECT * FROM `extra_item_added`");
 
-            Vector v = new Vector();
-            v.add("Select Extra Preferances");
-
-            while (resultSet.next()) {
-                v.add(resultSet.getString("description"));
-                extraMap.put(resultSet.getString("description"), resultSet.getString("id"));
-            }
-
-            DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(v);
-            jComboBox6.setModel(comboBoxModel);
-
-        } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-        }
-    }
 
     private void customerIdentify() {
         String customer = jComboBox3.getSelectedItem().toString();
@@ -300,9 +282,7 @@ public class selected_food extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1MouseClicked
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            customerSearch();
-        }
+
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

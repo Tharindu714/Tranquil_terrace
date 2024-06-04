@@ -32,11 +32,6 @@ public class main_interface extends javax.swing.JFrame {
         initComponents();
         loadCat();
         genarateLastID();
-       
-
-    
-
-   
     }
 
     private void loadCat() {
@@ -134,7 +129,8 @@ public class main_interface extends javax.swing.JFrame {
             ResultSet resultset = MySQL.execute("SELECT `id` FROM `kot` ORDER BY `id` DESC");
             if (resultset.next()) {
                 int id = resultset.getInt("id");
-                jLabel5.setText(String.valueOf(id));
+                int nextID = id+1;
+                jLabel5.setText(String.valueOf(nextID));
             }
         } catch (Exception e) {
             Dashboard.log.warning(e.toString());

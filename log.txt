@@ -146,3 +146,15 @@ Jun 04, 2024 1:01:09 AM foodPanel.rice jImagePanel2MouseClicked
 WARNING: java.sql.SQLException: Field 'extra_item_added_id' doesn't have a default value
 Jun 04, 2024 1:56:28 PM GUI.Admin_main_panel jTextField1MouseClicked
 WARNING: java.lang.NullPointerException: Cannot invoke "java.io.File.getAbsolutePath()" because "file" is null
+Jun 05, 2024 1:54:25 AM Customer_Side.SelectedFood UpdateExtra
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id`=''' at line 1
+Jun 05, 2024 1:54:25 AM Customer_Side.SelectedFood UpdateExtra
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id`=''' at line 1
+Jun 05, 2024 1:56:14 AM Customer_Side.SelectedFood UpdateExtra
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id`='10'' at line 1
+Jun 05, 2024 1:56:14 AM Customer_Side.SelectedFood UpdateExtra
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id`='10'' at line 1
+Jun 05, 2024 1:59:46 AM Customer_Side.SelectedFood UpdateExtra
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id`='10'' at line 1
+Jun 05, 2024 1:59:46 AM Customer_Side.SelectedFood UpdateExtra
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id`='10'' at line 1
