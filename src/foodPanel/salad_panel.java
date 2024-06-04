@@ -153,8 +153,8 @@ public class salad_panel extends javax.swing.JPanel {
                 int nextID = id + 1;
 
                 MySQL.execute("INSERT INTO "
-                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`)"
-                        + "VALUES('" + nextID + "','" + DateTime + "','1','1')");
+                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`,`extra_item_added_id`)"
+                        + "VALUES('" + nextID + "','" + DateTime + "','1','1','1')");
 
                 MySQL.execute("INSERT INTO "
                         + "`kot_has_food`(`kot_id`,`food_item_id`,`qty`)"
@@ -176,8 +176,8 @@ public class salad_panel extends javax.swing.JPanel {
                 int nextID = id + 1;
 
                 MySQL.execute("INSERT INTO "
-                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`)"
-                        + "VALUES('" + nextID + "','" + DateTime + "','1','1')");
+                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`,`extra_item_added_id`)"
+                        + "VALUES('" + nextID + "','" + DateTime + "','1','1','1')");
 
                 MySQL.execute("INSERT INTO "
                         + "`kot_has_food`(`kot_id`,`food_item_id`,`qty`)"
@@ -199,8 +199,8 @@ public class salad_panel extends javax.swing.JPanel {
                 int nextID = id + 1;
 
                 MySQL.execute("INSERT INTO "
-                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`)"
-                        + "VALUES('" + nextID + "','" + DateTime + "','1','1')");
+                        + "`kot`(`id`,`req_time`,`kot_status_id`,`kot_customer_type_id`,`extra_item_added_id`)"
+                        + "VALUES('" + nextID + "','" + DateTime + "','1','1','1')");
 
                 MySQL.execute("INSERT INTO "
                         + "`kot_has_food`(`kot_id`,`food_item_id`,`qty`)"
