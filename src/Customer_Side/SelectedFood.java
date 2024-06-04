@@ -15,6 +15,11 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import model.MySQL;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class SelectedFood extends javax.swing.JFrame {
 
@@ -83,7 +88,7 @@ public class SelectedFood extends javax.swing.JFrame {
                 MySQL.execute("UPDATE `kot` "
                         + "SET `kot_customer_type_id`='2'"
                         + "WHERE `id`='" + kot_id + "'");
-                JOptionPane.showMessageDialog(this, "Don't Need to Fill Guest Details", "Informing Messsage", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Don't Need to Mention Guest Details", "Informing Messsage", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 Dashboard.log.warning(e.toString());
             }
@@ -945,7 +950,55 @@ public class SelectedFood extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            HashMap<String, Object> map = new HashMap<>();
+
+            String date = jLabel17.getText();
+            String kotNO = jFormattedTextField1.getText();
+            String foodname = jTextField1.getText();
+            String mobile = jTextField2.getText();
+            String nic = jTextField3.getText();
+            String name = jTextField4.getText();
+            String qty = jFormattedTextField2.getText();
+            String meal = jLabel16.getText();
+            String extra = jComboBox1.getSelectedItem().toString();
+
+            map.put("Parameter1", date);
+            map.put("Parameter2", kotNO);
+            map.put("Parameter3", foodname);
+
+            if (mobile.isEmpty()) {
+                map.put("Parameter4", "No Mobile Mentioned");
+            } else {
+                map.put("Parameter4", mobile);
+            }
+
+            if (nic.isEmpty()) {
+                map.put("Parameter5", "No ID number Mentioned");
+            } else {
+                map.put("Parameter5", nic);
+            }
+
+            if (name.isEmpty()) {
+                map.put("Parameter6", "This is not a Guest");
+            } else {
+                map.put("Parameter6", name);
+            }
+
+            map.put("Parameter7", qty);
+            map.put("Parameter8", meal);
+            map.put("Parameter9", extra);
+
+            String reportPath = "src//reports//KOT.jasper";
+            JRDataSource dataSource = new JREmptyDataSource();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
+            JasperViewer.viewReport(jasperPrint, false);
+            confirmation ok = new confirmation();
+            ok.setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            Dashboard.log.warning(e.toString());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
