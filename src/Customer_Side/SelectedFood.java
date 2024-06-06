@@ -3,6 +3,7 @@ package Customer_Side;
 import GUI.Dashboard;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -989,7 +990,7 @@ public class SelectedFood extends javax.swing.JFrame {
             map.put("Parameter8", meal);
             map.put("Parameter9", extra);
 
-            String reportPath = "src//reports//KOT.jasper";
+            InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/KOT.jasper");
             JRDataSource dataSource = new JREmptyDataSource();
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
             JasperViewer.viewReport(jasperPrint, false);

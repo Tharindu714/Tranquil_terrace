@@ -1,6 +1,7 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,7 +63,8 @@ public class HR_salary extends javax.swing.JFrame {
             parameter.put("advance", jFormattedTextField2.getText());
             parameter.put("salary_due", jFormattedTextField3.getText());
 
-            String reportPath = "src//reports//salarySheet.jasper";
+            InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/salarySheet.jasper");
+
             JRDataSource dataSource = new JREmptyDataSource();
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
@@ -84,7 +86,7 @@ public class HR_salary extends javax.swing.JFrame {
             parameter.put("from_date", formattedStartDate);
             parameter.put("Redeemed_price", jFormattedTextField2.getText());
 
-            String reportPath = "src//reports//salaryadvanceSheet.jasper";
+            InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/salaryadvanceSheet.jasper");
             JRDataSource dataSource = new JREmptyDataSource();
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
@@ -100,8 +102,7 @@ public class HR_salary extends javax.swing.JFrame {
             try {
                 HashMap<String, Object> map = new HashMap<>();
 
-                String reportPath = "src//reports//salaryhistorySheet.jasper";
-
+                InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/salaryhistorySheet.jasper");
                 JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
                 JasperViewer.viewReport(jasperPrint, false);
@@ -699,7 +700,7 @@ public class HR_salary extends javax.swing.JFrame {
 
         if (issuedjDate.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Select the issued date", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (latest_advance < 0) {   
+        } else if (latest_advance < 0) {
             JOptionPane.showMessageDialog(this, "Can't type Minus numbers for salary advance", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
 

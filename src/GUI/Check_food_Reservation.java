@@ -1,6 +1,7 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Vector;
@@ -609,8 +610,8 @@ public class Check_food_Reservation extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             try {
                 HashMap<String, Object> map = new HashMap<>();
-
-                String reportPath = "src//reports//FoodRes.jasper";
+                
+                InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/FoodRes.jasper");
 
                 JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);

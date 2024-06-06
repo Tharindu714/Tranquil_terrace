@@ -1,5 +1,7 @@
 package FrontOffice;
 
+import GUI.Dashboard;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -672,9 +674,11 @@ public class invoice extends javax.swing.JPanel {
     private void printin() {
         try {
             HashMap< String, Object> map = new HashMap<>();
-            String reportpath = "src//resourse//table.jasper";
+
+            InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/table.jasper");
+
             JRDataSource datas = new JRTableModelDataSource(jTable1.getModel());
-            JasperPrint jdbc = JasperFillManager.fillReport(reportpath, map, datas);
+            JasperPrint jdbc = JasperFillManager.fillReport(reportPath, map, datas);
             JasperViewer.viewReport(jdbc, false);
 
         } catch (Exception e) {
@@ -724,7 +728,7 @@ public class invoice extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here: ; printin();
-    insert();
+        insert();
         String method = jComboBox1.getSelectedItem().toString();
 
         String amount = jTextField5.getText().toString();
@@ -737,9 +741,11 @@ public class invoice extends javax.swing.JPanel {
             map.put("Parameter4", amount);
 
             map.put("Parameter5", balnce);
-            String reportpath = "src//resourse//tabletu.jasper";
+
+            InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/tabletu.jasper");
+
             JRDataSource datas = new JRTableModelDataSource(jTable1.getModel());
-            JasperPrint jdbc = JasperFillManager.fillReport(reportpath, map, datas);
+            JasperPrint jdbc = JasperFillManager.fillReport(reportPath, map, datas);
             JasperViewer.viewReport(jdbc, false);
 
         } catch (Exception e) {

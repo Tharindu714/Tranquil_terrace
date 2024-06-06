@@ -3,6 +3,7 @@ package GUI;
 import com.formdev.flatlaf.IntelliJTheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -422,7 +423,7 @@ public class emp_attendance extends javax.swing.JFrame {
             try {
                 HashMap<String, Object> map = new HashMap<>();
 
-                String reportPath = "src//reports//attendence.jasper";
+                InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/attendence.jasper");
 
                 JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);

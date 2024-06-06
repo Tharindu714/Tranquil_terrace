@@ -1,6 +1,7 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Vector;
@@ -607,7 +608,7 @@ public class Check_grn_lists extends javax.swing.JFrame {
             try {
                 HashMap<String, Object> map = new HashMap<>();
 
-                String reportPath = "src//reports//grn_history.jasper";
+                InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/grn_history.jasper");
 
                 JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);

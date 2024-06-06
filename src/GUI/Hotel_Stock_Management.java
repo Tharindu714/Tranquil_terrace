@@ -1,6 +1,7 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Vector;
@@ -14,24 +15,23 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 public class Hotel_Stock_Management extends javax.swing.JFrame {
 
     HashMap<String, String> catMap = new HashMap<>();
     HashMap<String, String> DeptMap = new HashMap<>();
     HashMap<String, String> statusMap = new HashMap<>();
-    
-     String query = ("SELECT * FROM `hotel_eq`"
-                + "INNER JOIN `department` ON `hotel_eq`.`department_id` = `department`.id "
-                + "INNER JOIN `eq_category` ON `hotel_eq`.`eq_category_id` = `eq_category`.id "
-                + "INNER JOIN `eq_status` ON `hotel_eq`.`eq_status_id` = `eq_status`.id ");
+
+    String query = ("SELECT * FROM `hotel_eq`"
+            + "INNER JOIN `department` ON `hotel_eq`.`department_id` = `department`.id "
+            + "INNER JOIN `eq_category` ON `hotel_eq`.`eq_category_id` = `eq_category`.id "
+            + "INNER JOIN `eq_status` ON `hotel_eq`.`eq_status_id` = `eq_status`.id ");
 
     public Hotel_Stock_Management() {
         initComponents();
         loadCatagory();
         loadCatagories();
         loadDepartment();
-        loadDepartments(); 
+        loadDepartments();
         loadStatus();
         loadStatusCombo();
         loadEquipment(query + "ORDER BY `hotel_eq`.`id` ASC");
@@ -55,7 +55,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -77,7 +77,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             jComboBox3.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -98,7 +98,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             jComboBox2.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -119,11 +119,11 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             jComboBox1.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
-    
+
     private void loadDepartments() {
         try {
             ResultSet resultSet = MySQL.execute("SELECT * FROM `department`");
@@ -140,12 +140,12 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             jComboBox4.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
 
-    private void  departmentsSearch() {
+    private void departmentsSearch() {
         String department = jComboBox4.getSelectedItem().toString();
 
         if (department.equals(0)) {
@@ -155,7 +155,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             loadEquipment(query + "WHERE `department`.`name`='" + department + "' ");
         }
     }
-    
+
     private void loadCatagories() {
         try {
             ResultSet resultSet = MySQL.execute("SELECT * FROM `eq_category`");
@@ -172,11 +172,11 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             jComboBox5.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
-    
+
     private void categorySearch() {
         String cat = jComboBox5.getSelectedItem().toString();
 
@@ -187,7 +187,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             loadEquipment(query + "WHERE `eq_category`.`name`='" + cat + "' ");
         }
     }
-    
+
     private void loadStatusCombo() {
         try {
             ResultSet resultSet = MySQL.execute("SELECT * FROM `eq_status`");
@@ -204,11 +204,11 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             jComboBox6.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
-    
+
     private void statusSearch() {
         String status = jComboBox6.getSelectedItem().toString();
 
@@ -281,7 +281,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                 commons();
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }
@@ -676,7 +676,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                             + "VALUES('" + eqname + "','" + catMap.get(catagory) + "','" + DeptMap.get(department) + "','" + statusMap.get(status) + "')");
                 }
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
 
@@ -714,7 +714,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Equipment Updated Successfully", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                         commons();
                     } catch (Exception e) {
-                                    Dashboard.log.warning(e.toString());
+                        Dashboard.log.warning(e.toString());
 
                     }
                 }
@@ -722,7 +722,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please select the equipment", "Message", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -754,14 +754,14 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
             try {
                 HashMap<String, Object> map = new HashMap<>();
 
-                String reportPath = "src//reports//hotel.jasper";
+                InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/hotel.jasper");
 
                 JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
+                Dashboard.log.warning(e.toString());
 
             }
         } else {
@@ -769,7 +769,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String unit = jTextField2.getText();
         try {
@@ -787,7 +787,7 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
         commons();
@@ -795,13 +795,13 @@ public class Hotel_Stock_Management extends javax.swing.JFrame {
 
     private void jImagePanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jImagePanel1MouseClicked
         commons();
-        
+
     }//GEN-LAST:event_jImagePanel1MouseClicked
 
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
-       departmentsSearch();
-       jComboBox5.setSelectedIndex(0);
-       jComboBox6.setSelectedIndex(0);
+        departmentsSearch();
+        jComboBox5.setSelectedIndex(0);
+        jComboBox6.setSelectedIndex(0);
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged

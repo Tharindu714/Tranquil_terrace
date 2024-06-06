@@ -1,6 +1,7 @@
 package GUI;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Vector;
@@ -458,7 +459,7 @@ public class resturent_customer extends javax.swing.JFrame {
             try {
                 HashMap<String, Object> map = new HashMap<>();
 
-                String reportPath = "src//reports//restaurantdaily.jasper";
+                InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/restaurantdaily.jasper");
 
                 JRDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
