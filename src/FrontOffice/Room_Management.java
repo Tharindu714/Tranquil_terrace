@@ -322,14 +322,6 @@ public class Room_Management extends javax.swing.JPanel {
         } else {
 
             try {
-//
-//                ResultSet rut = mysql.search("SELECT `id` FROM `room_status` WHERE `status`= '" + status + "'");
-//                ResultSet tut = mysql.search("SELECT `Tid` FROM `room_type` WHERE `type`= '" + roomtype + "'");
-//                while (tut.next()) {                    
-//                      int tpc = tut.getInt("Tid");
-//                }
-//                int tpc = tut.getInt("Tid");
-//                int tpd = tut.getInt("id");
 
                 MySQL.execute("INSERT INTO `rooms`  (`room_name`,`price`,`room_type_id`,`room_status_id`) VALUE ('" + roomname
                         + "','" + price + "','1','3')");
@@ -376,7 +368,7 @@ public class Room_Management extends javax.swing.JPanel {
             DefaultTableModel tgbc = (DefaultTableModel) jTable1.getModel();
             tgbc.setRowCount(0);
 
-            ResultSet rest = MySQL.execute("SELECT DISTINCT * FROM `rooms` INNER JOIN `room_type` ON `rooms`.`room_type_id`=`room_type`.`Tid` \n"
+            ResultSet rest = MySQL.execute("SELECT DISTINCT * FROM `rooms` INNER JOIN `room_type` ON `rooms`.`room_type_id`=`room_type`.`id` \n"
                     + "INNER JOIN `room_status` ON `rooms`.`room_status_id`=`room_status`.`id`");
 
             while (rest.next()) {
@@ -396,7 +388,6 @@ public class Room_Management extends javax.swing.JPanel {
                 vtc.add(price);
 
                 tgbc.addRow(vtc);
-//                System.out.println(f_name);
 
             }
 
@@ -405,7 +396,7 @@ public class Room_Management extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+
         if (evt.getClickCount() == 1) {
             oneclick();
         } else if (evt.getClickCount() == 2) {

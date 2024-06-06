@@ -30,7 +30,6 @@ public class NewJPanel extends javax.swing.JPanel {
         loadt();
         load_payment();
 
-
     }
 
     private void loadt() {
@@ -512,7 +511,7 @@ public class NewJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox1MouseReleased
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
- cal();
+        cal();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
@@ -542,7 +541,7 @@ public class NewJPanel extends javax.swing.JPanel {
             JRDataSource datas = new JRTableModelDataSource(jTable1.getModel());
             JasperPrint jdbc = JasperFillManager.fillReport(reportPath, map, datas);
             JasperViewer.viewReport(jdbc, false);
-            MySQL.execute("INSERT INTO `res_order` (`order_date`,`total`,`payment_method_id`) VALUE ('" + ntime + "','" + totle + "','(SELECT * FROM  `payement_method` WHERE `id`='" + sItem + "')");
+            MySQL.execute("INSERT INTO `res_order` (`order_date`,`total`,`payment_method_id`) VALUE ('" + ntime + "','" + totle + "''(SELECT * FROM  `payement_method` WHERE `id`='" + sItem + "')");
             JOptionPane.showMessageDialog(this, "successfully",
                     "invoice printed ", JOptionPane.INFORMATION_MESSAGE);
 

@@ -221,6 +221,8 @@ public class foododer extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable4.setSelectionBackground(new java.awt.Color(245, 71, 104));
+        jTable4.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable4MouseClicked(evt);
@@ -316,7 +318,6 @@ public class foododer extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2KeyReleased
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
-        // TODO add your handling code here:
 
         if (evt.getClickCount() == 1) {
             oneclick();
@@ -325,26 +326,6 @@ public class foododer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTable4MouseClicked
 
-//    private void loadcatogory() {
-//        try {
-//            jComboBox1.removeAllItems();
-//            Vector v = new Vector();
-//
-//            ResultSet resultset = mysql.search("SELECT `category` FROM  `food_category`");
-//
-//            while (resultset.next()) {
-//                String iato = resultset.getString("category");
-//
-//                System.out.println(iato);
-//                v.add(iato);
-//
-//                DefaultComboBoxModel def = new DefaultComboBoxModel(v);
-//                jComboBox1.setModel(def);
-//            }
-//        } catch (Exception e) {
-//
-//        }
-//    }
     private void loaddata() {
 
         String foodname = jTextField2.getText();
