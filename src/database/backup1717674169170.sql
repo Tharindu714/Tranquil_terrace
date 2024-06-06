@@ -237,7 +237,8 @@ CREATE TABLE `employee` (
   `gender_id` int NOT NULL,
   `loggedtime` datetime NOT NULL,
   `department_id` int NOT NULL,
-  `User_photo_Path` text NOT NULL,
+  `image_path` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
+  `qr_path` text,
   PRIMARY KEY (`id`),
   KEY `fk_user_u8ser_type_idx` (`employee_type_id`),
   KEY `fk_user_gender1_idx` (`gender_id`),
@@ -245,7 +246,7 @@ CREATE TABLE `employee` (
   CONSTRAINT `fk_employee_department1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`),
   CONSTRAINT `fk_user_gender1` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`id`),
   CONSTRAINT `fk_user_u8ser_type` FOREIGN KEY (`employee_type_id`) REFERENCES `employee_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +255,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Tharindu','Chanaka','0751441754','TChanaka','tharindu1122',1,'2024-03-20',1,1,'2024-06-04 14:36:05',1,''),(2,'Sadeesha','Nilakshini','0747179730','SNilakshini','Sadeesha123',1,'2024-03-18',6,2,'2024-05-22 21:16:51',1,''),(3,'Kasuni','Jayamali','0748763400','KJayamali2003','KasuniJaYamaLI6785',1,'2024-04-01',4,2,'2024-05-29 08:34:02',3,''),(4,'Maleesha','Shehan','0754329874','MShehan','Malee789',1,'2024-05-10',3,1,'2024-05-29 16:19:02',2,''),(5,'Dhanushka','Lakmal','0712346789','DLakmal','LakmalD865',1,'2024-05-01',2,1,'2024-05-22 03:03:06',4,''),(6,'Kavindaya','Rathnayaka','0785670034','SKavindaya','kaveS567',1,'2024-04-12',5,2,'2024-05-29 16:14:21',4,''),(7,'Sandaruwan','Jayasinghe','0781236743','sandaruwan De Jaysinghe','sandaru123',0,'2024-05-20',4,1,'2024-05-29 15:54:30',3,''),(8,'Anya','Hasalwood','0712346790','AHasalwood678','anya456haselwood',1,'2024-05-20',4,2,'2024-05-22 03:03:08',3,''),(9,'Madushanka','Lakmal','0763472300','MaduLakmal','Madushanka8790',1,'2024-05-20',1,1,'2024-05-22 21:21:27',1,''),(10,'Brayan','Gabrial','0785641234','BGabrial','bgnotme335',1,'2024-05-21',4,1,'2024-05-22 03:03:10',3,''),(11,'Tharaka','Sankalpa','0765432390','Tharka@JavaInstitute','tharakasankalpa678',1,'2024-05-22',6,1,'2024-06-01 12:57:47',1,''),(12,'Chathuri','Rathnayake','0786543211','Chathu Rathnayaka','ChathuCh8976',1,'2024-05-25',6,2,'2024-06-01 13:12:52',1,''),(13,'Varunn','De Soyza','0765431287','Varunn De Soyza','varuvaru890',1,'2024-05-25',4,1,'2024-05-25 12:08:42',3,''),(14,'Sahan','Perera','0786543213','Sahan Perera','sahan123',1,'2024-05-26',6,1,'2024-05-26 14:24:15',1,''),(15,'Sadee','Nimhara','0764532190','Nimhara Sadee','sadee1234',1,'2024-05-26',4,2,'2024-05-26 14:25:28',3,''),(16,'Dinil','Withanage','0712236756','DWithanage','Dw456dinil',1,'2024-05-29',4,1,'2024-05-29 00:10:16',3,''),(17,'Test','User','0714443322','Tuser','tyuioo',1,'2024-05-29',4,1,'2024-05-29 15:26:37',3,''),(18,'Dinil','Withanage','0752236756','DWithanage','Dw456dinil',1,'2024-05-29',4,1,'2024-05-29 00:00:00',3,''),(19,'Dinil','Withanage','0762236756','DWithanage','Dw456dinil',1,'2024-05-29',4,1,'2024-05-29 00:00:00',3,''),(20,'Yohan','Siriwardana','0754567890','YohanS','yohansiriwardana',1,'2024-06-01',4,1,'2024-06-01 14:53:51',3,'');
+INSERT INTO `employee` VALUES (1,'Tharindu','Chanaka','0751441754','TChanaka','tharindu1122',1,'2024-03-20',1,1,'2024-06-06 17:12:04',1,'',NULL),(2,'Sadeesha','Nilakshini','0747179730','SNilakshini','Sadeesha123',1,'2024-03-18',6,2,'2024-05-22 21:16:51',1,'',NULL),(3,'Kasuni','Jayamali','0748763400','KJayamali2003','KasuniJaYamaLI6785',1,'2024-04-01',4,2,'2024-05-29 08:34:02',3,'',NULL),(4,'Maleesha','Shehan','0754329874','MShehan','Malee789',1,'2024-05-10',3,1,'2024-06-06 14:45:49',2,'',NULL),(5,'Dhanushka','Lakmal','0712346789','DLakmal','LakmalD865',1,'2024-05-01',2,1,'2024-05-22 03:03:06',4,'',NULL),(6,'Kavindaya','Rathnayaka','0785670034','SKavindaya','kaveS567',1,'2024-04-12',5,2,'2024-05-29 16:14:21',4,'',NULL),(7,'Sandaruwan','Jayasinghe','0781236743','sandaruwan De Jaysinghe','sandaru123',0,'2024-05-20',4,1,'2024-05-29 15:54:30',3,'',NULL),(8,'Anya','Hasalwood','0712346790','AHasalwood678','anya456haselwood',1,'2024-05-20',4,2,'2024-05-22 03:03:08',3,'',NULL),(9,'Madushanka','Lakmal','0763472300','MaduLakmal','Madushanka8790',1,'2024-05-20',6,1,'2024-05-22 21:21:27',1,'',NULL),(10,'Brayan','Gabrial','0785641234','BGabrial','bgnotme335',1,'2024-05-21',4,1,'2024-06-06 16:05:49',3,'',NULL),(11,'Tharaka','Sankalpa','0765432390','Tharka@JavaInstitute','tharakasankalpa678',1,'2024-05-22',6,1,'2024-06-01 12:57:47',1,'',NULL),(12,'Chathuri','Rathnayake','0786543211','Chathu Rathnayaka','ChathuCh8976',1,'2024-05-25',6,2,'2024-06-01 13:12:52',1,'',NULL),(13,'Varunn','De Soyza','0765431287','Varunn De Soyza','varuvaru890',1,'2024-05-25',4,1,'2024-05-25 12:08:42',3,'',NULL),(14,'Sahan','Perera','0786543213','Sahan Perera','sahan123',1,'2024-05-26',6,1,'2024-06-06 11:51:28',1,'',NULL),(15,'Sadee','Nimhara','0764532190','Nimhara Sadee','sadee1234',1,'2024-05-26',4,2,'2024-05-26 14:25:28',3,'',NULL),(16,'Dinil','Withanage','0712236756','DWithanage','Dw456dinil',1,'2024-05-29',4,1,'2024-05-29 00:10:16',3,'',NULL),(17,'Test','User','0714443322','Tuser','tyuioo',1,'2024-05-29',4,1,'2024-05-29 15:26:37',3,'',NULL),(18,'Dinil','Withanage','0752236756','DWithanage','Dw456dinil',1,'2024-05-29',4,1,'2024-05-29 00:00:00',3,'',NULL),(19,'Dinil','Withanage','0762236756','DWithanage','Dw456dinil',1,'2024-05-29',4,1,'2024-05-29 00:00:00',3,'',NULL),(20,'Yohan','Siriwardana','0754567890','YohanS','yohansiriwardana',1,'2024-06-01',4,1,'2024-06-01 14:53:51',3,'',NULL),(21,'Tharaka','Madushanka','0765432189','ceR-0944','tharaka789',1,'2024-06-06',3,1,'2024-06-06 16:13:42',2,'/profile_image/ceR-0944.jpg','/Qr_Code/ceR-0944.png'),(22,'Chamini','Gunawardanna','0786321144','ChaminiG67','chamichami67',1,'2024-06-06',4,2,'2024-06-06 17:09:19',3,NULL,NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -635,7 +636,7 @@ CREATE TABLE `kot` (
   CONSTRAINT `fk_kot_kot_customer_type1` FOREIGN KEY (`kot_customer_type_id`) REFERENCES `kot_customer_type` (`id`),
   CONSTRAINT `fk_kot_kot_status1` FOREIGN KEY (`kot_status_id`) REFERENCES `kot_status` (`id`),
   CONSTRAINT `fk_kot_meal_time1` FOREIGN KEY (`meal_time_id`) REFERENCES `meal_time` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -644,7 +645,7 @@ CREATE TABLE `kot` (
 
 LOCK TABLES `kot` WRITE;
 /*!40000 ALTER TABLE `kot` DISABLE KEYS */;
-INSERT INTO `kot` VALUES (1,'2024-05-17 19:00:00','2024-05-18 19:10:00',3,2,1,1,11),(2,'2024-05-17 19:00:00','2024-05-17 19:10:00',4,4,1,1,10),(3,'2024-05-18 20:00:00','2024-05-18 20:10:00',3,1,4,2,9),(4,'2024-05-18 20:47:07','2024-05-18 20:50:00',3,4,5,2,3),(5,'2024-05-18 21:00:00','2024-05-18 21:05:00',3,2,2,2,4),(6,'2024-05-19 08:00:00','2024-05-19 08:00:00',1,3,1,1,4),(7,'2024-05-27 23:30:31','2024-05-27 23:30:33',1,1,7,1,14);
+INSERT INTO `kot` VALUES (1,'2024-05-17 19:00:00','2024-05-18 19:10:00',3,2,1,1,11),(2,'2024-05-17 19:00:00','2024-05-17 19:10:00',4,4,1,1,10),(3,'2024-05-18 20:00:00','2024-05-18 20:10:00',3,1,4,2,9),(4,'2024-05-18 20:47:07','2024-05-18 20:50:00',3,4,5,2,3),(5,'2024-05-18 21:00:00','2024-05-18 21:05:00',3,2,2,2,4),(6,'2024-05-19 08:00:00','2024-05-19 08:00:00',1,3,1,2,4),(7,'2024-05-27 23:30:31','2024-05-27 23:30:33',1,1,7,1,14),(8,NULL,'2024-06-05 00:16:20',4,1,1,1,1),(9,NULL,'2024-06-05 01:09:45',5,1,NULL,2,1),(10,NULL,'2024-06-05 01:54:22',2,1,5,1,1),(11,NULL,'2024-06-05 02:05:20',3,1,1,2,9),(12,NULL,'2024-06-05 02:11:47',2,1,4,1,2),(13,NULL,'2024-06-05 03:38:54',3,1,2,1,8),(14,NULL,'2024-06-05 03:50:07',5,1,2,1,4),(15,NULL,'2024-06-05 03:53:05',2,1,NULL,2,1),(16,NULL,'2024-06-06 10:20:32',3,1,NULL,2,2);
 /*!40000 ALTER TABLE `kot` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -689,7 +690,7 @@ CREATE TABLE `kot_has_food` (
   KEY `fk_kot_has_food_food_item1_idx` (`food_item_id`),
   CONSTRAINT `fk_kot_has_food_food_item1` FOREIGN KEY (`food_item_id`) REFERENCES `food_item` (`id`),
   CONSTRAINT `fk_kot_has_food_kot1` FOREIGN KEY (`kot_id`) REFERENCES `kot` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -698,7 +699,7 @@ CREATE TABLE `kot_has_food` (
 
 LOCK TABLES `kot_has_food` WRITE;
 /*!40000 ALTER TABLE `kot_has_food` DISABLE KEYS */;
-INSERT INTO `kot_has_food` VALUES (1,1,13,2),(2,2,36,1),(3,3,12,1),(4,4,11,1),(5,5,23,2),(6,6,16,2);
+INSERT INTO `kot_has_food` VALUES (1,1,13,2),(2,2,36,1),(3,3,12,1),(4,4,11,1),(5,5,23,2),(6,6,16,2),(14,8,21,3),(15,9,40,2),(16,10,11,4),(17,11,11,4),(18,12,23,1),(19,13,33,1),(20,14,38,2),(21,15,12,1),(22,16,28,2);
 /*!40000 ALTER TABLE `kot_has_food` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1182,4 +1183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-04 14:36:14
+-- Dump completed on 2024-06-06 17:12:49

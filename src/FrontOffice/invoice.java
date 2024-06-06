@@ -17,15 +17,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
-/**
- *
- * @author maleesha
- */
 public class invoice extends javax.swing.JPanel {
 
-    /**
-     * Creates new form invoice
-     */
+
     public invoice() {
         initComponents();
         load_payment();
@@ -92,8 +86,8 @@ public class invoice extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 383, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,11 +98,12 @@ public class invoice extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel15)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                            .addComponent(jLabel15))
+                        .addContainerGap())))
         );
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -116,7 +111,6 @@ public class invoice extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
         jLabel3.setText("Customer NIC /  PASSPORT");
 
-        jTextField1.setText("851246793V");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -204,7 +198,7 @@ public class invoice extends javax.swing.JPanel {
         jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, -1));
 
         jLabel29.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N
-        jLabel29.setText("balence");
+        jLabel29.setText("balance");
         jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 60, -1));
 
         jLabel37.setFont(new java.awt.Font("Microsoft YaHei", 0, 13)); // NOI18N

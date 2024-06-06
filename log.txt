@@ -166,3 +166,5 @@ Jun 06, 2024 4:05:47 PM HR.HrSignIn UserSignInActionPerformed
 WARNING: java.lang.IllegalStateException: Cannot change resolution when webcam is open, please close it first
 Jun 06, 2024 4:05:51 PM HR.HrSignIn UserSignInActionPerformed
 WARNING: java.lang.IllegalStateException: Cannot change resolution when webcam is open, please close it first
+Jun 06, 2024 5:06:44 PM GUI.HR_mqt jButton1ActionPerformed
+WARNING: java.sql.SQLException: Field 'image_path' doesn't have a default value

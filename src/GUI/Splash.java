@@ -29,7 +29,7 @@ public class Splash extends javax.swing.JFrame {
 
                         }
                     }
-                    Dashboard d = new Dashboard();
+                    FirstDashboard d = new FirstDashboard();
                     d.setVisible(true);
                     this.dispose();
                 }
