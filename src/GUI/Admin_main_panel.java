@@ -1092,8 +1092,7 @@ public class Admin_main_panel extends javax.swing.JFrame {
     }//GEN-LAST:event_jImagePanel3MouseClicked
 
     public static void main(String args[]) {
-        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
-                "/themes/Atom_One_DarkContrast.theme.json"));
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
             }

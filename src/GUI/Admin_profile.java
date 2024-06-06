@@ -17,7 +17,7 @@ public class Admin_profile extends javax.swing.JFrame {
         initComponents();
         loadAdmin("SELECT * FROM `employee`"
                 + "INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.id "
-                + " WHERE `employee_type_id`='1'");
+                + " WHERE `employee_type_id`IN (1,6)");
         setExtendedState(MAXIMIZED_BOTH);
         loadGender();
     }
