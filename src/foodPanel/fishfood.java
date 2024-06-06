@@ -1,4 +1,3 @@
-
 package foodPanel;
 
 import GUI.Dashboard;
