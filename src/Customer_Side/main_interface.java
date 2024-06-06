@@ -258,6 +258,7 @@ public class main_interface extends javax.swing.JFrame {
         jPanel7.setLayout(new java.awt.BorderLayout());
 
         jPanel9.setBackground(new java.awt.Color(52, 73, 94));
+        jPanel9.setPreferredSize(new java.awt.Dimension(540, 50));
         jPanel9.setLayout(new java.awt.BorderLayout());
 
         jLabel4.setFont(new java.awt.Font("DinaminaUniWeb", 1, 22)); // NOI18N
@@ -267,7 +268,8 @@ public class main_interface extends javax.swing.JFrame {
         jPanel9.add(jLabel4, java.awt.BorderLayout.CENTER);
 
         jButton1.setBackground(new java.awt.Color(245, 71, 104));
-        jButton1.setText("NEXT");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/right.png"))); // NOI18N
+        jButton1.setPreferredSize(new java.awt.Dimension(50, 50));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -325,8 +327,8 @@ public class main_interface extends javax.swing.JFrame {
                         .addGap(0, 5, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
