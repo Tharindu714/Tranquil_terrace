@@ -17,6 +17,8 @@ public class UserBean {
     private String last_name;
     private String password;
     private String gender;
+    private String ImagePath;
+    private String QrPath;
 
     public String getUserName() {
         return userName;
@@ -214,6 +216,34 @@ public class UserBean {
      */
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    /**
+     * @return the ImagePath
+     */
+    public String getImagePath() {
+        return ImagePath;
+    }
+
+    /**
+     * @param ImagePath the ImagePath to set
+     */
+    public void setImagePath(String ImagePath) {
+        this.ImagePath = ImagePath;
+    }
+
+    /**
+     * @return the QrPath
+     */
+    public String getQrPath() {
+        return QrPath;
+    }
+
+    /**
+     * @param QrPath the QrPath to set
+     */
+    public void setQrPath(String QrPath) {
+        this.QrPath = QrPath;
     }
 
 }

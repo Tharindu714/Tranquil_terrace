@@ -13,6 +13,14 @@ import model.MySQL;
 import model.UserBean;
 import model.Validation;
 import GUI.Dashboard;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.Random;
+import javax.swing.SwingUtilities;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
 public class EmployeeManagement extends javax.swing.JFrame {
 
@@ -25,13 +33,15 @@ public class EmployeeManagement extends javax.swing.JFrame {
     public EmployeeManagement() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        employeeManagement("");
+        employeeManagement("WHERE `employee_type_id`!='1'");
         loadRole();
         loadDepartments();
         loadGender();
+        wait.setVisible(false);
     }
 
     private void loadGender() {
+
         try {
             ResultSet resultSet = MySQL.execute("SELECT * FROM `gender`");
 
@@ -41,7 +51,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             while (resultSet.next()) {
 
                 v.add(resultSet.getString("gender"));
-                genderMap.put(resultSet.getString("id"), resultSet.getString("gender"));
+                genderMap.put(resultSet.getString("gender"), resultSet.getString("id"));
 
             }
 
@@ -49,7 +59,8 @@ public class EmployeeManagement extends javax.swing.JFrame {
             gender.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -73,7 +84,8 @@ public class EmployeeManagement extends javax.swing.JFrame {
             depart.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -97,7 +109,8 @@ public class EmployeeManagement extends javax.swing.JFrame {
             Role.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Dashboard.log.warning(e.toString());
+
         }
 
     }
@@ -130,6 +143,8 @@ public class EmployeeManagement extends javax.swing.JFrame {
                 v.add(rs.getString("status.type"));
                 v.add(rs.getString("employee_type.type"));
                 v.add(rs.getString("department.name"));
+                v.add(rs.getString("image_path"));
+                v.add(rs.getString("qr_path"));
 
                 UserBean bean = new UserBean();
 //
@@ -145,6 +160,8 @@ public class EmployeeManagement extends javax.swing.JFrame {
                 bean.setRegDate(rs.getString("registered_date"));
                 bean.setPassword(rs.getString("password"));
                 bean.setGender(rs.getString("gender.gender"));
+                bean.setImagePath(rs.getString("image_path"));
+                bean.setQrPath(rs.getString("qr_path"));
 
                 if (rs.getString("employee.status").equals("1")) {
                     v.add(rs.getString("status.type"));
@@ -158,7 +175,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-            e.printStackTrace();
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -204,9 +221,14 @@ public class EmployeeManagement extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
-        date = new javax.swing.JLabel();
-        regDate = new javax.swing.JLabel();
+        rdate = new javax.swing.JLabel();
+        urole = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
+        jImagePanel1 = new main.JImagePanel();
+        jImagePanel2 = new main.JImagePanel();
+        imageCap = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        wait = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -292,6 +314,16 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
         UserName.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         UserName.setForeground(java.awt.Color.white);
+        UserName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UserNameMouseClicked(evt);
+            }
+        });
+        UserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserNameActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(245, 71, 104));
         jButton1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
@@ -346,6 +378,11 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
         gender.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         gender.setForeground(java.awt.Color.white);
+        gender.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                genderItemStateChanged(evt);
+            }
+        });
         gender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 genderActionPerformed(evt);
@@ -437,7 +474,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
@@ -488,7 +525,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel5.setPreferredSize(new java.awt.Dimension(1061, 100));
+        jPanel5.setPreferredSize(new java.awt.Dimension(1061, 250));
 
         searchEmployee.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         searchEmployee.setForeground(java.awt.Color.white);
@@ -515,60 +552,133 @@ public class EmployeeManagement extends javax.swing.JFrame {
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel21.setText("Register Date : ");
 
-        date.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        date.setForeground(new java.awt.Color(255, 255, 255));
-        date.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        date.setText("Date");
+        rdate.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        rdate.setForeground(new java.awt.Color(255, 255, 255));
+        rdate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        regDate.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        regDate.setForeground(new java.awt.Color(255, 255, 255));
-        regDate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        regDate.setText("User Full Name");
+        urole.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        urole.setForeground(new java.awt.Color(255, 255, 255));
+        urole.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         jLabel36.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel36.setText("Role : ");
 
+        jImagePanel1.setFitToPanel(true);
+        jImagePanel1.setImageIcon(null);
+        jImagePanel1.setPreferredSize(new java.awt.Dimension(150, 150));
+
+        javax.swing.GroupLayout jImagePanel1Layout = new javax.swing.GroupLayout(jImagePanel1);
+        jImagePanel1.setLayout(jImagePanel1Layout);
+        jImagePanel1Layout.setHorizontalGroup(
+            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+        jImagePanel1Layout.setVerticalGroup(
+            jImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+
+        jImagePanel2.setFitToPanel(true);
+        jImagePanel2.setImageIcon(null);
+        jImagePanel2.setPreferredSize(new java.awt.Dimension(150, 150));
+
+        javax.swing.GroupLayout jImagePanel2Layout = new javax.swing.GroupLayout(jImagePanel2);
+        jImagePanel2.setLayout(jImagePanel2Layout);
+        jImagePanel2Layout.setHorizontalGroup(
+            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 267, Short.MAX_VALUE)
+        );
+        jImagePanel2Layout.setVerticalGroup(
+            jImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+
+        imageCap.setBackground(new java.awt.Color(0, 51, 51));
+        imageCap.setForeground(new java.awt.Color(255, 255, 255));
+        imageCap.setText("Open Camera");
+        imageCap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imageCapActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+
+        wait.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        wait.setForeground(new java.awt.Color(255, 255, 255));
+        wait.setText("Wait");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(searchEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(imageCap)
+                                .addGap(36, 36, 36)
+                                .addComponent(wait, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                        .addComponent(jImagePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addGap(28, 28, 28)
-                        .addComponent(date))
+                        .addComponent(rdate))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel36)
-                        .addGap(65, 65, 65)
-                        .addComponent(regDate)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel36)
+                            .addComponent(jImagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(urole)))
                 .addGap(20, 20, 20))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(searchEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21)
-                    .addComponent(date))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel36)
-                        .addComponent(regDate)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(searchEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21)
+                            .addComponent(rdate))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel36)
+                                .addComponent(urole)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jImagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(imageCap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(wait, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jImagePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)))
+                .addContainerGap())
         );
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.PAGE_START);
@@ -600,9 +710,9 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
             } else if (valid.phoneNumberValidate(Mobile)) {
 
-            } else if (valid.emptyValue(Role)) {
+            } else if (valid.emptyValue(gender)) {
 
-                JOptionPane.showMessageDialog(this, "Please Select Job Role", "Wrong", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please Select Gender", "Wrong", JOptionPane.ERROR_MESSAGE);
 
             } else if (valid.emptyValue(depart)) {
 
@@ -612,7 +722,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(this, "Please Enter User Name", "Wrong", JOptionPane.ERROR_MESSAGE);
 
-            } else if (!valid.is_Valid_Password(password)) {
+            } else if (valid.is_Valid_Password(password)) {
 
                 JOptionPane.showMessageDialog(this, "Invalid Password A-Z, a-z, 0-9 ", "Wrong", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -621,15 +731,16 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
                     String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-                    MySQL.execute("INSERT INTO `hotel_db`.`employee` (`first_name`, `last_name`, `mobile`, `username`, `password`, `status`, `registered_date`, `employee_type_id`, `gender_id`, `loggedtime`, `department_id`) "
+                    MySQL.execute("INSERT INTO `hotel_db`.`employee` (`first_name`, `last_name`, `mobile`, `username`, `password`, `status`, `registered_date`, `employee_type_id`, `gender_id`, `loggedtime`, `department_id`,`image_path`,`qr_path`) "
                             + "VALUES ('" + firstName.getText() + "', '" + lastName.getText() + "', '" + Mobile.getText() + "', '" + UserName.getText() + "', '" + String.valueOf(password.getPassword()) + "', '1', '" + date
-                            + "', '" + role.get(Role.getSelectedItem()) + "', '" + genderMap.get(gender.getSelectedItem()) + "', '" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "', '" + department.get(depart.getSelectedItem()) + "');");
+                            + "', '" + role.get(Role.getSelectedItem()) + "', '" + genderMap.get(gender.getSelectedItem()) + "', '" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "', '" + department.get(depart.getSelectedItem()) + "','" + imgPath + "','" + qrPath + "');");
 
                     JOptionPane.showMessageDialog(this, firstName.getText() + " Success Fully Registerd", "Complete", JOptionPane.INFORMATION_MESSAGE);
                     employeeManagement("");
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Dashboard.log.warning(e.toString());
+
                 }
 
             }
@@ -671,11 +782,13 @@ public class EmployeeManagement extends javax.swing.JFrame {
                         clearData();
 
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
                     }
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Dashboard.log.warning(e.toString());
+
                 }
 
             }
@@ -716,8 +829,9 @@ public class EmployeeManagement extends javax.swing.JFrame {
         Role.setSelectedIndex(0);
         depart.setSelectedIndex(0);
         password.setText("");
-        regDate.setText("");
+        urole.setText("");
         UserName.setText("");
+        imageCap.setEnabled(true);
 
         employeeTable.clearSelection();
         setEnable();
@@ -731,12 +845,25 @@ public class EmployeeManagement extends javax.swing.JFrame {
         lastName.setText(bean.getLast_name());
         Mobile.setText(bean.getMobile());
         password.setText(bean.getPassword());
-        regDate.setText(bean.getRegDate());
+        urole.setText(bean.getUserRole());
+        rdate.setText(bean.getRegDate());
         UserName.setText(bean.getUserName());
 
         Role.setSelectedItem(bean.getUserRole());
         depart.setSelectedItem(bean.getDepartment());
         gender.setSelectedItem(bean.getGender());
+
+        String imgPath1 = bean.getImagePath();
+        String qrPatrh1 = bean.getQrPath();
+
+        jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource(imgPath1))); // NOI18N
+        jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource(qrPatrh1))); // NOI18N
+
+        try {
+            SwingUtilities.updateComponentTreeUI(jPanel5);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -778,10 +905,11 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
             try {
 
-                employeeManagement("WHERE `first_name` LIKE '%" + searchText + "%' OR `username` Like '%" + searchText + "%' OR `employee`.`id` Like'%" + searchText + "%'");
+                employeeManagement("WHERE `employee_type_id`!='1' AND  `first_name` LIKE '%" + searchText + "%' OR `username` Like '%" + searchText + "%' OR `employee`.`id` Like'%" + searchText + "%'");
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Dashboard.log.warning(e.toString());
+
             }
         } else if (searchText.length() == 3) {
             employeeManagement("");
@@ -806,6 +934,180 @@ public class EmployeeManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_genderActionPerformed
 
+    private String CheckResult() {
+
+        boolean get = true;
+
+        String role = Role.getSelectedItem().toString();
+
+        String roleId = "";
+        for (int i = 0; i < role.length(); i++) {
+
+            char ch = role.charAt(i);
+
+            roleId = ch + roleId;
+            if (i == 2) {
+                break;
+            }
+        }
+
+        try {
+            ResultSet rs;
+            String rand;
+            while (get) {
+                rand = roleId + "-" + randomNum();
+                rs = MySQL.execute("SELECT * FROM `employee` WHERE `username`='" + rand
+                        + "'");
+                if (rs.next()) {
+                    return null;
+                } else {
+                    get = false;
+                    return rand;
+                }
+            }
+            return null;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    private String randomNum() {
+
+        String get = "true";
+        Random rnd = new Random();
+        String list[] = new String[4];
+
+        for (int i = 0; i < 4; i++) {
+
+            list[i] = Integer.toString(rnd.nextInt(10));
+
+        }
+
+        String random = list[0] + "" + list[1] + "" + list[2] + "" + list[3];
+
+        return random;
+
+    }
+
+    private String makeQrCode() {
+        try {
+            ByteArrayOutputStream out = QRCode.from(UserName.getText()).to(ImageType.PNG).stream();
+            String file_name = UserName.getText() + ".png";
+            String filePath = "src\\Qr_Code\\"+file_name;
+//            InputStream path = Dashboard.class.getResourceAsStream(filePath + file_name);
+
+            FileOutputStream fout = new FileOutputStream(new File(String.valueOf(filePath)));
+            fout.write(out.toByteArray());
+            fout.flush();
+
+            String AbPath = "/Qr_Code/" + file_name;
+
+            return AbPath;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    private void UserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserNameActionPerformed
+
+
+    }//GEN-LAST:event_UserNameActionPerformed
+
+    private void UserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserNameMouseClicked
+
+        String name = UserName.getText();
+        String filePath = "";
+
+        if (name.isEmpty()) {
+
+            String random = CheckResult();
+
+            String randNo = random;
+
+            UserName.setText(randNo);
+
+            filePath = makeQrCode();
+
+        } else {
+
+        }
+
+
+    }//GEN-LAST:event_UserNameMouseClicked
+
+    public String imgPath = "";
+    public String qrPath = "";
+
+    private void genarateImage() {
+
+        try {
+            InputStream path = Dashboard.class.getResourceAsStream("/profile_image/" + UserName.getText() + ".jpg");
+            imageCapture capture = new imageCapture(this, true, String.valueOf(path));
+            capture.setVisible(true);
+
+            if (!capture.capture) {
+                JOptionPane.showMessageDialog(this, "Image capturing is required", "warning", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+                imageCap.setEnabled(false);
+
+                imgPath = "/profile_image/" + UserName.getText() + ".jpg";
+                qrPath = "/Qr_Code/" + UserName.getText() + ".png";
+
+                Thread th = new Thread(
+                        () -> {
+                            wait.setVisible(true);
+                            for (int i = 10; i >= 0; i--) {
+                                wait.setText("Wait " + i + " s");
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (Exception e) {
+                                    Dashboard.log.warning(e.toString());
+
+                                }
+                            }
+                            wait.setVisible(false);
+                            jImagePanel2.setImageIcon(new javax.swing.ImageIcon(getClass().getResource(imgPath))); // NOI18N
+                            jImagePanel1.setImageIcon(new javax.swing.ImageIcon(getClass().getResource(qrPath)));
+                            imageCap.setEnabled(true);
+
+                            SwingUtilities.updateComponentTreeUI(jPanel5);
+
+                        }
+                );
+
+                th.start();
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void imageCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageCapActionPerformed
+
+        if (!UserName.getText().isEmpty()) {
+            genarateImage();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "User Name Is Required", "warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+    }//GEN-LAST:event_imageCapActionPerformed
+
+    private void genderItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_genderItemStateChanged
+
+
+    }//GEN-LAST:event_genderItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -825,15 +1127,17 @@ public class EmployeeManagement extends javax.swing.JFrame {
     private javax.swing.JTextField Mobile;
     private javax.swing.JComboBox<String> Role;
     private javax.swing.JTextField UserName;
-    private javax.swing.JLabel date;
     private javax.swing.JComboBox<String> depart;
     private javax.swing.JTable employeeTable;
     private javax.swing.JTextField firstName;
     private javax.swing.JComboBox<String> gender;
+    private javax.swing.JButton imageCap;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private main.JImagePanel jImagePanel1;
+    private main.JImagePanel jImagePanel2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -844,6 +1148,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -854,7 +1159,9 @@ public class EmployeeManagement extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lastName;
     private javax.swing.JPasswordField password;
-    private javax.swing.JLabel regDate;
+    private javax.swing.JLabel rdate;
     private javax.swing.JTextField searchEmployee;
+    private javax.swing.JLabel urole;
+    private javax.swing.JLabel wait;
     // End of variables declaration//GEN-END:variables
 }

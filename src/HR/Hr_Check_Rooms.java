@@ -57,7 +57,8 @@ public class Hr_Check_Rooms extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
 
         }
 
@@ -83,7 +84,8 @@ public class Hr_Check_Rooms extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
 
         }
 
@@ -139,7 +141,8 @@ public class Hr_Check_Rooms extends javax.swing.JFrame {
             jComboBox3.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                        Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -170,7 +173,8 @@ public class Hr_Check_Rooms extends javax.swing.JFrame {
             jComboBox4.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -205,7 +209,8 @@ public class Hr_Check_Rooms extends javax.swing.JFrame {
             jComboBox6.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                       Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -225,7 +230,8 @@ public class Hr_Check_Rooms extends javax.swing.JFrame {
             jComboBox5.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+                     Dashboard.log.warning(e.toString());
+
         }
     }
 
@@ -776,7 +782,8 @@ public class Hr_Check_Rooms extends javax.swing.JFrame {
                     loadUI2();
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                                Dashboard.log.warning(e.toString());
+
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Room Status Updating Cancelled", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);

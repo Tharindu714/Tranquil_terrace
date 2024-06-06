@@ -158,3 +158,11 @@ Jun 05, 2024 1:59:46 AM Customer_Side.SelectedFood UpdateExtra
 WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id`='10'' at line 1
 Jun 05, 2024 1:59:46 AM Customer_Side.SelectedFood UpdateExtra
 WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id`='10'' at line 1
+Jun 06, 2024 3:43:40 PM HR.EmployeeManagement employeeManagement
+WARNING: java.sql.SQLException: Column 'image_path' not found.
+Jun 06, 2024 3:45:53 PM HR.EmployeeManagement employeeManagement
+WARNING: java.sql.SQLException: Column 'qr_path' not found.
+Jun 06, 2024 4:05:47 PM HR.HrSignIn UserSignInActionPerformed
+WARNING: java.lang.IllegalStateException: Cannot change resolution when webcam is open, please close it first
+Jun 06, 2024 4:05:51 PM HR.HrSignIn UserSignInActionPerformed
+WARNING: java.lang.IllegalStateException: Cannot change resolution when webcam is open, please close it first
