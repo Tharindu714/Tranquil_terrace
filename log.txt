@@ -168,3 +168,24 @@ Jun 06, 2024 4:05:51 PM HR.HrSignIn UserSignInActionPerformed
 WARNING: java.lang.IllegalStateException: Cannot change resolution when webcam is open, please close it first
 Jun 06, 2024 5:06:44 PM GUI.HR_mqt jButton1ActionPerformed
 WARNING: java.sql.SQLException: Field 'image_path' doesn't have a default value
+Jun 06, 2024 11:12:40 PM HR.EmpAttendance loadWorkSchedule
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM `work_schedule` INNER JOIN `employee` 
+ON `employee`.`id`=`work_sc' at line 3
+Jun 06, 2024 11:16:32 PM HR.EmpAttendance loadWorkSchedule
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM `work_schedule` INNER JOIN `employee` 
+ON `employee`.`id`=`work_sc' at line 3
+Jun 06, 2024 11:17:18 PM HR.EmpAttendance loadWorkSchedule
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM `work_schedule` INNER JOIN `employee` 
+ON `employee`.`id`=`work_sc' at line 5
+Jun 06, 2024 11:19:13 PM HR.EmpAttendance loadWorkSchedule
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM `work_schedule` INNER JOIN `employee` 
+ON `work_schedule`.`employe' at line 5
+Jun 06, 2024 11:23:57 PM HR.EmpAttendance loadWorkSchedule
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM `work_schedule` 
+INNER JOIN `employee`ON `work_schedule`.`employee' at line 4
+Jun 06, 2024 11:24:50 PM HR.EmpAttendance loadWorkSchedule
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM `work_schedule` 
+INNER JOIN `employee`ON `work_schedule`.`employee' at line 4
+Jun 06, 2024 11:29:30 PM HR.EmpAttendance loadWorkSchedule
+WARNING: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '024:00:00' 
+ BETWEEN `work_schedule`.`on_time` AND `work_schedule`.`off_time`ORD' at line 4

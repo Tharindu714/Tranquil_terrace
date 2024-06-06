@@ -12,19 +12,16 @@ import model.MySQL;
 import GUI.Dashboard;
 import model.UserBean;
 
-
 public class EmpAttendance extends javax.swing.JFrame {
 
     public HashMap<String, UserBean> userMap = new HashMap<>();
     public Vector<UserBean> userVector = new Vector<>();
 
-    /**
-     * Creates new form Attendance
-     */
     public EmpAttendance() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        loadWorkSchedule("");
+        loadWorkSchedule();
+        loadAttendance("");
     }
 
     private String percentage(String userId) {
@@ -48,7 +45,7 @@ public class EmpAttendance extends javax.swing.JFrame {
             return "0%";
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
             return null;
         }
@@ -72,24 +69,17 @@ public class EmpAttendance extends javax.swing.JFrame {
 
     }
 
-    private void loadWorkSchedule(String queary) {
+    private void loadWorkSchedule() {
 
         try {
 
             String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
             String hour = new SimpleDateFormat("HH").format(new Date());
 
-            ResultSet rs = MySQL.execute("SELECT * FROM `work_schedule` "
-                    + "INNER JOIN `employee` \n"
-                    + "ON `employee`.`id`=`work_schedule`.`employee_id`\n"
-                    + "INNER JOIN `employee_type` ON "
-                    + "`employee_type`.`id`=`employee`.`employee_type_id`"
-                    + "INNER JOIN `status` ON"
-                    + "`status`.`id`=`work_schedule`.`status_id`"
-                    + " WHERE  "
-                    + " `work_schedule`.`status_id`!='1' AND"
-                    + "`work_schedule`.`date`='" + date + "' AND " + queary + " ' " + date + " 0" + (Integer.parseInt(hour) + 1) + ":00:00' \n"
-                    + " BETWEEN `work_schedule`.`on_time` AND `work_schedule`.`off_time`"
+            ResultSet rs = MySQL.execute("SELECT * FROM `work_schedule` \n"
+                    + "INNER JOIN `employee`ON `work_schedule`.`employee_id`=`employee`.`id`\n"
+                    + "INNER JOIN `employee_type` ON `employee_type`.`id`=`employee`.`employee_type_id`\n"
+                    + "INNER JOIN `status` ON `status`.`id`=`work_schedule`.`status_id`"
                     + "ORDER BY `work_schedule`.`date` DESC");
 
             DefaultTableModel tableModel = (DefaultTableModel) attendanceTable.getModel();
@@ -125,8 +115,7 @@ public class EmpAttendance extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-                      Dashboard.log.warning(e.toString());
-
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -569,7 +558,7 @@ public class EmpAttendance extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Attendance Marked", "successfully", JOptionPane.INFORMATION_MESSAGE);
 
                     loadAttendance("");
-                    loadWorkSchedule("");
+                    loadWorkSchedule();
                     clearData();
                 }
 
@@ -579,7 +568,7 @@ public class EmpAttendance extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-                    Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
@@ -615,7 +604,7 @@ public class EmpAttendance extends javax.swing.JFrame {
 
             loadAttendance(employeeId.getText());
             String key = "`employee`.`id`='" + employeeId.getText() + "' AND";
-            loadWorkSchedule(key);
+            loadWorkSchedule();
 
         } else {
             clearData();
@@ -638,16 +627,6 @@ public class EmpAttendance extends javax.swing.JFrame {
 
     private void timePicker1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_timePicker1PropertyChange
 
-//        try {
-//            Date startTime = new SimpleDateFormat("hh:mm a").parse(timePicker1.getSelectedTime());
-//            String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-//
-//            String time = new SimpleDateFormat("HH:mm:ss").format(startTime);
-//            offTime.setText(date + " " + time);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }//GEN-LAST:event_timePicker1PropertyChange
 
     private void employeeIdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeIdMouseReleased
@@ -710,7 +689,7 @@ public class EmpAttendance extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
+            Dashboard.log.warning(e.toString());
 
         }
 
