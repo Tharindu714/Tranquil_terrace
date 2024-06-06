@@ -1,5 +1,7 @@
 package FrontOffice;
 
+import GUI.Dashboard;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -536,9 +538,9 @@ public class NewJPanel extends javax.swing.JPanel {
 
             map.put("Parameter5", balnce);
 
-            String reportpath = "src//resourse//table.jasper";
+            InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/table.jasper");
             JRDataSource datas = new JRTableModelDataSource(jTable1.getModel());
-            JasperPrint jdbc = JasperFillManager.fillReport(reportpath, map, datas);
+            JasperPrint jdbc = JasperFillManager.fillReport(reportPath, map, datas);
             JasperViewer.viewReport(jdbc, false);
             MySQL.execute("INSERT INTO `res_order` (`order_date`,`total`,`payment_method_id`) VALUE ('" + ntime + "','" + totle + "','(SELECT * FROM  `payement_method` WHERE `id`='" + sItem + "')");
             JOptionPane.showMessageDialog(this, "successfully",

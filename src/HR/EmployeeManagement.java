@@ -22,9 +22,6 @@ public class EmployeeManagement extends javax.swing.JFrame {
     public HashMap<String, String> genderMap = new HashMap<>();
     public Vector<UserBean> userVector = new Vector<>();
 
-    /**
-     * Creates new form EmployeeManagement
-     */
     public EmployeeManagement() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
@@ -32,11 +29,9 @@ public class EmployeeManagement extends javax.swing.JFrame {
         loadRole();
         loadDepartments();
         loadGender();
-
     }
 
     private void loadGender() {
-
         try {
             ResultSet resultSet = MySQL.execute("SELECT * FROM `gender`");
 
