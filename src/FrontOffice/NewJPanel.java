@@ -1,10 +1,8 @@
 package FrontOffice;
 
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.Vector;
@@ -21,7 +19,7 @@ import net.sf.jasperreports.view.JasperViewer;
 public class NewJPanel extends javax.swing.JPanel {
 
     private String ntime;
-    HashMap<String, String> payMap = new HashMap<>();
+
     private double totle;
     private double balnce;
 
@@ -29,13 +27,21 @@ public class NewJPanel extends javax.swing.JPanel {
         initComponents();
         loadt();
         load_payment();
-        loaddata();
+
+
     }
 
     private void loadt() {
         Thread t = new Thread(() -> {
             while (true) {
-                jLabel8.setText(String.valueOf(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+                LocalDateTime myDateObj = LocalDateTime.now();
+
+                DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+                String formattedDate = myDateObj.format(myFormatObj);
+                ntime = formattedDate;
+                jLabel8.setText(ntime);
+
                 try {
                     Thread.sleep(1000);
                 } catch (Exception e) {
@@ -133,7 +139,7 @@ public class NewJPanel extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(225, 615));
 
         jLabel8.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel8.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("DinaminaUniWeb", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("time");
 
@@ -235,7 +241,7 @@ public class NewJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.LINE_START);
@@ -504,7 +510,7 @@ public class NewJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox1MouseReleased
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        cal();
+ cal();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
@@ -520,22 +526,21 @@ public class NewJPanel extends javax.swing.JPanel {
         // TODO add your handling code here: ; printin();
         try {
             String sItem = jComboBox1.getSelectedItem().toString();
-            String time = jLabel8.getText();
 
             HashMap< String, Object> map = new HashMap<>();
 
-            map.put("Parameter1", time);
+            map.put("Parameter1", ntime);
             map.put("Parameter2", sItem);
             map.put("Parameter3", totle);
             map.put("Parameter4", jTextField5.getText().toString());
 
             map.put("Parameter5", balnce);
 
-            String reportpath = "src//reports//table.jasper";
+            String reportpath = "src//resourse//table.jasper";
             JRDataSource datas = new JRTableModelDataSource(jTable1.getModel());
             JasperPrint jdbc = JasperFillManager.fillReport(reportpath, map, datas);
             JasperViewer.viewReport(jdbc, false);
-            MySQL.execute("INSERT INTO `res_order` (`order_date`,`total`,`payment_method_id`) VALUE ('" + time + "','" + totle + "','" + payMap.get(sItem) + "')");
+            MySQL.execute("INSERT INTO `res_order` (`order_date`,`total`,`payment_method_id`) VALUE ('" + ntime + "','" + totle + "','(SELECT * FROM  `payement_method` WHERE `id`='" + sItem + "')");
             JOptionPane.showMessageDialog(this, "successfully",
                     "invoice printed ", JOptionPane.INFORMATION_MESSAGE);
 

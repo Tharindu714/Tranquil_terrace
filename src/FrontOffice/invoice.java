@@ -737,7 +737,7 @@ public class invoice extends javax.swing.JPanel {
             map.put("Parameter4", amount);
 
             map.put("Parameter5", balnce);
-            String reportpath = "src//reports//tabletu.jasper";
+            String reportpath = "src//resourse//tabletu.jasper";
             JRDataSource datas = new JRTableModelDataSource(jTable1.getModel());
             JasperPrint jdbc = JasperFillManager.fillReport(reportpath, map, datas);
             JasperViewer.viewReport(jdbc, false);

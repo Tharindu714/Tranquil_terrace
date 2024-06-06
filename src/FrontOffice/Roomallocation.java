@@ -452,7 +452,7 @@ public class Roomallocation extends javax.swing.JPanel {
             Vector v = new Vector();
 
             ResultSet resultset = MySQL.execute("SELECT `room_name` FROM `rooms` "
-                    + "INNER JOIN `room_type`ON `rooms`.`room_type_id`=`room_type`.`id` WHERE `type`='" + roomtype + "'");
+                    + "INNER JOIN `room_type`ON `rooms`.`room_type_id`=`room_type`.`Tid` WHERE `type`='" + roomtype + "'");
 
             while (resultset.next()) {
                 String name = resultset.getString("room_name");
