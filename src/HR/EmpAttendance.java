@@ -12,7 +12,10 @@ import model.MySQL;
 import GUI.Dashboard;
 import model.UserBean;
 
-
+/**
+ *
+ * @author DS
+ */
 public class EmpAttendance extends javax.swing.JFrame {
 
     public HashMap<String, UserBean> userMap = new HashMap<>();
@@ -48,8 +51,7 @@ public class EmpAttendance extends javax.swing.JFrame {
             return "0%";
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
             return null;
         }
 
@@ -125,8 +127,7 @@ public class EmpAttendance extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-                      Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
 
         }
 
@@ -545,8 +546,7 @@ public class EmpAttendance extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-                    Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
 
@@ -676,8 +676,7 @@ public class EmpAttendance extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }

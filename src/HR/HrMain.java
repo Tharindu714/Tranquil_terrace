@@ -68,8 +68,7 @@ public class HrMain extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-                        Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -92,8 +91,7 @@ public class HrMain extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -119,8 +117,7 @@ public class HrMain extends javax.swing.JFrame {
             return "0%";
 
         } catch (Exception e) {
-                      Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
             return null;
         }
 
@@ -179,8 +176,7 @@ public class HrMain extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-                        Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
 
         }
 
@@ -216,8 +212,7 @@ public class HrMain extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -1106,8 +1101,7 @@ public class HrMain extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
 
@@ -1155,8 +1149,7 @@ public class HrMain extends javax.swing.JFrame {
             offTime.setText(date + " " + time);
 
         } catch (Exception e) {
-                      Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
     }//GEN-LAST:event_timePicker1PropertyChange
 

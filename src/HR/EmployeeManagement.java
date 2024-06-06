@@ -13,8 +13,6 @@ import model.MySQL;
 import model.UserBean;
 import model.Validation;
 import GUI.Dashboard;
-import java.awt.Event;
-import java.util.Random;
 
 public class EmployeeManagement extends javax.swing.JFrame {
 
@@ -30,7 +28,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
     public EmployeeManagement() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        employeeManagement("WHERE `employee_type_id`!='1'");
+        employeeManagement("");
         loadRole();
         loadDepartments();
         loadGender();
@@ -56,8 +54,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             gender.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -81,8 +78,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             depart.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -106,8 +102,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             Role.setModel(comboBoxModel);
 
         } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -168,7 +163,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-            Dashboard.log.warning(e.toString());
+            e.printStackTrace();
 
         }
 
@@ -214,8 +209,8 @@ public class EmployeeManagement extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
-        rdate = new javax.swing.JLabel();
-        urole = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
+        regDate = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -302,16 +297,6 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
         UserName.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
         UserName.setForeground(java.awt.Color.white);
-        UserName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                UserNameMouseClicked(evt);
-            }
-        });
-        UserName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserNameActionPerformed(evt);
-            }
-        });
 
         jButton1.setBackground(new java.awt.Color(245, 71, 104));
         jButton1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 13)); // NOI18N
@@ -457,7 +442,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
@@ -535,15 +520,15 @@ public class EmployeeManagement extends javax.swing.JFrame {
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel21.setText("Register Date : ");
 
-        rdate.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        rdate.setForeground(new java.awt.Color(255, 255, 255));
-        rdate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        rdate.setText("RegDate");
+        date.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        date.setForeground(new java.awt.Color(255, 255, 255));
+        date.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        date.setText("Date");
 
-        urole.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
-        urole.setForeground(new java.awt.Color(255, 255, 255));
-        urole.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        urole.setText("Role");
+        regDate.setFont(new java.awt.Font("DinaminaUniWeb", 0, 17)); // NOI18N
+        regDate.setForeground(new java.awt.Color(255, 255, 255));
+        regDate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        regDate.setText("User Full Name");
 
         jLabel36.setFont(new java.awt.Font("DinaminaUniWeb", 1, 17)); // NOI18N
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -561,16 +546,16 @@ public class EmployeeManagement extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 427, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addGap(28, 28, 28)
-                        .addComponent(rdate))
+                        .addComponent(date))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel36)
-                        .addGap(113, 113, 113)
-                        .addComponent(urole)))
+                        .addGap(65, 65, 65)
+                        .addComponent(regDate)))
                 .addGap(20, 20, 20))
         );
         jPanel5Layout.setVerticalGroup(
@@ -581,13 +566,13 @@ public class EmployeeManagement extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(searchEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21)
-                    .addComponent(rdate))
+                    .addComponent(date))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel36)
-                        .addComponent(urole)))
+                        .addComponent(regDate)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -649,8 +634,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
                     employeeManagement("");
 
                 } catch (Exception e) {
-                    Dashboard.log.warning(e.toString());
-
+                    e.printStackTrace();
                 }
 
             }
@@ -692,13 +676,11 @@ public class EmployeeManagement extends javax.swing.JFrame {
                         clearData();
 
                     } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
-
+                        e.printStackTrace();
                     }
 
                 } catch (Exception e) {
-                    Dashboard.log.warning(e.toString());
-
+                    e.printStackTrace();
                 }
 
             }
@@ -739,7 +721,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
         Role.setSelectedIndex(0);
         depart.setSelectedIndex(0);
         password.setText("");
-        urole.setText("");
+        regDate.setText("");
         UserName.setText("");
 
         employeeTable.clearSelection();
@@ -754,8 +736,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
         lastName.setText(bean.getLast_name());
         Mobile.setText(bean.getMobile());
         password.setText(bean.getPassword());
-        urole.setText(bean.getUserRole());
-        rdate.setText(bean.getRegDate());
+        regDate.setText(bean.getRegDate());
         UserName.setText(bean.getUserName());
 
         Role.setSelectedItem(bean.getUserRole());
@@ -802,11 +783,10 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
             try {
 
-                employeeManagement("WHERE `employee_type_id`!='1' AND  `first_name` LIKE '%" + searchText + "%' OR `username` Like '%" + searchText + "%' OR `employee`.`id` Like'%" + searchText + "%'");
+                employeeManagement("WHERE `first_name` LIKE '%" + searchText + "%' OR `username` Like '%" + searchText + "%' OR `employee`.`id` Like'%" + searchText + "%'");
 
             } catch (Exception e) {
-                Dashboard.log.warning(e.toString());
-
+                e.printStackTrace();
             }
         } else if (searchText.length() == 3) {
             employeeManagement("");
@@ -831,85 +811,6 @@ public class EmployeeManagement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_genderActionPerformed
 
-    private String CheckResult() {
-
-        boolean get = true;
-
-        String role = Role.getSelectedItem().toString();
-
-        String roleId = "";
-        for (int i = 0; i < role.length(); i++) {
-
-            char ch = role.charAt(i);
-
-            roleId = ch + roleId;
-            if (i == 2) {
-                break;
-            }
-        }
-
-        try {
-            ResultSet rs;
-            String rand;
-            while (get) {
-                rand = roleId+"-"+ randomNum();
-                rs = MySQL.execute("SELECT * FROM `employee` WHERE `username`='" + rand
-                        + "'");
-                if (rs.next()) {
-                    return null;
-                } else {
-                    get = false;
-                    return rand;
-                }
-            }
-            return null;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-    private String randomNum() {
-
-        String get = "true";
-        Random rnd = new Random();
-        String list[] = new String[4];
-
-        for (int i = 0; i < 4; i++) {
-
-            list[i] = Integer.toString(rnd.nextInt(10));
-
-        }
-
-        String random = list[0] + "" + list[1] + "" + list[2] + "" + list[3];
-
-        return random;
-
-    }
-
-    private void UserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserNameActionPerformed
-        
-
-    }//GEN-LAST:event_UserNameActionPerformed
-
-    private void UserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserNameMouseClicked
-       System.out.println("hello");
-        if (UserName.getText().isEmpty()) {
-
-            String random = CheckResult();
-
-            String randNo = random;
-
-            UserName.setText(randNo);
-            System.out.println("hello");
-
-        } else {
-            System.out.println("hello");
-        }
-    }//GEN-LAST:event_UserNameMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -929,6 +830,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
     private javax.swing.JTextField Mobile;
     private javax.swing.JComboBox<String> Role;
     private javax.swing.JTextField UserName;
+    private javax.swing.JLabel date;
     private javax.swing.JComboBox<String> depart;
     private javax.swing.JTable employeeTable;
     private javax.swing.JTextField firstName;
@@ -957,8 +859,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lastName;
     private javax.swing.JPasswordField password;
-    private javax.swing.JLabel rdate;
+    private javax.swing.JLabel regDate;
     private javax.swing.JTextField searchEmployee;
-    private javax.swing.JLabel urole;
     // End of variables declaration//GEN-END:variables
 }

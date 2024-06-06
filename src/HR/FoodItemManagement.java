@@ -416,8 +416,7 @@ public class FoodItemManagement extends javax.swing.JFrame {
             newFoodCateegory.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                     Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -452,8 +451,7 @@ public class FoodItemManagement extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-                     Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
     }
 
@@ -487,8 +485,7 @@ public class FoodItemManagement extends javax.swing.JFrame {
                         clearFoodtable();
 
                     } catch (Exception e) {
-                                Dashboard.log.warning(e.toString());
-
+                        e.printStackTrace();
                     }
 
                 } else {
@@ -496,8 +493,7 @@ public class FoodItemManagement extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
-
+                e.printStackTrace();
             }
         }
 
@@ -576,8 +572,7 @@ public class FoodItemManagement extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
-
+                e.printStackTrace();
             }
 
         }
@@ -640,8 +635,7 @@ public class FoodItemManagement extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
-
+                e.printStackTrace();
             }
         } else if (searchText.length() == 3) {
             loadFoods();

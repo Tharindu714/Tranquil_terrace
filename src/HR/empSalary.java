@@ -47,9 +47,6 @@ public class empSalary extends javax.swing.JFrame {
         try {
             HashMap<String, Object> parameter = new HashMap<>();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-           
-
             parameter.put("username", jComboBox1.getSelectedItem());
             parameter.put("Designation", "Human Resource Officer");
             parameter.put("from_date", dateChooser1);
@@ -64,8 +61,7 @@ public class empSalary extends javax.swing.JFrame {
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
-                      Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
     }
 
@@ -86,8 +82,7 @@ public class empSalary extends javax.swing.JFrame {
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameter, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
-                      Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
     }
 
@@ -104,8 +99,7 @@ public class empSalary extends javax.swing.JFrame {
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
-                           Dashboard.log.warning(e.toString());
-
+                e.printStackTrace();
             }
         } else {
             commons();
@@ -137,12 +131,10 @@ public class empSalary extends javax.swing.JFrame {
                 jTextField1.setText(String.valueOf(nextID));
             }
         } catch (Exception e) {
-                       Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
-
     private void loadSalary(String query) {
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -163,8 +155,7 @@ public class empSalary extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (Exception e) {
-                        Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -185,8 +176,7 @@ public class empSalary extends javax.swing.JFrame {
             jComboBox1.setModel(comboBoxModel);
 
         } catch (Exception e) {
-                     Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
     }
 
@@ -637,8 +627,6 @@ public class empSalary extends javax.swing.JFrame {
         String id = jTextField1.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-       
-
         String salary = jFormattedTextField1.getText();
         String advance = jFormattedTextField2.getText();
         String due = jFormattedTextField3.getText();
@@ -676,8 +664,7 @@ public class empSalary extends javax.swing.JFrame {
                     commons();
                 }
             } catch (Exception e) {
-                          Dashboard.log.warning(e.toString());
-
+                e.printStackTrace();
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -743,8 +730,7 @@ public class empSalary extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
-
+                e.printStackTrace();
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed

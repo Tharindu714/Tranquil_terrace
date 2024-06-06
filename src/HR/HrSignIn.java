@@ -260,8 +260,7 @@ public class HrSignIn extends javax.swing.JFrame {
             return "0%";
 
         } catch (Exception e) {
-                   Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
             return null;
         }
 
@@ -323,8 +322,7 @@ public class HrSignIn extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                            Dashboard.log.warning(e.toString());
-
+                e.printStackTrace();
             }
         }
 

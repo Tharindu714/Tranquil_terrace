@@ -1,9 +1,8 @@
+
 package HR;
 
 import GUI.Dashboard;
 import com.formdev.flatlaf.IntelliJTheme;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,11 +13,6 @@ import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 import model.UserBean;
 import model.Validation;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRTableModelDataSource;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -95,7 +89,6 @@ public class WorkSchedule extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         departmentTable = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
 
         timePicker1.set24hourMode(false);
         timePicker1.setName(""); // NOI18N
@@ -631,16 +624,6 @@ public class WorkSchedule extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(18, 173, 193));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LightIcons/view-detail.png"))); // NOI18N
-        jButton5.setBorder(null);
-        jButton5.setContentAreaFilled(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -659,8 +642,6 @@ public class WorkSchedule extends javax.swing.JFrame {
                         .addGap(125, 125, 125))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -676,14 +657,12 @@ public class WorkSchedule extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel48)
                             .addComponent(dateDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
         );
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -732,8 +711,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             department(dateDepart.getText());
 
         } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -759,8 +737,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             return "0%";
 
         } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
             return null;
         }
 
@@ -809,8 +786,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -856,8 +832,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -956,8 +931,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                     loadworkSchedule("");
 
                 } catch (Exception e) {
-                    Dashboard.log.warning(e.toString());
-
+                    e.printStackTrace();
                 }
 
             } else {
@@ -1010,8 +984,7 @@ public class WorkSchedule extends javax.swing.JFrame {
                     loadworkSchedule("");
                 } catch (Exception e) {
 
-                    Dashboard.log.warning(e.toString());
-
+                    e.printStackTrace();
                     JOptionPane.showMessageDialog(this, "Insert Faild", "Wrong", JOptionPane.ERROR_MESSAGE);
 
                 }
@@ -1075,7 +1048,7 @@ public class WorkSchedule extends javax.swing.JFrame {
     }//GEN-LAST:event_onTimeFocusGained
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        this.dispose();
+this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
@@ -1132,8 +1105,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             onTime.setText(this.Date.getText() + " " + time);
 
         } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
     }//GEN-LAST:event_timePicker1PropertyChange
 
@@ -1163,8 +1135,7 @@ public class WorkSchedule extends javax.swing.JFrame {
             offTime.setText(this.Date.getText() + " " + time);
 
         } catch (Exception e) {
-            Dashboard.log.warning(e.toString());
-
+            e.printStackTrace();
         }
     }//GEN-LAST:event_timePicker2PropertyChange
 
@@ -1182,35 +1153,11 @@ public class WorkSchedule extends javax.swing.JFrame {
 
     }//GEN-LAST:event_dateDepartPropertyChange
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Do you need to Print Employee Work Schedule Report?", "Confirm Alert",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            try {
-                HashMap<String, Object> map = new HashMap<>();
-
-                String reportPath = "src//reports//work_schedule.jasper";
-
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", "root", "tharinduCHA@8754");
-
-                JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, connection);
-                JasperViewer.viewReport(jasperPrint, false);
-
-            } catch (Exception e) {
-                Dashboard.log.warning(e.toString());
-
-            }
-        } else {
-
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        IntelliJTheme.setup(Dashboard.class.getResourceAsStream(
-                "/themes/Atom_One_DarkContrast.theme.json"));
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new WorkSchedule().setVisible(true);
@@ -1235,7 +1182,6 @@ public class WorkSchedule extends javax.swing.JFrame {
     private javax.swing.JTable employeeTable;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
