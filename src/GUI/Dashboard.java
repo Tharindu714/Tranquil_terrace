@@ -16,7 +16,6 @@ public class Dashboard extends javax.swing.JFrame {
     static {
 
         try {
-
             log = Logger.getLogger("gui");
             Handler = new FileHandler("log.txt", true);
             Handler.setFormatter(new SimpleFormatter());

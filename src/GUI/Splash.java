@@ -11,8 +11,8 @@ public class Splash extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
-                try {
-          ;
+        try {
+            ;
             ImageIcon imageIcon = new ImageIcon(getClass().getResource("/resources/T2.png"));
             this.setIconImage(imageIcon.getImage());
         } catch (Exception e) {
@@ -25,11 +25,10 @@ public class Splash extends javax.swing.JFrame {
                         try {
                             Thread.sleep(25);
                         } catch (Exception e) {
-                                        Dashboard.log.warning(e.toString());
-
+                            Dashboard.log.warning(e.toString());
                         }
                     }
-                    FirstDashboard d = new FirstDashboard();
+                    Dashboard d = new Dashboard();
                     d.setVisible(true);
                     this.dispose();
                 }
