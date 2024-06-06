@@ -1,7 +1,7 @@
 package HR;
 
 import GUI.Dashboard;
-import com.formdev.flatlaf.IntelliJTheme;
+import java.sql.Connection;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -13,11 +13,10 @@ import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 import model.UserBean;
 import model.Validation;
-import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
+import java.sql.DriverManager;
 
 public class WorkSchedule extends javax.swing.JFrame {
 
@@ -1169,13 +1168,14 @@ public class WorkSchedule extends javax.swing.JFrame {
 
                 InputStream reportPath = Dashboard.class.getResourceAsStream("/reports/work_schedule.jasper");
 
-                JRDataSource dataSource = new JRTableModelDataSource(WorkScheduleTable.getModel());
-                JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, dataSource);
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_db", "root", "tharinduCHA@8754");
+
+                JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map, connection);
                 JasperViewer.viewReport(jasperPrint, false);
 
             } catch (Exception e) {
                 Dashboard.log.warning(e.toString());
-
             }
         } else {
 
