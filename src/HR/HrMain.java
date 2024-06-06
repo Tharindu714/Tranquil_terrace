@@ -1064,7 +1064,6 @@ public class HrMain extends javax.swing.JFrame {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
 
         try {
-
             int selectedRow = attendanceTable.getSelectedRow();
 
             if (selectedRow != -1) {
